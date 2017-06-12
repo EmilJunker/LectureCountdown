@@ -1,0 +1,52 @@
+﻿<Page
+    x:Class="LessonTimer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="TitleBar" Grid.Row="0" Background="Transparent" Height="32">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="CompactOverlayButton" Grid.Column="0" ToolTipService.ToolTip="Switch view" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0" Padding="0" Background="Transparent" Click="CompactOverlayButton_Click">
+                <StackPanel>
+                    <SymbolIcon Symbol="FullScreen"/>
+                </StackPanel>
+            </Button>
+            <Grid x:Name="MainTitleBar" Grid.Column="1" VerticalAlignment="Stretch" Background="Transparent"></Grid>
+        </Grid>
+
+        <RelativePanel x:Name="Body" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+
+            <RelativePanel x:Name="CountdownPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                <TextBlock x:Name="CountdownLabel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="80" Margin="4,-20,4,4" Text="00:00:00" TextAlignment="Center" FontSize="64"/>
+                <Grid x:Name="CountdownProgress" RelativePanel.Below="CountdownLabel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="24" Margin="4,4,4,20" >
+                    <ProgressBar x:Name="CountdownProgressBar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Minimum="0" Maximum="1"/>
+                    <TextBlock x:Name="CountdownProgressText" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" TextAlignment="Center"/>
+                    <TextBlock x:Name="CountdownProgressPercentage" HorizontalAlignment="Right" VerticalAlignment="Center" Width="140" TextAlignment="Center"/>
+                </Grid>
+            </RelativePanel>
+
+            <RelativePanel x:Name="ControlPanel" RelativePanel.Below="CountdownPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                <TimePicker x:Name="TimePicker" ToolTipService.ToolTip="Select end time" Width="252" Height="32" Margin="4,4,4,4" ClockIdentifier="24HourClock"/>
+                <Button x:Name="StartButton" ToolTipService.ToolTip="Start countdown" RelativePanel.RightOf="TimePicker" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="StartButton_Click">
+                    <StackPanel>
+                        <SymbolIcon Symbol="Accept"/>
+                    </StackPanel>
+                </Button>
+            </RelativePanel>
+
+        </RelativePanel>
+
+    </Grid>
+</Page>
