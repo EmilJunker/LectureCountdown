@@ -44,6 +44,8 @@ namespace CountdownLogic {
 
     public delegate void TickEventHandler(object source, TickEventArgs e);
 
+    public delegate void EndEventHandler(object source, EndEventArgs e);
+
     public class TickEventArgs : EventArgs {
 
         private String countdown;
@@ -75,16 +77,29 @@ namespace CountdownLogic {
 
     }
 
+    public class EndEventArgs : EventArgs {
+
+        private int secondsPassed;
+        public int SecondsPassed {
+            get { return secondsPassed; }
+        }
+
+        public EndEventArgs(TimeSpan timepassed) {
+            this.secondsPassed = (int)Math.Round(timepassed.TotalSeconds,0);
+        }
+
+    }
+
     public class Tick {
 
         public event TickEventHandler Ticked;
+        public event EndEventHandler Ended;
 
         private static TimeSpan over = new TimeSpan(0, 0, 0);
 
         private DateTime starttime;
         private DateTime endtime;
         private TimeSpan duration;
-
         private String durationString;
 
         private DateTime currenttime;
@@ -102,7 +117,11 @@ namespace CountdownLogic {
             this.endtime = endtime;
 
             this.duration = endtime.Subtract(starttime);
+
             this.durationString = " / " + duration.ToString(@"hh\:mm\:ss");
+
+            timeleft = duration;
+            timepassed = new TimeSpan(0, 0, 0);
 
         }
 
@@ -112,26 +131,25 @@ namespace CountdownLogic {
             timeleft = endtime.Subtract(currenttime);
             timepassed = duration.Subtract(timeleft);
 
-            countdown = timeleft.ToString(@"hh\:mm\:ss");
-
-            progress = timepassed.TotalSeconds / duration.TotalSeconds;
-
-            timeprogress = timepassed.ToString(@"hh\:mm\:ss") + durationString;
-
-            percentprogress = (progress * 100).ToString("0.00") + " %";
-
             if (timeleft <= over) {
 
-                countdown = "00:00:00";
-                progress = 1;
-                timeprogress = "";
-                percentprogress = "";
-
                 Countdown.CountdownIsOver();
+                Ended(this, new EndEventArgs(timepassed));
 
             }
+            else {
 
-            Ticked(this, new TickEventArgs(countdown, progress, timeprogress, percentprogress));
+                countdown = timeleft.ToString(@"hh\:mm\:ss");
+
+                progress = timepassed.TotalSeconds / duration.TotalSeconds;
+
+                timeprogress = timepassed.ToString(@"hh\:mm\:ss") + durationString;
+
+                percentprogress = (progress * 100).ToString("0.00") + " %";
+
+                Ticked(this, new TickEventArgs(countdown, progress, timeprogress, percentprogress));
+
+            }
 
         }
 

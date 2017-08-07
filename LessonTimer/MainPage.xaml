@@ -4,6 +4,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xaml="using:Windows.UI.Xaml"
+    xmlns:xaml1="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -38,12 +40,23 @@
             </RelativePanel>
 
             <RelativePanel x:Name="ControlPanel" RelativePanel.Below="CountdownPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-                <TimePicker x:Name="TimePicker" ToolTipService.ToolTip="Select end time" Width="252" Height="32" Margin="4,4,4,4" ClockIdentifier="24HourClock"/>
-                <Button x:Name="StartButton" ToolTipService.ToolTip="Start countdown" RelativePanel.RightOf="TimePicker" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="StartButton_Click">
+                <TimePicker x:Name="TimePicker" ToolTipService.ToolTip="Select end time" Width="172" Height="32" Margin="4,4,4,4" ClockIdentifier="24HourClock" MinWidth="0" TimeChanged="TimePicker_Changed"/>
+                <Button x:Name="SuggestButton" ToolTipService.ToolTip="Get default end time suggestion" RelativePanel.RightOf="TimePicker" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="SuggestButton_Click">
+                    <StackPanel>
+                        <xaml1:SymbolIcon Symbol="Clock"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="CalendarButton" ToolTipService.ToolTip="Get end time suggestion from calendar" RelativePanel.RightOf="SuggestButton" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="CalendarButton_Click">
+                    <StackPanel>
+                        <SymbolIcon Symbol="Calendar"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="StartButton" ToolTipService.ToolTip="Start countdown" RelativePanel.RightOf="CalendarButton" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="StartButton_Click">
                     <StackPanel>
                         <SymbolIcon Symbol="Accept"/>
                     </StackPanel>
                 </Button>
+                <TextBlock x:Name="InfoTextBlock" RelativePanel.Below="TimePicker" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="4,4,4,4" FontSize="16" TextWrapping="WrapWholeWords"/>
             </RelativePanel>
 
         </RelativePanel>

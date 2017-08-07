@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessonTimer", "LessonTimer\LessonTimer.csproj", "{D81B901C-4F94-4D02-A1CE-0DCEE386B917}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountdownLogic", "CountdownLogic\CountdownLogic.csproj", "{534A27A2-D302-4CC4-9671-99C33DE4EF05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CountdownLogic", "CountdownLogic\CountdownLogic.csproj", "{534A27A2-D302-4CC4-9671-99C33DE4EF05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTestApp", "ConsoleTestApp\ConsoleTestApp.csproj", "{3458D736-158E-4E62-838B-5CEB2B86E6D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTestApp", "ConsoleTestApp\ConsoleTestApp.csproj", "{3458D736-158E-4E62-838B-5CEB2B86E6D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,7 +21,9 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D81B901C-4F94-4D02-A1CE-0DCEE386B917}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{D81B901C-4F94-4D02-A1CE-0DCEE386B917}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{D81B901C-4F94-4D02-A1CE-0DCEE386B917}.Debug|Any CPU.Build.0 = Debug|x64
+		{D81B901C-4F94-4D02-A1CE-0DCEE386B917}.Debug|Any CPU.Deploy.0 = Debug|x64
 		{D81B901C-4F94-4D02-A1CE-0DCEE386B917}.Debug|ARM.ActiveCfg = Debug|ARM
 		{D81B901C-4F94-4D02-A1CE-0DCEE386B917}.Debug|ARM.Build.0 = Debug|ARM
 		{D81B901C-4F94-4D02-A1CE-0DCEE386B917}.Debug|ARM.Deploy.0 = Debug|ARM

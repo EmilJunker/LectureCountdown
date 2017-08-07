@@ -23,10 +23,19 @@ namespace ConsoleTestApp {
 
             tick = new Tick();
             tick.Ticked += new TickEventHandler(UpdateCountdown);
+            tick.Ended += new EndEventHandler(EndCountdown);
 
             Countdown.TimerSetup(hh, mm, tick);
 
             Console.ReadLine();
+
+        }
+
+        static void EndCountdown(object source, EventArgs e) {
+
+            Console.Clear();
+
+            Console.WriteLine("The countdown is over");
 
         }
 
