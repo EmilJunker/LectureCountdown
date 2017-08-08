@@ -87,13 +87,13 @@ namespace CountdownLogic {
 
     public class EndEventArgs : EventArgs {
 
-        private double secondsPassed;
-        public Double SecondsPassed {
-            get { return secondsPassed; }
+        private double secondspassed;
+        public Double Secondspassed {
+            get { return secondspassed; }
         }
 
         public EndEventArgs(TimeSpan timepassed) {
-            this.secondsPassed = timepassed.TotalSeconds;
+            this.secondspassed = timepassed.TotalSeconds;
         }
 
     }
@@ -127,9 +127,6 @@ namespace CountdownLogic {
             this.duration = endtime.Subtract(starttime);
 
             this.durationString = " / " + duration.ToString(@"hh\:mm\:ss");
-
-            timeleft = duration;
-            timepassed = new TimeSpan(0, 0, 0);
 
         }
 

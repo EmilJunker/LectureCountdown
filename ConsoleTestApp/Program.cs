@@ -31,14 +31,6 @@ namespace ConsoleTestApp {
 
         }
 
-        static void EndCountdown(object source, EventArgs e) {
-
-            Console.Clear();
-
-            Console.WriteLine("The countdown is over");
-
-        }
-
         static void UpdateCountdown(object source, TickEventArgs e) {
 
             Console.Clear();
@@ -59,6 +51,15 @@ namespace ConsoleTestApp {
                 Console.Write("-");
                 i++;
             }
+
+        }
+
+        static void EndCountdown(object source, EndEventArgs e) {
+
+            Console.Clear();
+
+            Console.WriteLine("The countdown is over");
+            Console.WriteLine(System.String.Format("A total of {0} seconds have passed", e.Secondspassed));
 
         }
 
