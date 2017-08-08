@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace CountdownLogic {
@@ -11,6 +12,11 @@ namespace CountdownLogic {
         private static DateTime endtime;
 
         private static AutoResetEvent countdownIsOver;
+
+        private static bool isRunning;
+        public static Boolean IsRunning {
+            get { return isRunning; }
+        }
 
         public static void TimerSetup(int hour, int min, Tick tick) {
 
@@ -34,9 +40,12 @@ namespace CountdownLogic {
 
             timer = new Timer(tick.TimerTick, countdownIsOver, 0, 1000);
 
+            isRunning = true;
+
         }
 
         public static void CountdownIsOver() {
+            isRunning = false;
             timer.Dispose();
         }
 
@@ -79,13 +88,13 @@ namespace CountdownLogic {
 
     public class EndEventArgs : EventArgs {
 
-        private int secondsPassed;
-        public int SecondsPassed {
+        private double secondsPassed;
+        public Double SecondsPassed {
             get { return secondsPassed; }
         }
 
         public EndEventArgs(TimeSpan timepassed) {
-            this.secondsPassed = (int)Math.Round(timepassed.TotalSeconds,0);
+            this.secondsPassed = timepassed.TotalSeconds;
         }
 
     }
