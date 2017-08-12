@@ -5,12 +5,10 @@ namespace ConsoleTestApp {
 
     class Program {
 
-        static Tick tick;
-
-        static int hh;
-        static int mm;
-
         static void Main(string[] args) {
+
+            int hh;
+            int mm;
 
             try {
                 hh = int.Parse(args[0]);
@@ -21,11 +19,16 @@ namespace ConsoleTestApp {
                 mm = 0;
             }
 
-            tick = new Tick();
-            tick.Ticked += new TickEventHandler(UpdateCountdown);
-            tick.Ended += new EndEventHandler(EndCountdown);
+            DateTime starttime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+            DateTime endtime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hh, mm, 0);
 
-            Countdown.TimerSetup(hh, mm, tick);
+            if ((hh < starttime.Hour) || (hh == starttime.Hour && mm < starttime.Minute)) {
+                endtime = endtime.AddDays(1);
+            }
+
+            Countdown.TimerSetup(starttime, endtime);
+
+            Countdown.tick.Ticked += new TickEventHandler(UpdateCountdown);
 
             Console.ReadLine();
 
@@ -52,14 +55,13 @@ namespace ConsoleTestApp {
                 i++;
             }
 
-        }
+            if (!Countdown.IsRunning) {
 
-        static void EndCountdown(object source, EndEventArgs e) {
+                Console.Clear();
 
-            Console.Clear();
+                Console.WriteLine("The countdown is over");
 
-            Console.WriteLine("The countdown is over");
-            Console.WriteLine(System.String.Format("A total of {0} seconds have passed", e.Secondspassed));
+            }
 
         }
 

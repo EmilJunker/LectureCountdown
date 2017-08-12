@@ -5,10 +5,9 @@ namespace CountdownLogic {
 
     public static class Countdown {
 
-        private static Timer timer;
+        public static Tick tick = new Tick();
 
-        private static DateTime starttime;
-        private static DateTime endtime;
+        private static Timer timer;
 
         private static AutoResetEvent countdownIsOver;
 
@@ -17,21 +16,12 @@ namespace CountdownLogic {
             get { return isRunning; }
         }
 
-        public static void TimerSetup(int hour, int min, Tick tick) {
+        public static void TimerSetup(DateTime starttime, DateTime endtime) {
 
             try {
                 timer.Dispose();
             }
-            catch (NullReferenceException) {
-
-            }
-
-            starttime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
-            endtime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, min, 0);
-
-            if ((hour < starttime.Hour) || (hour == starttime.Hour && min < starttime.Minute)) {
-                endtime = endtime.AddDays(1);
-            }
+            catch (NullReferenceException) { }
 
             tick.SetTime(starttime, endtime);
 
@@ -44,15 +34,16 @@ namespace CountdownLogic {
         }
 
         public static void CountdownIsOver() {
+
             isRunning = false;
+            tick.End();
             timer.Dispose();
+
         }
 
     }
 
     public delegate void TickEventHandler(object source, TickEventArgs e);
-
-    public delegate void EndEventHandler(object source, EndEventArgs e);
 
     public class TickEventArgs : EventArgs {
 
@@ -85,23 +76,9 @@ namespace CountdownLogic {
 
     }
 
-    public class EndEventArgs : EventArgs {
-
-        private double secondspassed;
-        public Double Secondspassed {
-            get { return secondspassed; }
-        }
-
-        public EndEventArgs(TimeSpan timepassed) {
-            this.secondspassed = timepassed.TotalSeconds;
-        }
-
-    }
-
     public class Tick {
 
         public event TickEventHandler Ticked;
-        public event EndEventHandler Ended;
 
         private static TimeSpan over = new TimeSpan(0, 0, 0);
 
@@ -139,7 +116,6 @@ namespace CountdownLogic {
             if (timeleft <= over) {
 
                 Countdown.CountdownIsOver();
-                Ended(this, new EndEventArgs(timepassed));
 
             }
             else {
@@ -155,6 +131,17 @@ namespace CountdownLogic {
                 Ticked(this, new TickEventArgs(countdown, progress, timeprogress, percentprogress));
 
             }
+
+        }
+
+        public void End() {
+
+            countdown = "00:00:00";
+            progress = 1.0;
+            timeprogress = String.Empty;
+            percentprogress = String.Empty;
+
+            Ticked(this, new TickEventArgs(countdown, progress, timeprogress, percentprogress));
 
         }
 
