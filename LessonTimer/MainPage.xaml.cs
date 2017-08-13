@@ -124,6 +124,7 @@ namespace LessonTimer {
 
             FadeInStoryboard.Begin();
             currentDescription = nextDescription;
+            nextDescription = String.Empty;
             InfoTextBlock.Text = currentDescription;
             ToolTipService.SetToolTip(InfoTextBlock, currentDescription);
             StartButton.IsEnabled = false;
@@ -267,11 +268,8 @@ namespace LessonTimer {
                 }
                 else {
 
-                    if (Countdown.IsRunning) {
-                        nextDescription = String.Empty;
-                    }
+                    if (Countdown.IsRunning) { }
                     else {
-                        nextDescription = String.Empty;
                         InfoTextBlock.Text = "No events today in you calendar";
                         InfoTextBlock.Opacity = 1.0;
                         FadeOutStoryboard.Begin();
@@ -282,11 +280,8 @@ namespace LessonTimer {
             }
             catch (System.NullReferenceException) {
 
-                if (Countdown.IsRunning) {
-                    nextDescription = String.Empty;
-                }
+                if (Countdown.IsRunning) { }
                 else {
-                    nextDescription = String.Empty;
                     InfoTextBlock.Text = "Please grant access permission to calendar";
                     InfoTextBlock.Opacity = 1.0;
                     FadeOutStoryboard.Begin();
