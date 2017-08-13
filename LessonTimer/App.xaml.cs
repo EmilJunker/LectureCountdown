@@ -121,11 +121,11 @@ namespace LessonTimer {
                     Window.Current.Content = rootFrame;
                 }
 
+                RestoreSession();
+
             }
 
             Window.Current.Activate();
-
-            RestoreSession();
 
         }
 

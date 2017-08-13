@@ -55,7 +55,6 @@ namespace LessonTimer {
             }
 
             compactMode = false;
-            CancelButton.IsEnabled = false;
 
             ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(400, 300));
 
@@ -76,8 +75,15 @@ namespace LessonTimer {
                 FadeInStoryboard.Begin();
                 InfoTextBlock.Text = currentDescription;
                 ToolTipService.SetToolTip(InfoTextBlock, currentDescription);
+                TimePicker.Time = new TimeSpan(endtime.Hour, endtime.Minute, 0);
                 StartButton.IsEnabled = false;
                 CancelButton.IsEnabled = true;
+
+            }
+            else {
+
+                StartButton.IsEnabled = true;
+                CancelButton.IsEnabled = false;
 
             }
 
@@ -240,7 +246,7 @@ namespace LessonTimer {
 
                 var allAppointments = await appointmentStore.FindAppointmentsAsync(dateToShow, duration);
 
-                Tuple<TimeSpan, string> endTimeSuggestion = GetEndTimeSuggestion(allAppointments, true);
+                Tuple<TimeSpan, string> endTimeSuggestion = GetEndTimeSuggestion(allAppointments);
 
                 if (endTimeSuggestion != null) {
 
@@ -321,7 +327,7 @@ namespace LessonTimer {
 
         }
 
-        public static Tuple<TimeSpan, string> GetEndTimeSuggestion(IReadOnlyList<Appointment> allAppointments, bool tryAgainIfNull) {
+        public static Tuple<TimeSpan, string> GetEndTimeSuggestion(IReadOnlyList<Appointment> allAppointments) {
             
             List<Appointment> appointments = new List<Appointment>();
 
@@ -332,33 +338,28 @@ namespace LessonTimer {
             }
 
             Tuple<TimeSpan, string> endTimeSuggestion;
+            Appointment nextAppointment;
 
             try {
-
-                Appointment nextAppointment = appointments[calendarSuggestionsIterator];
-
-                calendarSuggestionsIterator++;
-                if (calendarSuggestionsIterator >= appointments.Count) {
-                    calendarSuggestionsIterator = 0;
-                }
-
-                DateTimeOffset nextAppointmentEndTime = nextAppointment.StartTime.Add(nextAppointment.Duration);
-                endTimeSuggestion = new Tuple<TimeSpan, string>(new TimeSpan(nextAppointmentEndTime.Hour, nextAppointmentEndTime.Minute, 0), nextAppointment.Subject);
-
+                nextAppointment = appointments[calendarSuggestionsIterator];
             }
-            catch (Exception) {
+            catch (ArgumentOutOfRangeException) {
 
                 calendarSuggestionsIterator = 0;
 
-                if (tryAgainIfNull) {
-                    endTimeSuggestion = GetEndTimeSuggestion(allAppointments, false);
+                try {
+                    nextAppointment = appointments[calendarSuggestionsIterator];
                 }
-                else {
-                    endTimeSuggestion = null;
+                catch (ArgumentOutOfRangeException) {
+                    return null;
                 }
 
             }
 
+            calendarSuggestionsIterator++;
+
+            DateTimeOffset nextAppointmentEndTime = nextAppointment.StartTime.Add(nextAppointment.Duration);
+            endTimeSuggestion = new Tuple<TimeSpan, string>(new TimeSpan(nextAppointmentEndTime.Hour, nextAppointmentEndTime.Minute, 0), nextAppointment.Subject);
             return endTimeSuggestion;
 
         }
