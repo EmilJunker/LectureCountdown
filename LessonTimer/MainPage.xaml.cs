@@ -37,11 +37,6 @@ namespace LessonTimer {
                 TimePicker.ClockIdentifier = "24HourClock";
             }
 
-            Tuple<TimeSpan, string> endTimeSuggestion = GetEndTimeSuggestion();
-
-            TimePicker.Time = endTimeSuggestion.Item1;
-            currentDescription = endTimeSuggestion.Item2;
-
             try {
                 if (ApplicationView.GetForCurrentView().IsViewModeSupported(ApplicationViewMode.CompactOverlay)) {
                     CompactOverlayButton.Visibility = Visibility.Visible;
@@ -82,6 +77,11 @@ namespace LessonTimer {
             }
             else {
 
+                Tuple<TimeSpan, string> endTimeSuggestion = GetEndTimeSuggestion();
+
+                TimePicker.Time = endTimeSuggestion.Item1;
+                nextDescription = endTimeSuggestion.Item2;
+
                 StartButton.IsEnabled = true;
                 CancelButton.IsEnabled = false;
 
@@ -103,6 +103,7 @@ namespace LessonTimer {
         public static ScheduledToastNotification toast;
 
         public static String currentDescription;
+        public static String nextDescription;
 
         public static DateTime starttime;
         public static DateTime endtime;
@@ -122,6 +123,7 @@ namespace LessonTimer {
             Countdown.TimerSetup(starttime, endtime);
 
             FadeInStoryboard.Begin();
+            currentDescription = nextDescription;
             InfoTextBlock.Text = currentDescription;
             ToolTipService.SetToolTip(InfoTextBlock, currentDescription);
             StartButton.IsEnabled = false;
@@ -204,10 +206,10 @@ namespace LessonTimer {
             if (e.NewTime != e.OldTime) {
 
                 if (Countdown.IsRunning) {
-                    currentDescription = String.Empty;
+                    nextDescription = String.Empty;
                 }
                 else {
-                    currentDescription = String.Empty;
+                    nextDescription = String.Empty;
                     InfoTextBlock.Text = String.Empty;
                 }
 
@@ -224,11 +226,11 @@ namespace LessonTimer {
             TimePicker.Time = endTimeSuggestion.Item1;
 
             if (Countdown.IsRunning) {
-                currentDescription = endTimeSuggestion.Item2;
+                nextDescription = endTimeSuggestion.Item2;
             }
             else {
-                currentDescription = endTimeSuggestion.Item2;
-                InfoTextBlock.Text = currentDescription;
+                nextDescription = endTimeSuggestion.Item2;
+                InfoTextBlock.Text = nextDescription;
                 InfoTextBlock.Opacity = 1.0;
                 FadeOutStoryboard.Begin();
             }
@@ -253,11 +255,11 @@ namespace LessonTimer {
                     TimePicker.Time = endTimeSuggestion.Item1;
 
                     if (Countdown.IsRunning) {
-                        currentDescription = endTimeSuggestion.Item2;
+                        nextDescription = endTimeSuggestion.Item2;
                     }
                     else {
-                        currentDescription = endTimeSuggestion.Item2;
-                        InfoTextBlock.Text = currentDescription;
+                        nextDescription = endTimeSuggestion.Item2;
+                        InfoTextBlock.Text = nextDescription;
                         InfoTextBlock.Opacity = 1.0;
                         FadeOutStoryboard.Begin();
                     }
@@ -266,10 +268,10 @@ namespace LessonTimer {
                 else {
 
                     if (Countdown.IsRunning) {
-                        currentDescription = String.Empty;
+                        nextDescription = String.Empty;
                     }
                     else {
-                        currentDescription = String.Empty;
+                        nextDescription = String.Empty;
                         InfoTextBlock.Text = "No events today in you calendar";
                         InfoTextBlock.Opacity = 1.0;
                         FadeOutStoryboard.Begin();
@@ -281,10 +283,10 @@ namespace LessonTimer {
             catch (System.NullReferenceException) {
 
                 if (Countdown.IsRunning) {
-                    currentDescription = String.Empty;
+                    nextDescription = String.Empty;
                 }
                 else {
-                    currentDescription = String.Empty;
+                    nextDescription = String.Empty;
                     InfoTextBlock.Text = "Please grant access permission to calendar";
                     InfoTextBlock.Opacity = 1.0;
                     FadeOutStoryboard.Begin();
