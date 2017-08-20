@@ -27,15 +27,15 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="TitleBar" Grid.Row="0" Background="Transparent" Height="32">
+        <Grid x:Name="TitleBar" Grid.Row="0"  Background="Transparent" Height="32" xaml1:Canvas.ZIndex="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="CompactOverlayButton" Grid.Column="0" ToolTipService.ToolTip="Switch view" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0" Padding="0" Background="Transparent" Click="CompactOverlayButton_Click">
+            <Button x:Name="CompactOverlayButton" Grid.Column="0" ToolTipService.ToolTip="Switch view" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0" Padding="0" Background="Transparent" Style="{StaticResource NavigationBackButtonSmallStyle}" Click="CompactOverlayButton_Click">
                 <StackPanel>
                     <SymbolIcon Symbol="FullScreen"/>
                 </StackPanel>
@@ -76,6 +76,12 @@
                     <StackPanel>
                         <SymbolIcon Symbol="Cancel"/>
                     </StackPanel>
+                </Button>
+                <Button x:Name="SettingsButton" RelativePanel.Below="TimePicker" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="100" Height="32" Margin="4,4,4,4" Padding="0" Click="SettingsButton_Click">
+                    <RelativePanel>
+                        <SymbolIcon x:Name="Symbol" Symbol="Setting" Height="20" VerticalAlignment="Top"/>
+                        <TextBlock RelativePanel.RightOf="Symbol" Margin="8,0,0,0">Settings</TextBlock>
+                    </RelativePanel>
                 </Button>
             </RelativePanel>
 
