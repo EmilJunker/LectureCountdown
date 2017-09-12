@@ -278,13 +278,10 @@ namespace LessonTimer
 
         private void LoadSettingsUI()
         {
-            if (lectureLengths.Count >= 1)
+            LectureLengthsTextBox.Text += lectureLengths[0].ToString();
+            for (int i = 1; i < lectureLengths.Count; i++)
             {
-                LectureLengthsTextBox.Text += lectureLengths[0].ToString();
-                for (int i = 1; i < lectureLengths.Count; i++)
-                {
-                    LectureLengthsTextBox.Text += String.Format(", {0}", lectureLengths[i].ToString());
-                }
+                LectureLengthsTextBox.Text += String.Format(", {0}", lectureLengths[i].ToString());
             }
 
             switch (lectureLengthRoundTo)
