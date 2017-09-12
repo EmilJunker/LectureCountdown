@@ -6,7 +6,6 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using CountdownLogic;
-using Windows.Globalization;
 using Windows.ApplicationModel.Appointments;
 using Windows.UI.Notifications;
 using Windows.Data.Xml.Dom;
@@ -27,17 +26,7 @@ namespace LessonTimer
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             Window.Current.SetTitleBar(MainTitleBar);
 
-            var userFormat = new Windows.Globalization.DateTimeFormatting.DateTimeFormatter("shorttime", new[] { new GeographicRegion().Code });
-            var timeFormat = userFormat.Format(DateTime.Now);
-
-            if ((timeFormat.Contains("AM")) || (timeFormat.Contains("PM")) || (timeFormat.Contains("am")) || (timeFormat.Contains("pm")))
-            {
-                TimePicker.ClockIdentifier = "12HourClock";
-            }
-            else
-            {
-                TimePicker.ClockIdentifier = "24HourClock";
-            }
+            TimePicker.ClockIdentifier = SettingsPage.ClockFormat;
 
             try
             {
@@ -81,6 +70,7 @@ namespace LessonTimer
             }
             else
             {
+                suggestionsIterator = 0;
                 Tuple<TimeSpan, string> endTimeSuggestion = GetEndTimeSuggestion();
 
                 TimePicker.Time = endTimeSuggestion.Item1;
@@ -96,15 +86,6 @@ namespace LessonTimer
             await BackgroundExecutionManager.RequestAccessAsync();
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
-
-        static List<String> emoji = new List<String>(new String[] { "\U0001F600", "\U0001F601", "\U0001F602", "\U0001F923", "\U0001F603", "\U0001F604", "\U0001F605", "\U0001F606",
-            "\U0001F609", "\U0001F60A", "\U0001F60B", "\U0001F60E", "\U0001F60D", "\U0000263A", "\U0001F642", "\U0001F917", "\U0001F914", "\U0001F610", "\U0001F611", "\U0001F636",
-            "\U0001F644", "\U0001F60F", "\U0001F623", "\U0001F625", "\U0001F62E", "\U0001F910", "\U0001F615", "\U0001F643", "\U0001F62F", "\U0001F62A", "\U0001F62B", "\U0001F634",
-            "\U0001F60C", "\U0001F61B", "\U0001F61C", "\U0001F61D", "\U0001F924", "\U0001F612", "\U0001F613", "\U0001F614", "\U0001F615", "\U0001F643", "\U0001F632", "\U00002639",
-            "\U0001F641", "\U0001F616", "\U0001F61E", "\U0001F61F", "\U0001F624", "\U0001F622", "\U0001F62D", "\U0001F626", "\U0001F627", "\U0001F628", "\U0001F629", "\U0001F62C",
-            "\U0001F630", "\U0001F631", "\U0001F633", "\U0001F635", "\U0001F621", "\U0001F620", "\U0001F921", "\U0001F913", "\U0001F4A9", "\U0001F648", "\U0001F649", "\U0001F64A" });
-
-        public static ScheduledToastNotification toast;
 
         public static String currentDescription;
         public static String nextDescription;
@@ -135,21 +116,37 @@ namespace LessonTimer
             StartButton.IsEnabled = false;
             CancelButton.IsEnabled = true;
 
-            double durationTotalSeconds = endtime.Subtract(starttime).TotalSeconds;
-
-            try
+            if (SettingsPage.NotificationsEnabled)
             {
-                ToastNotificationManager.CreateToastNotifier().RemoveFromSchedule(toast);
+                ScheduleToastNotification(SettingsPage.NotificationSoundEnabled);
             }
-            catch (Exception) { }
+        }
+
+        static List<String> emoji = new List<String>(new String[] { "\U0001F600", "\U0001F601", "\U0001F602", "\U0001F923", "\U0001F603", "\U0001F604", "\U0001F605", "\U0001F606",
+            "\U0001F609", "\U0001F60A", "\U0001F60B", "\U0001F60E", "\U0001F60D", "\U0000263A", "\U0001F642", "\U0001F917", "\U0001F914", "\U0001F610", "\U0001F611", "\U0001F636",
+            "\U0001F644", "\U0001F60F", "\U0001F623", "\U0001F625", "\U0001F62E", "\U0001F910", "\U0001F615", "\U0001F643", "\U0001F62F", "\U0001F62A", "\U0001F62B", "\U0001F634",
+            "\U0001F60C", "\U0001F61B", "\U0001F61C", "\U0001F61D", "\U0001F924", "\U0001F612", "\U0001F613", "\U0001F614", "\U0001F615", "\U0001F643", "\U0001F632", "\U00002639",
+            "\U0001F641", "\U0001F616", "\U0001F61E", "\U0001F61F", "\U0001F624", "\U0001F622", "\U0001F62D", "\U0001F626", "\U0001F627", "\U0001F628", "\U0001F629", "\U0001F62C",
+            "\U0001F630", "\U0001F631", "\U0001F633", "\U0001F635", "\U0001F621", "\U0001F620", "\U0001F921", "\U0001F913", "\U0001F4A9", "\U0001F648", "\U0001F649", "\U0001F64A" });
+
+        public static ScheduledToastNotification toast;
+
+        public static void ScheduleToastNotification(bool sound)
+        {
+            CancelToastNotification();
+
+            double durationTotalSeconds = endtime.Subtract(starttime).TotalSeconds;
 
             if (durationTotalSeconds > 0)
             {
                 Random rand = new Random();
                 int index = rand.Next(0, 68);
 
-                string title = "It's over!";
-                string content = System.String.Format("A total of {0} seconds have passed {1}", durationTotalSeconds, emoji[index]);
+                var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+
+                string title = loader.GetString("NotificationTitle");
+                string content = loader.GetString("NotificationText1") + " " + durationTotalSeconds.ToString() + " " + loader.GetString("NotificationText2") + " " + emoji[index];
+                string silent = sound ? "false" : "true";
 
                 string toastXmlString =
                 $@"<toast>
@@ -159,15 +156,24 @@ namespace LessonTimer
                             <text>{content}</text>
                         </binding>
                     </visual>
-                    <audio silent='true'/>
+                    <audio silent='{silent}'/>
                 </toast>";
 
                 XmlDocument toastXml = new XmlDocument();
                 toastXml.LoadXml(toastXmlString);
-                MainPage.toast = new ScheduledToastNotification(toastXml, endtime);
+                toast = new ScheduledToastNotification(toastXml, endtime);
 
-                ToastNotificationManager.CreateToastNotifier().AddToSchedule(MainPage.toast);
+                ToastNotificationManager.CreateToastNotifier().AddToSchedule(toast);
             }
+        }
+
+        public static void CancelToastNotification()
+        {
+            try
+            {
+                ToastNotificationManager.CreateToastNotifier().RemoveFromSchedule(toast);
+            }
+            catch (Exception) { }
         }
 
         async void UpdateCountdown(object source, TickEventArgs e)
@@ -195,11 +201,7 @@ namespace LessonTimer
 
             endtime = DateTime.Now;
 
-            try
-            {
-                ToastNotificationManager.CreateToastNotifier().RemoveFromSchedule(toast);
-            }
-            catch (Exception) { }
+            CancelToastNotification();
 
             StartButton.IsEnabled = true;
             CancelButton.IsEnabled = false;
@@ -276,7 +278,9 @@ namespace LessonTimer
                     if (Countdown.IsRunning) { }
                     else
                     {
-                        InfoTextBlock.Text = "No events today in you calendar";
+                        var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+
+                        InfoTextBlock.Text = loader.GetString("ErrorNoEventsInCalendar");
                         InfoTextBlock.Opacity = 1.0;
                         FadeOutStoryboard.Begin();
                     }
@@ -287,46 +291,36 @@ namespace LessonTimer
                 if (Countdown.IsRunning) { }
                 else
                 {
-                    InfoTextBlock.Text = "Please grant access permission to calendar";
+                    var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+
+                    InfoTextBlock.Text = loader.GetString("ErrorNoCalendarAccessPermission");
                     InfoTextBlock.Opacity = 1.0;
                     FadeOutStoryboard.Begin();
                 }
             }
         }
 
-        static List<int> suggestions = new List<int>(new int[] { 90, 150, 195, 300 });
         static int suggestionsIterator = 0;
         static int calendarSuggestionsIterator = 0;
 
         public static Tuple<TimeSpan, string> GetEndTimeSuggestion()
         {
-            DateTime time = DateTime.Now.AddMinutes(suggestions[suggestionsIterator]);
-            TimeSpan span = TimeSpan.FromMinutes(15);
+            DateTime time = DateTime.Now.AddMinutes(SettingsPage.LectureLengths[suggestionsIterator]);
+            TimeSpan span = TimeSpan.FromMinutes(SettingsPage.LectureLengthRoundTo);
 
-            DateTime newTime;
-
-            string description = suggestions[suggestionsIterator].ToString() + "-minute lecture";
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            string description = SettingsPage.LectureLengths[suggestionsIterator].ToString() + loader.GetString("MinuteLecture");
 
             suggestionsIterator++;
-            if (suggestionsIterator >= suggestions.Count)
+            if (suggestionsIterator >= SettingsPage.LectureLengths.Count)
             {
                 suggestionsIterator = 0;
             }
 
-            var delta = time.Ticks % span.Ticks;
-            bool roundUp = delta > span.Ticks / 2;
+            TimeSpan t = (time.Subtract(DateTime.MinValue)).Add(new TimeSpan(0, span.Minutes / 2, 0));
+            DateTime newTime = DateTime.MinValue.Add(new TimeSpan(0, (((int)t.TotalMinutes) / (int)span.TotalMinutes) * span.Minutes, 0));
 
-            if (roundUp)
-            {
-                newTime = new DateTime(((time.Ticks + span.Ticks - 1) / span.Ticks) * span.Ticks);
-            }
-            else
-            {
-                newTime = time.AddMinutes(-(time.Minute % 15));
-            }
-
-            var endTimeSuggestion = new Tuple<TimeSpan, string>(new TimeSpan(newTime.Hour, newTime.Minute, 0), description);
-            return endTimeSuggestion;
+            return new Tuple<TimeSpan, string>(new TimeSpan(newTime.Hour, newTime.Minute, 0), description);
         }
 
         public static Tuple<TimeSpan, string> GetEndTimeSuggestion(IReadOnlyList<Appointment> allAppointments)
@@ -341,7 +335,6 @@ namespace LessonTimer
                 }
             }
 
-            Tuple<TimeSpan, string> endTimeSuggestion;
             Appointment nextAppointment;
 
             try
@@ -365,8 +358,7 @@ namespace LessonTimer
             calendarSuggestionsIterator++;
 
             DateTimeOffset nextAppointmentEndTime = nextAppointment.StartTime.Add(nextAppointment.Duration);
-            endTimeSuggestion = new Tuple<TimeSpan, string>(new TimeSpan(nextAppointmentEndTime.Hour, nextAppointmentEndTime.Minute, 0), nextAppointment.Subject);
-            return endTimeSuggestion;
+            return new Tuple<TimeSpan, string>(new TimeSpan(nextAppointmentEndTime.Hour, nextAppointmentEndTime.Minute, 0), nextAppointment.Subject);
         }
 
         void CompactOverlayButton_Click(object sender, RoutedEventArgs e)

@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace LessonTimer
@@ -26,10 +17,8 @@ namespace LessonTimer
             this.Suspending += OnSuspending;
         }
 
-        void RestoreSession()
+        void RestoreSession(ApplicationDataContainer localSettings)
         {
-            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-
             try
             {
                 MainPage.starttime = new DateTime((long)localSettings.Values["starttime"]);
@@ -43,7 +32,10 @@ namespace LessonTimer
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            RestoreSession();
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+
+            RestoreSession(localSettings);
+            SettingsPage.LoadSettings(localSettings);
 
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -87,7 +79,8 @@ namespace LessonTimer
                     Window.Current.Content = rootFrame;
                 }
 
-                RestoreSession();
+                ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+                RestoreSession(localSettings);
             }
 
             Window.Current.Activate();
@@ -95,15 +88,15 @@ namespace LessonTimer
 
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            var deferral = e.SuspendingOperation.GetDeferral();
+            //var deferral = e.SuspendingOperation.GetDeferral();
 
-            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
 
             localSettings.Values["starttime"] = MainPage.starttime.Ticks;
             localSettings.Values["endtime"] = MainPage.endtime.Ticks;
             localSettings.Values["currentDescription"] = MainPage.currentDescription;
 
-            deferral.Complete();
+            //deferral.Complete();
         }
     }
 }

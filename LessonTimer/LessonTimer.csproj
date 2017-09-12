@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LessonTimer</RootNamespace>
     <AssemblyName>LessonTimer</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <DefaultLanguage>en-us</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.15063.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
@@ -113,6 +113,8 @@
     </AppxManifest>
     <None Include="LessonTimer_StoreKey.pfx" />
     <None Include="LessonTimer_TemporaryKey.pfx" />
+    <PRIResource Include="Strings\de-de\Resources.resw" />
+    <PRIResource Include="Strings\en-us\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Package.StoreAssociation.xml" />

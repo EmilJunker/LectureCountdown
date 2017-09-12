@@ -19,53 +19,57 @@
         </Grid>
 
         <ScrollViewer Grid.Row="1">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+            <RelativePanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
 
-                <TextBlock Margin="0,24,0,8" FontSize="20">Suggested end times</TextBlock>
+                <Button x:Name="CloseButton" x:Uid="CloseButton" RelativePanel.Below="MainPanel" Margin="0,24" Click="CloseButton_Click">Close Settings</Button>
+                
+                <StackPanel x:Name="MainPanel">
 
-                <TextBlock Margin="0,8,0,0">Common lecture lengths</TextBlock>
-                <RelativePanel Margin="0,8">
-                    <TextBox x:Name="LectureLenghtTextBox" Width="200"></TextBox>
-                    <TextBlock RelativePanel.AlignVerticalCenterWith="LectureLenghtTextBox" RelativePanel.RightOf="LectureLenghtTextBox">-minute lectures</TextBlock>
-                </RelativePanel>
+                    <TextBlock x:Uid="SettingsHeadline1" Margin="0,24,0,8" FontSize="20">Suggested end times</TextBlock>
 
-                <TextBlock Margin="0,8,0,0">Round to</TextBlock>
-                <RelativePanel Margin="0,8">
-                    <ComboBox x:Name="LectureRoundComboBox" Width="80" HorizontalContentAlignment="Right">
-                        <ComboBoxItem HorizontalContentAlignment="Right">60</ComboBoxItem>
-                        <ComboBoxItem HorizontalContentAlignment="Right">30</ComboBoxItem>
-                        <ComboBoxItem HorizontalContentAlignment="Right">15</ComboBoxItem>
-                        <ComboBoxItem HorizontalContentAlignment="Right">10</ComboBoxItem>
-                        <ComboBoxItem HorizontalContentAlignment="Right">5</ComboBoxItem>
-                        <ComboBoxItem HorizontalContentAlignment="Right">1</ComboBoxItem>
+                    <TextBlock x:Uid="SettingsSection1-1" Margin="0,8,0,0">Common lecture lengths</TextBlock>
+                    <RelativePanel Margin="0,8">
+                        <TextBox x:Name="LectureLengthsTextBox" Width="200" TextChanged="LectureLengthsTextBox_TextChanged"></TextBox>
+                        <TextBlock x:Uid="SettingsSection1-1-Label" RelativePanel.AlignVerticalCenterWith="LectureLengthsTextBox" RelativePanel.RightOf="LectureLengthsTextBox">-minute lectures</TextBlock>
+                    </RelativePanel>
+
+                    <TextBlock x:Uid="SettingsSection1-2" Margin="0,8,0,0">Round to</TextBlock>
+                    <RelativePanel Margin="0,8">
+                        <ComboBox x:Name="LectureRoundComboBox" Width="80" HorizontalContentAlignment="Right" SelectionChanged="LectureRoundComboBox_SelectionChanged">
+                            <ComboBoxItem HorizontalContentAlignment="Right" Content="30"/>
+                            <ComboBoxItem HorizontalContentAlignment="Right" Content="15"/>
+                            <ComboBoxItem HorizontalContentAlignment="Right" Content="10"/>
+                            <ComboBoxItem HorizontalContentAlignment="Right" Content="5"/>
+                            <ComboBoxItem HorizontalContentAlignment="Right" Content="1"/>
+                        </ComboBox>
+                        <TextBlock x:Uid="SettingsSection1-2-Label" RelativePanel.AlignVerticalCenterWith="LectureRoundComboBox" RelativePanel.RightOf="LectureRoundComboBox" Margin="8,0">minutes</TextBlock>
+                    </RelativePanel>
+
+                    <TextBlock x:Uid="SettingsHeadline2" Margin="0,24,0,8" FontSize="20">Notifications</TextBlock>
+
+                    <TextBlock x:Uid="SettingsSection2-1" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Show a notification when the countdown is over</TextBlock>
+                    <ToggleSwitch x:Name="NotificationToggleSwitch" Toggled="NotificationToggleSwitch_Toggled"></ToggleSwitch>
+
+                    <TextBlock x:Uid="SettingsSection2-2" Margin="0,8,0,0">Play notification sound</TextBlock>
+                    <ToggleSwitch x:Name="NotificationSoundToggleSwitch" Toggled="NotificationSoundToggleSwitch_Toggled"></ToggleSwitch>
+
+                    <TextBlock x:Uid="SettingsHeadline3" Margin="0,24,0,8" FontSize="20">Localization</TextBlock>
+
+                    <TextBlock x:Uid="SettingsSection3-1" Margin="0,8,0,0">Language (may require restart)</TextBlock>
+                    <ComboBox x:Name="LanguageComboBox" Width="200" Margin="0,8" SelectionChanged="LanguageComboBox_SelectionChanged">
+                        <ComboBoxItem Content="English" Tag="en-us"/>
+                        <ComboBoxItem Content="German (Deutsch)" Tag="de-de"/>
                     </ComboBox>
-                    <TextBlock RelativePanel.AlignVerticalCenterWith="LectureRoundComboBox" RelativePanel.RightOf="LectureRoundComboBox" Margin="8,0">minutes</TextBlock>
-                </RelativePanel>
 
-                <TextBlock Margin="0,24,0,8" FontSize="20">Notifications</TextBlock>
+                    <TextBlock x:Uid="SettingsSection3-2" Margin="0,8,0,0">Clock format</TextBlock>
+                    <StackPanel Margin="0,8">
+                        <RadioButton x:Uid="SettingsSection3-2-Label12" x:Name="ClockFormat12RadioButton" Content="12-hour format" Tag="12" Checked="ClockFormatRadioButton_Checked"/>
+                        <RadioButton x:Uid="SettingsSection3-2-Label24" x:Name="ClockFormat24RadioButton" Content="24-hour format" Tag="24" Checked="ClockFormatRadioButton_Checked"/>
+                    </StackPanel>
 
-                <TextBlock Margin="0,8,0,0" TextWrapping="WrapWholeWords">Show a notification when the countdown is over</TextBlock>
-                <ToggleSwitch x:Name="NotificationToggleSwitch"></ToggleSwitch>
-
-                <TextBlock Margin="0,8,0,0">Play notification sound</TextBlock>
-                <ToggleSwitch x:Name="NotificationSoundToggleSwitch"></ToggleSwitch>
-
-                <TextBlock Margin="0,24,0,8" FontSize="20">Localization</TextBlock>
-
-                <TextBlock Margin="0,8,0,0">Language</TextBlock>
-                <ComboBox x:Name="LanguageComboBox" Width="200" Margin="0,8">
-                    <ComboBoxItem>English</ComboBoxItem>
-                </ComboBox>
-
-                <TextBlock Margin="0,8,0,0">Time format</TextBlock>
-                <StackPanel Margin="0,8">
-                    <RadioButton x:Name="Hour12RadioButton">12-hour format</RadioButton>
-                    <RadioButton x:Name="Hour24RadioButton">24-hour format</RadioButton>
                 </StackPanel>
 
-                <Button x:Name="CloseButton" Margin="0,24" Click="CloseButton_Click">Close Settings</Button>
-
-            </StackPanel>
+            </RelativePanel>
         </ScrollViewer>
     </Grid>
 </Page>
