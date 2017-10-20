@@ -4,7 +4,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:xaml="using:Windows.UI.Xaml"
     xmlns:xaml1="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     mc:Ignorable="d">
 
@@ -13,31 +12,37 @@
             <DoubleAnimation
                  Storyboard.TargetName="InfoTextBlock" 
                  Storyboard.TargetProperty="(TextBlock.Opacity)"
-                 From="1.0" To="0.0" Duration="0:0:2"/>
+                 From="1.0" To="0.0" Duration="0:0:2" />
         </Storyboard>
         <Storyboard x:Name="FadeInStoryboard">
             <DoubleAnimation
                  Storyboard.TargetName="InfoTextBlock" 
                  Storyboard.TargetProperty="(TextBlock.Opacity)"
-                 From="0.0" To="1.0" Duration="0:0:0"/>
+                 From="0.0" To="1.0" Duration="0:0:0" />
         </Storyboard>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Transitions>
+        <TransitionCollection>
+            <EntranceThemeTransition />
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid x:Name="Grid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <Grid x:Name="TitleBar" Grid.Row="0"  Background="Transparent" Height="32" xaml1:Canvas.ZIndex="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button x:Name="CompactOverlayButton" Grid.Column="0" x:Uid="CompactOverlayButton" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0" Padding="0" Background="Transparent" Style="{StaticResource NavigationBackButtonSmallStyle}" Click="CompactOverlayButton_Click">
                 <StackPanel>
-                    <SymbolIcon Symbol="FullScreen"/>
+                    <SymbolIcon Symbol="FullScreen" />
                 </StackPanel>
             </Button>
             <Grid x:Name="MainTitleBar" Grid.Column="1" VerticalAlignment="Stretch" Background="Transparent"></Grid>
@@ -46,40 +51,40 @@
         <RelativePanel x:Name="Body" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
 
             <RelativePanel x:Name="CountdownPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-                <TextBlock x:Name="CountdownLabel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="80" Margin="4,-20,4,4" Text="00:00:00" TextAlignment="Center" FontSize="64"/>
+                <TextBlock x:Name="CountdownLabel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="80" Margin="4,-20,4,4" Text="00:00:00" TextAlignment="Center" FontSize="64" />
                 <Grid x:Name="CountdownProgress" RelativePanel.Below="CountdownLabel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="24" Margin="4,0,4,0" >
-                    <ProgressBar x:Name="CountdownProgressBar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Minimum="0" Maximum="1"/>
-                    <TextBlock x:Name="CountdownProgressText" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" TextAlignment="Center"/>
-                    <TextBlock x:Name="CountdownProgressPercentage" HorizontalAlignment="Right" VerticalAlignment="Center" Width="140" TextAlignment="Center"/>
+                    <ProgressBar x:Name="CountdownProgressBar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Minimum="0" Maximum="1" />
+                    <TextBlock x:Name="CountdownProgressText" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" TextAlignment="Center" />
+                    <TextBlock x:Name="CountdownProgressPercentage" HorizontalAlignment="Right" VerticalAlignment="Center" Width="140" TextAlignment="Center" />
                 </Grid>
-                <TextBlock x:Name="InfoTextBlock" RelativePanel.Below="CountdownProgress" RelativePanel.AlignLeftWithPanel="True" Height="16" Margin="4,4,4,20" FontSize="12"/>
+                <TextBlock x:Name="InfoTextBlock" RelativePanel.Below="CountdownProgress" RelativePanel.AlignLeftWithPanel="True" Height="16" Margin="4,4,4,20" FontSize="12" />
             </RelativePanel>
 
             <RelativePanel x:Name="ControlPanel" RelativePanel.Below="CountdownPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-                <TimePicker x:Name="TimePicker" x:Uid="TimePicker" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="32" Margin="4,4,4,4" TimeChanged="TimePicker_Changed" HorizontalAlignment="Stretch"/>
+                <TimePicker x:Name="TimePicker" x:Uid="TimePicker" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="32" Margin="4,4,4,4" TimeChanged="TimePicker_Changed" HorizontalAlignment="Stretch" />
                 <Button x:Name="SuggestButton" x:Uid="SuggestButton" RelativePanel.Below="TimePicker" RelativePanel.AlignLeftWithPanel="True" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="SuggestButton_Click">
                     <StackPanel>
-                        <xaml1:SymbolIcon Symbol="Clock"/>
+                        <xaml1:SymbolIcon Symbol="Clock" />
                     </StackPanel>
                 </Button>
                 <Button x:Name="CalendarButton" x:Uid="CalendarButton" RelativePanel.Below="TimePicker" RelativePanel.RightOf="SuggestButton" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="CalendarButton_Click">
                     <StackPanel>
-                        <SymbolIcon Symbol="Calendar"/>
+                        <SymbolIcon Symbol="Calendar" />
                     </StackPanel>
                 </Button>
                 <Button x:Name="StartButton" x:Uid="StartButton" RelativePanel.Below="TimePicker" RelativePanel.AlignRightWithPanel="True" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="StartButton_Click">
                     <StackPanel>
-                        <SymbolIcon Symbol="Accept"/>
+                        <SymbolIcon Symbol="Accept" />
                     </StackPanel>
                 </Button>
                 <Button x:Name="CancelButton" x:Uid="CancelButton" RelativePanel.Below="TimePicker" RelativePanel.LeftOf="StartButton" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="CancelButton_Click">
                     <StackPanel>
-                        <SymbolIcon Symbol="Cancel"/>
+                        <SymbolIcon Symbol="Cancel" />
                     </StackPanel>
                 </Button>
                 <Button x:Name="SettingsButton" RelativePanel.Below="TimePicker" RelativePanel.AlignHorizontalCenterWithPanel="True" Height="32" Margin="4,4,4,4" Padding="0" Click="SettingsButton_Click">
                     <RelativePanel>
-                        <SymbolIcon x:Name="Symbol" Symbol="Setting" Height="20" Margin="4" VerticalAlignment="Top"/>
+                        <SymbolIcon x:Name="Symbol" Symbol="Setting" Height="20" Margin="4" VerticalAlignment="Top" />
                         <TextBlock x:Uid="SettingsButtonText" RelativePanel.RightOf="Symbol" Margin="4">Settings</TextBlock>
                     </RelativePanel>
                 </Button>

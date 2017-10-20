@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using Windows.ApplicationModel.Core;
 using Windows.Globalization;
 using Windows.Storage;
+using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -42,6 +44,11 @@ namespace LessonTimer
         {
             get { return clockFormat; }
         }
+        private static String theme;
+        public static String Theme
+        {
+            get { return theme; }
+        }
 
         public SettingsPage()
         {
@@ -51,6 +58,19 @@ namespace LessonTimer
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             Window.Current.SetTitleBar(MainTitleBar);
 
+            ApplicationViewTitleBar titlebar = ApplicationView.GetForCurrentView().TitleBar;
+            titlebar.ButtonBackgroundColor = Colors.Transparent;
+            titlebar.ButtonInactiveBackgroundColor = Colors.Transparent;
+            titlebar.ButtonHoverBackgroundColor = (Color)this.Resources["SystemAccentColor"];
+            titlebar.ButtonPressedBackgroundColor = (Color)this.Resources["SystemAccentColor"];
+            titlebar.ButtonForegroundColor = (Application.Current.RequestedTheme == ApplicationTheme.Dark) ? Colors.White : Colors.Black;
+
+            if (Windows.Foundation.Metadata.ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5))
+            {
+                Grid.Background = (Windows.UI.Xaml.Media.Brush)Resources["SystemControlChromeMediumAcrylicWindowMediumBrush"];
+                CloseButton.Style= (Style)Resources["ButtonRevealStyle"];
+            }
+
             SystemNavigationManager.GetForCurrentView().BackRequested += SettingsPage_BackRequested;
 
             this.Loaded += Page_Loaded;
@@ -59,8 +79,6 @@ namespace LessonTimer
         void Page_Loaded(object sender, RoutedEventArgs e)
         {
             CloseButton.Focus(FocusState.Programmatic);
-
-            //this.LoadSettingsUI();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -196,6 +214,23 @@ namespace LessonTimer
             localSettings.Values["clockFormat"] = clockFormat;
         }
 
+        private void ThemeRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+
+            switch (rb.Tag.ToString())
+            {
+                case "Light":
+                    theme = "Light";
+                    break;
+                case "Dark":
+                    theme = "Dark";
+                    break;
+            }
+
+            localSettings.Values["theme"] = theme;
+        }
+
         public static void LoadSettings(ApplicationDataContainer localSettings)
         {
             try
@@ -259,8 +294,6 @@ namespace LessonTimer
                 languageUI = "en";
             }
 
-            ApplicationLanguages.PrimaryLanguageOverride = languageUI;
-
             try
             {
                 clockFormat = (String)localSettings.Values["clockFormat"];
@@ -273,6 +306,20 @@ namespace LessonTimer
             catch (NullReferenceException)
             {
                 clockFormat = new Windows.Globalization.DateTimeFormatting.DateTimeFormatter("shorttime", new[] { new GeographicRegion().Code }).Clock;
+            }
+
+            try
+            {
+                theme = (String)localSettings.Values["theme"];
+
+                if (theme == null)
+                {
+                    theme = "Dark";
+                }
+            }
+            catch (NullReferenceException)
+            {
+                theme = "Dark";
             }
         }
 
@@ -341,6 +388,27 @@ namespace LessonTimer
                     ClockFormat24RadioButton.IsChecked = true;
                     break;
             }
+
+            switch (theme)
+            {
+                case "Light":
+                    ThemeLightRadioButton.IsChecked = true;
+                    break;
+                case "Dark":
+                    ThemeDarkRadioButton.IsChecked = true;
+                    break;
+            }
+        }
+
+        private async void FeedbackButton_Click(object sender, RoutedEventArgs e)
+        {
+            var launcher = Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.GetDefault();
+            await launcher.LaunchAsync();
+        }
+
+        private async void RatingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store://review/?ProductId=9P4NPSWTX7LK"));
         }
     }
 }

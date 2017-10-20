@@ -12,6 +12,7 @@ using Windows.Data.Xml.Dom;
 using System.Collections.Generic;
 using Windows.ApplicationModel.Background;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI;
 
 namespace LessonTimer
 {
@@ -25,6 +26,23 @@ namespace LessonTimer
 
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             Window.Current.SetTitleBar(MainTitleBar);
+
+            ApplicationViewTitleBar titlebar = ApplicationView.GetForCurrentView().TitleBar;
+            titlebar.ButtonBackgroundColor = Colors.Transparent;
+            titlebar.ButtonInactiveBackgroundColor = Colors.Transparent;
+            titlebar.ButtonHoverBackgroundColor = (Color)this.Resources["SystemAccentColor"];
+            titlebar.ButtonPressedBackgroundColor = (Color)this.Resources["SystemAccentColor"];
+            titlebar.ButtonForegroundColor = (Application.Current.RequestedTheme == ApplicationTheme.Dark) ? Colors.White : Colors.Black;
+
+            if (Windows.Foundation.Metadata.ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5))
+            {
+                Grid.Background = (Windows.UI.Xaml.Media.Brush)Resources["SystemControlChromeMediumAcrylicWindowMediumBrush"];
+                SuggestButton.Style = (Style)Resources["ButtonRevealStyle"];
+                CalendarButton.Style = (Style)Resources["ButtonRevealStyle"];
+                CancelButton.Style = (Style)Resources["ButtonRevealStyle"];
+                StartButton.Style = (Style)Resources["ButtonRevealStyle"];
+                SettingsButton.Style = (Style)Resources["ButtonRevealStyle"];
+            }
 
             TimePicker.ClockIdentifier = SettingsPage.ClockFormat;
 
@@ -376,7 +394,7 @@ namespace LessonTimer
         async void CompactOverlayOn()
         {
             ViewModePreferences compactOptions = ViewModePreferences.CreateDefault(ApplicationViewMode.CompactOverlay);
-            compactOptions.CustomSize = new Windows.Foundation.Size(320, 160);
+            compactOptions.CustomSize = new Size(320, 160);
             bool modeSwitched = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, compactOptions);
 
             ControlPanel.Visibility = Visibility.Collapsed;

@@ -2,16 +2,21 @@
     x:Class="LessonTimer.SettingsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:LessonTimer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Transitions>
+        <TransitionCollection>
+            <EntranceThemeTransition />
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid x:Name="Grid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <Grid x:Name="TitleBar" Grid.Row="0" Background="Transparent" Height="32" Canvas.ZIndex="1">
@@ -21,7 +26,7 @@
         <ScrollViewer Grid.Row="1">
             <RelativePanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
 
-                <Button x:Name="CloseButton" x:Uid="CloseButton" RelativePanel.Below="MainPanel" Margin="0,24" Click="CloseButton_Click">Close Settings</Button>
+                <Button x:Name="CloseButton" x:Uid="CloseButton" RelativePanel.Below="MainPanel" Margin="0,40" Click="CloseButton_Click">Close Settings</Button>
                 
                 <StackPanel x:Name="MainPanel">
 
@@ -36,11 +41,11 @@
                     <TextBlock x:Uid="SettingsSection1-2" Margin="0,8,0,0">Round to</TextBlock>
                     <RelativePanel Margin="0,8">
                         <ComboBox x:Name="LectureRoundComboBox" Width="80" HorizontalContentAlignment="Right" SelectionChanged="LectureRoundComboBox_SelectionChanged">
-                            <ComboBoxItem HorizontalContentAlignment="Right" Content="30"/>
-                            <ComboBoxItem HorizontalContentAlignment="Right" Content="15"/>
-                            <ComboBoxItem HorizontalContentAlignment="Right" Content="10"/>
-                            <ComboBoxItem HorizontalContentAlignment="Right" Content="5"/>
-                            <ComboBoxItem HorizontalContentAlignment="Right" Content="1"/>
+                            <ComboBoxItem HorizontalContentAlignment="Right" Content="30" />
+                            <ComboBoxItem HorizontalContentAlignment="Right" Content="15" />
+                            <ComboBoxItem HorizontalContentAlignment="Right" Content="10" />
+                            <ComboBoxItem HorizontalContentAlignment="Right" Content="5" />
+                            <ComboBoxItem HorizontalContentAlignment="Right" Content="1" />
                         </ComboBox>
                         <TextBlock x:Uid="SettingsSection1-2-Label" RelativePanel.AlignVerticalCenterWith="LectureRoundComboBox" RelativePanel.RightOf="LectureRoundComboBox" Margin="8,0">minutes</TextBlock>
                     </RelativePanel>
@@ -57,15 +62,46 @@
 
                     <TextBlock x:Uid="SettingsSection3-1" Margin="0,8,0,0">Language (may require restart)</TextBlock>
                     <ComboBox x:Name="LanguageComboBox" Width="200" Margin="0,8" SelectionChanged="LanguageComboBox_SelectionChanged">
-                        <ComboBoxItem Content="English" Tag="en-us"/>
-                        <ComboBoxItem Content="German (Deutsch)" Tag="de-de"/>
+                        <ComboBoxItem Content="English" Tag="en-us" />
+                        <ComboBoxItem Content="German (Deutsch)" Tag="de-de" />
                     </ComboBox>
 
                     <TextBlock x:Uid="SettingsSection3-2" Margin="0,8,0,0">Clock format</TextBlock>
                     <StackPanel Margin="0,8">
-                        <RadioButton x:Uid="SettingsSection3-2-Label12" x:Name="ClockFormat12RadioButton" Content="12-hour format" Tag="12" Checked="ClockFormatRadioButton_Checked"/>
-                        <RadioButton x:Uid="SettingsSection3-2-Label24" x:Name="ClockFormat24RadioButton" Content="24-hour format" Tag="24" Checked="ClockFormatRadioButton_Checked"/>
+                        <RadioButton x:Uid="SettingsSection3-2-Label12" x:Name="ClockFormat12RadioButton" GroupName="ClockFormatGroup" Content="12-hour format" Tag="12" Checked="ClockFormatRadioButton_Checked" />
+                        <RadioButton x:Uid="SettingsSection3-2-Label24" x:Name="ClockFormat24RadioButton" GroupName="ClockFormatGroup" Content="24-hour format" Tag="24" Checked="ClockFormatRadioButton_Checked" />
                     </StackPanel>
+
+                    <TextBlock x:Uid="SettingsHeadline4" Margin="0,24,0,8" FontSize="20">Localization</TextBlock>
+
+                    <TextBlock x:Uid="SettingsSection4-1" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Theme change requres app restart</TextBlock>
+                    <StackPanel Margin="0,8">
+                        <RadioButton x:Uid="SettingsSection4-1-LabelLight" x:Name="ThemeLightRadioButton" GroupName="ThemeGroup" Content="Light" Tag="Light" Checked="ThemeRadioButton_Checked" />
+                        <RadioButton x:Uid="SettingsSection4-1-LabelDark" x:Name="ThemeDarkRadioButton" GroupName="ThemeGroup" Content="Dark" Tag="Dark" Checked="ThemeRadioButton_Checked" />
+                    </StackPanel>
+
+                    <TextBlock x:Uid="SettingsHeadline5" Margin="0,24,0,8" FontSize="20">About this app</TextBlock>
+
+                    <RelativePanel Margin="0,8,0,0">
+                        <TextBlock x:Name="Developer" x:Uid="SettingsDeveloper" Margin="0,0,4,0">Developer:</TextBlock>
+                        <TextBlock x:Name="DeveloperName" RelativePanel.RightOf="Developer" RelativePanel.AlignVerticalCenterWith="Developer">
+                            <Hyperlink NavigateUri="ms-windows-store://publisher/?name=emilj">emilj</Hyperlink>
+                        </TextBlock>
+                    </RelativePanel>
+                    <RelativePanel Margin="0,8,0,0">
+                        <TextBlock x:Name="Email" x:Uid="SettingsEmail" Margin="0,0,4,0">Email:</TextBlock>
+                        <TextBlock x:Name="EmailAddress" RelativePanel.RightOf="Email" RelativePanel.AlignVerticalCenterWith="Email">
+                            <Hyperlink NavigateUri="mailto:emilj.apps@outlook.com">emilj.apps@outlook.com</Hyperlink>
+                        </TextBlock>
+                    </RelativePanel>
+                    <RelativePanel Margin="0,16,0,0">
+                        <Button x:Name="FeedbackButton" x:Uid="SettingsFeedback" Margin="16,0" Style="{StaticResource TextBlockButtonStyle}" Click="FeedbackButton_Click">Give Feedback</Button>
+                        <TextBlock x:Name="FeedbackIcon" RelativePanel.AlignVerticalCenterWith="FeedbackButton" FontFamily="Segoe MDL2 Assets">&#xE939;</TextBlock>
+                    </RelativePanel>
+                    <RelativePanel Margin="0,8,0,0">
+                        <Button x:Name="RatingsButton" x:Uid="SettingsRating" Margin="16,0" Style="{StaticResource TextBlockButtonStyle}" Click="RatingsButton_Click">Rate app</Button>
+                        <TextBlock x:Name="RatingsIcon" RelativePanel.AlignVerticalCenterWith="RatingsButton" FontFamily="Segoe MDL2 Assets">&#xE00A;</TextBlock>
+                    </RelativePanel>
 
                 </StackPanel>
 

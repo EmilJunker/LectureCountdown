@@ -150,6 +150,15 @@
   <data name="SettingsButtonText.Text" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="SettingsDeveloper.Text" xml:space="preserve">
+    <value>Developer:</value>
+  </data>
+  <data name="SettingsEmail.Text" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="SettingsFeedback.Content" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
   <data name="SettingsHeadline1.Text" xml:space="preserve">
     <value>Suggested end times</value>
   </data>
@@ -158,6 +167,15 @@
   </data>
   <data name="SettingsHeadline3.Text" xml:space="preserve">
     <value>Localization</value>
+  </data>
+  <data name="SettingsHeadline4.Text" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="SettingsHeadline5.Text" xml:space="preserve">
+    <value>About this app</value>
+  </data>
+  <data name="SettingsRating.Content" xml:space="preserve">
+    <value>Rate app</value>
   </data>
   <data name="SettingsSection1-1-Label.Text" xml:space="preserve">
     <value>-minute lectures</value>
@@ -188,6 +206,15 @@
   </data>
   <data name="SettingsSection3-2.Text" xml:space="preserve">
     <value>Clock format</value>
+  </data>
+  <data name="SettingsSection4-1-LabelDark.Content" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="SettingsSection4-1-LabelLight.Content" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="SettingsSection4-1.Text" xml:space="preserve">
+    <value>Theme change requres app restart</value>
   </data>
   <data name="StartButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Start countdown</value>

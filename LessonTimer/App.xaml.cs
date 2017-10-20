@@ -13,6 +13,23 @@ namespace LessonTimer
     {
         public App()
         {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+
+            RestoreSession(localSettings);
+            SettingsPage.LoadSettings(localSettings);
+
+            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = SettingsPage.LanguageUI;
+
+            switch (SettingsPage.Theme)
+            {
+                case "Light":
+                    this.RequestedTheme = ApplicationTheme.Light;
+                    break;
+                case "Dark":
+                    this.RequestedTheme = ApplicationTheme.Dark;
+                    break;
+            }
+
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
@@ -32,11 +49,6 @@ namespace LessonTimer
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
-
-            RestoreSession(localSettings);
-            SettingsPage.LoadSettings(localSettings);
-
             Frame rootFrame = Window.Current.Content as Frame;
 
             if (rootFrame == null)
