@@ -1,5 +1,5 @@
-﻿using System;
-using CountdownLogic;
+﻿using CountdownLogic;
+using System;
 
 namespace ConsoleTestApp
 {

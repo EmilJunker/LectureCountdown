@@ -46,25 +46,25 @@ namespace CountdownLogic
 
     public class TickEventArgs : EventArgs
     {
-        private String countdown;
+        private readonly String countdown;
         public String Countdown
         {
             get { return countdown; }
         }
 
-        private double progress;
+        private readonly double progress;
         public double Progress
         {
             get { return progress; }
         }
 
-        private String timeprogress;
+        private readonly String timeprogress;
         public String Timeprogress
         {
             get { return timeprogress; }
         }
 
-        private String percentprogress;
+        private readonly String percentprogress;
         public String Percentprogress
         {
             get { return percentprogress; }
@@ -83,7 +83,7 @@ namespace CountdownLogic
     {
         public event TickEventHandler Ticked;
 
-        private static TimeSpan over = new TimeSpan(0, 0, 0);
+        private static readonly TimeSpan over = new TimeSpan(0, 0, 0);
 
         private DateTime starttime;
         private DateTime endtime;
@@ -106,7 +106,7 @@ namespace CountdownLogic
 
             this.duration = endtime.Subtract(starttime);
 
-            this.durationString = " / " + duration.ToString(@"hh\:mm\:ss");
+            this.durationString = " / " + duration.ToString(@"hh\∶mm\∶ss");
         }
 
         public void TimerTick(Object stateInfo)
@@ -121,11 +121,11 @@ namespace CountdownLogic
             }
             else
             {
-                countdown = timeleft.ToString(@"hh\:mm\:ss");
+                countdown = timeleft.ToString(@"hh\∶mm\∶ss");
 
                 progress = timepassed.TotalSeconds / duration.TotalSeconds;
 
-                timeprogress = timepassed.ToString(@"hh\:mm\:ss") + durationString;
+                timeprogress = timepassed.ToString(@"hh\∶mm\∶ss") + durationString;
 
                 percentprogress = (progress * 100).ToString("0.00") + " %";
 
@@ -135,7 +135,7 @@ namespace CountdownLogic
 
         public void End()
         {
-            countdown = "00:00:00";
+            countdown = "00∶00∶00";
             progress = 1.0;
             timeprogress = String.Empty;
             percentprogress = String.Empty;

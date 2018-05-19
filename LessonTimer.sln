@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+# Blend for Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LessonTimer", "LessonTimer\LessonTimer.csproj", "{D81B901C-4F94-4D02-A1CE-0DCEE386B917}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CountdownLogic", "CountdownLogic\CountdownLogic.csproj", "{534A27A2-D302-4CC4-9671-99C33DE4EF05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountdownLogic", "CountdownLogic\CountdownLogic.csproj", "{534A27A2-D302-4CC4-9671-99C33DE4EF05}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTestApp", "ConsoleTestApp\ConsoleTestApp.csproj", "{3458D736-158E-4E62-838B-5CEB2B86E6D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTestApp", "ConsoleTestApp\ConsoleTestApp.csproj", "{3458D736-158E-4E62-838B-5CEB2B86E6D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,5 +79,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA896AEB-6DAF-43AB-A4E9-23F2CB7B71B5}
 	EndGlobalSection
 EndGlobal

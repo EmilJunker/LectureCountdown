@@ -115,8 +115,9 @@ namespace LessonTimer
                 {
                     if (i == 0)
                     {
-                        lectureLengths.Add(90);
-                        localSettings.Values["lectureLengths0"] = 90;
+                        lectureLengths = new List<int>(new int[] { 60, 90 });
+                        localSettings.Values["lectureLengths0"] = 60;
+                        localSettings.Values["lectureLengths1"] = 90;
                     }
                     else
                     {
@@ -286,12 +287,12 @@ namespace LessonTimer
 
                 if (languageUI == null)
                 {
-                    languageUI = "en";
+                    languageUI = ApplicationLanguages.Languages[0];
                 }
             }
             catch (NullReferenceException)
             {
-                languageUI = "en";
+                languageUI = ApplicationLanguages.Languages[0];
             }
 
             try
@@ -371,8 +372,26 @@ namespace LessonTimer
                 case "en-us":
                     LanguageComboBox.SelectedIndex = 0;
                     break;
-                case "de-de":
+                case "zh-Hans":
                     LanguageComboBox.SelectedIndex = 1;
+                    break;
+                case "fr-fr":
+                    LanguageComboBox.SelectedIndex = 2;
+                    break;
+                case "de-de":
+                    LanguageComboBox.SelectedIndex = 3;
+                    break;
+                case "ja-jp":
+                    LanguageComboBox.SelectedIndex = 4;
+                    break;
+                case "pt-pt":
+                    LanguageComboBox.SelectedIndex = 5;
+                    break;
+                case "ru-ru":
+                    LanguageComboBox.SelectedIndex = 6;
+                    break;
+                case "es-es":
+                    LanguageComboBox.SelectedIndex = 7;
                     break;
                 default:
                     LanguageComboBox.SelectedIndex = 0;

@@ -60,10 +60,16 @@
 
                     <TextBlock x:Uid="SettingsHeadline3" Margin="0,24,0,8" FontSize="20">Localization</TextBlock>
 
-                    <TextBlock x:Uid="SettingsSection3-1" Margin="0,8,0,0">Language (may require restart)</TextBlock>
+                    <TextBlock x:Uid="SettingsSection3-1" Margin="0,8,0,0">Language</TextBlock>
                     <ComboBox x:Name="LanguageComboBox" Width="200" Margin="0,8" SelectionChanged="LanguageComboBox_SelectionChanged">
-                        <ComboBoxItem Content="English" Tag="en-us" />
+                        <ComboBoxItem Content="Default (English)" Tag="en-us" />
+                        <ComboBoxItem Content="Chinese (中文)" Tag="zh-Hans" />
+                        <ComboBoxItem Content="French (Français)" Tag="fr-fr" />
                         <ComboBoxItem Content="German (Deutsch)" Tag="de-de" />
+                        <ComboBoxItem Content="Japanese (日本語)" Tag="ja-jp" />
+                        <ComboBoxItem Content="Portuguese (Português)" Tag="pt-pt" />
+                        <ComboBoxItem Content="Russian (Русский )" Tag="ru-ru" />
+                        <ComboBoxItem Content="Spanish (Español)" Tag="es-es" />
                     </ComboBox>
 
                     <TextBlock x:Uid="SettingsSection3-2" Margin="0,8,0,0">Clock format</TextBlock>
@@ -74,7 +80,7 @@
 
                     <TextBlock x:Uid="SettingsHeadline4" Margin="0,24,0,8" FontSize="20">Localization</TextBlock>
 
-                    <TextBlock x:Uid="SettingsSection4-1" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Theme change requres app restart</TextBlock>
+                    <TextBlock x:Uid="SettingsSection4-1" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Theme change requires app restart</TextBlock>
                     <StackPanel Margin="0,8">
                         <RadioButton x:Uid="SettingsSection4-1-LabelLight" x:Name="ThemeLightRadioButton" GroupName="ThemeGroup" Content="Light" Tag="Light" Checked="ThemeRadioButton_Checked" />
                         <RadioButton x:Uid="SettingsSection4-1-LabelDark" x:Name="ThemeDarkRadioButton" GroupName="ThemeGroup" Content="Dark" Tag="Dark" Checked="ThemeRadioButton_Checked" />

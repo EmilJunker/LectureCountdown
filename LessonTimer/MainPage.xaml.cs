@@ -1,18 +1,18 @@
-﻿using System;
+﻿using CountdownLogic;
+using System;
+using System.Collections.Generic;
+using Windows.ApplicationModel.Appointments;
+using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
+using Windows.Data.Xml.Dom;
 using Windows.Foundation;
-using Windows.UI.ViewManagement;
+using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Notifications;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using CountdownLogic;
-using Windows.ApplicationModel.Appointments;
-using Windows.UI.Notifications;
-using Windows.Data.Xml.Dom;
-using System.Collections.Generic;
-using Windows.ApplicationModel.Background;
 using Windows.UI.Xaml.Navigation;
-using Windows.UI;
 
 namespace LessonTimer
 {
@@ -163,7 +163,7 @@ namespace LessonTimer
                 var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
 
                 string title = loader.GetString("NotificationTitle");
-                string content = loader.GetString("NotificationText1") + " " + durationTotalSeconds.ToString() + " " + loader.GetString("NotificationText2") + " " + emoji[index];
+                string content = loader.GetString("NotificationText1") + durationTotalSeconds.ToString() + loader.GetString("NotificationText2") + " " + emoji[index];
                 string silent = sound ? "false" : "true";
 
                 string toastXmlString =
@@ -304,7 +304,7 @@ namespace LessonTimer
                     }
                 }
             }
-            catch (System.NullReferenceException)
+            catch (NullReferenceException)
             {
                 if (Countdown.IsRunning) { }
                 else

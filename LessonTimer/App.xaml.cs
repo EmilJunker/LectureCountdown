@@ -49,9 +49,7 @@ namespace LessonTimer
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            Frame rootFrame = Window.Current.Content as Frame;
-
-            if (rootFrame == null)
+            if (!(Window.Current.Content is Frame rootFrame))
             {
                 rootFrame = new Frame();
 
@@ -82,9 +80,7 @@ namespace LessonTimer
 
             if (args.Kind == ActivationKind.ToastNotification)
             {
-                Frame rootFrame = Window.Current.Content as Frame;
-
-                if (rootFrame == null)
+                if (!(Window.Current.Content is Frame rootFrame))
                 {
                     rootFrame = new Frame();
                     rootFrame.Navigate(typeof(MainPage));

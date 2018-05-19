@@ -118,117 +118,117 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>Eine Countdown-App für Vorlesungen</value>
+    <value />
   </data>
   <data name="AppDisplayName" xml:space="preserve">
-    <value>Vorlesungs-Countdown</value>
+    <value>Лекция обратный отсчет</value>
   </data>
   <data name="CalendarButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>End-Uhrzeit aus Kalender vorschlagen</value>
+    <value />
   </data>
   <data name="CancelButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Countdown abbrechen</value>
+    <value />
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
-    <value>Einstellungen schließen</value>
+    <value />
   </data>
   <data name="CompactOverlayButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Ansicht wechseln</value>
+    <value />
   </data>
   <data name="ErrorNoCalendarAccessPermission" xml:space="preserve">
-    <value>Bitte Zugriff auf Kalendertermine erlauben</value>
+    <value />
   </data>
   <data name="ErrorNoEventsInCalendar" xml:space="preserve">
-    <value>Keine Termine heute im Kalender</value>
+    <value />
   </data>
   <data name="MinuteLecture" xml:space="preserve">
-    <value>-minütige Vorlesung</value>
+    <value />
   </data>
   <data name="NotificationText1" xml:space="preserve">
-    <value>Insgesamt sind </value>
+    <value />
   </data>
   <data name="NotificationText2" xml:space="preserve">
-    <value> Sekunden vergangen</value>
+    <value />
   </data>
   <data name="NotificationTitle" xml:space="preserve">
-    <value>Es ist geschafft!</value>
+    <value />
   </data>
   <data name="SettingsButtonText.Text" xml:space="preserve">
-    <value>Einstellungen</value>
+    <value />
   </data>
   <data name="SettingsDeveloper.Text" xml:space="preserve">
-    <value>Entwickler:</value>
+    <value />
   </data>
   <data name="SettingsEmail.Text" xml:space="preserve">
-    <value>E-Mail:</value>
+    <value />
   </data>
   <data name="SettingsFeedback.Content" xml:space="preserve">
-    <value>Feedback</value>
+    <value />
   </data>
   <data name="SettingsHeadline1.Text" xml:space="preserve">
-    <value>Vorschläge für End-Uhrzeit</value>
+    <value />
   </data>
   <data name="SettingsHeadline2.Text" xml:space="preserve">
-    <value>Benachrichtigungen</value>
+    <value />
   </data>
   <data name="SettingsHeadline3.Text" xml:space="preserve">
-    <value>Lokalisierung</value>
+    <value />
   </data>
   <data name="SettingsHeadline4.Text" xml:space="preserve">
-    <value>Thema</value>
+    <value />
   </data>
   <data name="SettingsHeadline5.Text" xml:space="preserve">
-    <value>Über die App</value>
+    <value />
   </data>
   <data name="SettingsRating.Content" xml:space="preserve">
-    <value>App bewerten</value>
+    <value />
   </data>
   <data name="SettingsSection1-1-Label.Text" xml:space="preserve">
-    <value>-minütige Vorl.</value>
+    <value />
   </data>
   <data name="SettingsSection1-1.Text" xml:space="preserve">
-    <value>Übliche Vorlesungsdauer</value>
+    <value />
   </data>
   <data name="SettingsSection1-2-Label.Text" xml:space="preserve">
-    <value>Minuten</value>
+    <value />
   </data>
   <data name="SettingsSection1-2.Text" xml:space="preserve">
-    <value>Runden auf</value>
+    <value />
   </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
-    <value>Zeige eine Benachrichtigung an, wenn der Countdown vorbei ist</value>
+    <value />
   </data>
   <data name="SettingsSection2-2.Text" xml:space="preserve">
-    <value>Benachrichtigungs-Sound</value>
+    <value />
   </data>
   <data name="SettingsSection3-1.Text" xml:space="preserve">
-    <value>Sprache</value>
+    <value />
   </data>
   <data name="SettingsSection3-2-Label12.Content" xml:space="preserve">
-    <value>12-Stunden-Format</value>
+    <value />
   </data>
   <data name="SettingsSection3-2-Label24.Content" xml:space="preserve">
-    <value>24-Stunden-Format</value>
+    <value />
   </data>
   <data name="SettingsSection3-2.Text" xml:space="preserve">
-    <value>Uhrenformat</value>
+    <value />
   </data>
   <data name="SettingsSection4-1-LabelDark.Content" xml:space="preserve">
-    <value>Dunkel</value>
+    <value />
   </data>
   <data name="SettingsSection4-1-LabelLight.Content" xml:space="preserve">
-    <value>Hell</value>
+    <value />
   </data>
   <data name="SettingsSection4-1.Text" xml:space="preserve">
-    <value>Änderung des Themas erfordert Neustart der App</value>
+    <value />
   </data>
   <data name="StartButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Countdown starten</value>
+    <value />
   </data>
   <data name="SuggestButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>End-Uhrzeit vorschlagen</value>
+    <value />
   </data>
   <data name="TimePicker.ToolTipService.ToolTip" xml:space="preserve">
-    <value>End-Uhrzeit wählen</value>
+    <value />
   </data>
 </root>

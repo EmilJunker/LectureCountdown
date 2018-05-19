@@ -118,117 +118,117 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value>Eine Countdown-App für Vorlesungen</value>
+    <value>讲座倒计时的应用程序</value>
   </data>
   <data name="AppDisplayName" xml:space="preserve">
-    <value>Vorlesungs-Countdown</value>
+    <value>讲座倒计时</value>
   </data>
   <data name="CalendarButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>End-Uhrzeit aus Kalender vorschlagen</value>
+    <value>建议从日历中结束时间</value>
   </data>
   <data name="CancelButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Countdown abbrechen</value>
+    <value>取消倒计时</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
-    <value>Einstellungen schließen</value>
+    <value>关闭设置</value>
   </data>
   <data name="CompactOverlayButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Ansicht wechseln</value>
+    <value>切换视图</value>
   </data>
   <data name="ErrorNoCalendarAccessPermission" xml:space="preserve">
-    <value>Bitte Zugriff auf Kalendertermine erlauben</value>
+    <value>请允许访问日历活动</value>
   </data>
   <data name="ErrorNoEventsInCalendar" xml:space="preserve">
-    <value>Keine Termine heute im Kalender</value>
+    <value>日历中今天没有事件</value>
   </data>
   <data name="MinuteLecture" xml:space="preserve">
-    <value>-minütige Vorlesung</value>
+    <value>分钟讲座</value>
   </data>
   <data name="NotificationText1" xml:space="preserve">
-    <value>Insgesamt sind </value>
+    <value>总共</value>
   </data>
   <data name="NotificationText2" xml:space="preserve">
-    <value> Sekunden vergangen</value>
+    <value>秒过去了</value>
   </data>
   <data name="NotificationTitle" xml:space="preserve">
-    <value>Es ist geschafft!</value>
+    <value>结束了！</value>
   </data>
   <data name="SettingsButtonText.Text" xml:space="preserve">
-    <value>Einstellungen</value>
+    <value>设置</value>
   </data>
   <data name="SettingsDeveloper.Text" xml:space="preserve">
-    <value>Entwickler:</value>
+    <value>开发商：</value>
   </data>
   <data name="SettingsEmail.Text" xml:space="preserve">
-    <value>E-Mail:</value>
+    <value>电子邮件：</value>
   </data>
   <data name="SettingsFeedback.Content" xml:space="preserve">
-    <value>Feedback</value>
+    <value>反馈</value>
   </data>
   <data name="SettingsHeadline1.Text" xml:space="preserve">
-    <value>Vorschläge für End-Uhrzeit</value>
+    <value>建议的结束时间</value>
   </data>
   <data name="SettingsHeadline2.Text" xml:space="preserve">
-    <value>Benachrichtigungen</value>
+    <value>通知</value>
   </data>
   <data name="SettingsHeadline3.Text" xml:space="preserve">
-    <value>Lokalisierung</value>
+    <value>本土化</value>
   </data>
   <data name="SettingsHeadline4.Text" xml:space="preserve">
-    <value>Thema</value>
+    <value>主题</value>
   </data>
   <data name="SettingsHeadline5.Text" xml:space="preserve">
-    <value>Über die App</value>
+    <value>关于此应用程序</value>
   </data>
   <data name="SettingsRating.Content" xml:space="preserve">
-    <value>App bewerten</value>
+    <value>率这个应用程序</value>
   </data>
   <data name="SettingsSection1-1-Label.Text" xml:space="preserve">
-    <value>-minütige Vorl.</value>
+    <value>分钟讲座</value>
   </data>
   <data name="SettingsSection1-1.Text" xml:space="preserve">
-    <value>Übliche Vorlesungsdauer</value>
+    <value>常用讲座长度</value>
   </data>
   <data name="SettingsSection1-2-Label.Text" xml:space="preserve">
-    <value>Minuten</value>
+    <value>分钟</value>
   </data>
   <data name="SettingsSection1-2.Text" xml:space="preserve">
-    <value>Runden auf</value>
+    <value>一轮到</value>
   </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
-    <value>Zeige eine Benachrichtigung an, wenn der Countdown vorbei ist</value>
+    <value>倒计时结束后显示通知</value>
   </data>
   <data name="SettingsSection2-2.Text" xml:space="preserve">
-    <value>Benachrichtigungs-Sound</value>
+    <value>播放通知声音</value>
   </data>
   <data name="SettingsSection3-1.Text" xml:space="preserve">
-    <value>Sprache</value>
+    <value>语言</value>
   </data>
   <data name="SettingsSection3-2-Label12.Content" xml:space="preserve">
-    <value>12-Stunden-Format</value>
+    <value>12小时格式</value>
   </data>
   <data name="SettingsSection3-2-Label24.Content" xml:space="preserve">
-    <value>24-Stunden-Format</value>
+    <value>24小时格式</value>
   </data>
   <data name="SettingsSection3-2.Text" xml:space="preserve">
-    <value>Uhrenformat</value>
+    <value>时钟格式</value>
   </data>
   <data name="SettingsSection4-1-LabelDark.Content" xml:space="preserve">
-    <value>Dunkel</value>
+    <value>黑暗</value>
   </data>
   <data name="SettingsSection4-1-LabelLight.Content" xml:space="preserve">
-    <value>Hell</value>
+    <value>光明</value>
   </data>
   <data name="SettingsSection4-1.Text" xml:space="preserve">
-    <value>Änderung des Themas erfordert Neustart der App</value>
+    <value>更改主题需要重新启动应用程序</value>
   </data>
   <data name="StartButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Countdown starten</value>
+    <value>开始倒计时</value>
   </data>
   <data name="SuggestButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>End-Uhrzeit vorschlagen</value>
+    <value>建议结束时间</value>
   </data>
   <data name="TimePicker.ToolTipService.ToolTip" xml:space="preserve">
-    <value>End-Uhrzeit wählen</value>
+    <value>选择结束时间</value>
   </data>
 </root>

@@ -51,7 +51,7 @@
         <RelativePanel x:Name="Body" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
 
             <RelativePanel x:Name="CountdownPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-                <TextBlock x:Name="CountdownLabel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="80" Margin="4,-20,4,4" Text="00:00:00" TextAlignment="Center" FontSize="64" />
+                <TextBlock x:Name="CountdownLabel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="80" Margin="4,-20,4,4" Text="00∶00∶00" TextAlignment="Center" FontSize="64" />
                 <Grid x:Name="CountdownProgress" RelativePanel.Below="CountdownLabel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="24" Margin="4,0,4,0" >
                     <ProgressBar x:Name="CountdownProgressBar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Minimum="0" Maximum="1" />
                     <TextBlock x:Name="CountdownProgressText" HorizontalAlignment="Left" VerticalAlignment="Center" Width="200" TextAlignment="Center" />
@@ -82,7 +82,7 @@
                         <SymbolIcon Symbol="Cancel" />
                     </StackPanel>
                 </Button>
-                <Button x:Name="SettingsButton" RelativePanel.Below="TimePicker" RelativePanel.AlignHorizontalCenterWithPanel="True" Height="32" Margin="4,4,4,4" Padding="0" Click="SettingsButton_Click">
+                <Button x:Name="SettingsButton" RelativePanel.Below="TimePicker" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="132" Height="32" Margin="4,4,4,4" Padding="0" Click="SettingsButton_Click">
                     <RelativePanel>
                         <SymbolIcon x:Name="Symbol" Symbol="Setting" Height="20" Margin="4" VerticalAlignment="Top" />
                         <TextBlock x:Uid="SettingsButtonText" RelativePanel.RightOf="Symbol" Margin="4">Settings</TextBlock>
