@@ -68,7 +68,18 @@ namespace LessonTimer
 
             Countdown.tick.Ticked += new TickEventHandler(UpdateCountdown);
 
+            SystemNavigationManager.GetForCurrentView().BackRequested += BackRequested;
+
             this.Loaded += Page_Loaded;
+        }
+
+        private void BackRequested(object sender, BackRequestedEventArgs e)
+        {
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+                e.Handled = true;
+            }
         }
 
         void Page_Loaded(object sender, RoutedEventArgs e)

@@ -55,7 +55,7 @@
                     <TextBlock x:Uid="SettingsSection2-1" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Show a notification when the countdown is over</TextBlock>
                     <ToggleSwitch x:Name="NotificationToggleSwitch" Toggled="NotificationToggleSwitch_Toggled"></ToggleSwitch>
 
-                    <TextBlock x:Uid="SettingsSection2-2" Margin="0,8,0,0">Play notification sound</TextBlock>
+                    <TextBlock x:Uid="SettingsSection2-2" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Play notification sound</TextBlock>
                     <ToggleSwitch x:Name="NotificationSoundToggleSwitch" Toggled="NotificationSoundToggleSwitch_Toggled"></ToggleSwitch>
 
                     <TextBlock x:Uid="SettingsHeadline3" Margin="0,24,0,8" FontSize="20">Localization</TextBlock>

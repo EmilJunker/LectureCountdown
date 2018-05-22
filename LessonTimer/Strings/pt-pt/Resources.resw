@@ -118,117 +118,117 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value />
+    <value>Um aplicativo de contagem regressiva para palestras</value>
   </data>
   <data name="AppDisplayName" xml:space="preserve">
     <value>Countdown de Palestra</value>
   </data>
   <data name="CalendarButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value />
+    <value>Sugira tempos de término do calendário</value>
   </data>
   <data name="CancelButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value />
+    <value>Cancelar contagem regressiva</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
-    <value />
+    <value>Fechar ajustes</value>
   </data>
   <data name="CompactOverlayButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value />
+    <value>Alterar vista</value>
   </data>
   <data name="ErrorNoCalendarAccessPermission" xml:space="preserve">
-    <value />
+    <value>Por favor, permita o acesso a eventos da calendário</value>
   </data>
   <data name="ErrorNoEventsInCalendar" xml:space="preserve">
-    <value />
+    <value>Não há eventos hoje no seu calendário</value>
   </data>
   <data name="MinuteLecture" xml:space="preserve">
-    <value />
+    <value> de minutos palestra</value>
   </data>
   <data name="NotificationText1" xml:space="preserve">
-    <value />
+    <value>Um total de </value>
   </data>
   <data name="NotificationText2" xml:space="preserve">
-    <value />
+    <value> segundos decorridos</value>
   </data>
   <data name="NotificationTitle" xml:space="preserve">
-    <value />
+    <value>Acabou-se!</value>
   </data>
   <data name="SettingsButtonText.Text" xml:space="preserve">
-    <value />
+    <value>Ajustes</value>
   </data>
   <data name="SettingsDeveloper.Text" xml:space="preserve">
-    <value />
+    <value>Desenvolvedor:</value>
   </data>
   <data name="SettingsEmail.Text" xml:space="preserve">
-    <value />
+    <value>Email:</value>
   </data>
   <data name="SettingsFeedback.Content" xml:space="preserve">
-    <value />
+    <value>Feedback</value>
   </data>
   <data name="SettingsHeadline1.Text" xml:space="preserve">
-    <value />
+    <value>Tempos de término sugeridos</value>
   </data>
   <data name="SettingsHeadline2.Text" xml:space="preserve">
-    <value />
+    <value>Notificações</value>
   </data>
   <data name="SettingsHeadline3.Text" xml:space="preserve">
-    <value />
+    <value>Localização</value>
   </data>
   <data name="SettingsHeadline4.Text" xml:space="preserve">
-    <value />
+    <value>Tema</value>
   </data>
   <data name="SettingsHeadline5.Text" xml:space="preserve">
-    <value />
+    <value>Sobre este aplicativo</value>
   </data>
   <data name="SettingsRating.Content" xml:space="preserve">
-    <value />
+    <value>Avalie este aplicativo</value>
   </data>
   <data name="SettingsSection1-1-Label.Text" xml:space="preserve">
-    <value />
+    <value> minutos</value>
   </data>
   <data name="SettingsSection1-1.Text" xml:space="preserve">
-    <value />
+    <value>Duração de palestra usual</value>
   </data>
   <data name="SettingsSection1-2-Label.Text" xml:space="preserve">
-    <value />
+    <value>minutos</value>
   </data>
   <data name="SettingsSection1-2.Text" xml:space="preserve">
-    <value />
+    <value>Rodada para</value>
   </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
-    <value />
+    <value>Mostrar uma notificação quando a contagem regressiva terminar</value>
   </data>
   <data name="SettingsSection2-2.Text" xml:space="preserve">
-    <value />
+    <value>Reproduzir som de notificação</value>
   </data>
   <data name="SettingsSection3-1.Text" xml:space="preserve">
-    <value />
+    <value>Língua</value>
   </data>
   <data name="SettingsSection3-2-Label12.Content" xml:space="preserve">
-    <value />
+    <value>Formato de 12 horas</value>
   </data>
   <data name="SettingsSection3-2-Label24.Content" xml:space="preserve">
-    <value />
+    <value>Formato de 24 horas</value>
   </data>
   <data name="SettingsSection3-2.Text" xml:space="preserve">
-    <value />
+    <value>Formato do horário</value>
   </data>
   <data name="SettingsSection4-1-LabelDark.Content" xml:space="preserve">
-    <value />
+    <value>Escuro</value>
   </data>
   <data name="SettingsSection4-1-LabelLight.Content" xml:space="preserve">
-    <value />
+    <value>Claro</value>
   </data>
   <data name="SettingsSection4-1.Text" xml:space="preserve">
-    <value />
+    <value>Alterar o tema requer reiniciar o aplicativo</value>
   </data>
   <data name="StartButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value />
+    <value>Iniciar contagem regressiva</value>
   </data>
   <data name="SuggestButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value />
+    <value>Sugira tempos de término</value>
   </data>
   <data name="TimePicker.ToolTipService.ToolTip" xml:space="preserve">
-    <value />
+    <value>Selecione o horário de término</value>
   </data>
 </root>

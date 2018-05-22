@@ -68,10 +68,8 @@ namespace LessonTimer
             if (Windows.Foundation.Metadata.ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5))
             {
                 Grid.Background = (Windows.UI.Xaml.Media.Brush)Resources["SystemControlChromeMediumAcrylicWindowMediumBrush"];
-                CloseButton.Style= (Style)Resources["ButtonRevealStyle"];
+                CloseButton.Style = (Style)Resources["ButtonRevealStyle"];
             }
-
-            SystemNavigationManager.GetForCurrentView().BackRequested += SettingsPage_BackRequested;
 
             this.Loaded += Page_Loaded;
         }
@@ -86,15 +84,9 @@ namespace LessonTimer
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
         }
 
-        private void SettingsPage_BackRequested(object sender, BackRequestedEventArgs e)
-        {
-            Frame.Navigate(typeof(MainPage));
-            e.Handled = true;
-        }
-
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MainPage));
+            Frame.GoBack();
         }
 
         private ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
@@ -102,28 +94,33 @@ namespace LessonTimer
         private void LectureLengthsTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             lectureLengths.Clear();
-            string[] lengthsList = LectureLengthsTextBox.Text.Split(',');
-            for (int i = 0; i < 8; i++)
+
+            int i = 0;
+            foreach (string length in LectureLengthsTextBox.Text.Split(','))
             {
+                if (i > 7)
+                {
+                    break;
+                }
+
                 try
                 {
-                    var value = Convert.ToInt32(lengthsList[i].Trim());
+                    var value = Convert.ToInt32(length.Trim());
                     lectureLengths.Add(value);
                     localSettings.Values[String.Format("lectureLengths{0}", i)] = value;
+                    i++;
                 }
                 catch (Exception)
                 {
-                    if (i == 0)
-                    {
-                        lectureLengths = new List<int>(new int[] { 60, 90 });
-                        localSettings.Values["lectureLengths0"] = 60;
-                        localSettings.Values["lectureLengths1"] = 90;
-                    }
-                    else
-                    {
-                        localSettings.Values[String.Format("lectureLengths{0}", i)] = null;
-                    }
+                    localSettings.Values[String.Format("lectureLengths{0}", i)] = null;
                 }
+            }
+
+            if (i == 0)
+            {
+                lectureLengths = new List<int>(new int[] { 60, 90 });
+                localSettings.Values["lectureLengths0"] = 60;
+                localSettings.Values["lectureLengths1"] = 90;
             }
         }
 
