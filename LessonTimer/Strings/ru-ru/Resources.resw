@@ -118,117 +118,117 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AppDescription" xml:space="preserve">
-    <value />
+    <value>Обратный отсчет приложение для лекций</value>
   </data>
   <data name="AppDisplayName" xml:space="preserve">
     <value>Лекция обратный отсчет</value>
   </data>
   <data name="CalendarButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value />
+    <value>Предложить время окончания из календаря</value>
   </data>
   <data name="CancelButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value />
+    <value>Отменить обратный отсчет</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
-    <value />
+    <value>Закрыть Настройки</value>
   </data>
   <data name="CompactOverlayButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value />
+    <value>Переключение вида</value>
   </data>
   <data name="ErrorNoCalendarAccessPermission" xml:space="preserve">
-    <value />
+    <value>Пожалуйста, разрешите доступ к событиям календаря</value>
   </data>
   <data name="ErrorNoEventsInCalendar" xml:space="preserve">
-    <value />
+    <value>Сегодня нет событий в вашем календаре</value>
   </data>
   <data name="MinuteLecture" xml:space="preserve">
-    <value />
+    <value>-минутная лекция</value>
   </data>
   <data name="NotificationText1" xml:space="preserve">
-    <value />
+    <value>В общей сложности </value>
   </data>
   <data name="NotificationText2" xml:space="preserve">
-    <value />
+    <value> секунд прошли</value>
   </data>
   <data name="NotificationTitle" xml:space="preserve">
-    <value />
+    <value>Сделано!</value>
   </data>
   <data name="SettingsButtonText.Text" xml:space="preserve">
-    <value />
+    <value>Настройки</value>
   </data>
   <data name="SettingsDeveloper.Text" xml:space="preserve">
-    <value />
+    <value>Разработчик:</value>
   </data>
   <data name="SettingsEmail.Text" xml:space="preserve">
-    <value />
+    <value>Эл. почта:</value>
   </data>
   <data name="SettingsFeedback.Content" xml:space="preserve">
-    <value />
+    <value>Обратной связи</value>
   </data>
   <data name="SettingsHeadline1.Text" xml:space="preserve">
-    <value />
+    <value>Предлагаемое время окончания</value>
   </data>
   <data name="SettingsHeadline2.Text" xml:space="preserve">
-    <value />
+    <value>Уведомления</value>
   </data>
   <data name="SettingsHeadline3.Text" xml:space="preserve">
-    <value />
+    <value>Локализации</value>
   </data>
   <data name="SettingsHeadline4.Text" xml:space="preserve">
-    <value />
+    <value>Темы</value>
   </data>
   <data name="SettingsHeadline5.Text" xml:space="preserve">
-    <value />
+    <value>Об этом приложении</value>
   </data>
   <data name="SettingsRating.Content" xml:space="preserve">
-    <value />
+    <value>Оцените это приложение</value>
   </data>
   <data name="SettingsSection1-1-Label.Text" xml:space="preserve">
-    <value />
+    <value> Минут</value>
   </data>
   <data name="SettingsSection1-1.Text" xml:space="preserve">
-    <value />
+    <value>Продолжительность обычной лекции</value>
   </data>
   <data name="SettingsSection1-2-Label.Text" xml:space="preserve">
-    <value />
+    <value>Минут</value>
   </data>
   <data name="SettingsSection1-2.Text" xml:space="preserve">
-    <value />
+    <value>Круглые до</value>
   </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
-    <value />
+    <value>Отображать уведомление по окончании обратного отсчета</value>
   </data>
   <data name="SettingsSection2-2.Text" xml:space="preserve">
-    <value />
+    <value>Звук уведомления</value>
   </data>
   <data name="SettingsSection3-1.Text" xml:space="preserve">
-    <value />
+    <value>Язык</value>
   </data>
   <data name="SettingsSection3-2-Label12.Content" xml:space="preserve">
-    <value />
+    <value>12-часовой формат</value>
   </data>
   <data name="SettingsSection3-2-Label24.Content" xml:space="preserve">
-    <value />
+    <value>24-часовой формат</value>
   </data>
   <data name="SettingsSection3-2.Text" xml:space="preserve">
-    <value />
+    <value>Формат часов</value>
   </data>
   <data name="SettingsSection4-1-LabelDark.Content" xml:space="preserve">
-    <value />
+    <value>Темный</value>
   </data>
   <data name="SettingsSection4-1-LabelLight.Content" xml:space="preserve">
-    <value />
+    <value>Светлый</value>
   </data>
   <data name="SettingsSection4-1.Text" xml:space="preserve">
-    <value />
+    <value>Изменение темы требует перезапуска приложения</value>
   </data>
   <data name="StartButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value />
+    <value>Начало обратного отсчета</value>
   </data>
   <data name="SuggestButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value />
+    <value>Предложить время окончания</value>
   </data>
   <data name="TimePicker.ToolTipService.ToolTip" xml:space="preserve">
-    <value />
+    <value>Выберите время окончания</value>
   </data>
 </root>

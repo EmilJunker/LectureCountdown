@@ -130,7 +130,7 @@
     <value>Annuler compte à rebours</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
-    <value>Fermer paramètres</value>
+    <value>Fermer Paramètres</value>
   </data>
   <data name="CompactOverlayButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Changer vue</value>

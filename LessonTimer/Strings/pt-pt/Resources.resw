@@ -130,7 +130,7 @@
     <value>Cancelar contagem regressiva</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
-    <value>Fechar ajustes</value>
+    <value>Fechar Ajustes</value>
   </data>
   <data name="CompactOverlayButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Alterar vista</value>
