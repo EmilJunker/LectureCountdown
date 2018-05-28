@@ -222,6 +222,9 @@
   <data name="SettingsSection4-1.Text" xml:space="preserve">
     <value>Änderung des Themas erfordert Neustart der App</value>
   </data>
+  <data name="SettingsWindowsDefault.Content" xml:space="preserve">
+    <value>Windows-Standard</value>
+  </data>
   <data name="StartButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Countdown starten</value>
   </data>

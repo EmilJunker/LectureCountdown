@@ -222,6 +222,9 @@
   <data name="SettingsSection4-1.Text" xml:space="preserve">
     <value>Modification du thème nécessite le redémarrage de l'application</value>
   </data>
+  <data name="SettingsWindowsDefault.Content" xml:space="preserve">
+    <value>Windows par défaut</value>
+  </data>
   <data name="StartButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Démarrer le rebours</value>
   </data>

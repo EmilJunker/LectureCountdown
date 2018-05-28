@@ -222,6 +222,9 @@
   <data name="SettingsSection4-1.Text" xml:space="preserve">
     <value>更改主题需要重新启动应用程序</value>
   </data>
+  <data name="SettingsWindowsDefault.Content" xml:space="preserve">
+    <value>Windows 默认</value>
+  </data>
   <data name="StartButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>开始倒计时</value>
   </data>

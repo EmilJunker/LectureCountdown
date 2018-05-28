@@ -28,6 +28,9 @@ namespace LessonTimer
                 case "Dark":
                     this.RequestedTheme = ApplicationTheme.Dark;
                     break;
+                default:
+                    this.RequestedTheme = Current.RequestedTheme;
+                    break;
             }
 
             this.InitializeComponent();
@@ -40,7 +43,7 @@ namespace LessonTimer
             {
                 MainPage.starttime = new DateTime((long)localSettings.Values["starttime"]);
                 MainPage.endtime = new DateTime((long)localSettings.Values["endtime"]);
-                MainPage.currentDescription = (String)localSettings.Values["currentDescription"];
+                MainPage.currentDescription = (string)localSettings.Values["currentDescription"];
                 MainPage.toast = ToastNotificationManager.CreateToastNotifier().GetScheduledToastNotifications()[0];
             }
             catch (NullReferenceException) { }

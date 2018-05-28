@@ -222,6 +222,9 @@
   <data name="SettingsSection4-1.Text" xml:space="preserve">
     <value>Изменение темы требует перезапуска приложения</value>
   </data>
+  <data name="SettingsWindowsDefault.Content" xml:space="preserve">
+    <value>Windows умолчанию</value>
+  </data>
   <data name="StartButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Начало обратного отсчета</value>
   </data>

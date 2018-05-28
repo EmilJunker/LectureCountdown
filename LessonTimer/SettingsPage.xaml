@@ -62,8 +62,9 @@
 
                     <TextBlock x:Uid="SettingsSection3-1" Margin="0,8,0,0">Language</TextBlock>
                     <ComboBox x:Name="LanguageComboBox" Width="200" Margin="0,8" SelectionChanged="LanguageComboBox_SelectionChanged">
-                        <ComboBoxItem Content="Default (English)" Tag="en-us" />
+                        <ComboBoxItem Content="Windows default" Tag="" x:Uid="SettingsWindowsDefault" />
                         <ComboBoxItem Content="Chinese (中文)" Tag="zh-Hans" />
+                        <ComboBoxItem Content="English (English)" Tag="en-us" />
                         <ComboBoxItem Content="French (Français)" Tag="fr-fr" />
                         <ComboBoxItem Content="German (Deutsch)" Tag="de-de" />
                         <ComboBoxItem Content="Japanese (日本語)" Tag="ja-jp" />
@@ -82,6 +83,7 @@
 
                     <TextBlock x:Uid="SettingsSection4-1" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Theme change requires app restart</TextBlock>
                     <StackPanel Margin="0,8">
+                        <RadioButton x:Uid="SettingsWindowsDefault" x:Name="ThemeDefaultRadioButton" GroupName="ThemeGroup" Content="Windows default" Tag="" Checked="ThemeRadioButton_Checked" />
                         <RadioButton x:Uid="SettingsSection4-1-LabelLight" x:Name="ThemeLightRadioButton" GroupName="ThemeGroup" Content="Light" Tag="Light" Checked="ThemeRadioButton_Checked" />
                         <RadioButton x:Uid="SettingsSection4-1-LabelDark" x:Name="ThemeDarkRadioButton" GroupName="ThemeGroup" Content="Dark" Tag="Dark" Checked="ThemeRadioButton_Checked" />
                     </StackPanel>

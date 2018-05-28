@@ -18,7 +18,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>LessonTimer_StoreKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>23D42A5F7CEFA4D6D22E78968B67DDDE6A7BC904</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>18C43B4B1CBC5BF48078AA259A675866C7E9440F</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
@@ -115,7 +115,6 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="LessonTimer_StoreKey.pfx" />
-    <None Include="LessonTimer_TemporaryKey.pfx" />
     <PRIResource Include="Strings\ru-ru\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>

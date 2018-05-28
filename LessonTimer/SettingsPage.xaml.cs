@@ -191,7 +191,7 @@ namespace LessonTimer
             languageUI = item.Tag.ToString();
 
             ApplicationLanguages.PrimaryLanguageOverride = languageUI;
-
+            
             localSettings.Values["languageUI"] = languageUI;
         }
 
@@ -216,15 +216,7 @@ namespace LessonTimer
         {
             RadioButton rb = sender as RadioButton;
 
-            switch (rb.Tag.ToString())
-            {
-                case "Light":
-                    theme = "Light";
-                    break;
-                case "Dark":
-                    theme = "Dark";
-                    break;
-            }
+            theme = rb.Tag.ToString();
 
             localSettings.Values["theme"] = theme;
         }
@@ -257,7 +249,7 @@ namespace LessonTimer
             }
             catch (NullReferenceException)
             {
-                lectureLengthRoundTo = 15;
+                lectureLengthRoundTo = 5;
             }
 
             try
@@ -280,21 +272,21 @@ namespace LessonTimer
 
             try
             {
-                languageUI = (String)localSettings.Values["languageUI"];
+                languageUI = (string)localSettings.Values["languageUI"];
 
                 if (languageUI == null)
                 {
-                    languageUI = ApplicationLanguages.Languages[0];
+                    languageUI = String.Empty;
                 }
             }
             catch (NullReferenceException)
             {
-                languageUI = ApplicationLanguages.Languages[0];
+                languageUI = String.Empty;
             }
 
             try
             {
-                clockFormat = (String)localSettings.Values["clockFormat"];
+                clockFormat = (string)localSettings.Values["clockFormat"];
 
                 if (clockFormat == null)
                 {
@@ -308,16 +300,16 @@ namespace LessonTimer
 
             try
             {
-                theme = (String)localSettings.Values["theme"];
+                theme = (string)localSettings.Values["theme"];
 
                 if (theme == null)
                 {
-                    theme = "Dark";
+                    theme = String.Empty;
                 }
             }
             catch (NullReferenceException)
             {
-                theme = "Dark";
+                theme = String.Empty;
             }
         }
 
@@ -366,29 +358,29 @@ namespace LessonTimer
 
             switch (languageUI)
             {
-                case "en-us":
-                    LanguageComboBox.SelectedIndex = 0;
-                    break;
                 case "zh-Hans":
                     LanguageComboBox.SelectedIndex = 1;
                     break;
-                case "fr-fr":
+                case "en-us":
                     LanguageComboBox.SelectedIndex = 2;
                     break;
-                case "de-de":
+                case "fr-fr":
                     LanguageComboBox.SelectedIndex = 3;
                     break;
-                case "ja-jp":
+                case "de-de":
                     LanguageComboBox.SelectedIndex = 4;
                     break;
-                case "pt-pt":
+                case "ja-jp":
                     LanguageComboBox.SelectedIndex = 5;
                     break;
-                case "ru-ru":
+                case "pt-pt":
                     LanguageComboBox.SelectedIndex = 6;
                     break;
-                case "es-es":
+                case "ru-ru":
                     LanguageComboBox.SelectedIndex = 7;
+                    break;
+                case "es-es":
+                    LanguageComboBox.SelectedIndex = 8;
                     break;
                 default:
                     LanguageComboBox.SelectedIndex = 0;
@@ -412,6 +404,9 @@ namespace LessonTimer
                     break;
                 case "Dark":
                     ThemeDarkRadioButton.IsChecked = true;
+                    break;
+                default:
+                    ThemeDefaultRadioButton.IsChecked = true;
                     break;
             }
         }
