@@ -115,25 +115,13 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="LessonTimer_StoreKey.pfx" />
-    <PRIResource Include="Strings\ru-ru\Resources.resw">
-      <SubType>Designer</SubType>
-    </PRIResource>
-    <PRIResource Include="Strings\pt-pt\Resources.resw">
-      <SubType>Designer</SubType>
-    </PRIResource>
-    <PRIResource Include="Strings\ja-jp\Resources.resw">
-      <SubType>Designer</SubType>
-    </PRIResource>
-    <PRIResource Include="Strings\es-es\Resources.resw">
-      <SubType>Designer</SubType>
-    </PRIResource>
-    <PRIResource Include="Strings\fr-fr\Resources.resw">
-      <SubType>Designer</SubType>
-    </PRIResource>
+    <PRIResource Include="Strings\ru-ru\Resources.resw" />
+    <PRIResource Include="Strings\pt-pt\Resources.resw" />
+    <PRIResource Include="Strings\ja-jp\Resources.resw" />
+    <PRIResource Include="Strings\es-es\Resources.resw" />
+    <PRIResource Include="Strings\fr-fr\Resources.resw" />
     <PRIResource Include="Strings\zh-Hans\Resources.resw" />
-    <PRIResource Include="Strings\de-de\Resources.resw">
-      <SubType>Designer</SubType>
-    </PRIResource>
+    <PRIResource Include="Strings\de-de\Resources.resw" />
     <PRIResource Include="Strings\en-us\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
