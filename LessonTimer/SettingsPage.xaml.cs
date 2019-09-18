@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Windows.ApplicationModel.Core;
 using Windows.Globalization;
 using Windows.Storage;
@@ -14,41 +15,14 @@ namespace LessonTimer
 {
     public sealed partial class SettingsPage : Page
     {
-        private static List<int> lectureLengths;
-        public static List<int> LectureLengths
-        {
-            get { return lectureLengths; }
-        }
-        private static int lectureLengthRoundTo;
-        public static int LectureLengthRoundTo
-        {
-            get { return lectureLengthRoundTo; }
-        }
-        private static bool notificationsEnabled;
-        public static bool NotificationsEnabled
-        {
-            get { return notificationsEnabled; }
-        }
-        private static bool notificationSoundEnabled;
-        public static bool NotificationSoundEnabled
-        {
-            get { return notificationSoundEnabled; }
-        }
-        private static String languageUI;
-        public static String LanguageUI
-        {
-            get { return languageUI; }
-        }
-        private static String clockFormat;
-        public static String ClockFormat
-        {
-            get { return clockFormat; }
-        }
-        private static String theme;
-        public static String Theme
-        {
-            get { return theme; }
-        }
+        public static String CountdownBase { get; private set; }
+        public static List<int> LectureLengths { get; private set; }
+        public static int LectureLengthRoundTo { get; private set; }
+        public static bool NotificationsEnabled { get; private set; }
+        public static bool NotificationSoundEnabled { get; private set; }
+        public static String LanguageUI { get; private set; }
+        public static String ClockFormat { get; private set; }
+        public static String Theme { get; private set; }
 
         public SettingsPage()
         {
@@ -91,12 +65,24 @@ namespace LessonTimer
 
         private ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
 
+        private void CountdownBaseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+            ComboBoxItem item = cb.SelectedItem as ComboBoxItem;
+            CountdownBase = item.Tag.ToString();
+
+            EnableDisableLectureRoundComboBox();
+
+            localSettings.Values["countdownBase"] = CountdownBase;
+        }
+
         private void LectureLengthsTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            lectureLengths.Clear();
+            LectureLengths.Clear();
 
             int i = 0;
-            foreach (string length in LectureLengthsTextBox.Text.Split(','))
+            string[] lengths = Regex.Split(LectureLengthsTextBox.Text, @"\s*(?:\uD805\uDC4D|\uD836\uDE87|[\u002C\u02BB\u060C\u2E32\u2E34\u2E41\u2E49\u3001\uFE10\uFE11\uFE50\uFE51\uFF0C\uFF64\u00B7\u055D\u07F8\u1363\u1802\u1808\uA4FE\uA60D\uA6F5\u02BD\u0312\u0313\u0314\u0315\u0326\u201A])\s*");
+            foreach (string length in lengths)
             {
                 if (i > 7)
                 {
@@ -105,22 +91,30 @@ namespace LessonTimer
 
                 try
                 {
-                    var value = Convert.ToInt32(length.Trim());
-                    lectureLengths.Add(value);
-                    localSettings.Values[String.Format("lectureLengths{0}", i)] = value;
-                    i++;
+                    var value = Convert.ToInt32(length);
+                    if (0 < value && value < 1440)
+                    {
+                        LectureLengths.Add(value);
+                        localSettings.Values[String.Format("lectureLengths{0}", i)] = value;
+                        i++;
+                    }
                 }
-                catch (Exception)
-                {
-                    localSettings.Values[String.Format("lectureLengths{0}", i)] = null;
-                }
+                catch (Exception) { }
             }
 
             if (i == 0)
             {
-                lectureLengths = new List<int>(new int[] { 60, 90 });
-                localSettings.Values["lectureLengths0"] = 60;
-                localSettings.Values["lectureLengths1"] = 90;
+                LectureLengths = new List<int>(new int[] { 45, 60, 90 });
+                localSettings.Values["lectureLengths0"] = 45;
+                localSettings.Values["lectureLengths1"] = 60;
+                localSettings.Values["lectureLengths2"] = 90;
+                i = 3;
+            }
+
+            while (i <= 7)
+            {
+                localSettings.Values[String.Format("lectureLengths{0}", i)] = null;
+                i++;
             }
         }
 
@@ -128,9 +122,9 @@ namespace LessonTimer
         {
             ComboBox cb = sender as ComboBox;
             ComboBoxItem item = cb.SelectedItem as ComboBoxItem;
-            lectureLengthRoundTo = Convert.ToInt32(item.Content);
+            LectureLengthRoundTo = Convert.ToInt32(item.Content);
 
-            localSettings.Values["lectureLengthRoundTo"] = lectureLengthRoundTo;
+            localSettings.Values["lectureLengthRoundTo"] = LectureLengthRoundTo;
         }
 
         private void NotificationToggleSwitch_Toggled(object sender, RoutedEventArgs e)
@@ -139,23 +133,23 @@ namespace LessonTimer
 
             if (ts.IsOn)
             {
-                notificationsEnabled = true;
+                NotificationsEnabled = true;
                 NotificationSoundToggleSwitch.IsEnabled = true;
 
                 if (CountdownLogic.Countdown.IsRunning)
                 {
-                    MainPage.ScheduleToastNotification(notificationSoundEnabled);
+                    MainPage.ScheduleToastNotification(NotificationSoundEnabled);
                 }
             }
             else
             {
-                notificationsEnabled = false;
+                NotificationsEnabled = false;
                 NotificationSoundToggleSwitch.IsEnabled = false;
 
                 MainPage.CancelToastNotification();
             }
 
-            localSettings.Values["notificationsEnabled"] = notificationsEnabled;
+            localSettings.Values["notificationsEnabled"] = NotificationsEnabled;
         }
 
         private void NotificationSoundToggleSwitch_Toggled(object sender, RoutedEventArgs e)
@@ -164,7 +158,7 @@ namespace LessonTimer
 
             if (ts.IsOn)
             {
-                notificationSoundEnabled = true;
+                NotificationSoundEnabled = true;
 
                 if (CountdownLogic.Countdown.IsRunning)
                 {
@@ -173,7 +167,7 @@ namespace LessonTimer
             }
             else
             {
-                notificationSoundEnabled = false;
+                NotificationSoundEnabled = false;
 
                 if (CountdownLogic.Countdown.IsRunning)
                 {
@@ -181,18 +175,18 @@ namespace LessonTimer
                 }
             }
 
-            localSettings.Values["notificationSoundEnabled"] = notificationSoundEnabled;
+            localSettings.Values["notificationSoundEnabled"] = NotificationSoundEnabled;
         }
 
         private void LanguageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox cb = sender as ComboBox;
             ComboBoxItem item = cb.SelectedItem as ComboBoxItem;
-            languageUI = item.Tag.ToString();
+            LanguageUI = item.Tag.ToString();
 
-            ApplicationLanguages.PrimaryLanguageOverride = languageUI;
-            
-            localSettings.Values["languageUI"] = languageUI;
+            ApplicationLanguages.PrimaryLanguageOverride = LanguageUI;
+
+            localSettings.Values["languageUI"] = LanguageUI;
         }
 
         private void ClockFormatRadioButton_Checked(object sender, RoutedEventArgs e)
@@ -202,126 +196,152 @@ namespace LessonTimer
             switch (rb.Tag.ToString())
             {
                 case "12":
-                    clockFormat = "12HourClock";
+                    ClockFormat = "12HourClock";
                     break;
                 case "24":
-                    clockFormat = "24HourClock";
+                    ClockFormat = "24HourClock";
                     break;
             }
 
-            localSettings.Values["clockFormat"] = clockFormat;
+            localSettings.Values["clockFormat"] = ClockFormat;
         }
 
         private void ThemeRadioButton_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton rb = sender as RadioButton;
 
-            theme = rb.Tag.ToString();
+            Theme = rb.Tag.ToString();
 
-            localSettings.Values["theme"] = theme;
+            localSettings.Values["theme"] = Theme;
         }
 
         public static void LoadSettings(ApplicationDataContainer localSettings)
         {
             try
             {
-                lectureLengths = new List<int> { (int)localSettings.Values["lectureLengths0"] };
+                CountdownBase = (string)localSettings.Values["countdownBase"];
+
+                if (CountdownBase == null)
+                {
+                    CountdownBase = "time";
+                }
+            }
+            catch (NullReferenceException)
+            {
+                CountdownBase = "time";
+            }
+
+            try
+            {
+                LectureLengths = new List<int> { (int)localSettings.Values["lectureLengths0"] };
                 try
                 {
-                    lectureLengths.Add((int)localSettings.Values["lectureLengths1"]);
-                    lectureLengths.Add((int)localSettings.Values["lectureLengths2"]);
-                    lectureLengths.Add((int)localSettings.Values["lectureLengths3"]);
-                    lectureLengths.Add((int)localSettings.Values["lectureLengths4"]);
-                    lectureLengths.Add((int)localSettings.Values["lectureLengths5"]);
-                    lectureLengths.Add((int)localSettings.Values["lectureLengths6"]);
-                    lectureLengths.Add((int)localSettings.Values["lectureLengths7"]);
+                    LectureLengths.Add((int)localSettings.Values["lectureLengths1"]);
+                    LectureLengths.Add((int)localSettings.Values["lectureLengths2"]);
+                    LectureLengths.Add((int)localSettings.Values["lectureLengths3"]);
+                    LectureLengths.Add((int)localSettings.Values["lectureLengths4"]);
+                    LectureLengths.Add((int)localSettings.Values["lectureLengths5"]);
+                    LectureLengths.Add((int)localSettings.Values["lectureLengths6"]);
+                    LectureLengths.Add((int)localSettings.Values["lectureLengths7"]);
                 }
                 catch (NullReferenceException) { }
             }
             catch (NullReferenceException)
             {
-                lectureLengths = new List<int>(new int[] { 60, 90 });
+                LectureLengths = new List<int>(new int[] { 45, 60, 90 });
             }
 
             try
             {
-                lectureLengthRoundTo = (int)localSettings.Values["lectureLengthRoundTo"];
+                LectureLengthRoundTo = (int)localSettings.Values["lectureLengthRoundTo"];
             }
             catch (NullReferenceException)
             {
-                lectureLengthRoundTo = 5;
+                LectureLengthRoundTo = 5;
             }
 
             try
             {
-                notificationsEnabled = (bool)localSettings.Values["notificationsEnabled"];
+                NotificationsEnabled = (bool)localSettings.Values["notificationsEnabled"];
             }
             catch (NullReferenceException)
             {
-                notificationsEnabled = true;
+                NotificationsEnabled = true;
             }
 
             try
             {
-                notificationSoundEnabled = (bool)localSettings.Values["notificationSoundEnabled"];
+                NotificationSoundEnabled = (bool)localSettings.Values["notificationSoundEnabled"];
             }
             catch (NullReferenceException)
             {
-                notificationSoundEnabled = false;
+                NotificationSoundEnabled = false;
             }
 
             try
             {
-                languageUI = (string)localSettings.Values["languageUI"];
+                LanguageUI = (string)localSettings.Values["languageUI"];
 
-                if (languageUI == null)
+                if (LanguageUI == null)
                 {
-                    languageUI = String.Empty;
+                    LanguageUI = String.Empty;
                 }
             }
             catch (NullReferenceException)
             {
-                languageUI = String.Empty;
+                LanguageUI = String.Empty;
             }
 
             try
             {
-                clockFormat = (string)localSettings.Values["clockFormat"];
+                ClockFormat = (string)localSettings.Values["clockFormat"];
 
-                if (clockFormat == null)
+                if (ClockFormat == null)
                 {
-                    clockFormat = new Windows.Globalization.DateTimeFormatting.DateTimeFormatter("shorttime", new[] { new GeographicRegion().Code }).Clock;
+                    ClockFormat = new Windows.Globalization.DateTimeFormatting.DateTimeFormatter("shorttime", new[] { new GeographicRegion().Code }).Clock;
                 }
             }
             catch (NullReferenceException)
             {
-                clockFormat = new Windows.Globalization.DateTimeFormatting.DateTimeFormatter("shorttime", new[] { new GeographicRegion().Code }).Clock;
+                ClockFormat = new Windows.Globalization.DateTimeFormatting.DateTimeFormatter("shorttime", new[] { new GeographicRegion().Code }).Clock;
             }
 
             try
             {
-                theme = (string)localSettings.Values["theme"];
+                Theme = (string)localSettings.Values["theme"];
 
-                if (theme == null)
+                if (Theme == null)
                 {
-                    theme = String.Empty;
+                    Theme = String.Empty;
                 }
             }
             catch (NullReferenceException)
             {
-                theme = String.Empty;
+                Theme = String.Empty;
             }
         }
 
         private void LoadSettingsUI()
         {
-            LectureLengthsTextBox.Text += lectureLengths[0].ToString();
-            for (int i = 1; i < lectureLengths.Count; i++)
+            switch (CountdownBase)
             {
-                LectureLengthsTextBox.Text += String.Format(", {0}", lectureLengths[i].ToString());
+                case "time":
+                    CountdownBaseComboBox.SelectedIndex = 0;
+                    break;
+                case "length":
+                    CountdownBaseComboBox.SelectedIndex = 1;
+                    break;
             }
 
-            switch (lectureLengthRoundTo)
+            EnableDisableLectureRoundComboBox();
+
+            LectureLengthsTextBox.Text += LectureLengths[0].ToString();
+            for (int i = 1; i < LectureLengths.Count; i++)
+            {
+                LectureLengthsTextBox.Text += String.Format(", {0}", LectureLengths[i].ToString());
+            }
+
+            switch (LectureLengthRoundTo)
             {
                 case 30:
                     LectureRoundComboBox.SelectedIndex = 0;
@@ -343,7 +363,7 @@ namespace LessonTimer
                     break;
             }
 
-            if (notificationsEnabled)
+            if (NotificationsEnabled)
             {
                 NotificationToggleSwitch.IsOn = true;
                 NotificationSoundToggleSwitch.IsEnabled = true;
@@ -354,9 +374,9 @@ namespace LessonTimer
                 NotificationSoundToggleSwitch.IsEnabled = false;
             }
 
-            NotificationSoundToggleSwitch.IsOn = notificationSoundEnabled;
+            NotificationSoundToggleSwitch.IsOn = NotificationSoundEnabled;
 
-            switch (languageUI)
+            switch (LanguageUI)
             {
                 case "zh-Hans":
                     LanguageComboBox.SelectedIndex = 1;
@@ -387,7 +407,7 @@ namespace LessonTimer
                     break;
             }
 
-            switch (clockFormat)
+            switch (ClockFormat)
             {
                 case "12HourClock":
                     ClockFormat12RadioButton.IsChecked = true;
@@ -397,7 +417,7 @@ namespace LessonTimer
                     break;
             }
 
-            switch (theme)
+            switch (Theme)
             {
                 case "Light":
                     ThemeLightRadioButton.IsChecked = true;
@@ -407,6 +427,19 @@ namespace LessonTimer
                     break;
                 default:
                     ThemeDefaultRadioButton.IsChecked = true;
+                    break;
+            }
+        }
+
+        private void EnableDisableLectureRoundComboBox()
+        {
+            switch (CountdownBase)
+            {
+                case "time":
+                    LectureRoundComboBox.IsEnabled = true;
+                    break;
+                case "length":
+                    LectureRoundComboBox.IsEnabled = false;
                     break;
             }
         }

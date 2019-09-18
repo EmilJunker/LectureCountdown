@@ -40,7 +40,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button x:Name="CompactOverlayButton" Grid.Column="0" x:Uid="CompactOverlayButton" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0" Padding="0" Background="Transparent" Style="{StaticResource NavigationBackButtonSmallStyle}" Click="CompactOverlayButton_Click">
+            <Button x:Name="CompactOverlayButton" x:Uid="CompactOverlayButton" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Padding="0" Background="Transparent" Style="{StaticResource NavigationViewPaneSearchButtonStyle}" Click="CompactOverlayButton_Click">
                 <StackPanel>
                     <SymbolIcon Symbol="FullScreen" />
                 </StackPanel>
@@ -61,28 +61,31 @@
             </RelativePanel>
 
             <RelativePanel x:Name="ControlPanel" RelativePanel.Below="CountdownPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-                <TimePicker x:Name="TimePicker" x:Uid="TimePicker" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="32" Margin="4,4,4,4" TimeChanged="TimePicker_Changed" HorizontalAlignment="Stretch" />
-                <Button x:Name="SuggestButton" x:Uid="SuggestButton" RelativePanel.Below="TimePicker" RelativePanel.AlignLeftWithPanel="True" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="SuggestButton_Click">
+                <RelativePanel x:Name="PickerPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="4,4,4,4">
+                    <TextBox x:Name="LengthPicker" x:Uid="LengthPicker" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="32" TextChanged="LengthPicker_TextChanged" KeyDown="LengthPicker_KeyDown" InputScope="Number" />
+                    <TimePicker x:Name="TimePicker" x:Uid="TimePicker" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="32" TimeChanged="TimePicker_Changed" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                </RelativePanel>
+                <Button x:Name="SuggestButton" x:Uid="SuggestButton" RelativePanel.Below="PickerPanel" RelativePanel.AlignLeftWithPanel="True" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="SuggestButton_Click">
                     <StackPanel>
                         <xaml1:SymbolIcon Symbol="Clock" />
                     </StackPanel>
                 </Button>
-                <Button x:Name="CalendarButton" x:Uid="CalendarButton" RelativePanel.Below="TimePicker" RelativePanel.RightOf="SuggestButton" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="CalendarButton_Click">
+                <Button x:Name="CalendarButton" x:Uid="CalendarButton" RelativePanel.Below="PickerPanel" RelativePanel.RightOf="SuggestButton" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="CalendarButton_Click">
                     <StackPanel>
                         <SymbolIcon Symbol="Calendar" />
                     </StackPanel>
                 </Button>
-                <Button x:Name="StartButton" x:Uid="StartButton" RelativePanel.Below="TimePicker" RelativePanel.AlignRightWithPanel="True" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="StartButton_Click">
+                <Button x:Name="StartButton" x:Uid="StartButton" RelativePanel.Below="PickerPanel" RelativePanel.AlignRightWithPanel="True" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="StartButton_Click">
                     <StackPanel>
                         <SymbolIcon Symbol="Accept" />
                     </StackPanel>
                 </Button>
-                <Button x:Name="CancelButton" x:Uid="CancelButton" RelativePanel.Below="TimePicker" RelativePanel.LeftOf="StartButton" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="CancelButton_Click">
+                <Button x:Name="CancelButton" x:Uid="CancelButton" RelativePanel.Below="PickerPanel" RelativePanel.LeftOf="StartButton" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="CancelButton_Click">
                     <StackPanel>
                         <SymbolIcon Symbol="Cancel" />
                     </StackPanel>
                 </Button>
-                <Button x:Name="SettingsButton" RelativePanel.Below="TimePicker" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="132" Height="32" Margin="4,4,4,4" Padding="0" Click="SettingsButton_Click">
+                <Button x:Name="SettingsButton" RelativePanel.Below="PickerPanel" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="132" Height="32" Margin="4,4,4,4" Padding="0" Click="SettingsButton_Click">
                     <RelativePanel>
                         <SymbolIcon x:Name="Symbol" Symbol="Setting" Height="20" Margin="4" VerticalAlignment="Top" />
                         <TextBlock x:Uid="SettingsButtonText" RelativePanel.RightOf="Symbol" Margin="4">Settings</TextBlock>

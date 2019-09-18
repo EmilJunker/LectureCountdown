@@ -124,7 +124,7 @@
     <value>講義カウントダウン</value>
   </data>
   <data name="CalendarButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>カレンダーからの終了時間を提案する</value>
+    <value>カレンダーから時間を提案する</value>
   </data>
   <data name="CancelButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>カウントダウンのキャンセル</value>
@@ -135,11 +135,23 @@
   <data name="CompactOverlayButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>スイッチビュー</value>
   </data>
+  <data name="CountdownBaseLength.Content" xml:space="preserve">
+    <value>分単位の長さ</value>
+  </data>
+  <data name="CountdownBaseTime.Content" xml:space="preserve">
+    <value>終了時間</value>
+  </data>
+  <data name="ErrorInvalidLength" xml:space="preserve">
+    <value>無効入力</value>
+  </data>
   <data name="ErrorNoCalendarAccessPermission" xml:space="preserve">
     <value>カレンダーイベントへのアクセスを許可してください</value>
   </data>
   <data name="ErrorNoEventsInCalendar" xml:space="preserve">
     <value>今日あなたのカレンダーにはイベントはありません</value>
+  </data>
+  <data name="LengthPicker.ToolTipService.ToolTip" xml:space="preserve">
+    <value>カウントダウンの長さを分単位で入力します</value>
   </data>
   <data name="MinuteLecture" xml:space="preserve">
     <value>分講義</value>
@@ -166,7 +178,7 @@
     <value>フィードバック</value>
   </data>
   <data name="SettingsHeadline1.Text" xml:space="preserve">
-    <value>推奨終了時間</value>
+    <value>カウントダウン</value>
   </data>
   <data name="SettingsHeadline2.Text" xml:space="preserve">
     <value>通知</value>
@@ -183,6 +195,9 @@
   <data name="SettingsRating.Content" xml:space="preserve">
     <value>このアプリを評価する</value>
   </data>
+  <data name="SettingsSection1-0.Text" xml:space="preserve">
+    <value>カウントダウンのベース</value>
+  </data>
   <data name="SettingsSection1-1-Label.Text" xml:space="preserve">
     <value>分講義</value>
   </data>
@@ -193,7 +208,7 @@
     <value>分</value>
   </data>
   <data name="SettingsSection1-2.Text" xml:space="preserve">
-    <value>に丸める</value>
+    <value>終了時間は四捨五入されます</value>
   </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
     <value>カウントダウンが終わったときに通知を表示する</value>
@@ -229,7 +244,7 @@
     <value>カウントダウン開始</value>
   </data>
   <data name="SuggestButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>終了時間を提案する</value>
+    <value>時間を提案する</value>
   </data>
   <data name="TimePicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>終了時間を選択</value>

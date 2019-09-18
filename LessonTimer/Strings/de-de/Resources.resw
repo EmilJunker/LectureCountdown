@@ -124,7 +124,7 @@
     <value>Vorlesungs-Countdown</value>
   </data>
   <data name="CalendarButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>End-Uhrzeit aus Kalender vorschlagen</value>
+    <value>Zeit aus Kalender vorschlagen</value>
   </data>
   <data name="CancelButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Countdown abbrechen</value>
@@ -135,11 +135,23 @@
   <data name="CompactOverlayButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Ansicht wechseln</value>
   </data>
+  <data name="CountdownBaseLength.Content" xml:space="preserve">
+    <value>Länge in Minuten</value>
+  </data>
+  <data name="CountdownBaseTime.Content" xml:space="preserve">
+    <value>End-Uhrzeit</value>
+  </data>
+  <data name="ErrorInvalidLength" xml:space="preserve">
+    <value>Ungültige Eingabe</value>
+  </data>
   <data name="ErrorNoCalendarAccessPermission" xml:space="preserve">
     <value>Bitte Zugriff auf Kalendertermine erlauben</value>
   </data>
   <data name="ErrorNoEventsInCalendar" xml:space="preserve">
     <value>Keine Termine heute im Kalender</value>
+  </data>
+  <data name="LengthPicker.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Länge des Countdowns in Minuten eingeben</value>
   </data>
   <data name="MinuteLecture" xml:space="preserve">
     <value>-minütige Vorlesung</value>
@@ -166,7 +178,7 @@
     <value>Feedback</value>
   </data>
   <data name="SettingsHeadline1.Text" xml:space="preserve">
-    <value>Vorschläge für End-Uhrzeit</value>
+    <value>Countdown</value>
   </data>
   <data name="SettingsHeadline2.Text" xml:space="preserve">
     <value>Benachrichtigungen</value>
@@ -183,6 +195,9 @@
   <data name="SettingsRating.Content" xml:space="preserve">
     <value>App bewerten</value>
   </data>
+  <data name="SettingsSection1-0.Text" xml:space="preserve">
+    <value>Basis für den Countdown</value>
+  </data>
   <data name="SettingsSection1-1-Label.Text" xml:space="preserve">
     <value>-minütige Vorl.</value>
   </data>
@@ -193,7 +208,7 @@
     <value>Minuten</value>
   </data>
   <data name="SettingsSection1-2.Text" xml:space="preserve">
-    <value>Runden auf</value>
+    <value>End-Uhrzeit runden auf</value>
   </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
     <value>Zeige eine Benachrichtigung an, wenn der Countdown vorbei ist</value>
@@ -229,7 +244,7 @@
     <value>Countdown starten</value>
   </data>
   <data name="SuggestButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>End-Uhrzeit vorschlagen</value>
+    <value>Zeit vorschlagen</value>
   </data>
   <data name="TimePicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>End-Uhrzeit wählen</value>

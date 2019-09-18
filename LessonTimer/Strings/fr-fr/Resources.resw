@@ -124,7 +124,7 @@
     <value>Rebours de Cours Magistraux</value>
   </data>
   <data name="CalendarButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Suggérer des heures de fin à partir du calendrier</value>
+    <value>Suggérer un temps à partir du calendrier</value>
   </data>
   <data name="CancelButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Annuler compte à rebours</value>
@@ -135,11 +135,23 @@
   <data name="CompactOverlayButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Changer vue</value>
   </data>
+  <data name="CountdownBaseLength.Content" xml:space="preserve">
+    <value>Durée in minutes</value>
+  </data>
+  <data name="CountdownBaseTime.Content" xml:space="preserve">
+    <value>Heure de fin</value>
+  </data>
+  <data name="ErrorInvalidLength" xml:space="preserve">
+    <value>Entrée invalide</value>
+  </data>
   <data name="ErrorNoCalendarAccessPermission" xml:space="preserve">
     <value>Veuillez autoriser l'accès aux événements du calendrier</value>
   </data>
   <data name="ErrorNoEventsInCalendar" xml:space="preserve">
     <value>Aucun événement aujourd'hui dans votre calendrier</value>
+  </data>
+  <data name="LengthPicker.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Entrer la durée du compte à rebours en minutes</value>
   </data>
   <data name="MinuteLecture" xml:space="preserve">
     <value>-cours magistraux minute</value>
@@ -166,7 +178,7 @@
     <value>Retour utilisateur</value>
   </data>
   <data name="SettingsHeadline1.Text" xml:space="preserve">
-    <value>Heure de fin suggérée</value>
+    <value>Compte à rebours</value>
   </data>
   <data name="SettingsHeadline2.Text" xml:space="preserve">
     <value>Notifications</value>
@@ -183,6 +195,9 @@
   <data name="SettingsRating.Content" xml:space="preserve">
     <value>Application de taux</value>
   </data>
+  <data name="SettingsSection1-0.Text" xml:space="preserve">
+    <value>Base pour le compte à rebours</value>
+  </data>
   <data name="SettingsSection1-1-Label.Text" xml:space="preserve">
     <value> minutes</value>
   </data>
@@ -193,7 +208,7 @@
     <value>minutes</value>
   </data>
   <data name="SettingsSection1-2.Text" xml:space="preserve">
-    <value>Arrondir à</value>
+    <value>Heure de fin arrondie à</value>
   </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
     <value>Afficher une notification lorsque le compte à rebours est terminé</value>
@@ -229,7 +244,7 @@
     <value>Démarrer le rebours</value>
   </data>
   <data name="SuggestButton.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Suggérer l'heure de fin</value>
+    <value>Suggérer un temps</value>
   </data>
   <data name="TimePicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>Sélectionnez l'heure de fin</value>

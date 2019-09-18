@@ -6,6 +6,7 @@ using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
 using Windows.Data.Xml.Dom;
 using Windows.Foundation;
+using Windows.System;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
@@ -45,6 +46,18 @@ namespace LessonTimer
             }
 
             TimePicker.ClockIdentifier = SettingsPage.ClockFormat;
+
+            switch (SettingsPage.CountdownBase)
+            {
+                case "time":
+                    LengthPicker.Visibility = Visibility.Collapsed;
+                    TimePicker.Visibility = Visibility.Visible;
+                    break;
+                case "length":
+                    LengthPicker.Visibility = Visibility.Visible;
+                    TimePicker.Visibility = Visibility.Collapsed;
+                    break;
+            }
 
             try
             {
@@ -93,20 +106,39 @@ namespace LessonTimer
                 FadeInStoryboard.Begin();
                 InfoTextBlock.Text = currentDescription;
                 ToolTipService.SetToolTip(InfoTextBlock, currentDescription);
-                TimePicker.Time = new TimeSpan(endtime.Hour, endtime.Minute, 0);
                 StartButton.IsEnabled = false;
                 CancelButton.IsEnabled = true;
+
+                switch (SettingsPage.CountdownBase)
+                {
+                    case "time":
+                        TimePicker.Time = new TimeSpan(endtime.Hour, endtime.Minute, 0);
+                        break;
+                    case "length":
+                        LengthPicker.Text = Math.Floor(endtime.Subtract(starttime).TotalMinutes).ToString();
+                        break;
+                }
             }
             else
             {
                 suggestionsIterator = 0;
-                Tuple<TimeSpan, string> endTimeSuggestion = GetEndTimeSuggestion();
-
-                TimePicker.Time = endTimeSuggestion.Item1;
-                nextDescription = endTimeSuggestion.Item2;
-
                 StartButton.IsEnabled = true;
                 CancelButton.IsEnabled = false;
+                descriptionAutoSetLock = true;
+
+                switch (SettingsPage.CountdownBase)
+                {
+                    case "time":
+                        Tuple<TimeSpan, string> endTimeSuggestion = GetEndTimeSuggestion();
+                        TimePicker.Time = endTimeSuggestion.Item1;
+                        nextDescription = endTimeSuggestion.Item2;
+                        break;
+                    case "length":
+                        Tuple<double, string> lengthSuggestion = GetLengthSuggestion();
+                        LengthPicker.Text = lengthSuggestion.Item1.ToString();
+                        nextDescription = lengthSuggestion.Item2;
+                        break;
+                }
             }
         }
 
@@ -118,36 +150,89 @@ namespace LessonTimer
 
         public static String currentDescription;
         public static String nextDescription;
+        public static bool descriptionAutoSetLock;
 
         public static DateTime starttime;
         public static DateTime endtime;
 
         void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            int hour = TimePicker.Time.Hours;
-            int min = TimePicker.Time.Minutes;
+            StartCountdown();
+        }
 
-            starttime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
-            endtime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, min, 0);
-
-            if ((hour < starttime.Hour) || (hour == starttime.Hour && min < starttime.Minute))
+        void LengthPicker_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
             {
-                endtime = endtime.AddDays(1);
+                StartCountdown();
+            }
+        }
+
+        public void StartCountdown()
+        {
+            bool success = false;
+
+            switch (SettingsPage.CountdownBase)
+            {
+                case "time":
+                    int hour = TimePicker.Time.Hours;
+                    int min = TimePicker.Time.Minutes;
+
+                    starttime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+                    endtime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, min, 0);
+
+                    if ((hour < starttime.Hour) || (hour == starttime.Hour && min < starttime.Minute))
+                    {
+                        endtime = endtime.AddDays(1);
+                    }
+
+                    Countdown.TimerSetup(starttime, endtime);
+                    success = true;
+                    break;
+
+                case "length":
+                    try
+                    {
+                        double length = Convert.ToInt32(LengthPicker.Text);
+                        if (0 < length && length < 1440)
+                        {
+                            Tuple<DateTime, DateTime> times = Countdown.TimerSetup(length);
+                            starttime = times.Item1;
+                            endtime = times.Item2;
+                            success = true;
+                        }
+                    }
+                    catch (Exception) { }
+                    finally
+                    {
+                        if (!success)
+                        {
+                            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+
+                            InfoTextBlock.Text = loader.GetString("ErrorInvalidLength");
+                            InfoTextBlock.Opacity = 1.0;
+                            FadeOutStoryboard.Begin();
+                        }
+                    }
+                    break;
             }
 
-            Countdown.TimerSetup(starttime, endtime);
-
-            FadeInStoryboard.Begin();
-            currentDescription = nextDescription;
-            nextDescription = String.Empty;
-            InfoTextBlock.Text = currentDescription;
-            ToolTipService.SetToolTip(InfoTextBlock, currentDescription);
-            StartButton.IsEnabled = false;
-            CancelButton.IsEnabled = true;
-
-            if (SettingsPage.NotificationsEnabled)
+            if (success)
             {
-                ScheduleToastNotification(SettingsPage.NotificationSoundEnabled);
+                FadeInStoryboard.Begin();
+                currentDescription = nextDescription;
+                nextDescription = String.Empty;
+                InfoTextBlock.Text = currentDescription;
+                ToolTipService.SetToolTip(InfoTextBlock, currentDescription);
+                StartButton.IsEnabled = false;
+                CancelButton.IsEnabled = true;
+
+                CancelButton.Focus(FocusState.Programmatic);
+
+                if (SettingsPage.NotificationsEnabled)
+                {
+                    ScheduleToastNotification(SettingsPage.NotificationSoundEnabled);
+                }
             }
         }
 
@@ -224,7 +309,7 @@ namespace LessonTimer
             });
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             Countdown.CountdownIsOver();
 
@@ -236,38 +321,59 @@ namespace LessonTimer
             CancelButton.IsEnabled = false;
         }
 
+        void LengthPicker_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (descriptionAutoSetLock)
+            {
+                descriptionAutoSetLock = false;
+            }
+            else
+            {
+                nextDescription = String.Empty;
+                StartButton.IsEnabled = true;
+            }
+        }
+
         void TimePicker_Changed(object sender, TimePickerValueChangedEventArgs e)
         {
-            if (e.NewTime != e.OldTime)
+            if (descriptionAutoSetLock)
             {
-                if (Countdown.IsRunning)
-                {
-                    nextDescription = String.Empty;
-                }
-                else
-                {
-                    nextDescription = String.Empty;
-                    InfoTextBlock.Text = String.Empty;
-                }
-
+                descriptionAutoSetLock = false;
+            }
+            else if (e.NewTime != e.OldTime) {
+                nextDescription = String.Empty;
                 StartButton.IsEnabled = true;
             }
         }
 
         void SuggestButton_Click(object sender, RoutedEventArgs e)
         {
-            Tuple<TimeSpan, string> endTimeSuggestion = GetEndTimeSuggestion();
+            string description = null;
+            descriptionAutoSetLock = true;
 
-            TimePicker.Time = endTimeSuggestion.Item1;
+            switch (SettingsPage.CountdownBase)
+            {
+                case "time":
+                    Tuple<TimeSpan, string> endTimeSuggestion = GetEndTimeSuggestion();
+                    TimePicker.Time = endTimeSuggestion.Item1;
+                    description = endTimeSuggestion.Item2;
+                    break;
+                case "length":
+                    Tuple<double, string> lengthSuggestion = GetLengthSuggestion();
+                    LengthPicker.Text = lengthSuggestion.Item1.ToString();
+                    description = lengthSuggestion.Item2;
+                    break;
+            }
 
             if (Countdown.IsRunning)
             {
-                nextDescription = endTimeSuggestion.Item2;
+                nextDescription = description;
+                StartButton.IsEnabled = true;
             }
             else
             {
-                nextDescription = endTimeSuggestion.Item2;
-                InfoTextBlock.Text = nextDescription;
+                nextDescription = description;
+                InfoTextBlock.Text = description;
                 InfoTextBlock.Opacity = 1.0;
                 FadeOutStoryboard.Begin();
             }
@@ -280,24 +386,44 @@ namespace LessonTimer
             DateTimeOffset dateToShow = DateTime.Now;
             TimeSpan duration = TimeSpan.FromHours(24);
 
+            string description = null;
+            descriptionAutoSetLock = true;
+
             try
             {
                 var allAppointments = await appointmentStore.FindAppointmentsAsync(dateToShow, duration);
 
-                Tuple<TimeSpan, string> endTimeSuggestion = GetEndTimeSuggestion(allAppointments);
-
-                if (endTimeSuggestion != null)
+                switch (SettingsPage.CountdownBase)
                 {
-                    TimePicker.Time = endTimeSuggestion.Item1;
+                    case "time":
+                        Tuple<TimeSpan, string> endTimeSuggestion = GetEndTimeSuggestion(allAppointments);
+                        if (endTimeSuggestion != null)
+                        {
+                            TimePicker.Time = endTimeSuggestion.Item1;
+                            description = endTimeSuggestion.Item2;
+                        }
+                        break;
+                    case "length":
+                        Tuple<double, string> lengthSuggestion = GetLengthSuggestion(allAppointments);
+                        if (lengthSuggestion != null)
+                        {
+                            LengthPicker.Text = lengthSuggestion.Item1.ToString();
+                            description = lengthSuggestion.Item2;
+                        }
+                        break;
+                }
 
+                if (description != null)
+                {
                     if (Countdown.IsRunning)
                     {
-                        nextDescription = endTimeSuggestion.Item2;
+                        nextDescription = description;
+                        StartButton.IsEnabled = true;
                     }
                     else
                     {
-                        nextDescription = endTimeSuggestion.Item2;
-                        InfoTextBlock.Text = nextDescription;
+                        nextDescription = description;
+                        InfoTextBlock.Text = description;
                         InfoTextBlock.Opacity = 1.0;
                         FadeOutStoryboard.Begin();
                     }
@@ -332,6 +458,22 @@ namespace LessonTimer
         static int suggestionsIterator = 0;
         static int calendarSuggestionsIterator = 0;
 
+        public static Tuple<double, string> GetLengthSuggestion()
+        {
+            double length = SettingsPage.LectureLengths[suggestionsIterator];
+
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            string description = length.ToString() + loader.GetString("MinuteLecture");
+
+            suggestionsIterator++;
+            if (suggestionsIterator >= SettingsPage.LectureLengths.Count)
+            {
+                suggestionsIterator = 0;
+            }
+
+            return new Tuple<double, string>(length, description);
+        }
+
         public static Tuple<TimeSpan, string> GetEndTimeSuggestion()
         {
             DateTime time = DateTime.Now.AddMinutes(SettingsPage.LectureLengths[suggestionsIterator]);
@@ -350,6 +492,44 @@ namespace LessonTimer
             DateTime newTime = DateTime.MinValue.Add(new TimeSpan(0, (((int)t.TotalMinutes) / (int)span.TotalMinutes) * span.Minutes, 0));
 
             return new Tuple<TimeSpan, string>(new TimeSpan(newTime.Hour, newTime.Minute, 0), description);
+        }
+
+        public static Tuple<double, string> GetLengthSuggestion(IReadOnlyList<Appointment> allAppointments)
+        {
+            List<Appointment> appointments = new List<Appointment>();
+
+            foreach (Appointment a in allAppointments)
+            {
+                if (!a.AllDay)
+                {
+                    appointments.Add(a);
+                }
+            }
+
+            Appointment nextAppointment;
+
+            try
+            {
+                nextAppointment = appointments[calendarSuggestionsIterator];
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                calendarSuggestionsIterator = 0;
+
+                try
+                {
+                    nextAppointment = appointments[calendarSuggestionsIterator];
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    return null;
+                }
+            }
+
+            calendarSuggestionsIterator++;
+
+            double nextAppointmentLength = nextAppointment.Duration.TotalMinutes;
+            return new Tuple<double, string>(nextAppointmentLength, nextAppointment.Subject);
         }
 
         public static Tuple<TimeSpan, string> GetEndTimeSuggestion(IReadOnlyList<Appointment> allAppointments)

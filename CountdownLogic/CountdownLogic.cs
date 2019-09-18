@@ -11,13 +11,9 @@ namespace CountdownLogic
 
         private static AutoResetEvent countdownIsOver;
 
-        private static bool isRunning;
-        public static Boolean IsRunning
-        {
-            get { return isRunning; }
-        }
+        public static Boolean IsRunning { get; private set; }
 
-        public static void TimerSetup(DateTime starttime, DateTime endtime)
+        private static void TimerSetup()
         {
             try
             {
@@ -25,18 +21,43 @@ namespace CountdownLogic
             }
             catch (NullReferenceException) { }
 
-            tick.SetTime(starttime, endtime);
-
             countdownIsOver = new AutoResetEvent(false);
 
             timer = new Timer(tick.TimerTick, countdownIsOver, 0, 1000);
 
-            isRunning = true;
+            IsRunning = true;
+        }
+
+        public static Tuple<DateTime, DateTime> TimerSetup(double length)
+        {
+            DateTime starttime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+            DateTime endtime;
+            try
+            {
+                endtime = starttime.AddMinutes(length);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                endtime = DateTime.MaxValue;
+            }
+
+            tick.SetTime(starttime, endtime);
+
+            TimerSetup();
+
+            return new Tuple<DateTime, DateTime>(starttime, endtime);
+        }
+
+        public static void TimerSetup(DateTime starttime, DateTime endtime)
+        {
+            tick.SetTime(starttime, endtime);
+
+            TimerSetup();
         }
 
         public static void CountdownIsOver()
         {
-            isRunning = false;
+            IsRunning = false;
             tick.End();
             timer.Dispose();
         }
@@ -46,36 +67,17 @@ namespace CountdownLogic
 
     public class TickEventArgs : EventArgs
     {
-        private readonly String countdown;
-        public String Countdown
-        {
-            get { return countdown; }
-        }
-
-        private readonly double progress;
-        public double Progress
-        {
-            get { return progress; }
-        }
-
-        private readonly String timeprogress;
-        public String Timeprogress
-        {
-            get { return timeprogress; }
-        }
-
-        private readonly String percentprogress;
-        public String Percentprogress
-        {
-            get { return percentprogress; }
-        }
+        public String Countdown { get; }
+        public double Progress { get; }
+        public String Timeprogress { get; }
+        public String Percentprogress { get; }
 
         public TickEventArgs(String countdown, double progress, String timeprogress, String percentprogress)
         {
-            this.countdown = countdown;
-            this.progress = progress;
-            this.timeprogress = timeprogress;
-            this.percentprogress = percentprogress;
+            this.Countdown = countdown;
+            this.Progress = progress;
+            this.Timeprogress = timeprogress;
+            this.Percentprogress = percentprogress;
         }
     }
 

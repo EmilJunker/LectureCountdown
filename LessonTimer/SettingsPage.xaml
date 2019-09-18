@@ -30,7 +30,13 @@
                 
                 <StackPanel x:Name="MainPanel">
 
-                    <TextBlock x:Uid="SettingsHeadline1" Margin="0,24,0,8" FontSize="20">Suggested end times</TextBlock>
+                    <TextBlock x:Uid="SettingsHeadline1" Margin="0,24,0,8" FontSize="20">Countdown</TextBlock>
+
+                    <TextBlock x:Uid="SettingsSection1-0" Margin="0,8,0,0">Base for the countdown</TextBlock>
+                    <ComboBox x:Name="CountdownBaseComboBox" Width="200" Margin="0,8" SelectionChanged="CountdownBaseComboBox_SelectionChanged">
+                        <ComboBoxItem x:Uid="CountdownBaseTime" Content="End time" Tag="time" />
+                        <ComboBoxItem x:Uid="CountdownBaseLength" Content="Length in minutes" Tag="length" />
+                    </ComboBox>
 
                     <TextBlock x:Uid="SettingsSection1-1" Margin="0,8,0,0">Common lecture lengths</TextBlock>
                     <RelativePanel Margin="0,8">
@@ -38,7 +44,7 @@
                         <TextBlock x:Uid="SettingsSection1-1-Label" RelativePanel.AlignVerticalCenterWith="LectureLengthsTextBox" RelativePanel.RightOf="LectureLengthsTextBox">-minute lectures</TextBlock>
                     </RelativePanel>
 
-                    <TextBlock x:Uid="SettingsSection1-2" Margin="0,8,0,0">Round to</TextBlock>
+                    <TextBlock x:Uid="SettingsSection1-2" Margin="0,8,0,0">Round end time to</TextBlock>
                     <RelativePanel Margin="0,8">
                         <ComboBox x:Name="LectureRoundComboBox" Width="80" HorizontalContentAlignment="Right" SelectionChanged="LectureRoundComboBox_SelectionChanged">
                             <ComboBoxItem HorizontalContentAlignment="Right" Content="30" />
