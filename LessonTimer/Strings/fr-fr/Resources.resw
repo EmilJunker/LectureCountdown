@@ -154,7 +154,7 @@
     <value>Entrer la durée du compte à rebours en minutes</value>
   </data>
   <data name="MinuteLecture" xml:space="preserve">
-    <value>-cours magistraux minute</value>
+    <value>-minutes cours magistraux</value>
   </data>
   <data name="NotificationText1" xml:space="preserve">
     <value>Au total, </value>

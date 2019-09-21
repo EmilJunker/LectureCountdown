@@ -14,7 +14,7 @@
                  Storyboard.TargetProperty="(TextBlock.Opacity)"
                  From="1.0" To="0.0" Duration="0:0:2" />
         </Storyboard>
-        <Storyboard x:Name="FadeInStoryboard">
+        <Storyboard x:Name="ResetFadeStoryboard">
             <DoubleAnimation
                  Storyboard.TargetName="InfoTextBlock" 
                  Storyboard.TargetProperty="(TextBlock.Opacity)"
@@ -75,21 +75,21 @@
                         <SymbolIcon Symbol="Calendar" />
                     </StackPanel>
                 </Button>
-                <Button x:Name="StartButton" x:Uid="StartButton" RelativePanel.Below="PickerPanel" RelativePanel.AlignRightWithPanel="True" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="StartButton_Click">
-                    <StackPanel>
-                        <SymbolIcon Symbol="Accept" />
-                    </StackPanel>
+                <Button x:Name="SettingsButton" RelativePanel.Below="PickerPanel" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="132" Height="32" Margin="4,4,4,4" Padding="0" Click="SettingsButton_Click">
+                    <RelativePanel>
+                        <SymbolIcon x:Name="Symbol" Symbol="Setting" Height="20" Margin="4" VerticalAlignment="Top" />
+                        <TextBlock x:Uid="SettingsButtonText" RelativePanel.RightOf="Symbol" Margin="4">Settings</TextBlock>
+                    </RelativePanel>
                 </Button>
                 <Button x:Name="CancelButton" x:Uid="CancelButton" RelativePanel.Below="PickerPanel" RelativePanel.LeftOf="StartButton" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="CancelButton_Click">
                     <StackPanel>
                         <SymbolIcon Symbol="Cancel" />
                     </StackPanel>
                 </Button>
-                <Button x:Name="SettingsButton" RelativePanel.Below="PickerPanel" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="132" Height="32" Margin="4,4,4,4" Padding="0" Click="SettingsButton_Click">
-                    <RelativePanel>
-                        <SymbolIcon x:Name="Symbol" Symbol="Setting" Height="20" Margin="4" VerticalAlignment="Top" />
-                        <TextBlock x:Uid="SettingsButtonText" RelativePanel.RightOf="Symbol" Margin="4">Settings</TextBlock>
-                    </RelativePanel>
+                <Button x:Name="StartButton" x:Uid="StartButton" RelativePanel.Below="PickerPanel" RelativePanel.AlignRightWithPanel="True" Width="32" Height="32" Margin="4,4,4,4" Padding="0" Click="StartButton_Click">
+                    <StackPanel>
+                        <SymbolIcon Symbol="Accept" />
+                    </StackPanel>
                 </Button>
             </RelativePanel>
 

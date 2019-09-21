@@ -19,7 +19,14 @@ namespace LessonTimer
 {
     public sealed partial class MainPage : Page
     {
-        Boolean compactMode;
+        bool compactMode;
+
+        public static string currentDescription;
+        public static string nextDescription;
+        public static bool descriptionAutoSetLock;
+
+        public static DateTime starttime;
+        public static DateTime endtime;
 
         public MainPage()
         {
@@ -77,7 +84,18 @@ namespace LessonTimer
 
             compactMode = false;
 
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(400, 300));
+            Size size = new Size(400, 300);
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(size);
+
+            if (SettingsPage.FirstLaunch)
+            {
+                ApplicationView.PreferredLaunchViewSize = size;
+                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            }
+            else
+            {
+                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
+            }
 
             Countdown.tick.Ticked += new TickEventHandler(UpdateCountdown);
 
@@ -86,16 +104,7 @@ namespace LessonTimer
             this.Loaded += Page_Loaded;
         }
 
-        private void BackRequested(object sender, BackRequestedEventArgs e)
-        {
-            if (Frame.CanGoBack)
-            {
-                Frame.GoBack();
-                e.Handled = true;
-            }
-        }
-
-        void Page_Loaded(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             StartButton.Focus(FocusState.Programmatic);
 
@@ -103,11 +112,10 @@ namespace LessonTimer
             {
                 Countdown.TimerSetup(starttime, endtime);
 
-                FadeInStoryboard.Begin();
-                InfoTextBlock.Text = currentDescription;
-                ToolTipService.SetToolTip(InfoTextBlock, currentDescription);
                 StartButton.IsEnabled = false;
                 CancelButton.IsEnabled = true;
+
+                DisplayMessage(currentDescription, false);
 
                 switch (SettingsPage.CountdownBase)
                 {
@@ -142,22 +150,19 @@ namespace LessonTimer
             }
         }
 
+        private void BackRequested(object sender, BackRequestedEventArgs e)
+        {
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+                e.Handled = true;
+            }
+        }
+
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             await BackgroundExecutionManager.RequestAccessAsync();
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
-        }
-
-        public static String currentDescription;
-        public static String nextDescription;
-        public static bool descriptionAutoSetLock;
-
-        public static DateTime starttime;
-        public static DateTime endtime;
-
-        void StartButton_Click(object sender, RoutedEventArgs e)
-        {
-            StartCountdown();
         }
 
         void LengthPicker_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
@@ -168,7 +173,29 @@ namespace LessonTimer
             }
         }
 
-        public void StartCountdown()
+        void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            StartCountdown();
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Countdown.CountdownIsOver();
+
+            endtime = DateTime.Now;
+
+            CancelToastNotification();
+
+            StartButton.IsEnabled = true;
+            CancelButton.IsEnabled = false;
+        }
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SettingsPage));
+        }
+
+        private void StartCountdown()
         {
             bool success = false;
 
@@ -208,10 +235,7 @@ namespace LessonTimer
                         if (!success)
                         {
                             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-
-                            InfoTextBlock.Text = loader.GetString("ErrorInvalidLength");
-                            InfoTextBlock.Opacity = 1.0;
-                            FadeOutStoryboard.Begin();
+                            DisplayMessage(loader.GetString("ErrorInvalidLength"), true);
                         }
                     }
                     break;
@@ -219,15 +243,13 @@ namespace LessonTimer
 
             if (success)
             {
-                FadeInStoryboard.Begin();
                 currentDescription = nextDescription;
                 nextDescription = String.Empty;
-                InfoTextBlock.Text = currentDescription;
-                ToolTipService.SetToolTip(InfoTextBlock, currentDescription);
                 StartButton.IsEnabled = false;
                 CancelButton.IsEnabled = true;
-
                 CancelButton.Focus(FocusState.Programmatic);
+
+                DisplayMessage(currentDescription, false);
 
                 if (SettingsPage.NotificationsEnabled)
                 {
@@ -236,7 +258,26 @@ namespace LessonTimer
             }
         }
 
-        static List<String> emoji = new List<String>(new String[] { "\U0001F600", "\U0001F601", "\U0001F602", "\U0001F923", "\U0001F603", "\U0001F604", "\U0001F605", "\U0001F606",
+        async void UpdateCountdown(object source, TickEventArgs e)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                CountdownLabel.Text = (e.Countdown);
+                CountdownProgressBar.Value = (e.Progress);
+                CountdownProgressText.Text = (e.Timeprogress);
+                CountdownProgressPercentage.Text = (e.Percentprogress);
+
+                if (!Countdown.IsRunning)
+                {
+                    StartButton.IsEnabled = true;
+                    CancelButton.IsEnabled = false;
+                    InfoTextBlock.Text = String.Empty;
+                    ToolTipService.SetToolTip(InfoTextBlock, null);
+                }
+            });
+        }
+
+        public static List<string> emoji = new List<string>(new string[] { "\U0001F600", "\U0001F601", "\U0001F602", "\U0001F923", "\U0001F603", "\U0001F604", "\U0001F605", "\U0001F606",
             "\U0001F609", "\U0001F60A", "\U0001F60B", "\U0001F60E", "\U0001F60D", "\U0000263A", "\U0001F642", "\U0001F917", "\U0001F914", "\U0001F610", "\U0001F611", "\U0001F636",
             "\U0001F644", "\U0001F60F", "\U0001F623", "\U0001F625", "\U0001F62E", "\U0001F910", "\U0001F615", "\U0001F643", "\U0001F62F", "\U0001F62A", "\U0001F62B", "\U0001F634",
             "\U0001F60C", "\U0001F61B", "\U0001F61C", "\U0001F61D", "\U0001F924", "\U0001F612", "\U0001F613", "\U0001F614", "\U0001F615", "\U0001F643", "\U0001F632", "\U00002639",
@@ -290,38 +331,7 @@ namespace LessonTimer
             catch (Exception) { }
         }
 
-        async void UpdateCountdown(object source, TickEventArgs e)
-        {
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                CountdownLabel.Text = (e.Countdown);
-                CountdownProgressBar.Value = (e.Progress);
-                CountdownProgressText.Text = (e.Timeprogress);
-                CountdownProgressPercentage.Text = (e.Percentprogress);
-
-                if (!Countdown.IsRunning)
-                {
-                    StartButton.IsEnabled = true;
-                    CancelButton.IsEnabled = false;
-                    InfoTextBlock.Text = String.Empty;
-                    ToolTipService.SetToolTip(InfoTextBlock, null);
-                }
-            });
-        }
-
-        void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            Countdown.CountdownIsOver();
-
-            endtime = DateTime.Now;
-
-            CancelToastNotification();
-
-            StartButton.IsEnabled = true;
-            CancelButton.IsEnabled = false;
-        }
-
-        void LengthPicker_TextChanged(object sender, TextChangedEventArgs e)
+        private void LengthPicker_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (descriptionAutoSetLock)
             {
@@ -334,7 +344,7 @@ namespace LessonTimer
             }
         }
 
-        void TimePicker_Changed(object sender, TimePickerValueChangedEventArgs e)
+        private void TimePicker_Changed(object sender, TimePickerValueChangedEventArgs e)
         {
             if (descriptionAutoSetLock)
             {
@@ -346,7 +356,7 @@ namespace LessonTimer
             }
         }
 
-        void SuggestButton_Click(object sender, RoutedEventArgs e)
+        private void SuggestButton_Click(object sender, RoutedEventArgs e)
         {
             string description = null;
             descriptionAutoSetLock = true;
@@ -373,13 +383,11 @@ namespace LessonTimer
             else
             {
                 nextDescription = description;
-                InfoTextBlock.Text = description;
-                InfoTextBlock.Opacity = 1.0;
-                FadeOutStoryboard.Begin();
+                DisplayMessage(description, true);
             }
         }
 
-        async void CalendarButton_Click(object sender, RoutedEventArgs e)
+        private async void CalendarButton_Click(object sender, RoutedEventArgs e)
         {
             AppointmentStore appointmentStore = await AppointmentManager.RequestStoreAsync(AppointmentStoreAccessType.AllCalendarsReadOnly);
 
@@ -423,42 +431,32 @@ namespace LessonTimer
                     else
                     {
                         nextDescription = description;
-                        InfoTextBlock.Text = description;
-                        InfoTextBlock.Opacity = 1.0;
-                        FadeOutStoryboard.Begin();
+                        DisplayMessage(description, true);
                     }
                 }
                 else
                 {
-                    if (Countdown.IsRunning) { }
-                    else
+                    if (!Countdown.IsRunning)
                     {
                         var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-
-                        InfoTextBlock.Text = loader.GetString("ErrorNoEventsInCalendar");
-                        InfoTextBlock.Opacity = 1.0;
-                        FadeOutStoryboard.Begin();
+                        DisplayMessage(loader.GetString("ErrorNoEventsInCalendar"), true);
                     }
                 }
             }
             catch (NullReferenceException)
             {
-                if (Countdown.IsRunning) { }
-                else
+                if (!Countdown.IsRunning)
                 {
                     var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-
-                    InfoTextBlock.Text = loader.GetString("ErrorNoCalendarAccessPermission");
-                    InfoTextBlock.Opacity = 1.0;
-                    FadeOutStoryboard.Begin();
+                    DisplayMessage(loader.GetString("ErrorNoCalendarAccessPermission"), true);
                 }
             }
         }
 
-        static int suggestionsIterator = 0;
-        static int calendarSuggestionsIterator = 0;
+        private static int suggestionsIterator = 0;
+        private static int calendarSuggestionsIterator = 0;
 
-        public static Tuple<double, string> GetLengthSuggestion()
+        private static Tuple<double, string> GetLengthSuggestion()
         {
             double length = SettingsPage.LectureLengths[suggestionsIterator];
 
@@ -474,7 +472,7 @@ namespace LessonTimer
             return new Tuple<double, string>(length, description);
         }
 
-        public static Tuple<TimeSpan, string> GetEndTimeSuggestion()
+        private static Tuple<TimeSpan, string> GetEndTimeSuggestion()
         {
             DateTime time = DateTime.Now.AddMinutes(SettingsPage.LectureLengths[suggestionsIterator]);
             TimeSpan span = TimeSpan.FromMinutes(SettingsPage.LectureLengthRoundTo);
@@ -494,7 +492,7 @@ namespace LessonTimer
             return new Tuple<TimeSpan, string>(new TimeSpan(newTime.Hour, newTime.Minute, 0), description);
         }
 
-        public static Tuple<double, string> GetLengthSuggestion(IReadOnlyList<Appointment> allAppointments)
+        private static Tuple<double, string> GetLengthSuggestion(IReadOnlyList<Appointment> allAppointments)
         {
             List<Appointment> appointments = new List<Appointment>();
 
@@ -532,7 +530,7 @@ namespace LessonTimer
             return new Tuple<double, string>(nextAppointmentLength, nextAppointment.Subject);
         }
 
-        public static Tuple<TimeSpan, string> GetEndTimeSuggestion(IReadOnlyList<Appointment> allAppointments)
+        private static Tuple<TimeSpan, string> GetEndTimeSuggestion(IReadOnlyList<Appointment> allAppointments)
         {
             List<Appointment> appointments = new List<Appointment>();
 
@@ -570,7 +568,23 @@ namespace LessonTimer
             return new Tuple<TimeSpan, string>(new TimeSpan(nextAppointmentEndTime.Hour, nextAppointmentEndTime.Minute, 0), nextAppointment.Subject);
         }
 
-        void CompactOverlayButton_Click(object sender, RoutedEventArgs e)
+        private void DisplayMessage(string message, bool fadeout)
+        {
+            ResetFadeStoryboard.Begin();
+            InfoTextBlock.Text = message;
+
+            if (fadeout)
+            {
+                FadeOutStoryboard.Begin();
+                ToolTipService.SetToolTip(InfoTextBlock, null);
+            }
+            else
+            {
+                ToolTipService.SetToolTip(InfoTextBlock, message);
+            }
+        }
+
+        private void CompactOverlayButton_Click(object sender, RoutedEventArgs e)
         {
             if (compactMode)
             {
@@ -582,7 +596,7 @@ namespace LessonTimer
             }
         }
 
-        async void CompactOverlayOn()
+        private async void CompactOverlayOn()
         {
             ViewModePreferences compactOptions = ViewModePreferences.CreateDefault(ApplicationViewMode.CompactOverlay);
             compactOptions.CustomSize = new Size(320, 160);
@@ -592,17 +606,12 @@ namespace LessonTimer
             compactMode = true;
         }
 
-        async void CompactOverlayOff()
+        private async void CompactOverlayOff()
         {
             bool modeSwitched = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.Default);
 
             ControlPanel.Visibility = Visibility.Visible;
             compactMode = false;
-        }
-
-        private void SettingsButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(SettingsPage));
         }
     }
 }

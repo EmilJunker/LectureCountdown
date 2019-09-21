@@ -15,14 +15,15 @@ namespace LessonTimer
 {
     public sealed partial class SettingsPage : Page
     {
-        public static String CountdownBase { get; private set; }
+        public static bool FirstLaunch { get; private set; }
+        public static string CountdownBase { get; private set; }
         public static List<int> LectureLengths { get; private set; }
         public static int LectureLengthRoundTo { get; private set; }
         public static bool NotificationsEnabled { get; private set; }
         public static bool NotificationSoundEnabled { get; private set; }
-        public static String LanguageUI { get; private set; }
-        public static String ClockFormat { get; private set; }
-        public static String Theme { get; private set; }
+        public static string LanguageUI { get; private set; }
+        public static string ClockFormat { get; private set; }
+        public static string Theme { get; private set; }
 
         public SettingsPage()
         {
@@ -48,7 +49,7 @@ namespace LessonTimer
             this.Loaded += Page_Loaded;
         }
 
-        void Page_Loaded(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             CloseButton.Focus(FocusState.Programmatic);
         }
@@ -217,6 +218,16 @@ namespace LessonTimer
 
         public static void LoadSettings(ApplicationDataContainer localSettings)
         {
+            try
+            {
+                FirstLaunch = (bool)localSettings.Values["firstLaunch"];
+            }
+            catch (NullReferenceException)
+            {
+                FirstLaunch = true;
+                localSettings.Values["firstLaunch"] = false;
+            }
+
             try
             {
                 CountdownBase = (string)localSettings.Values["countdownBase"];
