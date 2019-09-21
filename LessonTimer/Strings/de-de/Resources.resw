@@ -237,6 +237,9 @@
   <data name="SettingsSection4-1.Text" xml:space="preserve">
     <value>Änderung des Themas erfordert Neustart der App</value>
   </data>
+  <data name="SettingsVersion.Text" xml:space="preserve">
+    <value>Version:</value>
+  </data>
   <data name="SettingsWindowsDefault.Content" xml:space="preserve">
     <value>Windows-Standard</value>
   </data>

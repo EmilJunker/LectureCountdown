@@ -97,6 +97,10 @@
                     <TextBlock x:Uid="SettingsHeadline5" Margin="0,24,0,8" FontSize="20">About this app</TextBlock>
 
                     <RelativePanel Margin="0,8,0,0">
+                        <TextBlock x:Name="Version" x:Uid="SettingsVersion" Margin="0,0,4,0">Version:</TextBlock>
+                        <TextBlock x:Name="VersionNumber" RelativePanel.RightOf="Version" RelativePanel.AlignVerticalCenterWith="Version" Text="1.0.0.0" />
+                    </RelativePanel>
+                    <RelativePanel Margin="0,8,0,0">
                         <TextBlock x:Name="Developer" x:Uid="SettingsDeveloper" Margin="0,0,4,0">Developer:</TextBlock>
                         <TextBlock x:Name="DeveloperName" RelativePanel.RightOf="Developer" RelativePanel.AlignVerticalCenterWith="Developer">
                             <Hyperlink NavigateUri="ms-windows-store://publisher/?name=emilj">emilj</Hyperlink>

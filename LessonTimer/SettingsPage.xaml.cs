@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 using Windows.Globalization;
 using Windows.Storage;
@@ -45,6 +46,11 @@ namespace LessonTimer
                 Grid.Background = (Windows.UI.Xaml.Media.Brush)Resources["SystemControlChromeMediumAcrylicWindowMediumBrush"];
                 CloseButton.Style = (Style)Resources["ButtonRevealStyle"];
             }
+
+            Package package = Package.Current;
+            PackageId packageId = package.Id;
+            PackageVersion version = packageId.Version;
+            VersionNumber.Text = String.Format("{0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
 
             this.Loaded += Page_Loaded;
         }
