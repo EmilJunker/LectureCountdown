@@ -87,16 +87,6 @@ namespace LessonTimer
             Size size = new Size(400, 300);
             ApplicationView.GetForCurrentView().SetPreferredMinSize(size);
 
-            if (SettingsPage.FirstLaunch)
-            {
-                ApplicationView.PreferredLaunchViewSize = size;
-                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-            }
-            else
-            {
-                ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
-            }
-
             Countdown.tick.Ticked += new TickEventHandler(UpdateCountdown);
 
             SystemNavigationManager.GetForCurrentView().BackRequested += BackRequested;
@@ -350,7 +340,8 @@ namespace LessonTimer
             {
                 descriptionAutoSetLock = false;
             }
-            else if (e.NewTime != e.OldTime) {
+            else if (e.NewTime != e.OldTime)
+            {
                 nextDescription = String.Empty;
                 StartButton.IsEnabled = true;
             }

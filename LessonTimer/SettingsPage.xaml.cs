@@ -16,7 +16,6 @@ namespace LessonTimer
 {
     public sealed partial class SettingsPage : Page
     {
-        public static bool FirstLaunch { get; private set; }
         public static string CountdownBase { get; private set; }
         public static List<int> LectureLengths { get; private set; }
         public static int LectureLengthRoundTo { get; private set; }
@@ -224,16 +223,6 @@ namespace LessonTimer
 
         public static void LoadSettings(ApplicationDataContainer localSettings)
         {
-            try
-            {
-                FirstLaunch = (bool)localSettings.Values["firstLaunch"];
-            }
-            catch (NullReferenceException)
-            {
-                FirstLaunch = true;
-                localSettings.Values["firstLaunch"] = false;
-            }
-
             try
             {
                 CountdownBase = (string)localSettings.Values["countdownBase"];

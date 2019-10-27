@@ -40,7 +40,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button x:Name="CompactOverlayButton" x:Uid="CompactOverlayButton" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Padding="0" Background="Transparent" Style="{StaticResource NavigationViewPaneSearchButtonStyle}" Click="CompactOverlayButton_Click">
+            <Button x:Name="CompactOverlayButton" x:Uid="CompactOverlayButton" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" Padding="0" Width="36" BorderThickness="0" Background="Transparent" Style="{StaticResource NavigationViewPaneSearchButtonStyle}" Click="CompactOverlayButton_Click">
                 <StackPanel>
                     <SymbolIcon Symbol="FullScreen" />
                 </StackPanel>
