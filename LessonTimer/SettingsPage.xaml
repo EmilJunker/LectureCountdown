@@ -58,11 +58,11 @@
 
                     <TextBlock x:Uid="SettingsSection1-3" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Academic quarter (lecture timing)</TextBlock>
                     <RelativePanel Margin="0,8,0,0">
-                        <TextBlock x:Name="AcademicQuarterBeginLabel" x:Uid="SettingsSection1-3-LabelBegin" Margin="0,0,16,0">Begin</TextBlock>
+                        <TextBlock x:Name="AcademicQuarterBeginLabel" x:Uid="SettingsSection1-3-LabelBegin" Margin="0,0,16,0">Start 15 minutes later</TextBlock>
                         <ToggleSwitch x:Name="AcademicQuarterBeginToggleSwitch" Toggled="AcademicQuarterBeginToggleSwitch_Toggled" RelativePanel.AlignVerticalCenterWith="AcademicQuarterBeginLabel" RelativePanel.RightOf="AcademicQuarterBeginLabel"></ToggleSwitch>
                     </RelativePanel>
                     <RelativePanel Margin="0,-4,0,0">
-                        <TextBlock x:Name="AcademicQuarterEndLabel" x:Uid="SettingsSection1-3-LabelEnd" Margin="0,0,16,0">End</TextBlock>
+                        <TextBlock x:Name="AcademicQuarterEndLabel" x:Uid="SettingsSection1-3-LabelEnd" Margin="0,0,16,0">End 15 minutes earlier</TextBlock>
                         <ToggleSwitch x:Name="AcademicQuarterEndToggleSwitch" Toggled="AcademicQuarterEndToggleSwitch_Toggled" RelativePanel.AlignVerticalCenterWith="AcademicQuarterEndLabel" RelativePanel.RightOf="AcademicQuarterEndLabel"></ToggleSwitch>
                     </RelativePanel>
                     

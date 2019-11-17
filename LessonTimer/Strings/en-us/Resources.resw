@@ -211,10 +211,10 @@
     <value>End time rounded to</value>
   </data>
   <data name="SettingsSection1-3-LabelBegin.Text" xml:space="preserve">
-    <value>Begin</value>
+    <value>Start 15 minutes later</value>
   </data>
   <data name="SettingsSection1-3-LabelEnd.Text" xml:space="preserve">
-    <value>End</value>
+    <value>End 15 minutes earlier</value>
   </data>
   <data name="SettingsSection1-3.Text" xml:space="preserve">
     <value>Academic quarter (lecture timing)</value>

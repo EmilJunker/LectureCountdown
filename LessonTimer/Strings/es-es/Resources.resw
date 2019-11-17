@@ -213,10 +213,10 @@ Base para la cuenta regresiva</value>
     <value>Hora de finalización redondea a</value>
   </data>
   <data name="SettingsSection1-3-LabelBegin.Text" xml:space="preserve">
-    <value>Comienzo</value>
+    <value>Comience 15 minutos más tarde</value>
   </data>
   <data name="SettingsSection1-3-LabelEnd.Text" xml:space="preserve">
-    <value>Final</value>
+    <value>Finalizar 15 minutos antes</value>
   </data>
   <data name="SettingsSection1-3.Text" xml:space="preserve">
     <value>Trimestre académico (horario de seminarios)</value>

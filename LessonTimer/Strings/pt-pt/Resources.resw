@@ -211,10 +211,10 @@
     <value>Hora de término arredondado para</value>
   </data>
   <data name="SettingsSection1-3-LabelBegin.Text" xml:space="preserve">
-    <value>Começo</value>
+    <value>Comece 15 minutos depois</value>
   </data>
   <data name="SettingsSection1-3-LabelEnd.Text" xml:space="preserve">
-    <value>Final</value>
+    <value>Termine 15 minutos antes</value>
   </data>
   <data name="SettingsSection1-3.Text" xml:space="preserve">
     <value>Trimestre acadêmico (horário de palestras)</value>

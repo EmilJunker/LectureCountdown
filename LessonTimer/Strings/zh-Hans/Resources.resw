@@ -211,10 +211,10 @@
     <value>结束时间舍入至</value>
   </data>
   <data name="SettingsSection1-3-LabelBegin.Text" xml:space="preserve">
-    <value>开始</value>
+    <value>迟15分钟开始</value>
   </data>
   <data name="SettingsSection1-3-LabelEnd.Text" xml:space="preserve">
-    <value>结束</value>
+    <value>提前15分钟结束</value>
   </data>
   <data name="SettingsSection1-3.Text" xml:space="preserve">
     <value>学术计时法</value>

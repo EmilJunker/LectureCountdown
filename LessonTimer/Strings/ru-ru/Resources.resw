@@ -211,10 +211,10 @@
     <value>Время окончания округляется до</value>
   </data>
   <data name="SettingsSection1-3-LabelBegin.Text" xml:space="preserve">
-    <value>Начале</value>
+    <value>Начало через 15 минут</value>
   </data>
   <data name="SettingsSection1-3-LabelEnd.Text" xml:space="preserve">
-    <value>Конец</value>
+    <value>Конец на 15 минут раньше</value>
   </data>
   <data name="SettingsSection1-3.Text" xml:space="preserve">
     <value>Академический квартал (расписание лекций)</value>

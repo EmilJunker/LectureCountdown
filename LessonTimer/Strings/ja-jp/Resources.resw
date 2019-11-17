@@ -211,10 +211,10 @@
     <value>終了時間は四捨五入されます</value>
   </data>
   <data name="SettingsSection1-3-LabelBegin.Text" xml:space="preserve">
-    <value>初め</value>
+    <value>15 分後に開始する</value>
   </data>
   <data name="SettingsSection1-3-LabelEnd.Text" xml:space="preserve">
-    <value>終わり</value>
+    <value>15 分早く終了する</value>
   </data>
   <data name="SettingsSection1-3.Text" xml:space="preserve">
     <value>アカデミック・クォーター</value>

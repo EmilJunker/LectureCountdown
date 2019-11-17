@@ -211,10 +211,10 @@
     <value>Heure de fin arrondie à</value>
   </data>
   <data name="SettingsSection1-3-LabelBegin.Text" xml:space="preserve">
-    <value>Début</value>
+    <value>Commencez 15 minutes plus tard</value>
   </data>
   <data name="SettingsSection1-3-LabelEnd.Text" xml:space="preserve">
-    <value>Fin</value>
+    <value>Fin 15 minutes plus tôt</value>
   </data>
   <data name="SettingsSection1-3.Text" xml:space="preserve">
     <value>Quart d'heure académique</value>

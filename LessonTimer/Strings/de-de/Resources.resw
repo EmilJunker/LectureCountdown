@@ -211,10 +211,10 @@
     <value>End-Uhrzeit runden auf</value>
   </data>
   <data name="SettingsSection1-3-LabelBegin.Text" xml:space="preserve">
-    <value>Beginn</value>
+    <value>Beginn 15 Minuten später</value>
   </data>
   <data name="SettingsSection1-3-LabelEnd.Text" xml:space="preserve">
-    <value>Ende</value>
+    <value>Ende 15 Minuten früher</value>
   </data>
   <data name="SettingsSection1-3.Text" xml:space="preserve">
     <value>Akademisches Viertel</value>
