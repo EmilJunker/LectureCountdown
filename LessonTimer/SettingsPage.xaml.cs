@@ -19,6 +19,8 @@ namespace LessonTimer
         public static string CountdownBase { get; private set; }
         public static List<int> LectureLengths { get; private set; }
         public static int LectureLengthRoundTo { get; private set; }
+        public static bool AcademicQuarterBeginEnabled { get; private set; }
+        public static bool AcademicQuarterEndEnabled { get; private set; }
         public static bool NotificationsEnabled { get; private set; }
         public static bool NotificationSoundEnabled { get; private set; }
         public static string LanguageUI { get; private set; }
@@ -131,6 +133,24 @@ namespace LessonTimer
             LectureLengthRoundTo = Convert.ToInt32(item.Content);
 
             localSettings.Values["lectureLengthRoundTo"] = LectureLengthRoundTo;
+        }
+
+        private void AcademicQuarterBeginToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            ToggleSwitch ts = sender as ToggleSwitch;
+
+            AcademicQuarterBeginEnabled = ts.IsOn;
+
+            localSettings.Values["academicQuarterBeginEnabled"] = AcademicQuarterBeginEnabled;
+        }
+
+        private void AcademicQuarterEndToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            ToggleSwitch ts = sender as ToggleSwitch;
+
+            AcademicQuarterEndEnabled = ts.IsOn;
+
+            localSettings.Values["academicQuarterEndEnabled"] = AcademicQuarterEndEnabled;
         }
 
         private void NotificationToggleSwitch_Toggled(object sender, RoutedEventArgs e)
@@ -268,6 +288,24 @@ namespace LessonTimer
 
             try
             {
+                AcademicQuarterBeginEnabled = (bool)localSettings.Values["academicQuarterBeginEnabled"];
+            }
+            catch (NullReferenceException)
+            {
+                AcademicQuarterBeginEnabled = false;
+            }
+
+            try
+            {
+                AcademicQuarterEndEnabled = (bool)localSettings.Values["academicQuarterEndEnabled"];
+            }
+            catch (NullReferenceException)
+            {
+                AcademicQuarterEndEnabled = false;
+            }
+
+            try
+            {
                 NotificationsEnabled = (bool)localSettings.Values["notificationsEnabled"];
             }
             catch (NullReferenceException)
@@ -368,6 +406,9 @@ namespace LessonTimer
                     LectureRoundComboBox.SelectedIndex = 1;
                     break;
             }
+
+            AcademicQuarterBeginToggleSwitch.IsOn = AcademicQuarterBeginEnabled;
+            AcademicQuarterEndToggleSwitch.IsOn = AcademicQuarterEndEnabled;
 
             if (NotificationsEnabled)
             {

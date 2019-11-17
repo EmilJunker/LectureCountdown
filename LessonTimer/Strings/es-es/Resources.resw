@@ -212,6 +212,15 @@ Base para la cuenta regresiva</value>
   <data name="SettingsSection1-2.Text" xml:space="preserve">
     <value>Hora de finalización redondea a</value>
   </data>
+  <data name="SettingsSection1-3-LabelBegin.Text" xml:space="preserve">
+    <value>Comienzo</value>
+  </data>
+  <data name="SettingsSection1-3-LabelEnd.Text" xml:space="preserve">
+    <value>Final</value>
+  </data>
+  <data name="SettingsSection1-3.Text" xml:space="preserve">
+    <value>Trimestre académico (horario de seminarios)</value>
+  </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
     <value>Mostrar una notificación cuando la cuenta regresiva haya terminado</value>
   </data>

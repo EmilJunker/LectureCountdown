@@ -210,6 +210,15 @@
   <data name="SettingsSection1-2.Text" xml:space="preserve">
     <value>終了時間は四捨五入されます</value>
   </data>
+  <data name="SettingsSection1-3-LabelBegin.Text" xml:space="preserve">
+    <value>初め</value>
+  </data>
+  <data name="SettingsSection1-3-LabelEnd.Text" xml:space="preserve">
+    <value>終わり</value>
+  </data>
+  <data name="SettingsSection1-3.Text" xml:space="preserve">
+    <value>アカデミック・クォーター</value>
+  </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
     <value>カウントダウンが終わったときに通知を表示する</value>
   </data>

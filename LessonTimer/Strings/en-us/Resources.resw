@@ -210,6 +210,15 @@
   <data name="SettingsSection1-2.Text" xml:space="preserve">
     <value>End time rounded to</value>
   </data>
+  <data name="SettingsSection1-3-LabelBegin.Text" xml:space="preserve">
+    <value>Begin</value>
+  </data>
+  <data name="SettingsSection1-3-LabelEnd.Text" xml:space="preserve">
+    <value>End</value>
+  </data>
+  <data name="SettingsSection1-3.Text" xml:space="preserve">
+    <value>Academic quarter (lecture timing)</value>
+  </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
     <value>Show a notification when the countdown is over</value>
   </data>

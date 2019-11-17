@@ -56,6 +56,16 @@
                         <TextBlock x:Uid="SettingsSection1-2-Label" RelativePanel.AlignVerticalCenterWith="LectureRoundComboBox" RelativePanel.RightOf="LectureRoundComboBox" Margin="8,0">minutes</TextBlock>
                     </RelativePanel>
 
+                    <TextBlock x:Uid="SettingsSection1-3" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Academic quarter (lecture timing)</TextBlock>
+                    <RelativePanel Margin="0,8,0,0">
+                        <TextBlock x:Name="AcademicQuarterBeginLabel" x:Uid="SettingsSection1-3-LabelBegin" Margin="0,0,16,0">Begin</TextBlock>
+                        <ToggleSwitch x:Name="AcademicQuarterBeginToggleSwitch" Toggled="AcademicQuarterBeginToggleSwitch_Toggled" RelativePanel.AlignVerticalCenterWith="AcademicQuarterBeginLabel" RelativePanel.RightOf="AcademicQuarterBeginLabel"></ToggleSwitch>
+                    </RelativePanel>
+                    <RelativePanel Margin="0,-4,0,0">
+                        <TextBlock x:Name="AcademicQuarterEndLabel" x:Uid="SettingsSection1-3-LabelEnd" Margin="0,0,16,0">End</TextBlock>
+                        <ToggleSwitch x:Name="AcademicQuarterEndToggleSwitch" Toggled="AcademicQuarterEndToggleSwitch_Toggled" RelativePanel.AlignVerticalCenterWith="AcademicQuarterEndLabel" RelativePanel.RightOf="AcademicQuarterEndLabel"></ToggleSwitch>
+                    </RelativePanel>
+                    
                     <TextBlock x:Uid="SettingsHeadline2" Margin="0,24,0,8" FontSize="20">Notifications</TextBlock>
 
                     <TextBlock x:Uid="SettingsSection2-1" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Show a notification when the countdown is over</TextBlock>

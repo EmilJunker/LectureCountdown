@@ -210,6 +210,15 @@
   <data name="SettingsSection1-2.Text" xml:space="preserve">
     <value>结束时间舍入至</value>
   </data>
+  <data name="SettingsSection1-3-LabelBegin.Text" xml:space="preserve">
+    <value>开始</value>
+  </data>
+  <data name="SettingsSection1-3-LabelEnd.Text" xml:space="preserve">
+    <value>结束</value>
+  </data>
+  <data name="SettingsSection1-3.Text" xml:space="preserve">
+    <value>学术计时法</value>
+  </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
     <value>倒计时结束后显示通知</value>
   </data>

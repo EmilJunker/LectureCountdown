@@ -210,6 +210,15 @@
   <data name="SettingsSection1-2.Text" xml:space="preserve">
     <value>End-Uhrzeit runden auf</value>
   </data>
+  <data name="SettingsSection1-3-LabelBegin.Text" xml:space="preserve">
+    <value>Beginn</value>
+  </data>
+  <data name="SettingsSection1-3-LabelEnd.Text" xml:space="preserve">
+    <value>Ende</value>
+  </data>
+  <data name="SettingsSection1-3.Text" xml:space="preserve">
+    <value>Akademisches Viertel</value>
+  </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
     <value>Zeige eine Benachrichtigung an, wenn der Countdown vorbei ist</value>
   </data>

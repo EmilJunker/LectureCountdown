@@ -210,6 +210,15 @@
   <data name="SettingsSection1-2.Text" xml:space="preserve">
     <value>Heure de fin arrondie à</value>
   </data>
+  <data name="SettingsSection1-3-LabelBegin.Text" xml:space="preserve">
+    <value>Début</value>
+  </data>
+  <data name="SettingsSection1-3-LabelEnd.Text" xml:space="preserve">
+    <value>Fin</value>
+  </data>
+  <data name="SettingsSection1-3.Text" xml:space="preserve">
+    <value>Quart d'heure académique</value>
+  </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
     <value>Afficher une notification lorsque le compte à rebours est terminé</value>
   </data>

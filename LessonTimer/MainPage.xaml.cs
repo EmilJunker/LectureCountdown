@@ -518,6 +518,22 @@ namespace LessonTimer
             calendarSuggestionsIterator++;
 
             double nextAppointmentLength = nextAppointment.Duration.TotalMinutes;
+
+            if (SettingsPage.AcademicQuarterBeginEnabled && SettingsPage.AcademicQuarterEndEnabled)
+            {
+                if (nextAppointmentLength > 30)
+                {
+                    nextAppointmentLength -= 30;
+                }
+            }
+            else if (SettingsPage.AcademicQuarterBeginEnabled || SettingsPage.AcademicQuarterEndEnabled)
+            {
+                if (nextAppointmentLength > 15)
+                {
+                    nextAppointmentLength -= 15;
+                }
+            }
+
             return new Tuple<double, string>(nextAppointmentLength, nextAppointment.Subject);
         }
 
@@ -556,6 +572,12 @@ namespace LessonTimer
             calendarSuggestionsIterator++;
 
             DateTimeOffset nextAppointmentEndTime = nextAppointment.StartTime.Add(nextAppointment.Duration);
+
+            if (SettingsPage.AcademicQuarterEndEnabled && nextAppointment.Duration > TimeSpan.FromMinutes(15))
+            {
+                nextAppointmentEndTime = nextAppointmentEndTime.AddMinutes(-15);
+            }
+
             return new Tuple<TimeSpan, string>(new TimeSpan(nextAppointmentEndTime.Hour, nextAppointmentEndTime.Minute, 0), nextAppointment.Subject);
         }
 
