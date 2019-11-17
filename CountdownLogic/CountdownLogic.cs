@@ -6,12 +6,10 @@ namespace CountdownLogic
     public static class Countdown
     {
         public static Tick tick = new Tick();
+        public static bool IsRunning { get; private set; }
 
         private static Timer timer;
-
         private static AutoResetEvent countdownIsOver;
-
-        public static Boolean IsRunning { get; private set; }
 
         private static void TimerSetup()
         {
@@ -28,7 +26,7 @@ namespace CountdownLogic
             IsRunning = true;
         }
 
-        public static Tuple<DateTime, DateTime> TimerSetup(double length)
+        public static (DateTime starttime, DateTime endtime) TimerSetup(double length)
         {
             DateTime starttime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
             DateTime endtime;
@@ -45,7 +43,7 @@ namespace CountdownLogic
 
             TimerSetup();
 
-            return new Tuple<DateTime, DateTime>(starttime, endtime);
+            return (starttime, endtime);
         }
 
         public static void TimerSetup(DateTime starttime, DateTime endtime)
@@ -67,17 +65,17 @@ namespace CountdownLogic
 
     public class TickEventArgs : EventArgs
     {
-        public String Countdown { get; }
+        public string Countdown { get; }
         public double Progress { get; }
-        public String Timeprogress { get; }
-        public String Percentprogress { get; }
+        public string Timeprogress { get; }
+        public string Percentprogress { get; }
 
-        public TickEventArgs(String countdown, double progress, String timeprogress, String percentprogress)
+        public TickEventArgs(string countdown, double progress, string timeprogress, string percentprogress)
         {
-            this.Countdown = countdown;
-            this.Progress = progress;
-            this.Timeprogress = timeprogress;
-            this.Percentprogress = percentprogress;
+            Countdown = countdown;
+            Progress = progress;
+            Timeprogress = timeprogress;
+            Percentprogress = percentprogress;
         }
     }
 
@@ -90,16 +88,16 @@ namespace CountdownLogic
         private DateTime starttime;
         private DateTime endtime;
         private TimeSpan duration;
-        private String durationString;
+        private string durationString;
 
         private DateTime currenttime;
         private TimeSpan timeleft;
         private TimeSpan timepassed;
 
-        private String countdown;
+        private string countdown;
         private double progress;
-        private String timeprogress;
-        private String percentprogress;
+        private string timeprogress;
+        private string percentprogress;
 
         public void SetTime(DateTime starttime, DateTime endtime)
         {

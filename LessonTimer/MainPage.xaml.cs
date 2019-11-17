@@ -1,15 +1,13 @@
 ﻿using CountdownLogic;
+using LessonTimer.Services;
 using System;
-using System.Collections.Generic;
 using Windows.ApplicationModel.Appointments;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
-using Windows.Data.Xml.Dom;
 using Windows.Foundation;
 using Windows.System;
 using Windows.UI;
 using Windows.UI.Core;
-using Windows.UI.Notifications;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -52,9 +50,9 @@ namespace LessonTimer
                 SettingsButton.Style = (Style)Resources["ButtonRevealStyle"];
             }
 
-            TimePicker.ClockIdentifier = SettingsPage.ClockFormat;
+            TimePicker.ClockIdentifier = Settings.ClockFormat;
 
-            switch (SettingsPage.CountdownBase)
+            switch (Settings.CountdownBase)
             {
                 case "time":
                     LengthPicker.Visibility = Visibility.Collapsed;
@@ -107,7 +105,7 @@ namespace LessonTimer
 
                 DisplayMessage(currentDescription, false);
 
-                switch (SettingsPage.CountdownBase)
+                switch (Settings.CountdownBase)
                 {
                     case "time":
                         TimePicker.Time = new TimeSpan(endtime.Hour, endtime.Minute, 0);
@@ -119,22 +117,18 @@ namespace LessonTimer
             }
             else
             {
-                suggestionsIterator = 0;
+                TimeSuggestions.SuggestionsIterator = 0;
                 StartButton.IsEnabled = true;
                 CancelButton.IsEnabled = false;
                 descriptionAutoSetLock = true;
 
-                switch (SettingsPage.CountdownBase)
+                switch (Settings.CountdownBase)
                 {
                     case "time":
-                        Tuple<TimeSpan, string> endTimeSuggestion = GetEndTimeSuggestion();
-                        TimePicker.Time = endTimeSuggestion.Item1;
-                        nextDescription = endTimeSuggestion.Item2;
+                        (TimePicker.Time, nextDescription) = TimeSuggestions.GetEndTimeSuggestion();
                         break;
                     case "length":
-                        Tuple<double, string> lengthSuggestion = GetLengthSuggestion();
-                        LengthPicker.Text = lengthSuggestion.Item1.ToString();
-                        nextDescription = lengthSuggestion.Item2;
+                        (LengthPicker.Text, nextDescription) = TimeSuggestions.GetLengthSuggestion();
                         break;
                 }
             }
@@ -155,7 +149,12 @@ namespace LessonTimer
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
 
-        void LengthPicker_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SettingsPage));
+        }
+
+        private void LengthPicker_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Enter)
             {
@@ -163,7 +162,7 @@ namespace LessonTimer
             }
         }
 
-        void StartButton_Click(object sender, RoutedEventArgs e)
+        private void StartButton_Click(object sender, RoutedEventArgs e)
         {
             StartCountdown();
         }
@@ -174,22 +173,18 @@ namespace LessonTimer
 
             endtime = DateTime.Now;
 
-            CancelToastNotification();
+            CancelNotification();
 
             StartButton.IsEnabled = true;
             CancelButton.IsEnabled = false;
         }
 
-        private void SettingsButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(SettingsPage));
-        }
-
         private void StartCountdown()
         {
+            double length = 0;
             bool success = false;
 
-            switch (SettingsPage.CountdownBase)
+            switch (Settings.CountdownBase)
             {
                 case "time":
                     int hour = TimePicker.Time.Hours;
@@ -210,12 +205,10 @@ namespace LessonTimer
                 case "length":
                     try
                     {
-                        double length = Convert.ToInt32(LengthPicker.Text);
+                        length = Convert.ToInt32(LengthPicker.Text);
                         if (0 < length && length < 1440)
                         {
-                            Tuple<DateTime, DateTime> times = Countdown.TimerSetup(length);
-                            starttime = times.Item1;
-                            endtime = times.Item2;
+                            (MainPage.starttime, MainPage.endtime) = Countdown.TimerSetup(length);
                             success = true;
                         }
                     }
@@ -241,14 +234,14 @@ namespace LessonTimer
 
                 DisplayMessage(currentDescription, false);
 
-                if (SettingsPage.NotificationsEnabled)
+                if (Settings.NotificationsEnabled)
                 {
-                    ScheduleToastNotification(SettingsPage.NotificationSoundEnabled);
+                    ScheduleNotification();
                 }
             }
         }
 
-        async void UpdateCountdown(object source, TickEventArgs e)
+        private async void UpdateCountdown(object source, TickEventArgs e)
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -267,58 +260,14 @@ namespace LessonTimer
             });
         }
 
-        public static List<string> emoji = new List<string>(new string[] { "\U0001F600", "\U0001F601", "\U0001F602", "\U0001F923", "\U0001F603", "\U0001F604", "\U0001F605", "\U0001F606",
-            "\U0001F609", "\U0001F60A", "\U0001F60B", "\U0001F60E", "\U0001F60D", "\U0000263A", "\U0001F642", "\U0001F917", "\U0001F914", "\U0001F610", "\U0001F611", "\U0001F636",
-            "\U0001F644", "\U0001F60F", "\U0001F623", "\U0001F625", "\U0001F62E", "\U0001F910", "\U0001F615", "\U0001F643", "\U0001F62F", "\U0001F62A", "\U0001F62B", "\U0001F634",
-            "\U0001F60C", "\U0001F61B", "\U0001F61C", "\U0001F61D", "\U0001F924", "\U0001F612", "\U0001F613", "\U0001F614", "\U0001F615", "\U0001F643", "\U0001F632", "\U00002639",
-            "\U0001F641", "\U0001F616", "\U0001F61E", "\U0001F61F", "\U0001F624", "\U0001F622", "\U0001F62D", "\U0001F626", "\U0001F627", "\U0001F628", "\U0001F629", "\U0001F62C",
-            "\U0001F630", "\U0001F631", "\U0001F633", "\U0001F635", "\U0001F621", "\U0001F620", "\U0001F921", "\U0001F913", "\U0001F4A9", "\U0001F648", "\U0001F649", "\U0001F64A" });
-
-        public static ScheduledToastNotification toast;
-
-        public static void ScheduleToastNotification(bool sound)
+        public static void ScheduleNotification()
         {
-            CancelToastNotification();
-
-            double durationTotalSeconds = endtime.Subtract(starttime).TotalSeconds;
-
-            if (durationTotalSeconds > 0)
-            {
-                Random rand = new Random();
-                int index = rand.Next(0, 68);
-
-                var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-
-                string title = loader.GetString("NotificationTitle");
-                string content = loader.GetString("NotificationText1") + durationTotalSeconds.ToString() + loader.GetString("NotificationText2") + " " + emoji[index];
-                string silent = sound ? "false" : "true";
-
-                string toastXmlString =
-                $@"<toast>
-                    <visual>
-                        <binding template='ToastGeneric'>
-                            <text>{title}</text>
-                            <text>{content}</text>
-                        </binding>
-                    </visual>
-                    <audio silent='{silent}'/>
-                </toast>";
-
-                XmlDocument toastXml = new XmlDocument();
-                toastXml.LoadXml(toastXmlString);
-                toast = new ScheduledToastNotification(toastXml, endtime);
-
-                ToastNotificationManager.CreateToastNotifier().AddToSchedule(toast);
-            }
+            Notifications.ScheduleToastNotification(Settings.NotificationSoundEnabled, starttime, endtime);
         }
 
-        public static void CancelToastNotification()
+        public static void CancelNotification()
         {
-            try
-            {
-                ToastNotificationManager.CreateToastNotifier().RemoveFromSchedule(toast);
-            }
-            catch (Exception) { }
+            Notifications.CancelToastNotification();
         }
 
         private void LengthPicker_TextChanged(object sender, TextChangedEventArgs e)
@@ -352,17 +301,13 @@ namespace LessonTimer
             string description = null;
             descriptionAutoSetLock = true;
 
-            switch (SettingsPage.CountdownBase)
+            switch (Settings.CountdownBase)
             {
                 case "time":
-                    Tuple<TimeSpan, string> endTimeSuggestion = GetEndTimeSuggestion();
-                    TimePicker.Time = endTimeSuggestion.Item1;
-                    description = endTimeSuggestion.Item2;
+                    (TimePicker.Time, description) = TimeSuggestions.GetEndTimeSuggestion();
                     break;
                 case "length":
-                    Tuple<double, string> lengthSuggestion = GetLengthSuggestion();
-                    LengthPicker.Text = lengthSuggestion.Item1.ToString();
-                    description = lengthSuggestion.Item2;
+                    (LengthPicker.Text, description) = TimeSuggestions.GetLengthSuggestion();
                     break;
             }
 
@@ -392,22 +337,22 @@ namespace LessonTimer
             {
                 var allAppointments = await appointmentStore.FindAppointmentsAsync(dateToShow, duration);
 
-                switch (SettingsPage.CountdownBase)
+                switch (Settings.CountdownBase)
                 {
                     case "time":
-                        Tuple<TimeSpan, string> endTimeSuggestion = GetEndTimeSuggestion(allAppointments);
-                        if (endTimeSuggestion != null)
+                        var endTimeSuggestion = TimeSuggestions.GetEndTimeSuggestion(allAppointments);
+                        if (endTimeSuggestion.description != null)
                         {
-                            TimePicker.Time = endTimeSuggestion.Item1;
-                            description = endTimeSuggestion.Item2;
+                            TimePicker.Time = endTimeSuggestion.endtime;
+                            description = endTimeSuggestion.description;
                         }
                         break;
                     case "length":
-                        Tuple<double, string> lengthSuggestion = GetLengthSuggestion(allAppointments);
-                        if (lengthSuggestion != null)
+                        var lengthSuggestion = TimeSuggestions.GetLengthSuggestion(allAppointments);
+                        if (lengthSuggestion.description != null)
                         {
-                            LengthPicker.Text = lengthSuggestion.Item1.ToString();
-                            description = lengthSuggestion.Item2;
+                            LengthPicker.Text = lengthSuggestion.length;
+                            description = lengthSuggestion.description;
                         }
                         break;
                 }
@@ -444,143 +389,6 @@ namespace LessonTimer
             }
         }
 
-        private static int suggestionsIterator = 0;
-        private static int calendarSuggestionsIterator = 0;
-
-        private static Tuple<double, string> GetLengthSuggestion()
-        {
-            double length = SettingsPage.LectureLengths[suggestionsIterator];
-
-            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-            string description = length.ToString() + loader.GetString("MinuteLecture");
-
-            suggestionsIterator++;
-            if (suggestionsIterator >= SettingsPage.LectureLengths.Count)
-            {
-                suggestionsIterator = 0;
-            }
-
-            return new Tuple<double, string>(length, description);
-        }
-
-        private static Tuple<TimeSpan, string> GetEndTimeSuggestion()
-        {
-            DateTime time = DateTime.Now.AddMinutes(SettingsPage.LectureLengths[suggestionsIterator]);
-            TimeSpan span = TimeSpan.FromMinutes(SettingsPage.LectureLengthRoundTo);
-
-            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-            string description = SettingsPage.LectureLengths[suggestionsIterator].ToString() + loader.GetString("MinuteLecture");
-
-            suggestionsIterator++;
-            if (suggestionsIterator >= SettingsPage.LectureLengths.Count)
-            {
-                suggestionsIterator = 0;
-            }
-
-            TimeSpan t = (time.Subtract(DateTime.MinValue)).Add(new TimeSpan(0, span.Minutes / 2, 0));
-            DateTime newTime = DateTime.MinValue.Add(new TimeSpan(0, (((int)t.TotalMinutes) / (int)span.TotalMinutes) * span.Minutes, 0));
-
-            return new Tuple<TimeSpan, string>(new TimeSpan(newTime.Hour, newTime.Minute, 0), description);
-        }
-
-        private static Tuple<double, string> GetLengthSuggestion(IReadOnlyList<Appointment> allAppointments)
-        {
-            List<Appointment> appointments = new List<Appointment>();
-
-            foreach (Appointment a in allAppointments)
-            {
-                if (!a.AllDay)
-                {
-                    appointments.Add(a);
-                }
-            }
-
-            Appointment nextAppointment;
-
-            try
-            {
-                nextAppointment = appointments[calendarSuggestionsIterator];
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                calendarSuggestionsIterator = 0;
-
-                try
-                {
-                    nextAppointment = appointments[calendarSuggestionsIterator];
-                }
-                catch (ArgumentOutOfRangeException)
-                {
-                    return null;
-                }
-            }
-
-            calendarSuggestionsIterator++;
-
-            double nextAppointmentLength = nextAppointment.Duration.TotalMinutes;
-
-            if (SettingsPage.AcademicQuarterBeginEnabled && SettingsPage.AcademicQuarterEndEnabled)
-            {
-                if (nextAppointmentLength > 30)
-                {
-                    nextAppointmentLength -= 30;
-                }
-            }
-            else if (SettingsPage.AcademicQuarterBeginEnabled || SettingsPage.AcademicQuarterEndEnabled)
-            {
-                if (nextAppointmentLength > 15)
-                {
-                    nextAppointmentLength -= 15;
-                }
-            }
-
-            return new Tuple<double, string>(nextAppointmentLength, nextAppointment.Subject);
-        }
-
-        private static Tuple<TimeSpan, string> GetEndTimeSuggestion(IReadOnlyList<Appointment> allAppointments)
-        {
-            List<Appointment> appointments = new List<Appointment>();
-
-            foreach (Appointment a in allAppointments)
-            {
-                if (!a.AllDay)
-                {
-                    appointments.Add(a);
-                }
-            }
-
-            Appointment nextAppointment;
-
-            try
-            {
-                nextAppointment = appointments[calendarSuggestionsIterator];
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                calendarSuggestionsIterator = 0;
-
-                try
-                {
-                    nextAppointment = appointments[calendarSuggestionsIterator];
-                }
-                catch (ArgumentOutOfRangeException)
-                {
-                    return null;
-                }
-            }
-
-            calendarSuggestionsIterator++;
-
-            DateTimeOffset nextAppointmentEndTime = nextAppointment.StartTime.Add(nextAppointment.Duration);
-
-            if (SettingsPage.AcademicQuarterEndEnabled && nextAppointment.Duration > TimeSpan.FromMinutes(15))
-            {
-                nextAppointmentEndTime = nextAppointmentEndTime.AddMinutes(-15);
-            }
-
-            return new Tuple<TimeSpan, string>(new TimeSpan(nextAppointmentEndTime.Hour, nextAppointmentEndTime.Minute, 0), nextAppointment.Subject);
-        }
-
         private void DisplayMessage(string message, bool fadeout)
         {
             ResetFadeStoryboard.Begin();
@@ -613,7 +421,7 @@ namespace LessonTimer
         {
             ViewModePreferences compactOptions = ViewModePreferences.CreateDefault(ApplicationViewMode.CompactOverlay);
             compactOptions.CustomSize = new Size(320, 160);
-            bool modeSwitched = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, compactOptions);
+            _ = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, compactOptions);
 
             ControlPanel.Visibility = Visibility.Collapsed;
             compactMode = true;
@@ -621,7 +429,7 @@ namespace LessonTimer
 
         private async void CompactOverlayOff()
         {
-            bool modeSwitched = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.Default);
+            _ = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.Default);
 
             ControlPanel.Visibility = Visibility.Visible;
             compactMode = false;

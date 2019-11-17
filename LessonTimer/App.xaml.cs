@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LessonTimer.Services;
+using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Storage;
@@ -14,24 +15,24 @@ namespace LessonTimer
         public App()
         {
             ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            Settings.LoadSettings(localSettings);
+
+            var notifications = ToastNotificationManager.CreateToastNotifier().GetScheduledToastNotifications();
+            if (notifications.Count != 0)
+            {
+                Notifications.UseToastNotification(notifications[0]);
+            }
 
             RestoreSession(localSettings);
-            SettingsPage.LoadSettings(localSettings);
 
-            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = SettingsPage.LanguageUI;
+            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = Settings.LanguageUI;
 
-            switch (SettingsPage.Theme)
+            this.RequestedTheme = Settings.Theme switch
             {
-                case "Light":
-                    this.RequestedTheme = ApplicationTheme.Light;
-                    break;
-                case "Dark":
-                    this.RequestedTheme = ApplicationTheme.Dark;
-                    break;
-                default:
-                    this.RequestedTheme = Current.RequestedTheme;
-                    break;
-            }
+                "Light" => ApplicationTheme.Light,
+                "Dark" => ApplicationTheme.Dark,
+                _ => Current.RequestedTheme,
+            };
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;
@@ -44,7 +45,6 @@ namespace LessonTimer
                 MainPage.starttime = new DateTime((long)localSettings.Values["starttime"]);
                 MainPage.endtime = new DateTime((long)localSettings.Values["endtime"]);
                 MainPage.currentDescription = (string)localSettings.Values["currentDescription"];
-                MainPage.toast = ToastNotificationManager.CreateToastNotifier().GetScheduledToastNotifications()[0];
             }
             catch (NullReferenceException) { }
             catch (ArgumentOutOfRangeException) { }
