@@ -125,6 +125,11 @@ namespace LessonTimer
             localSettings.Values["lectureLengthRoundTo"] = Settings.LectureLengthRoundTo;
         }
 
+        private async void CalendarPrivacyButton_Click(object sender, RoutedEventArgs e)
+        {
+            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-settings:privacy-calendar"));
+        }
+
         private void AcademicQuarterBeginToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
             ToggleSwitch ts = sender as ToggleSwitch;

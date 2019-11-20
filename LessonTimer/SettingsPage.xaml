@@ -30,7 +30,7 @@
                 
                 <StackPanel x:Name="MainPanel">
 
-                    <TextBlock x:Uid="SettingsHeadline1" Margin="0,24,0,8" FontSize="20">Countdown</TextBlock>
+                    <TextBlock x:Uid="SettingsHeadlineCountdown" Margin="0,24,0,8" FontSize="20">Countdown</TextBlock>
 
                     <TextBlock x:Uid="SettingsSection1-0" Margin="0,8,0,0">Base for the countdown</TextBlock>
                     <ComboBox x:Name="CountdownBaseComboBox" Width="200" Margin="0,8" SelectionChanged="CountdownBaseComboBox_SelectionChanged">
@@ -56,6 +56,10 @@
                         <TextBlock x:Uid="SettingsSection1-2-Label" RelativePanel.AlignVerticalCenterWith="LectureRoundComboBox" RelativePanel.RightOf="LectureRoundComboBox" Margin="8,0">minutes</TextBlock>
                     </RelativePanel>
 
+                    <TextBlock x:Uid="SettingsHeadlineCalendar" Margin="0,24,0,8" FontSize="20">Events from calendar</TextBlock>
+
+                    <Button x:Name="CalendarPrivacyButton" x:Uid="CalendarPrivacyButton" Margin="0,8" Click="CalendarPrivacyButton_Click">Privacy settings</Button>
+
                     <TextBlock x:Uid="SettingsSection1-3" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Academic quarter (lecture timing)</TextBlock>
                     <RelativePanel Margin="0,8,0,0">
                         <TextBlock x:Name="AcademicQuarterBeginLabel" x:Uid="SettingsSection1-3-LabelBegin" Margin="0,0,16,0">Start 15 minutes later</TextBlock>
@@ -66,7 +70,7 @@
                         <ToggleSwitch x:Name="AcademicQuarterEndToggleSwitch" Toggled="AcademicQuarterEndToggleSwitch_Toggled" RelativePanel.AlignVerticalCenterWith="AcademicQuarterEndLabel" RelativePanel.RightOf="AcademicQuarterEndLabel"></ToggleSwitch>
                     </RelativePanel>
                     
-                    <TextBlock x:Uid="SettingsHeadline2" Margin="0,24,0,8" FontSize="20">Notifications</TextBlock>
+                    <TextBlock x:Uid="SettingsHeadlineNotifications" Margin="0,24,0,8" FontSize="20">Notifications</TextBlock>
 
                     <TextBlock x:Uid="SettingsSection2-1" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Show a notification when the countdown is over</TextBlock>
                     <ToggleSwitch x:Name="NotificationToggleSwitch" Toggled="NotificationToggleSwitch_Toggled"></ToggleSwitch>
@@ -74,7 +78,7 @@
                     <TextBlock x:Uid="SettingsSection2-2" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Play notification sound</TextBlock>
                     <ToggleSwitch x:Name="NotificationSoundToggleSwitch" Toggled="NotificationSoundToggleSwitch_Toggled"></ToggleSwitch>
 
-                    <TextBlock x:Uid="SettingsHeadline3" Margin="0,24,0,8" FontSize="20">Localization</TextBlock>
+                    <TextBlock x:Uid="SettingsHeadlineLocalization" Margin="0,24,0,8" FontSize="20">Localization</TextBlock>
 
                     <TextBlock x:Uid="SettingsSection3-1" Margin="0,8,0,0">Language</TextBlock>
                     <ComboBox x:Name="LanguageComboBox" Width="200" Margin="0,8" SelectionChanged="LanguageComboBox_SelectionChanged">
@@ -95,7 +99,7 @@
                         <RadioButton x:Uid="SettingsSection3-2-Label24" x:Name="ClockFormat24RadioButton" GroupName="ClockFormatGroup" Content="24-hour format" Tag="24" Checked="ClockFormatRadioButton_Checked" />
                     </StackPanel>
 
-                    <TextBlock x:Uid="SettingsHeadline4" Margin="0,24,0,8" FontSize="20">Localization</TextBlock>
+                    <TextBlock x:Uid="SettingsHeadlineTheme" Margin="0,24,0,8" FontSize="20">Theme</TextBlock>
 
                     <TextBlock x:Uid="SettingsSection4-1" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Theme change requires app restart</TextBlock>
                     <StackPanel Margin="0,8">
@@ -104,7 +108,7 @@
                         <RadioButton x:Uid="SettingsSection4-1-LabelDark" x:Name="ThemeDarkRadioButton" GroupName="ThemeGroup" Content="Dark" Tag="Dark" Checked="ThemeRadioButton_Checked" />
                     </StackPanel>
 
-                    <TextBlock x:Uid="SettingsHeadline5" Margin="0,24,0,8" FontSize="20">About this app</TextBlock>
+                    <TextBlock x:Uid="SettingsHeadlineAbout" Margin="0,24,0,8" FontSize="20">About this app</TextBlock>
 
                     <RelativePanel Margin="0,8,0,0">
                         <TextBlock x:Name="Version" x:Uid="SettingsVersion" Margin="0,0,4,0">Version:</TextBlock>

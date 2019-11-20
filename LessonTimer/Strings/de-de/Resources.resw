@@ -126,6 +126,9 @@
   <data name="CalendarButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Zeit aus Kalender vorschlagen</value>
   </data>
+  <data name="CalendarPrivacyButton.Content" xml:space="preserve">
+    <value>Privatsphäre-Einstellungen</value>
+  </data>
   <data name="CancelButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Countdown abbrechen</value>
   </data>
@@ -177,20 +180,23 @@
   <data name="SettingsFeedback.Content" xml:space="preserve">
     <value>Feedback</value>
   </data>
-  <data name="SettingsHeadline1.Text" xml:space="preserve">
+  <data name="SettingsHeadlineAbout.Text" xml:space="preserve">
+    <value>Über die App</value>
+  </data>
+  <data name="SettingsHeadlineCalendar.Text" xml:space="preserve">
+    <value>Kalendertermine</value>
+  </data>
+  <data name="SettingsHeadlineCountdown.Text" xml:space="preserve">
     <value>Countdown</value>
   </data>
-  <data name="SettingsHeadline2.Text" xml:space="preserve">
-    <value>Benachrichtigungen</value>
-  </data>
-  <data name="SettingsHeadline3.Text" xml:space="preserve">
+  <data name="SettingsHeadlineLocalization.Text" xml:space="preserve">
     <value>Lokalisierung</value>
   </data>
-  <data name="SettingsHeadline4.Text" xml:space="preserve">
-    <value>Thema</value>
+  <data name="SettingsHeadlineNotifications.Text" xml:space="preserve">
+    <value>Benachrichtigungen</value>
   </data>
-  <data name="SettingsHeadline5.Text" xml:space="preserve">
-    <value>Über die App</value>
+  <data name="SettingsHeadlineTheme.Text" xml:space="preserve">
+    <value>Thema</value>
   </data>
   <data name="SettingsRating.Content" xml:space="preserve">
     <value>App bewerten</value>
