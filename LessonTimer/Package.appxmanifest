@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="55708emilj.LessonCountdown" Publisher="CN=BEB4D465-B033-4216-88E6-C0E263CCC79F" Version="1.8.2.0" />
+  <Identity Name="55708emilj.LessonCountdown" Publisher="CN=BEB4D465-B033-4216-88E6-C0E263CCC79F" Version="1.9.0.0" />
   <mp:PhoneIdentity PhoneProductId="776bf3ab-499d-4aca-86c2-669be8089e2d" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Lecture Countdown</DisplayName>

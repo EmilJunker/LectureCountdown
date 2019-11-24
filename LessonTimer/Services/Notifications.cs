@@ -25,7 +25,7 @@ namespace LessonTimer.Services
             if (durationTotalSeconds > 0)
             {
                 Random rand = new Random();
-                int index = rand.Next(0, 68);
+                int index = rand.Next(0, emoji.Count);
 
                 var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
 
