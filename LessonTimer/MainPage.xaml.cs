@@ -108,7 +108,7 @@ namespace LessonTimer
                 CancelButton.IsEnabled = true;
                 startButtonDisabledLock = true;
 
-                string message = Description.GetDescription(description, length);
+                string message = Description.GetDescriptionString(description, length);
                 DisplayMessage(message, false);
 
                 switch (Settings.CountdownBase)
@@ -138,7 +138,7 @@ namespace LessonTimer
                         (LengthPicker.Text, suggestionLength) = TimeSuggestions.GetLengthSuggestion();
                         break;
                 }
-                nextDescription.Set(null, suggestionLength);
+                nextDescription.Set(suggestionLength);
             }
         }
 
@@ -246,10 +246,10 @@ namespace LessonTimer
                 CancelButton.IsEnabled = true;
                 CancelButton.Focus(FocusState.Programmatic);
 
-                description = nextDescription.DescriptionString;
+                description = nextDescription.CountdownDescription;
                 nextDescription.Reset();
 
-                string message = Description.GetDescription(description, length);
+                string message = Description.GetDescriptionString(description, length);
                 DisplayMessage(message, false);
 
                 if (Settings.NotificationsEnabled)
@@ -338,7 +338,7 @@ namespace LessonTimer
                     break;
             }
 
-            nextDescription.Set(null, suggestionLength);
+            nextDescription.Set(suggestionLength);
 
             if (Countdown.IsRunning)
             {
@@ -346,7 +346,7 @@ namespace LessonTimer
             }
             else
             {
-                string message = Description.GetDescription(suggestionLength);
+                string message = Description.GetDescriptionString(suggestionLength);
                 DisplayMessage(message, true);
             }
         }
@@ -387,7 +387,7 @@ namespace LessonTimer
 
                 if (appointmentDescription != null)
                 {
-                    nextDescription.Set(appointmentDescription, 0);
+                    nextDescription.Set(appointmentDescription);
 
                     if (Countdown.IsRunning)
                     {
