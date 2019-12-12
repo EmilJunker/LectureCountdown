@@ -64,7 +64,7 @@
 
                         <TextBlock x:Uid="SettingsSection1-4" Margin="0,8,0,0">Description of the countdown</TextBlock>
                         <RelativePanel Margin="0,8">
-                            <TextBox x:Name="CountdownDescriptionTextBox" Width="220" MaxLength="100" TextChanged="CountdownDescriptionTextBox_TextChanged"></TextBox>
+                            <TextBox x:Name="CountdownDescriptionTextBox" Width="220" MaxLength="100" TextChanged="CountdownDescriptionTextBox_TextChanged" KeyDown="CountdownDescriptionTextBox_KeyDown"></TextBox>
                             <Button x:Name="CountdownDescriptionResetButton" x:Uid="CountdownDescriptionResetButton" Width="30" Height="30" Padding="0" Margin="8,0" Click="CountdownDescriptionResetButton_Click" RelativePanel.AlignVerticalCenterWith="CountdownDescriptionTextBox" RelativePanel.RightOf="CountdownDescriptionTextBox">
                                 <StackPanel>
                                     <SymbolIcon Symbol="Undo" />
@@ -74,7 +74,7 @@
 
                         <TextBlock x:Uid="SettingsSection1-1" Margin="0,8,0,0">Common countdown lengths</TextBlock>
                         <RelativePanel Margin="0,8">
-                            <TextBox x:Name="LectureLengthsTextBox" Width="220" MaxLength="100" TextChanged="LectureLengthsTextBox_TextChanged"></TextBox>
+                            <TextBox x:Name="LectureLengthsTextBox" Width="220" MaxLength="100" TextChanged="LectureLengthsTextBox_TextChanged" KeyDown="LectureLengthsTextBox_KeyDown"></TextBox>
                             <TextBlock x:Uid="SettingsSection1-1-Label" RelativePanel.AlignVerticalCenterWith="LectureLengthsTextBox" RelativePanel.RightOf="LectureLengthsTextBox" Margin="8,0">minutes</TextBlock>
                         </RelativePanel>
 

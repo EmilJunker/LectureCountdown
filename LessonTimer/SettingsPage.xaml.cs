@@ -6,6 +6,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 using Windows.Globalization;
 using Windows.Storage;
+using Windows.System;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
@@ -62,6 +63,22 @@ namespace LessonTimer
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.GoBack();
+        }
+
+        private void CountdownDescriptionTextBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+            {
+                Frame.GoBack();
+            }
+        }
+
+        private void LectureLengthsTextBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+            {
+                Frame.GoBack();
+            }
         }
 
         private void CountdownBaseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
