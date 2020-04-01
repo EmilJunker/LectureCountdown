@@ -252,6 +252,7 @@ namespace LessonTimer
 
                 if (!Countdown.IsRunning)
                 {
+                    endtime = DateTime.Now;
                     StartButton.IsEnabled = true;
                     CancelButton.IsEnabled = false;
                     InfoTextBlock.Text = String.Empty;

@@ -83,9 +83,9 @@ namespace LessonTimer
 
             if (args.Kind == ActivationKind.ToastNotification)
             {
-                if (!(Window.Current.Content is Frame rootFrame))
+                if (!(Window.Current.Content is Frame))
                 {
-                    rootFrame = new Frame();
+                    Frame rootFrame = new Frame();
                     rootFrame.Navigate(typeof(MainPage));
                     Window.Current.Content = rootFrame;
                 }

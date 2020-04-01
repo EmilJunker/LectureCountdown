@@ -85,7 +85,6 @@ namespace CountdownLogic
 
         private static readonly TimeSpan over = new TimeSpan(0, 0, 0);
 
-        private DateTime starttime;
         private DateTime endtime;
         private TimeSpan duration;
         private string durationString;
@@ -101,11 +100,8 @@ namespace CountdownLogic
 
         public void SetTime(DateTime starttime, DateTime endtime)
         {
-            this.starttime = starttime;
             this.endtime = endtime;
-
             this.duration = endtime.Subtract(starttime);
-
             this.durationString = " / " + duration.ToString(@"hh\∶mm\∶ss");
         }
 
@@ -122,11 +118,8 @@ namespace CountdownLogic
             else
             {
                 countdown = timeleft.ToString(@"hh\∶mm\∶ss");
-
                 progress = timepassed.TotalSeconds / duration.TotalSeconds;
-
                 timeprogress = timepassed.ToString(@"hh\∶mm\∶ss") + durationString;
-
                 percentprogress = (progress * 100).ToString("0.00") + " %";
 
                 Ticked(this, new TickEventArgs(countdown, progress, timeprogress, percentprogress));
