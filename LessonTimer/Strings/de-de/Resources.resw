@@ -127,7 +127,7 @@
     <value>Zeit aus Kalender vorschlagen</value>
   </data>
   <data name="CalendarPrivacyButton.Content" xml:space="preserve">
-    <value>Privatsphäre-Einstellungen</value>
+    <value>Datenschutzeinstellungen</value>
   </data>
   <data name="CancelButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Countdown abbrechen</value>
@@ -144,6 +144,9 @@
   <data name="CountdownBaseTime.Content" xml:space="preserve">
     <value>End-Uhrzeit</value>
   </data>
+  <data name="CountdownDescriptionResetButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Zurücksetzen</value>
+  </data>
   <data name="ErrorInvalidLength" xml:space="preserve">
     <value>Ungültige Eingabe</value>
   </data>
@@ -157,7 +160,7 @@
     <value>Länge des Countdowns in Minuten eingeben</value>
   </data>
   <data name="MinuteLecture" xml:space="preserve">
-    <value>-minütige Vorlesung</value>
+    <value>#-minütige Vorlesung</value>
   </data>
   <data name="NotificationText1" xml:space="preserve">
     <value>Insgesamt sind </value>
@@ -205,10 +208,10 @@
     <value>Basis für den Countdown</value>
   </data>
   <data name="SettingsSection1-1-Label.Text" xml:space="preserve">
-    <value>-minütige Vorl.</value>
+    <value>Minuten</value>
   </data>
   <data name="SettingsSection1-1.Text" xml:space="preserve">
-    <value>Übliche Vorlesungsdauer</value>
+    <value>Übliche Countdown-Längen</value>
   </data>
   <data name="SettingsSection1-2-Label.Text" xml:space="preserve">
     <value>Minuten</value>
@@ -224,6 +227,9 @@
   </data>
   <data name="SettingsSection1-3.Text" xml:space="preserve">
     <value>Akademisches Viertel</value>
+  </data>
+  <data name="SettingsSection1-4.Text" xml:space="preserve">
+    <value>Beschreibung für den Countdown</value>
   </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
     <value>Zeige eine Benachrichtigung an, wenn der Countdown vorbei ist</value>

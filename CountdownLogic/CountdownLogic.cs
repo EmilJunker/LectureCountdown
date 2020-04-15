@@ -46,11 +46,13 @@ namespace CountdownLogic
             return (starttime, endtime);
         }
 
-        public static void TimerSetup(DateTime starttime, DateTime endtime)
+        public static double TimerSetup(DateTime starttime, DateTime endtime)
         {
             tick.SetTime(starttime, endtime);
 
             TimerSetup();
+
+            return Math.Floor(endtime.Subtract(starttime).TotalMinutes);
         }
 
         public static void CountdownIsOver()

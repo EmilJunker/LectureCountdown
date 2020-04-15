@@ -144,6 +144,9 @@
   <data name="CountdownBaseTime.Content" xml:space="preserve">
     <value>End time</value>
   </data>
+  <data name="CountdownDescriptionResetButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Reset</value>
+  </data>
   <data name="ErrorInvalidLength" xml:space="preserve">
     <value>Invalid input</value>
   </data>
@@ -157,7 +160,7 @@
     <value>Enter length of countdown in minutes</value>
   </data>
   <data name="MinuteLecture" xml:space="preserve">
-    <value>-minute lecture</value>
+    <value>#-minute lecture</value>
   </data>
   <data name="NotificationText1" xml:space="preserve">
     <value>A total of </value>
@@ -205,10 +208,10 @@
     <value>Base for the countdown</value>
   </data>
   <data name="SettingsSection1-1-Label.Text" xml:space="preserve">
-    <value>-minute lectures</value>
+    <value>minutes</value>
   </data>
   <data name="SettingsSection1-1.Text" xml:space="preserve">
-    <value>Common lecture lengths</value>
+    <value>Common countdown lengths</value>
   </data>
   <data name="SettingsSection1-2-Label.Text" xml:space="preserve">
     <value>minutes</value>
@@ -224,6 +227,9 @@
   </data>
   <data name="SettingsSection1-3.Text" xml:space="preserve">
     <value>Academic quarter (lecture timing)</value>
+  </data>
+  <data name="SettingsSection1-4.Text" xml:space="preserve">
+    <value>Description of the countdown</value>
   </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
     <value>Show a notification when the countdown is over</value>

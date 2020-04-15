@@ -40,17 +40,18 @@
                         <Setter Target="CountdownPanel.Height" Value="140" />
                         <Setter Target="CountdownLabel.FontSize" Value="128" />
                         <Setter Target="InfoTextBlock.FontSize" Value="16" />
-                        <Setter Target="InfoTextBlock.Margin" Value="0,0,0,4" />
+                        <Setter Target="InfoTextBlock.Margin" Value="0,0,0,2" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="LargeState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1008" MinWindowHeight="500" />
+                        <AdaptiveTrigger MinWindowWidth="1008" MinWindowHeight="540" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="CountdownPanel.Height" Value="220" />
                         <Setter Target="CountdownLabel.FontSize" Value="220" />
                         <Setter Target="InfoTextBlock.FontSize" Value="20" />
+                        <Setter Target="InfoTextBlock.Margin" Value="0,0,0,4" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -96,7 +97,7 @@
 
                 <RelativePanel x:Name="ControlPanel" RelativePanel.Below="InformationPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                     <RelativePanel x:Name="PickerPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="4">
-                        <TextBox x:Name="LengthPicker" x:Uid="LengthPicker" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="32" TextChanged="LengthPicker_TextChanged" KeyDown="LengthPicker_KeyDown" InputScope="Number" />
+                        <TextBox x:Name="LengthPicker" x:Uid="LengthPicker" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="32" TextChanged="LengthPicker_TextChanged" KeyDown="LengthPicker_KeyDown" InputScope="Number" MaxLength="20" />
                         <TimePicker x:Name="TimePicker" x:Uid="TimePicker" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="32" TimeChanged="TimePicker_Changed" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
                     </RelativePanel>
                     <Button x:Name="SuggestButton" x:Uid="SuggestButton" RelativePanel.Below="PickerPanel" RelativePanel.AlignLeftWithPanel="True" Width="32" Height="32" Margin="4" Padding="0" Click="SuggestButton_Click">

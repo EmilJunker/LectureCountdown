@@ -144,6 +144,9 @@
   <data name="CountdownBaseTime.Content" xml:space="preserve">
     <value>終了時間</value>
   </data>
+  <data name="CountdownDescriptionResetButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>リセット</value>
+  </data>
   <data name="ErrorInvalidLength" xml:space="preserve">
     <value>無効入力</value>
   </data>
@@ -157,7 +160,7 @@
     <value>カウントダウンの長さを分単位で入力します</value>
   </data>
   <data name="MinuteLecture" xml:space="preserve">
-    <value>分講義</value>
+    <value>#分講義</value>
   </data>
   <data name="NotificationText1" xml:space="preserve">
     <value>合計</value>
@@ -205,10 +208,10 @@
     <value>カウントダウンのベース</value>
   </data>
   <data name="SettingsSection1-1-Label.Text" xml:space="preserve">
-    <value>分講義</value>
+    <value>分</value>
   </data>
   <data name="SettingsSection1-1.Text" xml:space="preserve">
-    <value>一般的な講義の長さ</value>
+    <value>一般的なカウントダウンの長さ</value>
   </data>
   <data name="SettingsSection1-2-Label.Text" xml:space="preserve">
     <value>分</value>
@@ -224,6 +227,9 @@
   </data>
   <data name="SettingsSection1-3.Text" xml:space="preserve">
     <value>アカデミック・クォーター</value>
+  </data>
+  <data name="SettingsSection1-4.Text" xml:space="preserve">
+    <value>カウントダウンの説明</value>
   </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
     <value>カウントダウンが終わったときに通知を表示する</value>

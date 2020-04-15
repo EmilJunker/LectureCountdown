@@ -144,6 +144,9 @@
   <data name="CountdownBaseTime.Content" xml:space="preserve">
     <value>Hora de finalización</value>
   </data>
+  <data name="CountdownDescriptionResetButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Reinicializar</value>
+  </data>
   <data name="ErrorInvalidLength" xml:space="preserve">
     <value>Entrada inválida</value>
   </data>
@@ -154,10 +157,10 @@
     <value>No hay eventos hoy en tu calendario</value>
   </data>
   <data name="LengthPicker.ToolTipService.ToolTip" xml:space="preserve">
-    <value>Introduzca la duración de la cuenta atrás en minutos</value>
+    <value>Introduzca la duración de la cuenta regresiva en minutos</value>
   </data>
   <data name="MinuteLecture" xml:space="preserve">
-    <value> minutos larga seminario</value>
+    <value>Seminario de # minutos</value>
   </data>
   <data name="NotificationText1" xml:space="preserve">
     <value>Un total de </value>
@@ -207,10 +210,10 @@
 Base para la cuenta regresiva</value>
   </data>
   <data name="SettingsSection1-1-Label.Text" xml:space="preserve">
-    <value> minutos</value>
+    <value>minutos</value>
   </data>
   <data name="SettingsSection1-1.Text" xml:space="preserve">
-    <value>Duración usual de los seminarios</value>
+    <value>Duraciones comunes de cuenta regresiva</value>
   </data>
   <data name="SettingsSection1-2-Label.Text" xml:space="preserve">
     <value>minutos</value>
@@ -226,6 +229,9 @@ Base para la cuenta regresiva</value>
   </data>
   <data name="SettingsSection1-3.Text" xml:space="preserve">
     <value>Trimestre académico (horario de seminarios)</value>
+  </data>
+  <data name="SettingsSection1-4.Text" xml:space="preserve">
+    <value>Descripción de la cuenta regresiva</value>
   </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
     <value>Mostrar una notificación cuando la cuenta regresiva haya terminado</value>

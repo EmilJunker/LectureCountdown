@@ -8,6 +8,7 @@ namespace LessonTimer.Services
     class Settings
     {
         public static string CountdownBase { get; set; }
+        public static string CountdownDescription { get; set; }
         public static List<int> LectureLengths { get; set; }
         public static int LectureLengthRoundTo { get; set; }
         public static bool AcademicQuarterBeginEnabled { get; set; }
@@ -18,13 +19,23 @@ namespace LessonTimer.Services
         public static string ClockFormat { get; set; }
         public static string Theme { get; set; }
 
+        public static string GetCountdownDescription()
+        {
+            if (CountdownDescription is null)
+            {
+                var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                return loader.GetString("MinuteLecture");
+            }
+            return CountdownDescription;
+        }
+
         public static void LoadSettings(ApplicationDataContainer localSettings)
         {
             try
             {
                 CountdownBase = (string)localSettings.Values["countdownBase"];
 
-                if (CountdownBase == null)
+                if (CountdownBase is null)
                 {
                     CountdownBase = "time";
                 }
@@ -32,6 +43,20 @@ namespace LessonTimer.Services
             catch (NullReferenceException)
             {
                 CountdownBase = "time";
+            }
+
+            try
+            {
+                CountdownDescription = (string)localSettings.Values["countdownDescription"];
+
+                if (CountdownDescription is null)
+                {
+                    CountdownDescription = null;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                CountdownDescription = null;
             }
 
             try
@@ -103,7 +128,7 @@ namespace LessonTimer.Services
             {
                 LanguageUI = (string)localSettings.Values["languageUI"];
 
-                if (LanguageUI == null)
+                if (LanguageUI is null)
                 {
                     LanguageUI = String.Empty;
                 }
@@ -117,7 +142,7 @@ namespace LessonTimer.Services
             {
                 ClockFormat = (string)localSettings.Values["clockFormat"];
 
-                if (ClockFormat == null)
+                if (ClockFormat is null)
                 {
                     ClockFormat = new Windows.Globalization.DateTimeFormatting.DateTimeFormatter("shorttime", new[] { new GeographicRegion().Code }).Clock;
                 }
@@ -131,7 +156,7 @@ namespace LessonTimer.Services
             {
                 Theme = (string)localSettings.Values["theme"];
 
-                if (Theme == null)
+                if (Theme is null)
                 {
                     Theme = String.Empty;
                 }

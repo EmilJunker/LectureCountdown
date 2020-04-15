@@ -144,6 +144,9 @@
   <data name="CountdownBaseTime.Content" xml:space="preserve">
     <value>Heure de fin</value>
   </data>
+  <data name="CountdownDescriptionResetButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Réinitialiser</value>
+  </data>
   <data name="ErrorInvalidLength" xml:space="preserve">
     <value>Entrée invalide</value>
   </data>
@@ -157,7 +160,7 @@
     <value>Entrer la durée du compte à rebours en minutes</value>
   </data>
   <data name="MinuteLecture" xml:space="preserve">
-    <value>-minutes cours magistraux</value>
+    <value>Cours magistral de # minutes</value>
   </data>
   <data name="NotificationText1" xml:space="preserve">
     <value>Au total, </value>
@@ -205,10 +208,10 @@
     <value>Base pour le compte à rebours</value>
   </data>
   <data name="SettingsSection1-1-Label.Text" xml:space="preserve">
-    <value> minutes</value>
+    <value>minutes</value>
   </data>
   <data name="SettingsSection1-1.Text" xml:space="preserve">
-    <value>Durée habituelle de la cours magistraux</value>
+    <value>Durée habituelle du compte à rebours</value>
   </data>
   <data name="SettingsSection1-2-Label.Text" xml:space="preserve">
     <value>minutes</value>
@@ -224,6 +227,9 @@
   </data>
   <data name="SettingsSection1-3.Text" xml:space="preserve">
     <value>Quart d'heure académique</value>
+  </data>
+  <data name="SettingsSection1-4.Text" xml:space="preserve">
+    <value>Description du compte à rebours</value>
   </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
     <value>Afficher une notification lorsque le compte à rebours est terminé</value>

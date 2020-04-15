@@ -18,6 +18,7 @@ namespace LessonTimer
     public sealed partial class SettingsPage : Page
     {
         private readonly ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+        private bool countdownDescriptionNullLock;
 
         public SettingsPage()
         {
@@ -72,6 +73,28 @@ namespace LessonTimer
             EnableDisableLectureRoundComboBox();
 
             localSettings.Values["countdownBase"] = Settings.CountdownBase;
+        }
+
+        private void CountdownDescriptionTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (countdownDescriptionNullLock)
+            {
+                return;
+            }
+
+            Settings.CountdownDescription = CountdownDescriptionTextBox.Text;
+
+            localSettings.Values["countdownDescription"] = Settings.CountdownDescription;
+        }
+
+        private void CountdownDescriptionResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            countdownDescriptionNullLock = true;
+            Settings.CountdownDescription = null;
+            localSettings.Values["countdownDescription"] = null;
+
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            CountdownDescriptionTextBox.Text = loader.GetString("MinuteLecture"); ;
         }
 
         private void LectureLengthsTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -239,6 +262,8 @@ namespace LessonTimer
                 "time" => 0,
                 "length" => 1,
             };
+
+            CountdownDescriptionTextBox.Text = Settings.GetCountdownDescription();
 
             EnableDisableLectureRoundComboBox();
 

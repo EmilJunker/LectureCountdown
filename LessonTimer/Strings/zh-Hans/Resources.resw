@@ -144,6 +144,9 @@
   <data name="CountdownBaseTime.Content" xml:space="preserve">
     <value>结束时间</value>
   </data>
+  <data name="CountdownDescriptionResetButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>重 置</value>
+  </data>
   <data name="ErrorInvalidLength" xml:space="preserve">
     <value>输入无效</value>
   </data>
@@ -157,7 +160,7 @@
     <value>以分钟为单位输入倒计时的长度</value>
   </data>
   <data name="MinuteLecture" xml:space="preserve">
-    <value>分钟讲座</value>
+    <value>#分钟讲座</value>
   </data>
   <data name="NotificationText1" xml:space="preserve">
     <value>总共</value>
@@ -205,10 +208,10 @@
     <value>倒计时的基础</value>
   </data>
   <data name="SettingsSection1-1-Label.Text" xml:space="preserve">
-    <value>分钟讲座</value>
+    <value>分钟</value>
   </data>
   <data name="SettingsSection1-1.Text" xml:space="preserve">
-    <value>常用讲座长度</value>
+    <value>通常的倒数时间</value>
   </data>
   <data name="SettingsSection1-2-Label.Text" xml:space="preserve">
     <value>分钟</value>
@@ -224,6 +227,9 @@
   </data>
   <data name="SettingsSection1-3.Text" xml:space="preserve">
     <value>学术计时法</value>
+  </data>
+  <data name="SettingsSection1-4.Text" xml:space="preserve">
+    <value>倒数计时描述</value>
   </data>
   <data name="SettingsSection2-1.Text" xml:space="preserve">
     <value>倒计时结束后显示通知</value>

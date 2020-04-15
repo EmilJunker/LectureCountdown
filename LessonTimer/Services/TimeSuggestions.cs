@@ -4,17 +4,14 @@ using Windows.ApplicationModel.Appointments;
 
 namespace LessonTimer.Services
 {
-    public static class TimeSuggestions
+    class TimeSuggestions
     {
         public static int SuggestionsIterator { get; set; } = 0;
         public static int CalendarSuggestionsIterator { get; set; } = 0;
 
-        public static (string length, string description) GetLengthSuggestion()
+        public static (string lengthString, double length) GetLengthSuggestion()
         {
             double length = Settings.LectureLengths[SuggestionsIterator];
-
-            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-            string description = length.ToString() + loader.GetString("MinuteLecture");
 
             SuggestionsIterator++;
             if (SuggestionsIterator >= Settings.LectureLengths.Count)
@@ -22,16 +19,15 @@ namespace LessonTimer.Services
                 SuggestionsIterator = 0;
             }
 
-            return (length.ToString(), description);
+            return (length.ToString(), length);
         }
 
-        public static (TimeSpan endtime, string description) GetEndTimeSuggestion()
+        public static (TimeSpan endtime, double length) GetEndTimeSuggestion()
         {
-            DateTime time = DateTime.Now.AddMinutes(Settings.LectureLengths[SuggestionsIterator]);
-            TimeSpan span = TimeSpan.FromMinutes(Settings.LectureLengthRoundTo);
+            double length = Settings.LectureLengths[SuggestionsIterator];
 
-            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-            string description = Settings.LectureLengths[SuggestionsIterator].ToString() + loader.GetString("MinuteLecture");
+            DateTime time = DateTime.Now.AddMinutes(length);
+            TimeSpan span = TimeSpan.FromMinutes(Settings.LectureLengthRoundTo);
 
             SuggestionsIterator++;
             if (SuggestionsIterator >= Settings.LectureLengths.Count)
@@ -42,10 +38,10 @@ namespace LessonTimer.Services
             TimeSpan t = (time.Subtract(DateTime.MinValue)).Add(new TimeSpan(0, span.Minutes / 2, 0));
             DateTime newTime = DateTime.MinValue.Add(new TimeSpan(0, (((int)t.TotalMinutes) / (int)span.TotalMinutes) * span.Minutes, 0));
 
-            return (new TimeSpan(newTime.Hour, newTime.Minute, 0), description);
+            return (new TimeSpan(newTime.Hour, newTime.Minute, 0), length);
         }
 
-        public static (string length, string description) GetLengthSuggestion(IReadOnlyList<Appointment> allAppointments)
+        public static (string lengthString, string description) GetLengthSuggestion(IReadOnlyList<Appointment> allAppointments)
         {
             List<Appointment> appointments = new List<Appointment>();
 

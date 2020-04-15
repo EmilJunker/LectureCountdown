@@ -19,12 +19,15 @@ namespace LessonTimer
     {
         bool compactMode;
 
-        public static string currentDescription;
-        public static string nextDescription;
         public static bool descriptionAutoSetLock;
+        public static bool startButtonDisabledLock;
 
         public static DateTime starttime;
         public static DateTime endtime;
+        public static double length;
+        public static string description;
+
+        public static Description nextDescription;
 
         public MainPage()
         {
@@ -81,6 +84,7 @@ namespace LessonTimer
             }
 
             compactMode = false;
+            nextDescription = new Description();
 
             Size size = new Size(400, 300);
             ApplicationView.GetForCurrentView().SetPreferredMinSize(size);
@@ -102,8 +106,10 @@ namespace LessonTimer
 
                 StartButton.IsEnabled = false;
                 CancelButton.IsEnabled = true;
+                startButtonDisabledLock = true;
 
-                DisplayMessage(currentDescription, false);
+                string message = Description.GetDescription(description, length);
+                DisplayMessage(message, false);
 
                 switch (Settings.CountdownBase)
                 {
@@ -111,7 +117,7 @@ namespace LessonTimer
                         TimePicker.Time = new TimeSpan(endtime.Hour, endtime.Minute, 0);
                         break;
                     case "length":
-                        LengthPicker.Text = Math.Floor(endtime.Subtract(starttime).TotalMinutes).ToString();
+                        LengthPicker.Text = length.ToString();
                         break;
                 }
             }
@@ -122,15 +128,17 @@ namespace LessonTimer
                 CancelButton.IsEnabled = false;
                 descriptionAutoSetLock = true;
 
+                double suggestionLength = 0;
                 switch (Settings.CountdownBase)
                 {
                     case "time":
-                        (TimePicker.Time, nextDescription) = TimeSuggestions.GetEndTimeSuggestion();
+                        (TimePicker.Time, suggestionLength) = TimeSuggestions.GetEndTimeSuggestion();
                         break;
                     case "length":
-                        (LengthPicker.Text, nextDescription) = TimeSuggestions.GetLengthSuggestion();
+                        (LengthPicker.Text, suggestionLength) = TimeSuggestions.GetLengthSuggestion();
                         break;
                 }
+                nextDescription.Set(null, suggestionLength);
             }
         }
 
@@ -181,7 +189,6 @@ namespace LessonTimer
 
         private void StartCountdown()
         {
-            double length = 0;
             bool success = false;
 
             switch (Settings.CountdownBase)
@@ -198,16 +205,25 @@ namespace LessonTimer
                         endtime = endtime.AddDays(1);
                     }
 
-                    Countdown.TimerSetup(starttime, endtime);
+                    double countdownLength = Countdown.TimerSetup(starttime, endtime);
+                    if (nextDescription.CountdownLength == 0)
+                    {
+                        length = countdownLength;
+                    }
+                    else
+                    {
+                        length = nextDescription.CountdownLength;
+                    }
                     success = true;
                     break;
 
                 case "length":
                     try
                     {
-                        length = Convert.ToInt32(LengthPicker.Text);
-                        if (0 < length && length < 1440)
+                        int inputLength = Convert.ToInt32(LengthPicker.Text);
+                        if (0 < inputLength && inputLength < 1440)
                         {
+                            length = inputLength;
                             (MainPage.starttime, MainPage.endtime) = Countdown.TimerSetup(length);
                             success = true;
                         }
@@ -226,13 +242,15 @@ namespace LessonTimer
 
             if (success)
             {
-                currentDescription = nextDescription;
-                nextDescription = String.Empty;
                 StartButton.IsEnabled = false;
                 CancelButton.IsEnabled = true;
                 CancelButton.Focus(FocusState.Programmatic);
 
-                DisplayMessage(currentDescription, false);
+                description = nextDescription.DescriptionString;
+                nextDescription.Reset();
+
+                string message = Description.GetDescription(description, length);
+                DisplayMessage(message, false);
 
                 if (Settings.NotificationsEnabled)
                 {
@@ -277,9 +295,13 @@ namespace LessonTimer
             {
                 descriptionAutoSetLock = false;
             }
+            else if (startButtonDisabledLock)
+            {
+                startButtonDisabledLock = false;
+            }
             else
             {
-                nextDescription = String.Empty;
+                nextDescription.Reset();
                 StartButton.IsEnabled = true;
             }
         }
@@ -290,37 +312,42 @@ namespace LessonTimer
             {
                 descriptionAutoSetLock = false;
             }
+            else if (startButtonDisabledLock)
+            {
+                startButtonDisabledLock = false;
+            }
             else if (e.NewTime != e.OldTime)
             {
-                nextDescription = String.Empty;
+                nextDescription.Reset();
                 StartButton.IsEnabled = true;
             }
         }
 
         private void SuggestButton_Click(object sender, RoutedEventArgs e)
         {
-            string description = null;
+            double suggestionLength = 0;
             descriptionAutoSetLock = true;
 
             switch (Settings.CountdownBase)
             {
                 case "time":
-                    (TimePicker.Time, description) = TimeSuggestions.GetEndTimeSuggestion();
+                    (TimePicker.Time, suggestionLength) = TimeSuggestions.GetEndTimeSuggestion();
                     break;
                 case "length":
-                    (LengthPicker.Text, description) = TimeSuggestions.GetLengthSuggestion();
+                    (LengthPicker.Text, suggestionLength) = TimeSuggestions.GetLengthSuggestion();
                     break;
             }
 
+            nextDescription.Set(null, suggestionLength);
+
             if (Countdown.IsRunning)
             {
-                nextDescription = description;
                 StartButton.IsEnabled = true;
             }
             else
             {
-                nextDescription = description;
-                DisplayMessage(description, true);
+                string message = Description.GetDescription(suggestionLength);
+                DisplayMessage(message, true);
             }
         }
 
@@ -331,7 +358,7 @@ namespace LessonTimer
             DateTimeOffset dateToShow = DateTime.Now;
             TimeSpan duration = TimeSpan.FromHours(24);
 
-            string description = null;
+            string appointmentDescription = null;
             descriptionAutoSetLock = true;
 
             try
@@ -345,30 +372,30 @@ namespace LessonTimer
                         if (endTimeSuggestion.description != null)
                         {
                             TimePicker.Time = endTimeSuggestion.endtime;
-                            description = endTimeSuggestion.description;
+                            appointmentDescription = endTimeSuggestion.description;
                         }
                         break;
                     case "length":
                         var lengthSuggestion = TimeSuggestions.GetLengthSuggestion(allAppointments);
                         if (lengthSuggestion.description != null)
                         {
-                            LengthPicker.Text = lengthSuggestion.length;
-                            description = lengthSuggestion.description;
+                            LengthPicker.Text = lengthSuggestion.lengthString;
+                            appointmentDescription = lengthSuggestion.description;
                         }
                         break;
                 }
 
-                if (description != null)
+                if (appointmentDescription != null)
                 {
+                    nextDescription.Set(appointmentDescription, 0);
+
                     if (Countdown.IsRunning)
                     {
-                        nextDescription = description;
                         StartButton.IsEnabled = true;
                     }
                     else
                     {
-                        nextDescription = description;
-                        DisplayMessage(description, true);
+                        DisplayMessage(appointmentDescription, true);
                     }
                 }
                 else

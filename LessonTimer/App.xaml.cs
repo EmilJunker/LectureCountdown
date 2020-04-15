@@ -44,7 +44,8 @@ namespace LessonTimer
             {
                 MainPage.starttime = new DateTime((long)localSettings.Values["starttime"]);
                 MainPage.endtime = new DateTime((long)localSettings.Values["endtime"]);
-                MainPage.currentDescription = (string)localSettings.Values["currentDescription"];
+                MainPage.length = (double)localSettings.Values["length"];
+                MainPage.description = (string)localSettings.Values["description"];
             }
             catch (NullReferenceException) { }
             catch (ArgumentOutOfRangeException) { }
@@ -105,7 +106,8 @@ namespace LessonTimer
 
             localSettings.Values["starttime"] = MainPage.starttime.Ticks;
             localSettings.Values["endtime"] = MainPage.endtime.Ticks;
-            localSettings.Values["currentDescription"] = MainPage.currentDescription;
+            localSettings.Values["length"] = MainPage.length;
+            localSettings.Values["description"] = MainPage.description;
 
             //deferral.Complete();
         }
