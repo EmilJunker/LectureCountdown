@@ -98,8 +98,6 @@ namespace LessonTimer
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            StartButton.Focus(FocusState.Programmatic);
-
             if (endtime > DateTime.Now)
             {
                 Countdown.TimerSetup(starttime, endtime);
@@ -107,6 +105,8 @@ namespace LessonTimer
                 StartButton.IsEnabled = false;
                 CancelButton.IsEnabled = true;
                 startButtonDisabledLock = true;
+
+                CancelButton.Focus(FocusState.Programmatic);
 
                 string message = Description.GetDescriptionString(description, length);
                 DisplayMessage(message, false);
@@ -127,6 +127,8 @@ namespace LessonTimer
                 StartButton.IsEnabled = true;
                 CancelButton.IsEnabled = false;
                 descriptionAutoSetLock = true;
+
+                StartButton.Focus(FocusState.Programmatic);
 
                 double suggestionLength = 0;
                 switch (Settings.CountdownBase)
