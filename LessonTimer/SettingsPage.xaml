@@ -57,14 +57,14 @@
                         <TextBlock x:Uid="SettingsHeadlineCountdown" Margin="0,24,0,8" FontSize="20">Countdown</TextBlock>
 
                         <TextBlock x:Uid="SettingsSection1-0" Margin="0,8,0,0">Base for the countdown</TextBlock>
-                        <ComboBox x:Name="CountdownBaseComboBox" Width="200" Margin="0,8" SelectionChanged="CountdownBaseComboBox_SelectionChanged">
+                        <ComboBox x:Name="CountdownBaseComboBox" Width="220" Margin="0,8" SelectionChanged="CountdownBaseComboBox_SelectionChanged">
                             <ComboBoxItem x:Uid="CountdownBaseTime" Content="End time" Tag="time" />
                             <ComboBoxItem x:Uid="CountdownBaseLength" Content="Length in minutes" Tag="length" />
                         </ComboBox>
 
                         <TextBlock x:Uid="SettingsSection1-1" Margin="0,8,0,0">Common lecture lengths</TextBlock>
                         <RelativePanel Margin="0,8">
-                            <TextBox x:Name="LectureLengthsTextBox" Width="200" TextChanged="LectureLengthsTextBox_TextChanged"></TextBox>
+                            <TextBox x:Name="LectureLengthsTextBox" Width="220" TextChanged="LectureLengthsTextBox_TextChanged"></TextBox>
                             <TextBlock x:Uid="SettingsSection1-1-Label" RelativePanel.AlignVerticalCenterWith="LectureLengthsTextBox" RelativePanel.RightOf="LectureLengthsTextBox">-minute lectures</TextBlock>
                         </RelativePanel>
 
