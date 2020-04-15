@@ -429,6 +429,10 @@ namespace LessonTimer
                 FadeOutStoryboard.Begin();
                 ToolTipService.SetToolTip(InfoTextBlock, null);
             }
+            else if (message.Length == 0)
+            {
+                ToolTipService.SetToolTip(InfoTextBlock, null);
+            }
             else
             {
                 ToolTipService.SetToolTip(InfoTextBlock, message);
