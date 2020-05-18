@@ -247,6 +247,11 @@ namespace LessonTimer
 
             ApplicationLanguages.PrimaryLanguageOverride = Settings.LanguageUI;
 
+            if (Settings.NotificationsEnabled && CountdownLogic.Countdown.IsRunning)
+            {
+                MainPage.ScheduleNotification();
+            }
+
             localSettings.Values["languageUI"] = Settings.LanguageUI;
         }
 
