@@ -235,6 +235,9 @@
     <value>Отображать уведомление по окончании обратного отсчета</value>
   </data>
   <data name="SettingsSection2-2.Text" xml:space="preserve">
+    <value>Воспроизвести звук уведомления</value>
+  </data>
+  <data name="SettingsSection2-3.Text" xml:space="preserve">
     <value>Звук уведомления</value>
   </data>
   <data name="SettingsSection3-1.Text" xml:space="preserve">

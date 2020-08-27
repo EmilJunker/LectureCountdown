@@ -15,6 +15,7 @@ namespace LessonTimer.Services
         public static bool AcademicQuarterEndEnabled { get; set; }
         public static bool NotificationsEnabled { get; set; }
         public static bool NotificationSoundEnabled { get; set; }
+        public static string NotificationSound{ get; set; }
         public static string LanguageUI { get; set; }
         public static string ClockFormat { get; set; }
         public static string Theme { get; set; }
@@ -122,6 +123,20 @@ namespace LessonTimer.Services
             catch (NullReferenceException)
             {
                 NotificationSoundEnabled = false;
+            }
+
+            try
+            {
+                NotificationSound = (string)localSettings.Values["notificationSound"];
+
+                if (NotificationSound is null)
+                {
+                    NotificationSound = "ms-winsoundevent:Notification.Default";
+                }
+            }
+            catch (NullReferenceException)
+            {
+                NotificationSound = "ms-winsoundevent:Notification.Default";
             }
 
             try

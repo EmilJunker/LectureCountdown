@@ -5,6 +5,8 @@ using System.Text.RegularExpressions;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 using Windows.Globalization;
+using Windows.Media.Playback;
+using Windows.Media.Core;
 using Windows.Storage;
 using Windows.System;
 using Windows.UI;
@@ -20,6 +22,9 @@ namespace LessonTimer
     {
         private readonly ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
         private bool countdownDescriptionNullLock;
+        private bool settingsLoaded;
+
+        private readonly MediaPlayer mediaPlayer;
 
         public SettingsPage()
         {
@@ -47,6 +52,10 @@ namespace LessonTimer
             PackageVersion version = packageId.Version;
             VersionNumber.Text = String.Format("{0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
 
+            mediaPlayer = new MediaPlayer();
+
+            Application.Current.Suspending += new SuspendingEventHandler(App_Suspending);
+
             this.Loaded += Page_Loaded;
         }
 
@@ -55,9 +64,20 @@ namespace LessonTimer
             CloseButton.Focus(FocusState.Programmatic);
         }
 
+        private void App_Suspending(object sender, SuspendingEventArgs e)
+        {
+            mediaPlayer.Pause();
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            mediaPlayer.Pause();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -167,7 +187,7 @@ namespace LessonTimer
 
         private async void CalendarPrivacyButton_Click(object sender, RoutedEventArgs e)
         {
-            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-settings:privacy-calendar"));
+            await Launcher.LaunchUriAsync(new Uri("ms-settings:privacy-calendar"));
         }
 
         private void AcademicQuarterBeginToggleSwitch_Toggled(object sender, RoutedEventArgs e)
@@ -197,6 +217,11 @@ namespace LessonTimer
                 Settings.NotificationsEnabled = true;
                 NotificationSoundToggleSwitch.IsEnabled = true;
 
+                if (NotificationSoundToggleSwitch.IsOn)
+                {
+                    NotificationSoundComboBox.IsEnabled = true;
+                }
+
                 if (CountdownLogic.Countdown.IsRunning)
                 {
                     MainPage.ScheduleNotification();
@@ -206,8 +231,10 @@ namespace LessonTimer
             {
                 Settings.NotificationsEnabled = false;
                 NotificationSoundToggleSwitch.IsEnabled = false;
+                NotificationSoundComboBox.IsEnabled = false;
 
                 MainPage.CancelNotification();
+                mediaPlayer.Pause();
             }
 
             localSettings.Values["notificationsEnabled"] = Settings.NotificationsEnabled;
@@ -215,11 +242,17 @@ namespace LessonTimer
 
         private void NotificationSoundToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
+            if (!settingsLoaded)
+            {
+                return;
+            }
+
             ToggleSwitch ts = sender as ToggleSwitch;
 
             if (ts.IsOn)
             {
                 Settings.NotificationSoundEnabled = true;
+                NotificationSoundComboBox.IsEnabled = true;
 
                 if (CountdownLogic.Countdown.IsRunning)
                 {
@@ -229,14 +262,40 @@ namespace LessonTimer
             else
             {
                 Settings.NotificationSoundEnabled = false;
+                NotificationSoundComboBox.IsEnabled = false;
 
                 if (CountdownLogic.Countdown.IsRunning)
                 {
                     MainPage.ScheduleNotification();
                 }
+                mediaPlayer.Pause();
             }
 
             localSettings.Values["notificationSoundEnabled"] = Settings.NotificationSoundEnabled;
+        }
+
+        private void NotificationSoundComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!settingsLoaded)
+            {
+                return;
+            }
+
+            ComboBox cb = sender as ComboBox;
+            ComboBoxItem item = cb.SelectedItem as ComboBoxItem;
+            string soundUri = item.Tag.ToString();
+
+            mediaPlayer.Source = MediaSource.CreateFromUri(new Uri(soundUri));
+            mediaPlayer.Play();
+
+            Settings.NotificationSound = soundUri;
+
+            if (CountdownLogic.Countdown.IsRunning)
+            {
+                MainPage.ScheduleNotification();
+            }
+
+            localSettings.Values["notificationSound"] = Settings.NotificationSound;
         }
 
         private void LanguageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -310,15 +369,41 @@ namespace LessonTimer
             if (Settings.NotificationsEnabled)
             {
                 NotificationToggleSwitch.IsOn = true;
-                NotificationSoundToggleSwitch.IsEnabled = true;
             }
             else
             {
                 NotificationToggleSwitch.IsOn = false;
                 NotificationSoundToggleSwitch.IsEnabled = false;
+                NotificationSoundComboBox.IsEnabled = false;
             }
 
-            NotificationSoundToggleSwitch.IsOn = Settings.NotificationSoundEnabled;
+            if (Settings.NotificationSoundEnabled)
+            {
+                NotificationSoundToggleSwitch.IsOn = true;
+            }
+            else
+            {
+                NotificationSoundToggleSwitch.IsOn = false;
+                NotificationSoundComboBox.IsEnabled = false;
+            }
+
+            NotificationSoundComboBox.SelectedIndex = Settings.NotificationSound switch
+            {
+                "ms-winsoundevent:Notification.Default" => 0,
+                "ms-winsoundevent:Notification.IM" => 1,
+                "ms-winsoundevent:Notification.Mail" => 2,
+                "ms-winsoundevent:Notification.Reminder" => 3,
+                "ms-winsoundevent:Notification.Looping.Alarm" => 4,
+                "ms-winsoundevent:Notification.Looping.Alarm2" => 5,
+                "ms-winsoundevent:Notification.Looping.Alarm3" => 6,
+                "ms-winsoundevent:Notification.Looping.Alarm4" => 7,
+                "ms-winsoundevent:Notification.Looping.Alarm5" => 8,
+                "ms-winsoundevent:Notification.Looping.Alarm6" => 9,
+                "ms-winsoundevent:Notification.Looping.Alarm7" => 10,
+                "ms-winsoundevent:Notification.Looping.Alarm8" => 11,
+                "ms-winsoundevent:Notification.Looping.Alarm9" => 12,
+                "ms-winsoundevent:Notification.Looping.Alarm10" => 13,
+            };
 
             LanguageComboBox.SelectedIndex = Settings.LanguageUI switch
             {
@@ -355,6 +440,8 @@ namespace LessonTimer
                     ThemeDefaultRadioButton.IsChecked = true;
                     break;
             }
+
+            settingsLoaded = true;
         }
 
         private void EnableDisableLectureRoundComboBox()
@@ -374,7 +461,7 @@ namespace LessonTimer
 
         private async void RatingsButton_Click(object sender, RoutedEventArgs e)
         {
-            await Windows.System.Launcher.LaunchUriAsync(new Uri("ms-windows-store://review/?ProductId=9P4NPSWTX7LK"));
+            await Launcher.LaunchUriAsync(new Uri("ms-windows-store://review/?ProductId=9P4NPSWTX7LK"));
         }
     }
 }

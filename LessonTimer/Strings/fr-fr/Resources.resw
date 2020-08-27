@@ -235,6 +235,9 @@
     <value>Afficher une notification lorsque le compte à rebours est terminé</value>
   </data>
   <data name="SettingsSection2-2.Text" xml:space="preserve">
+    <value>Jouer le son de notification</value>
+  </data>
+  <data name="SettingsSection2-3.Text" xml:space="preserve">
     <value>Son de notification</value>
   </data>
   <data name="SettingsSection3-1.Text" xml:space="preserve">

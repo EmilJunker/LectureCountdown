@@ -239,6 +239,9 @@ Base para la cuenta regresiva</value>
   <data name="SettingsSection2-2.Text" xml:space="preserve">
     <value>Reproducir sonido de notificación</value>
   </data>
+  <data name="SettingsSection2-3.Text" xml:space="preserve">
+    <value>Sonido de notificación</value>
+  </data>
   <data name="SettingsSection3-1.Text" xml:space="preserve">
     <value>Idioma</value>
   </data>

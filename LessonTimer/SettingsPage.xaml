@@ -112,6 +112,26 @@
                         <TextBlock x:Uid="SettingsSection2-2" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Play notification sound</TextBlock>
                         <ToggleSwitch x:Name="NotificationSoundToggleSwitch" Toggled="NotificationSoundToggleSwitch_Toggled"></ToggleSwitch>
 
+                        <TextBlock x:Uid="SettingsSection2-3" Margin="0,8,0,0">Notification sound</TextBlock>
+                        <RelativePanel Margin="0,8">
+                            <ComboBox x:Name="NotificationSoundComboBox" Width="200" SelectionChanged="NotificationSoundComboBox_SelectionChanged">
+                                <ComboBoxItem Content="Windows Sound 1" Tag="ms-winsoundevent:Notification.Default" />
+                                <ComboBoxItem Content="Windows Sound 2" Tag="ms-winsoundevent:Notification.IM" />
+                                <ComboBoxItem Content="Windows Sound 3" Tag="ms-winsoundevent:Notification.Mail" />
+                                <ComboBoxItem Content="Windows Sound 4" Tag="ms-winsoundevent:Notification.Reminder" />
+                                <ComboBoxItem Content="Windows Alarm 1" Tag="ms-winsoundevent:Notification.Looping.Alarm" />
+                                <ComboBoxItem Content="Windows Alarm 2" Tag="ms-winsoundevent:Notification.Looping.Alarm2" />
+                                <ComboBoxItem Content="Windows Alarm 3" Tag="ms-winsoundevent:Notification.Looping.Alarm3" />
+                                <ComboBoxItem Content="Windows Alarm 4" Tag="ms-winsoundevent:Notification.Looping.Alarm4" />
+                                <ComboBoxItem Content="Windows Alarm 5" Tag="ms-winsoundevent:Notification.Looping.Alarm5" />
+                                <ComboBoxItem Content="Windows Alarm 6" Tag="ms-winsoundevent:Notification.Looping.Alarm6" />
+                                <ComboBoxItem Content="Windows Alarm 7" Tag="ms-winsoundevent:Notification.Looping.Alarm7" />
+                                <ComboBoxItem Content="Windows Alarm 8" Tag="ms-winsoundevent:Notification.Looping.Alarm8" />
+                                <ComboBoxItem Content="Windows Alarm 9" Tag="ms-winsoundevent:Notification.Looping.Alarm9" />
+                                <ComboBoxItem Content="Windows Alarm 10" Tag="ms-winsoundevent:Notification.Looping.Alarm10" />
+                            </ComboBox>
+                        </RelativePanel>
+
                     </StackPanel>
 
                     <StackPanel x:Name="SecondPanel">

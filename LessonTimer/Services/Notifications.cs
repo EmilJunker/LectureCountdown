@@ -19,7 +19,7 @@ namespace LessonTimer.Services
 
         private static ScheduledToastNotification toast;
 
-        public static void ScheduleToastNotification(bool sound, DateTime starttime, DateTime endtime)
+        public static void ScheduleToastNotification(bool sound, string source, DateTime starttime, DateTime endtime)
         {
             CancelToastNotification();
 
@@ -44,7 +44,7 @@ namespace LessonTimer.Services
                             <text>{content}</text>
                         </binding>
                     </visual>
-                    <audio silent='{silent}'/>
+                    <audio silent='{silent}' src='{source}'/>
                 </toast>";
 
                 XmlDocument toastXml = new XmlDocument();
