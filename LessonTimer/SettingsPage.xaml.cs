@@ -66,7 +66,7 @@ namespace LessonTimer
 
         private void App_Suspending(object sender, SuspendingEventArgs e)
         {
-            mediaPlayer.Pause();
+            MediaPlayer_Stop();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -77,7 +77,18 @@ namespace LessonTimer
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            mediaPlayer.Pause();
+            Application.Current.Suspending -= App_Suspending;
+            mediaPlayer.Dispose();
+        }
+
+        private void MediaPlayer_MediaEnded(MediaPlayer sender, object args)
+        {
+            MediaPlayer_Stop();
+        }
+
+        private void MediaPlayer_Stop()
+        {
+            mediaPlayer.Source = null;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -234,7 +245,7 @@ namespace LessonTimer
                 NotificationSoundComboBox.IsEnabled = false;
 
                 MainPage.CancelNotification();
-                mediaPlayer.Pause();
+                MediaPlayer_Stop();
             }
 
             localSettings.Values["notificationsEnabled"] = Settings.NotificationsEnabled;
@@ -268,7 +279,7 @@ namespace LessonTimer
                 {
                     MainPage.ScheduleNotification();
                 }
-                mediaPlayer.Pause();
+                MediaPlayer_Stop();
             }
 
             localSettings.Values["notificationSoundEnabled"] = Settings.NotificationSoundEnabled;
@@ -287,6 +298,7 @@ namespace LessonTimer
 
             mediaPlayer.Source = MediaSource.CreateFromUri(new Uri(soundUri));
             mediaPlayer.Play();
+            mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
 
             Settings.NotificationSound = soundUri;
 
