@@ -58,8 +58,8 @@
 
                         <TextBlock x:Uid="SettingsSection1-0" Margin="0,8,0,0">Base for the countdown</TextBlock>
                         <ComboBox x:Name="CountdownBaseComboBox" Width="200" Margin="0,8" SelectionChanged="CountdownBaseComboBox_SelectionChanged">
-                            <ComboBoxItem x:Uid="CountdownBaseTime" Content="End time" Tag="time" />
                             <ComboBoxItem x:Uid="CountdownBaseLength" Content="Length in minutes" Tag="length" />
+                            <ComboBoxItem x:Uid="CountdownBaseTime" Content="End time" Tag="time" />
                         </ComboBox>
 
                         <TextBlock x:Uid="SettingsSection1-4" Margin="0,8,0,0">Description of the countdown</TextBlock>

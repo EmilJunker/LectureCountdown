@@ -57,13 +57,13 @@ namespace LessonTimer
 
             switch (Settings.CountdownBase)
             {
-                case "time":
-                    LengthPicker.Visibility = Visibility.Collapsed;
-                    TimePicker.Visibility = Visibility.Visible;
-                    break;
                 case "length":
                     LengthPicker.Visibility = Visibility.Visible;
                     TimePicker.Visibility = Visibility.Collapsed;
+                    break;
+                case "time":
+                    LengthPicker.Visibility = Visibility.Collapsed;
+                    TimePicker.Visibility = Visibility.Visible;
                     break;
             }
 
@@ -113,11 +113,11 @@ namespace LessonTimer
 
                 switch (Settings.CountdownBase)
                 {
-                    case "time":
-                        TimePicker.Time = new TimeSpan(endtime.Hour, endtime.Minute, 0);
-                        break;
                     case "length":
                         LengthPicker.Text = length.ToString();
+                        break;
+                    case "time":
+                        TimePicker.Time = new TimeSpan(endtime.Hour, endtime.Minute, 0);
                         break;
                 }
             }
@@ -133,11 +133,11 @@ namespace LessonTimer
                 double suggestionLength = 0;
                 switch (Settings.CountdownBase)
                 {
-                    case "time":
-                        (TimePicker.Time, suggestionLength) = TimeSuggestions.GetEndTimeSuggestion();
-                        break;
                     case "length":
                         (LengthPicker.Text, suggestionLength) = TimeSuggestions.GetLengthSuggestion();
+                        break;
+                    case "time":
+                        (TimePicker.Time, suggestionLength) = TimeSuggestions.GetEndTimeSuggestion();
                         break;
                 }
                 nextDescription.Set(suggestionLength);
@@ -195,6 +195,28 @@ namespace LessonTimer
 
             switch (Settings.CountdownBase)
             {
+                case "length":
+                    try
+                    {
+                        int inputLength = Convert.ToInt32(LengthPicker.Text);
+                        if (0 < inputLength && inputLength < 1440)
+                        {
+                            length = inputLength;
+                            (MainPage.starttime, MainPage.endtime) = Countdown.TimerSetup(length);
+                            success = true;
+                        }
+                    }
+                    catch (Exception) { }
+                    finally
+                    {
+                        if (!success)
+                        {
+                            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                            DisplayMessage(loader.GetString("ErrorInvalidLength"), true);
+                        }
+                    }
+                    break;
+
                 case "time":
                     int hour = TimePicker.Time.Hours;
                     int min = TimePicker.Time.Minutes;
@@ -217,28 +239,6 @@ namespace LessonTimer
                         length = nextDescription.CountdownLength;
                     }
                     success = true;
-                    break;
-
-                case "length":
-                    try
-                    {
-                        int inputLength = Convert.ToInt32(LengthPicker.Text);
-                        if (0 < inputLength && inputLength < 1440)
-                        {
-                            length = inputLength;
-                            (MainPage.starttime, MainPage.endtime) = Countdown.TimerSetup(length);
-                            success = true;
-                        }
-                    }
-                    catch (Exception) { }
-                    finally
-                    {
-                        if (!success)
-                        {
-                            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-                            DisplayMessage(loader.GetString("ErrorInvalidLength"), true);
-                        }
-                    }
                     break;
             }
 
@@ -332,11 +332,11 @@ namespace LessonTimer
 
             switch (Settings.CountdownBase)
             {
-                case "time":
-                    (TimePicker.Time, suggestionLength) = TimeSuggestions.GetEndTimeSuggestion();
-                    break;
                 case "length":
                     (LengthPicker.Text, suggestionLength) = TimeSuggestions.GetLengthSuggestion();
+                    break;
+                case "time":
+                    (TimePicker.Time, suggestionLength) = TimeSuggestions.GetEndTimeSuggestion();
                     break;
             }
 
@@ -369,20 +369,20 @@ namespace LessonTimer
 
                 switch (Settings.CountdownBase)
                 {
-                    case "time":
-                        var endTimeSuggestion = TimeSuggestions.GetEndTimeSuggestion(allAppointments);
-                        if (endTimeSuggestion.description != null)
-                        {
-                            TimePicker.Time = endTimeSuggestion.endtime;
-                            appointmentDescription = endTimeSuggestion.description;
-                        }
-                        break;
                     case "length":
                         var lengthSuggestion = TimeSuggestions.GetLengthSuggestion(allAppointments);
                         if (lengthSuggestion.description != null)
                         {
                             LengthPicker.Text = lengthSuggestion.lengthString;
                             appointmentDescription = lengthSuggestion.description;
+                        }
+                        break;
+                    case "time":
+                        var endTimeSuggestion = TimeSuggestions.GetEndTimeSuggestion(allAppointments);
+                        if (endTimeSuggestion.description != null)
+                        {
+                            TimePicker.Time = endTimeSuggestion.endtime;
+                            appointmentDescription = endTimeSuggestion.description;
                         }
                         break;
                 }

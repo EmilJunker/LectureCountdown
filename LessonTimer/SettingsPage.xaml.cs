@@ -352,8 +352,8 @@ namespace LessonTimer
         {
             CountdownBaseComboBox.SelectedIndex = Settings.CountdownBase switch
             {
-                "time" => 0,
-                "length" => 1,
+                "length" => 0,
+                "time" => 1,
             };
 
             CountdownDescriptionTextBox.Text = Settings.GetCountdownDescription();
@@ -460,8 +460,8 @@ namespace LessonTimer
         {
             LectureRoundComboBox.IsEnabled = Settings.CountdownBase switch
             {
-                "time" => true,
                 "length" => false,
+                "time" => true,
             };
         }
 

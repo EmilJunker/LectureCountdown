@@ -38,12 +38,12 @@ namespace LessonTimer.Services
 
                 if (CountdownBase is null)
                 {
-                    CountdownBase = "time";
+                    CountdownBase = "length";
                 }
             }
             catch (NullReferenceException)
             {
-                CountdownBase = "time";
+                CountdownBase = "length";
             }
 
             try
