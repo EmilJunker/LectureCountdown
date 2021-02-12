@@ -240,6 +240,9 @@
   <data name="SettingsSection2-3.Text" xml:space="preserve">
     <value>Son de notification</value>
   </data>
+  <data name="SettingsSection2-4.Text" xml:space="preserve">
+    <value>Jouer le son en boucle (mode alarme)</value>
+  </data>
   <data name="SettingsSection3-1.Text" xml:space="preserve">
     <value>Langue</value>
   </data>

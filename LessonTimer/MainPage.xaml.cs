@@ -283,7 +283,7 @@ namespace LessonTimer
 
         public static void ScheduleNotification()
         {
-            Notifications.ScheduleToastNotification(Settings.NotificationSoundEnabled, Settings.NotificationSound, starttime, endtime);
+            Notifications.ScheduleToastNotification(Settings.NotificationSoundEnabled, Settings.NotificationAlarmModeEnabled, Settings.NotificationSound, starttime, endtime);
         }
 
         public static void CancelNotification()

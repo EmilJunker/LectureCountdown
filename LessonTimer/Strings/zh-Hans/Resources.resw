@@ -240,6 +240,9 @@
   <data name="SettingsSection2-3.Text" xml:space="preserve">
     <value>通知音</value>
   </data>
+  <data name="SettingsSection2-4.Text" xml:space="preserve">
+    <value>在循环中播放声音（报警模式）</value>
+  </data>
   <data name="SettingsSection3-1.Text" xml:space="preserve">
     <value>语言</value>
   </data>

@@ -15,6 +15,7 @@ namespace LessonTimer.Services
         public static bool AcademicQuarterEndEnabled { get; set; }
         public static bool NotificationsEnabled { get; set; }
         public static bool NotificationSoundEnabled { get; set; }
+        public static bool NotificationAlarmModeEnabled { get; set; }
         public static string NotificationSound{ get; set; }
         public static string LanguageUI { get; set; }
         public static string ClockFormat { get; set; }
@@ -123,6 +124,15 @@ namespace LessonTimer.Services
             catch (NullReferenceException)
             {
                 NotificationSoundEnabled = false;
+            }
+
+            try
+            {
+                NotificationAlarmModeEnabled = (bool)localSettings.Values["notificationAlarmModeEnabled"];
+            }
+            catch (NullReferenceException)
+            {
+                NotificationAlarmModeEnabled = false;
             }
 
             try

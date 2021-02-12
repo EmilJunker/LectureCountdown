@@ -240,6 +240,9 @@
   <data name="SettingsSection2-3.Text" xml:space="preserve">
     <value>Som de notificação</value>
   </data>
+  <data name="SettingsSection2-4.Text" xml:space="preserve">
+    <value>Reproduzir som em um loop (modo de alarme)</value>
+  </data>
   <data name="SettingsSection3-1.Text" xml:space="preserve">
     <value>Língua</value>
   </data>

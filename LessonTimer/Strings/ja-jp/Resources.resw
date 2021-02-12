@@ -240,6 +240,9 @@
   <data name="SettingsSection2-3.Text" xml:space="preserve">
     <value>通知音</value>
   </data>
+  <data name="SettingsSection2-4.Text" xml:space="preserve">
+    <value>ループでサウンドを再生する（アラームモード）</value>
+  </data>
   <data name="SettingsSection3-1.Text" xml:space="preserve">
     <value>言語</value>
   </data>

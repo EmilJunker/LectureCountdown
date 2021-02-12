@@ -112,6 +112,9 @@
                         <TextBlock x:Uid="SettingsSection2-2" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Play notification sound</TextBlock>
                         <ToggleSwitch x:Name="NotificationSoundToggleSwitch" Toggled="NotificationSoundToggleSwitch_Toggled"></ToggleSwitch>
 
+                        <TextBlock x:Uid="SettingsSection2-4" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Keep notification sound playing until it is dismissed</TextBlock>
+                        <ToggleSwitch x:Name="NotificationAlarmModeToggleSwitch" Toggled="NotificationAlarmModeToggleSwitch_Toggled"></ToggleSwitch>
+
                         <TextBlock x:Uid="SettingsSection2-3" Margin="0,8,0,0">Notification sound</TextBlock>
                         <RelativePanel Margin="0,8">
                             <ComboBox x:Name="NotificationSoundComboBox" Width="200" SelectionChanged="NotificationSoundComboBox_SelectionChanged">

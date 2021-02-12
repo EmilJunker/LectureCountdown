@@ -19,7 +19,7 @@ namespace LessonTimer.Services
 
         private static ScheduledToastNotification toast;
 
-        public static void ScheduleToastNotification(bool sound, string source, DateTime starttime, DateTime endtime)
+        public static void ScheduleToastNotification(bool sound, bool alarm, string source, DateTime starttime, DateTime endtime)
         {
             CancelToastNotification();
 
@@ -35,16 +35,18 @@ namespace LessonTimer.Services
                 string title = loader.GetString("NotificationTitle");
                 string content = loader.GetString("NotificationText1") + durationTotalSeconds.ToString() + loader.GetString("NotificationText2") + " " + emoji[index];
                 string silent = sound ? "false" : "true";
+                string loop = alarm ? "true" : "false";
 
                 string toastXmlString =
-                $@"<toast>
+                $@"<toast {(alarm ? "scenario='alarm'" : "")}>
                     <visual>
                         <binding template='ToastGeneric'>
                             <text>{title}</text>
                             <text>{content}</text>
                         </binding>
                     </visual>
-                    <audio silent='{silent}' src='{source}'/>
+                    {(alarm ? "<actions><action activationType='system' arguments='dismiss' content=''/></actions>" : "")}
+                    <audio silent='{silent}' loop='{loop}' src='{source}'/>
                 </toast>";
 
                 XmlDocument toastXml = new XmlDocument();
