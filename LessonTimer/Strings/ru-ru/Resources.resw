@@ -204,64 +204,64 @@
   <data name="SettingsRating.Content" xml:space="preserve">
     <value>Оцените это приложение</value>
   </data>
-  <data name="SettingsSection1-0.Text" xml:space="preserve">
-    <value>База для обратного отсчета</value>
-  </data>
-  <data name="SettingsSection1-1-Label.Text" xml:space="preserve">
-    <value>Минут</value>
-  </data>
-  <data name="SettingsSection1-1.Text" xml:space="preserve">
-    <value>Продолжительность обычной обратного отсчета</value>
-  </data>
-  <data name="SettingsSection1-2-Label.Text" xml:space="preserve">
-    <value>Минут</value>
-  </data>
-  <data name="SettingsSection1-2.Text" xml:space="preserve">
-    <value>Время окончания округляется до</value>
-  </data>
-  <data name="SettingsSection1-3-LabelBegin.Text" xml:space="preserve">
+  <data name="SettingsSectionAcademicQuarter-LabelBegin.Text" xml:space="preserve">
     <value>Начало через 15 минут</value>
   </data>
-  <data name="SettingsSection1-3-LabelEnd.Text" xml:space="preserve">
+  <data name="SettingsSectionAcademicQuarter-LabelEnd.Text" xml:space="preserve">
     <value>Конец на 15 минут раньше</value>
   </data>
-  <data name="SettingsSection1-3.Text" xml:space="preserve">
+  <data name="SettingsSectionAcademicQuarter.Text" xml:space="preserve">
     <value>Академический квартал (расписание лекций)</value>
   </data>
-  <data name="SettingsSection1-4.Text" xml:space="preserve">
-    <value>Описание обратного отсчета</value>
-  </data>
-  <data name="SettingsSection2-1.Text" xml:space="preserve">
-    <value>Отображать уведомление по окончании обратного отсчета</value>
-  </data>
-  <data name="SettingsSection2-2.Text" xml:space="preserve">
-    <value>Воспроизвести звук уведомления</value>
-  </data>
-  <data name="SettingsSection2-3.Text" xml:space="preserve">
-    <value>Звук уведомления</value>
-  </data>
-  <data name="SettingsSection2-4.Text" xml:space="preserve">
-    <value>Воспроизвести звука в цикле (режим тревоги)</value>
-  </data>
-  <data name="SettingsSection3-1.Text" xml:space="preserve">
-    <value>Язык</value>
-  </data>
-  <data name="SettingsSection3-2-Label12.Content" xml:space="preserve">
+  <data name="SettingsSectionClockFormat-Label12.Content" xml:space="preserve">
     <value>12-часовой формат</value>
   </data>
-  <data name="SettingsSection3-2-Label24.Content" xml:space="preserve">
+  <data name="SettingsSectionClockFormat-Label24.Content" xml:space="preserve">
     <value>24-часовой формат</value>
   </data>
-  <data name="SettingsSection3-2.Text" xml:space="preserve">
+  <data name="SettingsSectionClockFormat.Text" xml:space="preserve">
     <value>Формат часов</value>
   </data>
-  <data name="SettingsSection4-1-LabelDark.Content" xml:space="preserve">
+  <data name="SettingsSectionCountdownBase.Text" xml:space="preserve">
+    <value>База для обратного отсчета</value>
+  </data>
+  <data name="SettingsSectionCountdownDescription.Text" xml:space="preserve">
+    <value>Описание обратного отсчета</value>
+  </data>
+  <data name="SettingsSectionLanguage.Text" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="SettingsSectionLectureLengths-Label.Text" xml:space="preserve">
+    <value>Минут</value>
+  </data>
+  <data name="SettingsSectionLectureLengths.Text" xml:space="preserve">
+    <value>Продолжительность обычной обратного отсчета</value>
+  </data>
+  <data name="SettingsSectionLectureRound-Label.Text" xml:space="preserve">
+    <value>Минут</value>
+  </data>
+  <data name="SettingsSectionLectureRound.Text" xml:space="preserve">
+    <value>Время окончания округляется до</value>
+  </data>
+  <data name="SettingsSectionNotification.Text" xml:space="preserve">
+    <value>Отображать уведомление по окончании обратного отсчета</value>
+  </data>
+  <data name="SettingsSectionNotificationAlarmMode.Text" xml:space="preserve">
+    <value>Воспроизвести звука в цикле (режим тревоги)</value>
+  </data>
+  <data name="SettingsSectionNotificationSound.Text" xml:space="preserve">
+    <value>Звук уведомления</value>
+  </data>
+  <data name="SettingsSectionNotificationSoundEnabled.Text" xml:space="preserve">
+    <value>Воспроизвести звук уведомления</value>
+  </data>
+  <data name="SettingsSectionTheme-LabelDark.Content" xml:space="preserve">
     <value>Темный</value>
   </data>
-  <data name="SettingsSection4-1-LabelLight.Content" xml:space="preserve">
+  <data name="SettingsSectionTheme-LabelLight.Content" xml:space="preserve">
     <value>Светлый</value>
   </data>
-  <data name="SettingsSection4-1.Text" xml:space="preserve">
+  <data name="SettingsSectionTheme.Text" xml:space="preserve">
     <value>Изменение темы требует перезапуска приложения</value>
   </data>
   <data name="SettingsVersion.Text" xml:space="preserve">

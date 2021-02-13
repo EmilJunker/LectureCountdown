@@ -204,64 +204,64 @@
   <data name="SettingsRating.Content" xml:space="preserve">
     <value>率这个应用程序</value>
   </data>
-  <data name="SettingsSection1-0.Text" xml:space="preserve">
-    <value>倒计时的基础</value>
-  </data>
-  <data name="SettingsSection1-1-Label.Text" xml:space="preserve">
-    <value>分钟</value>
-  </data>
-  <data name="SettingsSection1-1.Text" xml:space="preserve">
-    <value>通常的倒数时间</value>
-  </data>
-  <data name="SettingsSection1-2-Label.Text" xml:space="preserve">
-    <value>分钟</value>
-  </data>
-  <data name="SettingsSection1-2.Text" xml:space="preserve">
-    <value>结束时间舍入至</value>
-  </data>
-  <data name="SettingsSection1-3-LabelBegin.Text" xml:space="preserve">
+  <data name="SettingsSectionAcademicQuarter-LabelBegin.Text" xml:space="preserve">
     <value>迟15分钟开始</value>
   </data>
-  <data name="SettingsSection1-3-LabelEnd.Text" xml:space="preserve">
+  <data name="SettingsSectionAcademicQuarter-LabelEnd.Text" xml:space="preserve">
     <value>提前15分钟结束</value>
   </data>
-  <data name="SettingsSection1-3.Text" xml:space="preserve">
+  <data name="SettingsSectionAcademicQuarter.Text" xml:space="preserve">
     <value>学术计时法</value>
   </data>
-  <data name="SettingsSection1-4.Text" xml:space="preserve">
-    <value>倒数计时描述</value>
-  </data>
-  <data name="SettingsSection2-1.Text" xml:space="preserve">
-    <value>倒计时结束后显示通知</value>
-  </data>
-  <data name="SettingsSection2-2.Text" xml:space="preserve">
-    <value>播放通知声音</value>
-  </data>
-  <data name="SettingsSection2-3.Text" xml:space="preserve">
-    <value>通知音</value>
-  </data>
-  <data name="SettingsSection2-4.Text" xml:space="preserve">
-    <value>在循环中播放声音（报警模式）</value>
-  </data>
-  <data name="SettingsSection3-1.Text" xml:space="preserve">
-    <value>语言</value>
-  </data>
-  <data name="SettingsSection3-2-Label12.Content" xml:space="preserve">
+  <data name="SettingsSectionClockFormat-Label12.Content" xml:space="preserve">
     <value>12小时格式</value>
   </data>
-  <data name="SettingsSection3-2-Label24.Content" xml:space="preserve">
+  <data name="SettingsSectionClockFormat-Label24.Content" xml:space="preserve">
     <value>24小时格式</value>
   </data>
-  <data name="SettingsSection3-2.Text" xml:space="preserve">
+  <data name="SettingsSectionClockFormat.Text" xml:space="preserve">
     <value>时钟格式</value>
   </data>
-  <data name="SettingsSection4-1-LabelDark.Content" xml:space="preserve">
+  <data name="SettingsSectionCountdownBase.Text" xml:space="preserve">
+    <value>倒计时的基础</value>
+  </data>
+  <data name="SettingsSectionCountdownDescription.Text" xml:space="preserve">
+    <value>倒数计时描述</value>
+  </data>
+  <data name="SettingsSectionLanguage.Text" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="SettingsSectionLectureLengths-Label.Text" xml:space="preserve">
+    <value>分钟</value>
+  </data>
+  <data name="SettingsSectionLectureLengths.Text" xml:space="preserve">
+    <value>通常的倒数时间</value>
+  </data>
+  <data name="SettingsSectionLectureRound-Label.Text" xml:space="preserve">
+    <value>分钟</value>
+  </data>
+  <data name="SettingsSectionLectureRound.Text" xml:space="preserve">
+    <value>结束时间舍入至</value>
+  </data>
+  <data name="SettingsSectionNotification.Text" xml:space="preserve">
+    <value>倒计时结束后显示通知</value>
+  </data>
+  <data name="SettingsSectionNotificationAlarmMode.Text" xml:space="preserve">
+    <value>在循环中播放声音（报警模式）</value>
+  </data>
+  <data name="SettingsSectionNotificationSound.Text" xml:space="preserve">
+    <value>通知音</value>
+  </data>
+  <data name="SettingsSectionNotificationSoundEnabled.Text" xml:space="preserve">
+    <value>播放通知声音</value>
+  </data>
+  <data name="SettingsSectionTheme-LabelDark.Content" xml:space="preserve">
     <value>黑暗</value>
   </data>
-  <data name="SettingsSection4-1-LabelLight.Content" xml:space="preserve">
+  <data name="SettingsSectionTheme-LabelLight.Content" xml:space="preserve">
     <value>光明</value>
   </data>
-  <data name="SettingsSection4-1.Text" xml:space="preserve">
+  <data name="SettingsSectionTheme.Text" xml:space="preserve">
     <value>更改主题需要重新启动应用程序</value>
   </data>
   <data name="SettingsVersion.Text" xml:space="preserve">
