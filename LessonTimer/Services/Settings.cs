@@ -7,6 +7,8 @@ namespace LessonTimer.Services
 {
     class Settings
     {
+        private static readonly ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+
         public static string CountdownBase { get; set; }
         public static string CountdownDescription { get; set; }
         public static List<int> LectureLengths { get; set; }
@@ -31,7 +33,31 @@ namespace LessonTimer.Services
             return CountdownDescription;
         }
 
-        public static void ResetLectureLengths(ApplicationDataContainer localSettings, int i)
+        public static void SetCountdownBase()
+        {
+            localSettings.Values["countdownBase"] = CountdownBase; // remove
+            localSettings.Values["CountdownBase"] = CountdownBase;
+        }
+
+        public static void SetCountdownDescription()
+        {
+            localSettings.Values["countdownDescription"] = CountdownDescription; // remove
+            localSettings.Values["CountdownDescription"] = CountdownDescription;
+        }
+
+        public static void SetLectureLengths()
+        {
+            int i = 0;
+            foreach (int length in LectureLengths)
+            {
+                localSettings.Values[String.Format("lectureLengths{0}", i)] = length; // remove
+                localSettings.Values[String.Format("LectureLengths{0}", i)] = length;
+                i++;
+            }
+            ResetLectureLengths(i);
+        }
+
+        public static void ResetLectureLengths(int i)
         {
             if (i == 0)
             {
@@ -52,7 +78,67 @@ namespace LessonTimer.Services
             }
         }
 
-        public static void LoadSettings(ApplicationDataContainer localSettings)
+        public static void SetLectureLengthRoundTo()
+        {
+            localSettings.Values["lectureLengthRoundTo"] = LectureLengthRoundTo; // remove
+            localSettings.Values["LectureLengthRoundTo"] = LectureLengthRoundTo;
+        }
+
+        public static void SetAcademicQuarterBeginEnabled()
+        {
+            localSettings.Values["academicQuarterBeginEnabled"] = AcademicQuarterBeginEnabled; // remove
+            localSettings.Values["AcademicQuarterBeginEnabled"] = AcademicQuarterBeginEnabled;
+        }
+
+        public static void SetAcademicQuarterEndEnabled()
+        {
+            localSettings.Values["academicQuarterEndEnabled"] = AcademicQuarterEndEnabled; // remove
+            localSettings.Values["AcademicQuarterEndEnabled"] = AcademicQuarterEndEnabled;
+        }
+
+        public static void SetNotificationsEnabled()
+        {
+            localSettings.Values["notificationsEnabled"] = NotificationsEnabled; // remove
+            localSettings.Values["NotificationsEnabled"] = NotificationsEnabled;
+        }
+
+        public static void SetNotificationSoundEnabled()
+        {
+            localSettings.Values["notificationSoundEnabled"] = NotificationSoundEnabled; // remove
+            localSettings.Values["NotificationSoundEnabled"] = NotificationSoundEnabled;
+        }
+
+        public static void SetNotificationAlarmModeEnabled()
+        {
+            localSettings.Values["notificationAlarmModeEnabled"] = NotificationAlarmModeEnabled; // remove
+            localSettings.Values["NotificationAlarmModeEnabled"] = NotificationAlarmModeEnabled;
+        }
+
+        public static void SetNotificationSound()
+        {
+            localSettings.Values["notificationSound"] = NotificationSound; // remove
+            localSettings.Values["NotificationSound"] = NotificationSound;
+        }
+
+        public static void SetLanguageUI()
+        {
+            localSettings.Values["languageUI"] = LanguageUI; // remove
+            localSettings.Values["LanguageUI"] = LanguageUI;
+        }
+
+        public static void SetClockFormat()
+        {
+            localSettings.Values["clockFormat"] = ClockFormat; // remove
+            localSettings.Values["ClockFormat"] = ClockFormat;
+        }
+
+        public static void SetTheme()
+        {
+            localSettings.Values["theme"] = Theme; // remove
+            localSettings.Values["Theme"] = Theme;
+        }
+
+        public static void LoadSettings()
         {
             CountdownBase = localSettings.Values["countdownBase"] as string; // change
             if (CountdownBase is null)
@@ -101,7 +187,7 @@ namespace LessonTimer.Services
             }
             catch (NullReferenceException)
             {
-                ResetLectureLengths(localSettings, 0);
+                ResetLectureLengths(0);
             }
 
             int? _LectureLengthRoundTo = localSettings.Values["lectureLengthRoundTo"] as int?; // change

@@ -14,8 +14,7 @@ namespace LessonTimer
     {
         public App()
         {
-            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
-            Settings.LoadSettings(localSettings);
+            Settings.LoadSettings();
 
             var notifications = ToastNotificationManager.CreateToastNotifier().GetScheduledToastNotifications();
             if (notifications.Count != 0)
@@ -23,7 +22,7 @@ namespace LessonTimer
                 Notifications.UseToastNotification(notifications[0]);
             }
 
-            RestoreSession(localSettings);
+            RestoreSession();
 
             Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = Settings.LanguageUI;
 
@@ -38,8 +37,9 @@ namespace LessonTimer
             this.Suspending += OnSuspending;
         }
 
-        void RestoreSession(ApplicationDataContainer localSettings)
+        private void RestoreSession()
         {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             try
             {
                 MainPage.starttime = new DateTime((long)localSettings.Values["starttime"]);
@@ -49,6 +49,16 @@ namespace LessonTimer
             }
             catch (NullReferenceException) { }
             catch (ArgumentOutOfRangeException) { }
+        }
+
+        private void SaveSession()
+        {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+
+            localSettings.Values["starttime"] = MainPage.starttime.Ticks;
+            localSettings.Values["endtime"] = MainPage.endtime.Ticks;
+            localSettings.Values["length"] = MainPage.length;
+            localSettings.Values["description"] = MainPage.description;
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
@@ -73,7 +83,7 @@ namespace LessonTimer
             }
         }
 
-        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
@@ -91,8 +101,7 @@ namespace LessonTimer
                     Window.Current.Content = rootFrame;
                 }
 
-                ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
-                RestoreSession(localSettings);
+                RestoreSession();
             }
 
             Window.Current.Activate();
@@ -101,14 +110,7 @@ namespace LessonTimer
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             //var deferral = e.SuspendingOperation.GetDeferral();
-
-            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
-
-            localSettings.Values["starttime"] = MainPage.starttime.Ticks;
-            localSettings.Values["endtime"] = MainPage.endtime.Ticks;
-            localSettings.Values["length"] = MainPage.length;
-            localSettings.Values["description"] = MainPage.description;
-
+            SaveSession();
             //deferral.Complete();
         }
     }
