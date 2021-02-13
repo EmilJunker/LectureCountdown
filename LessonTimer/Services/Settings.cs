@@ -143,7 +143,7 @@ namespace LessonTimer.Services
             CountdownBase = localSettings.Values["countdownBase"] as string; // change
             if (CountdownBase is null)
             {
-                CountdownBase = "length";
+                CountdownBase = "time"; // change to "length"
                 localSettings.Values["CountdownBase"] = CountdownBase;
             }
             else // remove
