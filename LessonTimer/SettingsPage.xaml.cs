@@ -174,20 +174,7 @@ namespace LessonTimer
                 catch (Exception) { }
             }
 
-            if (i == 0)
-            {
-                Settings.LectureLengths = new List<int>(new int[] { 45, 60, 90 });
-                localSettings.Values["lectureLengths0"] = 45;
-                localSettings.Values["lectureLengths1"] = 60;
-                localSettings.Values["lectureLengths2"] = 90;
-                i = 3;
-            }
-
-            while (i <= 7)
-            {
-                localSettings.Values[String.Format("lectureLengths{0}", i)] = null;
-                i++;
-            }
+            Settings.ResetLectureLengths(localSettings, i);
         }
 
         private void LectureRoundComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
