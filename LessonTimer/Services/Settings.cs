@@ -131,11 +131,6 @@ namespace LessonTimer.Services
             }
 
             CountdownDescription = localSettings.Values["CountdownDescription"] as string;
-            if (CountdownDescription is null)
-            {
-                CountdownDescription = null;
-                localSettings.Values["CountdownDescription"] = CountdownDescription;
-            }
 
             try
             {
@@ -165,7 +160,7 @@ namespace LessonTimer.Services
             }
             else
             {
-                LectureLengthRoundTo = (int)_LectureLengthRoundTo;
+                LectureLengthRoundTo = _LectureLengthRoundTo.Value;
             }
 
             bool? _AcademicQuarterBeginEnabled = localSettings.Values["AcademicQuarterBeginEnabled"] as bool?;
@@ -176,7 +171,7 @@ namespace LessonTimer.Services
             }
             else
             {
-                AcademicQuarterBeginEnabled = (bool)_AcademicQuarterBeginEnabled;
+                AcademicQuarterBeginEnabled = _AcademicQuarterBeginEnabled.Value;
             }
 
             bool? _AcademicQuarterEndEnabled = localSettings.Values["AcademicQuarterEndEnabled"] as bool?;
@@ -187,7 +182,7 @@ namespace LessonTimer.Services
             }
             else
             {
-                AcademicQuarterEndEnabled = (bool)_AcademicQuarterEndEnabled;
+                AcademicQuarterEndEnabled = _AcademicQuarterEndEnabled.Value;
             }
 
             bool? _NotificationsEnabled = localSettings.Values["NotificationsEnabled"] as bool?;
@@ -198,7 +193,7 @@ namespace LessonTimer.Services
             }
             else
             {
-                NotificationsEnabled = (bool)_NotificationsEnabled;
+                NotificationsEnabled = _NotificationsEnabled.Value;
             }
 
             bool? _NotificationSoundEnabled = localSettings.Values["NotificationSoundEnabled"] as bool?;
@@ -209,7 +204,7 @@ namespace LessonTimer.Services
             }
             else
             {
-                NotificationSoundEnabled = (bool)_NotificationSoundEnabled;
+                NotificationSoundEnabled = _NotificationSoundEnabled.Value;
             }
 
             bool? _NotificationAlarmModeEnabled = localSettings.Values["NotificationAlarmModeEnabled"] as bool?;
@@ -220,7 +215,7 @@ namespace LessonTimer.Services
             }
             else
             {
-                NotificationAlarmModeEnabled = (bool)_NotificationAlarmModeEnabled;
+                NotificationAlarmModeEnabled = _NotificationAlarmModeEnabled.Value;
             }
 
             NotificationSound = localSettings.Values["NotificationSound"] as string;
