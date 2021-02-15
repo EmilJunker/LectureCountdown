@@ -35,13 +35,11 @@ namespace LessonTimer.Services
 
         public static void SetCountdownBase()
         {
-            localSettings.Values["countdownBase"] = CountdownBase; // remove
             localSettings.Values["CountdownBase"] = CountdownBase;
         }
 
         public static void SetCountdownDescription()
         {
-            localSettings.Values["countdownDescription"] = CountdownDescription; // remove
             localSettings.Values["CountdownDescription"] = CountdownDescription;
         }
 
@@ -50,7 +48,6 @@ namespace LessonTimer.Services
             int i = 0;
             foreach (int length in LectureLengths)
             {
-                localSettings.Values[String.Format("lectureLengths{0}", i)] = length; // remove
                 localSettings.Values[String.Format("LectureLengths{0}", i)] = length;
                 i++;
             }
@@ -62,9 +59,6 @@ namespace LessonTimer.Services
             if (i == 0)
             {
                 LectureLengths = new List<int>(new int[] { 45, 60, 90 });
-                localSettings.Values["lectureLengths0"] = 45; // remove
-                localSettings.Values["lectureLengths1"] = 60; // remove
-                localSettings.Values["lectureLengths2"] = 90; // remove
                 localSettings.Values["LectureLengths0"] = 45;
                 localSettings.Values["LectureLengths1"] = 60;
                 localSettings.Values["LectureLengths2"] = 90;
@@ -72,7 +66,6 @@ namespace LessonTimer.Services
             }
             while (i <= 7)
             {
-                localSettings.Values[String.Format("lectureLengths{0}", i)] = null; // remove
                 localSettings.Values[String.Format("LectureLengths{0}", i)] = null;
                 i++;
             }
@@ -80,108 +73,82 @@ namespace LessonTimer.Services
 
         public static void SetLectureLengthRoundTo()
         {
-            localSettings.Values["lectureLengthRoundTo"] = LectureLengthRoundTo; // remove
             localSettings.Values["LectureLengthRoundTo"] = LectureLengthRoundTo;
         }
 
         public static void SetAcademicQuarterBeginEnabled()
         {
-            localSettings.Values["academicQuarterBeginEnabled"] = AcademicQuarterBeginEnabled; // remove
             localSettings.Values["AcademicQuarterBeginEnabled"] = AcademicQuarterBeginEnabled;
         }
 
         public static void SetAcademicQuarterEndEnabled()
         {
-            localSettings.Values["academicQuarterEndEnabled"] = AcademicQuarterEndEnabled; // remove
             localSettings.Values["AcademicQuarterEndEnabled"] = AcademicQuarterEndEnabled;
         }
 
         public static void SetNotificationsEnabled()
         {
-            localSettings.Values["notificationsEnabled"] = NotificationsEnabled; // remove
             localSettings.Values["NotificationsEnabled"] = NotificationsEnabled;
         }
 
         public static void SetNotificationSoundEnabled()
         {
-            localSettings.Values["notificationSoundEnabled"] = NotificationSoundEnabled; // remove
             localSettings.Values["NotificationSoundEnabled"] = NotificationSoundEnabled;
         }
 
         public static void SetNotificationAlarmModeEnabled()
         {
-            localSettings.Values["notificationAlarmModeEnabled"] = NotificationAlarmModeEnabled; // remove
             localSettings.Values["NotificationAlarmModeEnabled"] = NotificationAlarmModeEnabled;
         }
 
         public static void SetNotificationSound()
         {
-            localSettings.Values["notificationSound"] = NotificationSound; // remove
             localSettings.Values["NotificationSound"] = NotificationSound;
         }
 
         public static void SetLanguageUI()
         {
-            localSettings.Values["languageUI"] = LanguageUI; // remove
             localSettings.Values["LanguageUI"] = LanguageUI;
         }
 
         public static void SetClockFormat()
         {
-            localSettings.Values["clockFormat"] = ClockFormat; // remove
             localSettings.Values["ClockFormat"] = ClockFormat;
         }
 
         public static void SetTheme()
         {
-            localSettings.Values["theme"] = Theme; // remove
             localSettings.Values["Theme"] = Theme;
         }
 
         public static void LoadSettings()
         {
-            CountdownBase = localSettings.Values["countdownBase"] as string; // change
+            CountdownBase = localSettings.Values["CountdownBase"] as string;
             if (CountdownBase is null)
             {
-                CountdownBase = "time"; // change to "length"
-                localSettings.Values["CountdownBase"] = CountdownBase;
-            }
-            else // remove
-            {
+                CountdownBase = "length";
                 localSettings.Values["CountdownBase"] = CountdownBase;
             }
 
-            CountdownDescription = localSettings.Values["countdownDescription"] as string; // change
+            CountdownDescription = localSettings.Values["CountdownDescription"] as string;
             if (CountdownDescription is null)
             {
                 CountdownDescription = null;
                 localSettings.Values["CountdownDescription"] = CountdownDescription;
             }
-            else // remove
-            {
-                localSettings.Values["CountdownDescription"] = CountdownDescription;
-            }
 
             try
             {
-                LectureLengths = new List<int> { (int)localSettings.Values["lectureLengths0"] }; // change
-                localSettings.Values["LectureLengths0"] = (int)localSettings.Values["lectureLengths0"]; // remove
+                LectureLengths = new List<int> { (int)localSettings.Values["LectureLengths0"] };
                 try
                 {
-                    LectureLengths.Add((int)localSettings.Values["lectureLengths1"]); // change
-                    localSettings.Values["LectureLengths1"] = (int)localSettings.Values["lectureLengths1"]; // remove
-                    LectureLengths.Add((int)localSettings.Values["lectureLengths2"]); // change
-                    localSettings.Values["LectureLengths2"] = (int)localSettings.Values["lectureLengths2"]; // remove
-                    LectureLengths.Add((int)localSettings.Values["lectureLengths3"]); // change
-                    localSettings.Values["LectureLengths3"] = (int)localSettings.Values["lectureLengths3"]; // remove
-                    LectureLengths.Add((int)localSettings.Values["lectureLengths4"]); // change
-                    localSettings.Values["LectureLengths4"] = (int)localSettings.Values["lectureLengths4"]; // remove
-                    LectureLengths.Add((int)localSettings.Values["lectureLengths5"]); // change
-                    localSettings.Values["LectureLengths5"] = (int)localSettings.Values["lectureLengths5"]; // remove
-                    LectureLengths.Add((int)localSettings.Values["lectureLengths6"]); // change
-                    localSettings.Values["LectureLengths6"] = (int)localSettings.Values["lectureLengths6"]; // remove
-                    LectureLengths.Add((int)localSettings.Values["lectureLengths7"]); // change
-                    localSettings.Values["LectureLengths7"] = (int)localSettings.Values["lectureLengths7"]; // remove
+                    LectureLengths.Add((int)localSettings.Values["LectureLengths1"]);
+                    LectureLengths.Add((int)localSettings.Values["LectureLengths2"]);
+                    LectureLengths.Add((int)localSettings.Values["LectureLengths3"]);
+                    LectureLengths.Add((int)localSettings.Values["LectureLengths4"]);
+                    LectureLengths.Add((int)localSettings.Values["LectureLengths5"]);
+                    LectureLengths.Add((int)localSettings.Values["LectureLengths6"]);
+                    LectureLengths.Add((int)localSettings.Values["LectureLengths7"]);
                 }
                 catch (NullReferenceException) { }
             }
@@ -190,7 +157,7 @@ namespace LessonTimer.Services
                 ResetLectureLengths(0);
             }
 
-            int? _LectureLengthRoundTo = localSettings.Values["lectureLengthRoundTo"] as int?; // change
+            int? _LectureLengthRoundTo = localSettings.Values["LectureLengthRoundTo"] as int?;
             if (_LectureLengthRoundTo is null)
             {
                 LectureLengthRoundTo = 5;
@@ -199,10 +166,9 @@ namespace LessonTimer.Services
             else
             {
                 LectureLengthRoundTo = (int)_LectureLengthRoundTo;
-                localSettings.Values["LectureLengthRoundTo"] = LectureLengthRoundTo; // remove
             }
 
-            bool? _AcademicQuarterBeginEnabled = localSettings.Values["academicQuarterBeginEnabled"] as bool?; // change
+            bool? _AcademicQuarterBeginEnabled = localSettings.Values["AcademicQuarterBeginEnabled"] as bool?;
             if (_AcademicQuarterBeginEnabled is null)
             {
                 AcademicQuarterBeginEnabled = false;
@@ -211,10 +177,9 @@ namespace LessonTimer.Services
             else
             {
                 AcademicQuarterBeginEnabled = (bool)_AcademicQuarterBeginEnabled;
-                localSettings.Values["AcademicQuarterBeginEnabled"] = AcademicQuarterBeginEnabled; // remove
             }
 
-            bool? _AcademicQuarterEndEnabled = localSettings.Values["academicQuarterEndEnabled"] as bool?; // change
+            bool? _AcademicQuarterEndEnabled = localSettings.Values["AcademicQuarterEndEnabled"] as bool?;
             if (_AcademicQuarterEndEnabled is null)
             {
                 AcademicQuarterEndEnabled = false;
@@ -223,10 +188,9 @@ namespace LessonTimer.Services
             else
             {
                 AcademicQuarterEndEnabled = (bool)_AcademicQuarterEndEnabled;
-                localSettings.Values["AcademicQuarterEndEnabled"] = AcademicQuarterEndEnabled; // remove
             }
 
-            bool? _NotificationsEnabled = localSettings.Values["notificationsEnabled"] as bool?; // change
+            bool? _NotificationsEnabled = localSettings.Values["NotificationsEnabled"] as bool?;
             if (_NotificationsEnabled is null)
             {
                 NotificationsEnabled = true;
@@ -235,10 +199,9 @@ namespace LessonTimer.Services
             else
             {
                 NotificationsEnabled = (bool)_NotificationsEnabled;
-                localSettings.Values["NotificationsEnabled"] = NotificationsEnabled; // remove
             }
 
-            bool? _NotificationSoundEnabled = localSettings.Values["notificationSoundEnabled"] as bool?; // change
+            bool? _NotificationSoundEnabled = localSettings.Values["NotificationSoundEnabled"] as bool?;
             if (_NotificationSoundEnabled is null)
             {
                 NotificationSoundEnabled = false;
@@ -247,10 +210,9 @@ namespace LessonTimer.Services
             else
             {
                 NotificationSoundEnabled = (bool)_NotificationSoundEnabled;
-                localSettings.Values["NotificationSoundEnabled"] = NotificationSoundEnabled; // remove
             }
 
-            bool? _NotificationAlarmModeEnabled = localSettings.Values["notificationAlarmModeEnabled"] as bool?; // change
+            bool? _NotificationAlarmModeEnabled = localSettings.Values["NotificationAlarmModeEnabled"] as bool?;
             if (_NotificationAlarmModeEnabled is null)
             {
                 NotificationAlarmModeEnabled = false;
@@ -259,50 +221,33 @@ namespace LessonTimer.Services
             else
             {
                 NotificationAlarmModeEnabled = (bool)_NotificationAlarmModeEnabled;
-                localSettings.Values["NotificationAlarmModeEnabled"] = NotificationAlarmModeEnabled; // remove
             }
 
-            NotificationSound = localSettings.Values["notificationSound"] as string; // change
+            NotificationSound = localSettings.Values["NotificationSound"] as string;
             if (NotificationSound is null)
             {
                 NotificationSound = "ms-winsoundevent:Notification.Default";
                 localSettings.Values["NotificationSound"] = NotificationSound;
             }
-            else // remove
-            {
-                localSettings.Values["NotificationSound"] = NotificationSound;
-            }
 
-            LanguageUI = localSettings.Values["languageUI"] as string; // change
+            LanguageUI = localSettings.Values["LanguageUI"] as string;
             if (LanguageUI is null)
             {
                 LanguageUI = String.Empty;
                 localSettings.Values["LanguageUI"] = LanguageUI;
             }
-            else // remove
-            {
-                localSettings.Values["LanguageUI"] = LanguageUI;
-            }
 
-            ClockFormat = localSettings.Values["clockFormat"] as string; // change
+            ClockFormat = localSettings.Values["ClockFormat"] as string;
             if (ClockFormat is null)
             {
                 ClockFormat = new Windows.Globalization.DateTimeFormatting.DateTimeFormatter("shorttime", new[] { new GeographicRegion().Code }).Clock;
                 localSettings.Values["ClockFormat"] = ClockFormat;
             }
-            else // remove
-            {
-                localSettings.Values["ClockFormat"] = ClockFormat;
-            }
 
-            Theme = localSettings.Values["theme"] as string; // change
+            Theme = localSettings.Values["Theme"] as string;
             if (Theme is null)
             {
                 Theme = String.Empty;
-                localSettings.Values["Theme"] = Theme;
-            }
-            else // remove
-            {
                 localSettings.Values["Theme"] = Theme;
             }
         }
