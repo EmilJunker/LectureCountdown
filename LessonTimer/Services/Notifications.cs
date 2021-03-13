@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
+using System;
 using System.Collections.Generic;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
@@ -34,23 +35,15 @@ namespace LessonTimer.Services
 
                 string title = loader.GetString("NotificationTitle");
                 string content = loader.GetString("NotificationText1") + durationTotalSeconds.ToString() + loader.GetString("NotificationText2") + " " + emoji[index];
-                string silent = sound ? "false" : "true";
-                string loop = alarm ? "true" : "false";
 
-                string toastXmlString =
-                $@"<toast {(alarm ? "scenario='alarm'" : "")}>
-                    <visual>
-                        <binding template='ToastGeneric'>
-                            <text>{title}</text>
-                            <text>{content}</text>
-                        </binding>
-                    </visual>
-                    {(alarm ? "<actions><action activationType='system' arguments='dismiss' content=''/></actions>" : "")}
-                    <audio silent='{silent}' loop='{loop}' src='{source}'/>
-                </toast>";
+                ToastContentBuilder builder = new ToastContentBuilder()
+                    .SetToastScenario(alarm ? ToastScenario.Alarm : ToastScenario.Default)
+                    .AddText(title)
+                    .AddText(content)
+                    .AddButton(new ToastButtonDismiss())
+                    .AddAudio(new Uri(source), alarm, !sound);
 
-                XmlDocument toastXml = new XmlDocument();
-                toastXml.LoadXml(toastXmlString);
+                XmlDocument toastXml = builder.GetToastContent().GetXml();
                 toast = new ScheduledToastNotification(toastXml, endtime);
 
                 ToastNotificationManager.CreateToastNotifier().AddToSchedule(toast);
