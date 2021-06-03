@@ -197,13 +197,14 @@ namespace LessonTimer
 
         private void StartCountdown()
         {
+            DateTime _starttime;
             if (nextStarttime != null && nextStarttime < DateTime.Now && nextStarttime > DateTime.Now.AddDays(-1))
             {
-                starttime = (DateTime)nextStarttime;
+                _starttime = (DateTime)nextStarttime;
             }
             else
             {
-                starttime = Countdown.DateTimeNow();
+                _starttime = Countdown.DateTimeNow();
             }
 
             bool success = false;
@@ -216,8 +217,9 @@ namespace LessonTimer
                         int inputLength = Convert.ToInt32(LengthPicker.Text);
                         if (0 < inputLength && inputLength < 1440)
                         {
-                            length = inputLength;
-                            endtime = Countdown.TimerSetup(starttime, length);
+                            int _length = inputLength;
+                            endtime = Countdown.TimerSetup(_starttime, _length);
+                            length = _length;
                             success = true;
                         }
                     }
@@ -230,9 +232,9 @@ namespace LessonTimer
                         int hour = TimePicker.Time.Hours;
                         int min = TimePicker.Time.Minutes;
 
-                        endtime = Countdown.DateTimeTodayOrTomorrow(hour, min, 0);
+                        DateTime _endtime = Countdown.DateTimeTodayOrTomorrow(hour, min, 0);
 
-                        int countdownLength = Countdown.TimerSetup(starttime, endtime);
+                        int countdownLength = Countdown.TimerSetup(_starttime, _endtime);
                         if (nextDescription.CountdownLength == 0)
                         {
                             length = countdownLength;
@@ -241,6 +243,7 @@ namespace LessonTimer
                         {
                             length = nextDescription.CountdownLength;
                         }
+                        endtime = _endtime;
                         success = true;
                     }
                     catch (Exception) { }
@@ -253,6 +256,7 @@ namespace LessonTimer
                 CancelButton.IsEnabled = true;
                 CancelButton.Focus(FocusState.Programmatic);
 
+                starttime = _starttime;
                 nextStarttime = null;
 
                 description = nextDescription.CountdownDescription;
