@@ -255,6 +255,9 @@
   <data name="SettingsSectionNotificationSoundEnabled.Text" xml:space="preserve">
     <value>Reproducir sonido de notificación</value>
   </data>
+  <data name="SettingsSectionStartTimeCarryBack.Text" xml:space="preserve">
+    <value>Considere la hora de inicio del evento en la cuenta regresiva</value>
+  </data>
   <data name="SettingsSectionTheme-LabelDark.Content" xml:space="preserve">
     <value>Oscuro</value>
   </data>

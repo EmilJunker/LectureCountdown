@@ -255,6 +255,9 @@
   <data name="SettingsSectionNotificationSoundEnabled.Text" xml:space="preserve">
     <value>Jouer le son de notification</value>
   </data>
+  <data name="SettingsSectionStartTimeCarryBack.Text" xml:space="preserve">
+    <value>Prendre en compte l'heure de début de l'événement dans le compte à rebours</value>
+  </data>
   <data name="SettingsSectionTheme-LabelDark.Content" xml:space="preserve">
     <value>Foncé</value>
   </data>

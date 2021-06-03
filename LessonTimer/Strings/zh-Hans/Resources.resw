@@ -255,6 +255,9 @@
   <data name="SettingsSectionNotificationSoundEnabled.Text" xml:space="preserve">
     <value>播放通知声音</value>
   </data>
+  <data name="SettingsSectionStartTimeCarryBack.Text" xml:space="preserve">
+    <value>考虑倒计时中的事件开始时间</value>
+  </data>
   <data name="SettingsSectionTheme-LabelDark.Content" xml:space="preserve">
     <value>黑暗</value>
   </data>

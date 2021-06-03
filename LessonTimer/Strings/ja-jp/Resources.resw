@@ -255,6 +255,9 @@
   <data name="SettingsSectionNotificationSoundEnabled.Text" xml:space="preserve">
     <value>通知音を再生する</value>
   </data>
+  <data name="SettingsSectionStartTimeCarryBack.Text" xml:space="preserve">
+    <value>カウントダウンでイベントの開始時間を考慮に入れる</value>
+  </data>
   <data name="SettingsSectionTheme-LabelDark.Content" xml:space="preserve">
     <value>ブラック</value>
   </data>

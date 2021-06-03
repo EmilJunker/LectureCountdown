@@ -255,6 +255,9 @@
   <data name="SettingsSectionNotificationSoundEnabled.Text" xml:space="preserve">
     <value>Воспроизвести звук уведомления</value>
   </data>
+  <data name="SettingsSectionStartTimeCarryBack.Text" xml:space="preserve">
+    <value>Рассмотрим время начала события в обратном отсчете</value>
+  </data>
   <data name="SettingsSectionTheme-LabelDark.Content" xml:space="preserve">
     <value>Темный</value>
   </data>

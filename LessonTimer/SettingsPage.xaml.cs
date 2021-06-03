@@ -7,7 +7,6 @@ using Windows.ApplicationModel.Core;
 using Windows.Globalization;
 using Windows.Media.Playback;
 using Windows.Media.Core;
-using Windows.Storage;
 using Windows.System;
 using Windows.UI;
 using Windows.UI.Core;
@@ -200,6 +199,13 @@ namespace LessonTimer
             ToggleSwitch ts = sender as ToggleSwitch;
             Settings.AcademicQuarterEndEnabled = ts.IsOn;
             Settings.SetAcademicQuarterEndEnabled();
+        }
+
+        private void StartTimeCarryBackToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            ToggleSwitch ts = sender as ToggleSwitch;
+            Settings.StartTimeCarryBackEnabled = ts.IsOn;
+            Settings.SetStartTimeCarryBackEnabled();
         }
 
         private void NotificationToggleSwitch_Toggled(object sender, RoutedEventArgs e)
@@ -408,6 +414,7 @@ namespace LessonTimer
 
             AcademicQuarterBeginToggleSwitch.IsOn = Settings.AcademicQuarterBeginEnabled;
             AcademicQuarterEndToggleSwitch.IsOn = Settings.AcademicQuarterEndEnabled;
+            StartTimeCarryBackToggleSwitch.IsOn = Settings.StartTimeCarryBackEnabled;
 
             if (Settings.NotificationsEnabled)
             {

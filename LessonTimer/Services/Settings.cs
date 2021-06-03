@@ -15,6 +15,7 @@ namespace LessonTimer.Services
         public static int LectureLengthRoundTo { get; set; }
         public static bool AcademicQuarterBeginEnabled { get; set; }
         public static bool AcademicQuarterEndEnabled { get; set; }
+        public static bool StartTimeCarryBackEnabled { get; set; }
         public static bool NotificationsEnabled { get; set; }
         public static bool NotificationSoundEnabled { get; set; }
         public static bool NotificationAlarmModeEnabled { get; set; }
@@ -84,6 +85,11 @@ namespace LessonTimer.Services
         public static void SetAcademicQuarterEndEnabled()
         {
             localSettings.Values["AcademicQuarterEndEnabled"] = AcademicQuarterEndEnabled;
+        }
+
+        public static void SetStartTimeCarryBackEnabled()
+        {
+            localSettings.Values["StartTimeCarryBackEnabled"] = StartTimeCarryBackEnabled;
         }
 
         public static void SetNotificationsEnabled()
@@ -183,6 +189,17 @@ namespace LessonTimer.Services
             else
             {
                 AcademicQuarterEndEnabled = _AcademicQuarterEndEnabled.Value;
+            }
+
+            bool? _StartTimeCarryBackEnabled = localSettings.Values["StartTimeCarryBackEnabled"] as bool?;
+            if (_StartTimeCarryBackEnabled is null)
+            {
+                StartTimeCarryBackEnabled = false;
+                localSettings.Values["StartTimeCarryBackEnabled"] = StartTimeCarryBackEnabled;
+            }
+            else
+            {
+                StartTimeCarryBackEnabled = _StartTimeCarryBackEnabled.Value;
             }
 
             bool? _NotificationsEnabled = localSettings.Values["NotificationsEnabled"] as bool?;
