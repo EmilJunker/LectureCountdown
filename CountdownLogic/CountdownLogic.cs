@@ -126,11 +126,11 @@ namespace CountdownLogic
             return $"{(int)t.TotalHours:00}∶{t:mm}∶{t:ss}";
         }
 
-        public void SetTime(DateTime starttime, DateTime endtime)
+        public void SetTime(DateTime start, DateTime end)
         {
-            this.endtime = endtime;
-            this.duration = endtime.Subtract(starttime);
-            this.durationString = " / " + FormatTimeSpan(duration);
+            endtime = end;
+            duration = end.Subtract(start);
+            durationString = " / " + FormatTimeSpan(duration);
         }
 
         public void TimerTick(Object stateInfo)
