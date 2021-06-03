@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Windows.ApplicationModel.Appointments;
 
@@ -43,7 +43,7 @@ namespace LessonTimer.Services
 
         public static (DateTime? starttime, string lengthString, string description) GetLengthSuggestion(IReadOnlyList<Appointment> allAppointments)
         {
-            Appointment nextAppointment;
+            (String subject, DateTime start, DateTime end) nextAppointment;
             try
             {
                 nextAppointment = GetNextAppointment(allAppointments);
@@ -81,7 +81,7 @@ namespace LessonTimer.Services
 
         public static (DateTime? starttime, TimeSpan endtimePick, string description) GetEndTimeSuggestion(IReadOnlyList<Appointment> allAppointments)
         {
-            Appointment nextAppointment;
+            (String subject, DateTime start, DateTime end) nextAppointment;
             try
             {
                 nextAppointment = GetNextAppointment(allAppointments);
@@ -118,19 +118,38 @@ namespace LessonTimer.Services
             return (null, endtimePick, nextAppointment.Subject);
         }
 
-        private static Appointment GetNextAppointment(IReadOnlyList<Appointment> allAppointments)
+        private static (String, DateTime, DateTime) GetNextAppointment(IReadOnlyList<Appointment> allAppointments)
         {
-            List<Appointment> appointments = new List<Appointment>();
+            var appointments = new List<(string, DateTime, DateTime)>();
 
             foreach (Appointment a in allAppointments)
             {
                 if (!a.AllDay)
                 {
-                    appointments.Add(a);
+                    int addMinutes = 0;
+                    int subtractMinutes = 0;
+                    if (a.Duration > TimeSpan.FromMinutes(30))
+                    {
+                        if (Settings.AcademicQuarterBeginEnabled)
+                        {
+                            addMinutes = 15;
+                        }
+                        if (Settings.AcademicQuarterEndEnabled)
+                        {
+                            subtractMinutes = -15;
+                        }
+                    }
+                    DateTime start = a.StartTime.AddMinutes(addMinutes).DateTime;
+                    DateTime end = a.StartTime.Add(a.Duration).AddMinutes(subtractMinutes).DateTime;
+
+                    if (end > DateTime.Now)
+                    {
+                        appointments.Add((a.Subject, start, end));
+                    }
                 }
             }
 
-            Appointment nextAppointment;
+            (String, DateTime, DateTime) nextAppointment;
             try
             {
                 nextAppointment = appointments[CalendarSuggestionsIterator];
