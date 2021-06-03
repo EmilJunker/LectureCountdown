@@ -1,4 +1,4 @@
-﻿using CountdownLogic;
+using CountdownLogic;
 using System;
 
 namespace ConsoleTestApp
@@ -21,13 +21,8 @@ namespace ConsoleTestApp
                 mm = 0;
             }
 
-            DateTime starttime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
-            DateTime endtime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hh, mm, 0);
-
-            if ((hh < starttime.Hour) || (hh == starttime.Hour && mm < starttime.Minute))
-            {
-                endtime = endtime.AddDays(1);
-            }
+            DateTime starttime = Countdown.DateTimeNow();
+            DateTime endtime = Countdown.DateTimeTodayOrTomorrow((int)hh, (int)mm, 0);
 
             Countdown.TimerSetup(starttime, endtime);
 

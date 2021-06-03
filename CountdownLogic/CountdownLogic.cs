@@ -61,6 +61,27 @@ namespace CountdownLogic
             tick.End();
             timer.Dispose();
         }
+
+        public static DateTime DateTimeNow()
+        {
+            return new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+        }
+
+        public static DateTime DateTimeToday(int hour, int minute, int second)
+        {
+            return new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, minute, second);
+        }
+
+        public static DateTime DateTimeTodayOrTomorrow(int hour, int minute, int second)
+        {
+            DateTime now = DateTimeNow();
+            DateTime time = DateTimeToday(hour, minute, second);
+            if ((hour < now.Hour) || (hour == now.Hour && minute < now.Minute))
+            {
+                time = time.AddDays(1);
+            }
+            return time;
+        }
     }
 
     public delegate void TickEventHandler(object source, TickEventArgs e);
@@ -109,7 +130,7 @@ namespace CountdownLogic
 
         public void TimerTick(Object stateInfo)
         {
-            currenttime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+            currenttime = Countdown.DateTimeNow();
             timeleft = endtime.Subtract(currenttime);
             timepassed = duration.Subtract(timeleft);
 

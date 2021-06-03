@@ -224,13 +224,8 @@ namespace LessonTimer
                     int hour = TimePicker.Time.Hours;
                     int min = TimePicker.Time.Minutes;
 
-                    starttime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
-                    endtime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, min, 0);
-
-                    if ((hour < starttime.Hour) || (hour == starttime.Hour && min < starttime.Minute))
-                    {
-                        endtime = endtime.AddDays(1);
-                    }
+                    starttime = Countdown.DateTimeNow();
+                    endtime = Countdown.DateTimeTodayOrTomorrow(hour, min, 0);
 
                     int countdownLength = Countdown.TimerSetup(starttime, endtime);
                     if (nextDescription.CountdownLength == 0)
