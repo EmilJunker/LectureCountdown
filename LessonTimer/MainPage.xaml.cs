@@ -19,7 +19,7 @@ namespace LessonTimer
     {
         bool compactMode;
 
-        public static bool descriptionAutoSetLock;
+        public static bool suggestionAutoSetLock;
         public static bool startButtonDisabledLock;
 
         public static DateTime starttime;
@@ -126,7 +126,7 @@ namespace LessonTimer
                 TimeSuggestions.SuggestionsIterator = 0;
                 StartButton.IsEnabled = true;
                 CancelButton.IsEnabled = false;
-                descriptionAutoSetLock = true;
+                suggestionAutoSetLock = true;
 
                 StartButton.Focus(FocusState.Programmatic);
 
@@ -293,9 +293,9 @@ namespace LessonTimer
 
         private void LengthPicker_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (descriptionAutoSetLock)
+            if (suggestionAutoSetLock)
             {
-                descriptionAutoSetLock = false;
+                suggestionAutoSetLock = false;
             }
             else if (startButtonDisabledLock)
             {
@@ -310,9 +310,9 @@ namespace LessonTimer
 
         private void TimePicker_Changed(object sender, TimePickerValueChangedEventArgs e)
         {
-            if (descriptionAutoSetLock)
+            if (suggestionAutoSetLock)
             {
-                descriptionAutoSetLock = false;
+                suggestionAutoSetLock = false;
             }
             else if (startButtonDisabledLock)
             {
@@ -328,7 +328,7 @@ namespace LessonTimer
         private void SuggestButton_Click(object sender, RoutedEventArgs e)
         {
             int suggestionLength = 0;
-            descriptionAutoSetLock = true;
+            suggestionAutoSetLock = true;
 
             switch (Settings.CountdownBase)
             {
@@ -361,7 +361,7 @@ namespace LessonTimer
             TimeSpan duration = TimeSpan.FromHours(24);
 
             string appointmentDescription = null;
-            descriptionAutoSetLock = true;
+            suggestionAutoSetLock = true;
 
             try
             {
