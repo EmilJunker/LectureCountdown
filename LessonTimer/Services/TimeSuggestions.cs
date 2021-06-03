@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Windows.ApplicationModel.Appointments;
 
@@ -43,37 +43,15 @@ namespace LessonTimer.Services
 
         public static (string lengthString, string description) GetLengthSuggestion(IReadOnlyList<Appointment> allAppointments)
         {
-            List<Appointment> appointments = new List<Appointment>();
-
-            foreach (Appointment a in allAppointments)
-            {
-                if (!a.AllDay)
-                {
-                    appointments.Add(a);
-                }
-            }
-
             Appointment nextAppointment;
-
             try
             {
-                nextAppointment = appointments[CalendarSuggestionsIterator];
+                nextAppointment = GetNextAppointment(allAppointments);
             }
             catch (ArgumentOutOfRangeException)
             {
-                CalendarSuggestionsIterator = 0;
-
-                try
-                {
-                    nextAppointment = appointments[CalendarSuggestionsIterator];
-                }
-                catch (ArgumentOutOfRangeException)
-                {
-                    return (null, null);
-                }
+                return (null, null);
             }
-
-            CalendarSuggestionsIterator++;
 
             double nextAppointmentLength = nextAppointment.Duration.TotalMinutes;
 
@@ -97,37 +75,15 @@ namespace LessonTimer.Services
 
         public static (TimeSpan endtime, string description) GetEndTimeSuggestion(IReadOnlyList<Appointment> allAppointments)
         {
-            List<Appointment> appointments = new List<Appointment>();
-
-            foreach (Appointment a in allAppointments)
-            {
-                if (!a.AllDay)
-                {
-                    appointments.Add(a);
-                }
-            }
-
             Appointment nextAppointment;
-
             try
             {
-                nextAppointment = appointments[CalendarSuggestionsIterator];
+                nextAppointment = GetNextAppointment(allAppointments);
             }
             catch (ArgumentOutOfRangeException)
             {
-                CalendarSuggestionsIterator = 0;
-
-                try
-                {
-                    nextAppointment = appointments[CalendarSuggestionsIterator];
-                }
-                catch (ArgumentOutOfRangeException)
-                {
-                    return (new TimeSpan(), null);
-                }
+                return (new TimeSpan(), null);
             }
-
-            CalendarSuggestionsIterator++;
 
             DateTimeOffset nextAppointmentEndTime = nextAppointment.StartTime.Add(nextAppointment.Duration);
 
