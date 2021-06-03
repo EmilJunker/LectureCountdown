@@ -1,4 +1,4 @@
-using CountdownLogic;
+﻿using CountdownLogic;
 using System;
 
 namespace ConsoleTestApp
@@ -69,12 +69,15 @@ namespace ConsoleTestApp
 
             Countdown.tick.Ticked += new TickEventHandler(UpdateCountdown);
 
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
             Console.ReadLine();
         }
 
         static void UpdateCountdown(object source, TickEventArgs e)
         {
-            Console.Clear();
+            ClearCountdownLines();
 
             if (Countdown.IsRunning)
             {
@@ -83,7 +86,8 @@ namespace ConsoleTestApp
                 Console.WriteLine(e.Percentprogress);
 
                 int i = 0;
-                double limit = Math.Floor(e.Progress * 100);
+                int width = Console.WindowWidth - 4;
+                double limit = Math.Floor(e.Progress * width);
 
                 while (i < limit)
                 {
@@ -91,7 +95,7 @@ namespace ConsoleTestApp
                     i++;
                 }
 
-                while (i < 100)
+                while (i < width)
                 {
                     Console.Write("-");
                     i++;
@@ -101,6 +105,20 @@ namespace ConsoleTestApp
             {
                 Console.Write("The countdown is over");
             }
+        }
+
+        static void ClearCountdownLines()
+        {
+            string blank = new string(' ', Console.WindowWidth);
+
+            Console.CursorLeft = 0;
+            Console.CursorTop -= 3;
+            Console.WriteLine(blank);
+            Console.WriteLine(blank);
+            Console.WriteLine(blank);
+            Console.Write(blank);
+            Console.CursorLeft = 0;
+            Console.CursorTop -= 3;
         }
     }
 }
