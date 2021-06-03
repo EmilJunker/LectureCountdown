@@ -1,4 +1,4 @@
-using CountdownLogic;
+﻿using CountdownLogic;
 using LessonTimer.Services;
 using System;
 using System.Threading.Tasks;
@@ -28,6 +28,7 @@ namespace LessonTimer
         public static int length;
         public static string description;
 
+        public static DateTime? nextStarttime;
         public static Description nextDescription;
 
         public MainPage()
@@ -85,6 +86,7 @@ namespace LessonTimer
             }
 
             compactMode = false;
+            nextStarttime = null;
             nextDescription = new Description();
 
             Size size = new Size(400, 300);
@@ -143,6 +145,7 @@ namespace LessonTimer
                         TriggerResetSuggestionAutoSetLog();
                         break;
                 }
+                nextStarttime = null;
                 nextDescription.Set(suggestionLength);
             }
         }
@@ -194,7 +197,14 @@ namespace LessonTimer
 
         private void StartCountdown()
         {
-            starttime = Countdown.DateTimeNow();
+            if (nextStarttime != null && nextStarttime < DateTime.Now && nextStarttime > DateTime.Now.AddDays(-1))
+            {
+                starttime = (DateTime)nextStarttime;
+            }
+            else
+            {
+                starttime = Countdown.DateTimeNow();
+            }
 
             bool success = false;
 
@@ -246,6 +256,8 @@ namespace LessonTimer
                 StartButton.IsEnabled = false;
                 CancelButton.IsEnabled = true;
                 CancelButton.Focus(FocusState.Programmatic);
+
+                nextStarttime = null;
 
                 description = nextDescription.CountdownDescription;
                 nextDescription.Reset();
@@ -302,6 +314,7 @@ namespace LessonTimer
             }
             else
             {
+                nextStarttime = null;
                 nextDescription.Reset();
                 StartButton.IsEnabled = true;
             }
@@ -319,6 +332,7 @@ namespace LessonTimer
             }
             else if (e.NewTime != e.OldTime)
             {
+                nextStarttime = null;
                 nextDescription.Reset();
                 StartButton.IsEnabled = true;
             }
@@ -326,6 +340,8 @@ namespace LessonTimer
 
         private void SuggestButton_Click(object sender, RoutedEventArgs e)
         {
+            nextStarttime = null;
+
             int suggestionLength = 0;
             suggestionAutoSetLock = true;
 
@@ -372,6 +388,7 @@ namespace LessonTimer
                 {
                     case "length":
                         var lengthSuggestion = TimeSuggestions.GetLengthSuggestion(allAppointments);
+                        nextStarttime = lengthSuggestion.starttime;
                         if (lengthSuggestion.description != null)
                         {
                             LengthPicker.Text = lengthSuggestion.lengthString;
@@ -381,6 +398,7 @@ namespace LessonTimer
                         break;
                     case "time":
                         var endTimeSuggestion = TimeSuggestions.GetEndTimeSuggestion(allAppointments);
+                        nextStarttime = endTimeSuggestion.starttime;
                         if (endTimeSuggestion.description != null)
                         {
                             TimePicker.Time = endTimeSuggestion.endtimePick;

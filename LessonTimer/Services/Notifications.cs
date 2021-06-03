@@ -1,4 +1,4 @@
-using Microsoft.Toolkit.Uwp.Notifications;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Collections.Generic;
 using Windows.Data.Xml.Dom;
@@ -26,7 +26,7 @@ namespace LessonTimer.Services
 
             int durationTotalSeconds = (int)endtime.Subtract(starttime).TotalSeconds;
 
-            if (durationTotalSeconds > 0)
+            if (durationTotalSeconds > 0 && endtime > DateTime.Now)
             {
                 Random rand = new Random();
                 int index = rand.Next(0, emoji.Count);

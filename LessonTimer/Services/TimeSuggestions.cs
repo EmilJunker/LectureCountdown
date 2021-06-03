@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Windows.ApplicationModel.Appointments;
 
@@ -41,7 +41,7 @@ namespace LessonTimer.Services
             return (new TimeSpan(newTime.Hour, newTime.Minute, 0), length);
         }
 
-        public static (string lengthString, string description) GetLengthSuggestion(IReadOnlyList<Appointment> allAppointments)
+        public static (DateTime? starttime, string lengthString, string description) GetLengthSuggestion(IReadOnlyList<Appointment> allAppointments)
         {
             Appointment nextAppointment;
             try
@@ -50,30 +50,36 @@ namespace LessonTimer.Services
             }
             catch (ArgumentOutOfRangeException)
             {
-                return (null, null);
+                return (null, null, null);
             }
 
+            DateTime nextAppointmentStarttime = nextAppointment.StartTime.DateTime;
             int nextAppointmentLength = (int)nextAppointment.Duration.TotalMinutes;
 
-            if (Settings.AcademicQuarterBeginEnabled && Settings.AcademicQuarterEndEnabled)
+            if (nextAppointmentLength > 30)
             {
-                if (nextAppointmentLength > 30)
+                if (Settings.AcademicQuarterBeginEnabled)
                 {
-                    nextAppointmentLength -= 30;
+                    if (Settings.StartTimeCarryBackEnabled)
+                    {
+                        nextAppointmentStarttime = nextAppointmentStarttime.AddMinutes(15);
+                    }
+                    nextAppointmentLength -= 15;
                 }
-            }
-            else if (Settings.AcademicQuarterBeginEnabled || Settings.AcademicQuarterEndEnabled)
-            {
-                if (nextAppointmentLength > 15)
+                if (Settings.AcademicQuarterEndEnabled)
                 {
                     nextAppointmentLength -= 15;
                 }
             }
 
-            return (nextAppointmentLength.ToString(), nextAppointment.Subject);
+            if (Settings.StartTimeCarryBackEnabled)
+            {
+                return (nextAppointmentStarttime, nextAppointmentLength.ToString(), nextAppointment.Subject);
+            }
+            return (null, nextAppointmentLength.ToString(), nextAppointment.Subject);
         }
 
-        public static (TimeSpan endtimePick, string description) GetEndTimeSuggestion(IReadOnlyList<Appointment> allAppointments)
+        public static (DateTime? starttime, TimeSpan endtimePick, string description) GetEndTimeSuggestion(IReadOnlyList<Appointment> allAppointments)
         {
             Appointment nextAppointment;
             try
@@ -82,17 +88,34 @@ namespace LessonTimer.Services
             }
             catch (ArgumentOutOfRangeException)
             {
-                return (new TimeSpan(), null);
+                return (null, new TimeSpan(), null);
             }
 
-            DateTimeOffset nextAppointmentEndTime = nextAppointment.StartTime.Add(nextAppointment.Duration);
+            DateTime nextAppointmentStarttime = nextAppointment.StartTime.DateTime;
+            DateTime nextAppointmentEndTime = nextAppointment.StartTime.Add(nextAppointment.Duration).DateTime;
 
-            if (Settings.AcademicQuarterEndEnabled && nextAppointment.Duration > TimeSpan.FromMinutes(15))
+            if (nextAppointment.Duration > TimeSpan.FromMinutes(30))
             {
-                nextAppointmentEndTime = nextAppointmentEndTime.AddMinutes(-15);
+                if (Settings.AcademicQuarterBeginEnabled)
+                {
+                    if (Settings.StartTimeCarryBackEnabled)
+                    {
+                        nextAppointmentStarttime = nextAppointmentStarttime.AddMinutes(15);
+                    }
+                }
+                if (Settings.AcademicQuarterEndEnabled)
+                {
+                    nextAppointmentEndTime = nextAppointmentEndTime.AddMinutes(-15);
+                }
             }
 
-            return (new TimeSpan(nextAppointmentEndTime.Hour, nextAppointmentEndTime.Minute, 0), nextAppointment.Subject);
+            TimeSpan endtimePick = new TimeSpan(nextAppointmentEndTime.Hour, nextAppointmentEndTime.Minute, 0);
+
+            if (Settings.StartTimeCarryBackEnabled)
+            {
+                return (nextAppointmentStarttime, endtimePick, nextAppointment.Subject);
+            }
+            return (null, endtimePick, nextAppointment.Subject);
         }
 
         private static Appointment GetNextAppointment(IReadOnlyList<Appointment> allAppointments)
