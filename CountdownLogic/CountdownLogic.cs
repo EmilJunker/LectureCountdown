@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading;
 
 namespace CountdownLogic
@@ -26,9 +26,8 @@ namespace CountdownLogic
             IsRunning = true;
         }
 
-        public static (DateTime starttime, DateTime endtime) TimerSetup(int length)
+        public static DateTime TimerSetup(DateTime starttime, int length)
         {
-            DateTime starttime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
             DateTime endtime;
             try
             {
@@ -43,7 +42,7 @@ namespace CountdownLogic
 
             TimerSetup();
 
-            return (starttime, endtime);
+            return endtime;
         }
 
         public static int TimerSetup(DateTime starttime, DateTime endtime)
@@ -128,6 +127,11 @@ namespace CountdownLogic
 
         public void SetTime(DateTime start, DateTime end)
         {
+            DateTime now = Countdown.DateTimeNow();
+            if (now < start)
+            {
+                start = now;
+            }
             endtime = end;
             duration = end.Subtract(start);
             durationString = " / " + FormatTimeSpan(duration);

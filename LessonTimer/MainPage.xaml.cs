@@ -194,6 +194,8 @@ namespace LessonTimer
 
         private void StartCountdown()
         {
+            starttime = Countdown.DateTimeNow();
+
             bool success = false;
 
             switch (Settings.CountdownBase)
@@ -205,7 +207,7 @@ namespace LessonTimer
                         if (0 < inputLength && inputLength < 1440)
                         {
                             length = inputLength;
-                            (MainPage.starttime, MainPage.endtime) = Countdown.TimerSetup(length);
+                            endtime = Countdown.TimerSetup(starttime, length);
                             success = true;
                         }
                     }
@@ -224,7 +226,6 @@ namespace LessonTimer
                     int hour = TimePicker.Time.Hours;
                     int min = TimePicker.Time.Minutes;
 
-                    starttime = Countdown.DateTimeNow();
                     endtime = Countdown.DateTimeTodayOrTomorrow(hour, min, 0);
 
                     int countdownLength = Countdown.TimerSetup(starttime, endtime);
