@@ -35,8 +35,8 @@ namespace LessonTimer.Services
                 SuggestionsIterator = 0;
             }
 
-            TimeSpan t = (time.Subtract(DateTime.MinValue)).Add(new TimeSpan(0, span.Minutes / 2, 0));
-            DateTime newTime = DateTime.MinValue.Add(new TimeSpan(0, (((int)t.TotalMinutes) / (int)span.TotalMinutes) * span.Minutes, 0));
+            TimeSpan t = time.Subtract(DateTime.MinValue).Add(new TimeSpan(0, span.Minutes / 2, 0));
+            DateTime newTime = DateTime.MinValue.Add(new TimeSpan(0, ((int)t.TotalMinutes) / (int)span.TotalMinutes * span.Minutes, 0));
 
             return (new TimeSpan(newTime.Hour, newTime.Minute, 0), length);
         }
