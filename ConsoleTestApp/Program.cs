@@ -7,24 +7,34 @@ namespace ConsoleTestApp
     {
         static void Main(string[] args)
         {
-            int hh;
-            int mm;
+            int? arg0 = null;
+            int? arg1 = null;
 
             try
             {
-                hh = int.Parse(args[0]);
-                mm = int.Parse(args[1]);
+                arg0 = int.Parse(args[0]);
+                arg1 = int.Parse(args[1]);
             }
-            catch (Exception)
-            {
-                hh = 0;
-                mm = 0;
-            }
+            catch (Exception) { }
 
             DateTime starttime = Countdown.DateTimeNow();
-            DateTime endtime = Countdown.DateTimeTodayOrTomorrow((int)hh, (int)mm, 0);
 
-            Countdown.TimerSetup(starttime, endtime);
+            if (arg0 is null)
+            {
+                // use default length 10 minutes
+                Countdown.TimerSetup(starttime, 10);
+            }
+            else if (arg1 is null)
+            {
+                // have arg0 -> use as length
+                Countdown.TimerSetup(starttime, (int)arg0);
+            }
+            else
+            {
+                // have arg0 arg1 -> use as endtime today or tomorrow
+                DateTime endtime = Countdown.DateTimeTodayOrTomorrow((int)arg0, (int)arg1, 0);
+                Countdown.TimerSetup(starttime, endtime);
+            }
 
             Countdown.tick.Ticked += new TickEventHandler(UpdateCountdown);
 
