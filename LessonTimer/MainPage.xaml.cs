@@ -387,7 +387,7 @@ namespace LessonTimer
                         var endTimeSuggestion = TimeSuggestions.GetEndTimeSuggestion(allAppointments);
                         if (endTimeSuggestion.description != null)
                         {
-                            TimePicker.Time = endTimeSuggestion.endtime;
+                            TimePicker.Time = endTimeSuggestion.endtimePick;
                             appointmentDescription = endTimeSuggestion.description;
                             TriggerResetSuggestionAutoSetLog();
                         }

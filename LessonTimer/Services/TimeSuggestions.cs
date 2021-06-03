@@ -22,7 +22,7 @@ namespace LessonTimer.Services
             return (length.ToString(), length);
         }
 
-        public static (TimeSpan endtime, int length) GetEndTimeSuggestion()
+        public static (TimeSpan endtimePick, int length) GetEndTimeSuggestion()
         {
             int length = Settings.LectureLengths[SuggestionsIterator];
 
@@ -73,7 +73,7 @@ namespace LessonTimer.Services
             return (nextAppointmentLength.ToString(), nextAppointment.Subject);
         }
 
-        public static (TimeSpan endtime, string description) GetEndTimeSuggestion(IReadOnlyList<Appointment> allAppointments)
+        public static (TimeSpan endtimePick, string description) GetEndTimeSuggestion(IReadOnlyList<Appointment> allAppointments)
         {
             Appointment nextAppointment;
             try
