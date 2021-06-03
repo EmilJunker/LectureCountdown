@@ -1,4 +1,4 @@
-﻿using CountdownLogic;
+using CountdownLogic;
 using LessonTimer.Services;
 using System;
 using System.Threading.Tasks;
@@ -227,7 +227,7 @@ namespace LessonTimer
                         if (!success)
                         {
                             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-                            DisplayMessage(loader.GetString("ErrorInvalidLength"), true);
+                            DisplayMessage(loader.GetString("ErrorInvalidInput"), true);
                         }
                     }
                     break;

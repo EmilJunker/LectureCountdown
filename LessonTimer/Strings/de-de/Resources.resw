@@ -147,7 +147,7 @@
   <data name="CountdownDescriptionResetButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Zurücksetzen</value>
   </data>
-  <data name="ErrorInvalidLength" xml:space="preserve">
+  <data name="ErrorInvalidInput" xml:space="preserve">
     <value>Ungültige Eingabe</value>
   </data>
   <data name="ErrorNoCalendarAccessPermission" xml:space="preserve">
