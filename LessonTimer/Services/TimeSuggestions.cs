@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Windows.ApplicationModel.Appointments;
 
@@ -137,6 +137,41 @@ namespace LessonTimer.Services
             }
 
             return (new TimeSpan(nextAppointmentEndTime.Hour, nextAppointmentEndTime.Minute, 0), nextAppointment.Subject);
+        }
+
+        private static Appointment GetNextAppointment(IReadOnlyList<Appointment> allAppointments)
+        {
+            List<Appointment> appointments = new List<Appointment>();
+
+            foreach (Appointment a in allAppointments)
+            {
+                if (!a.AllDay)
+                {
+                    appointments.Add(a);
+                }
+            }
+
+            Appointment nextAppointment;
+            try
+            {
+                nextAppointment = appointments[CalendarSuggestionsIterator];
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                CalendarSuggestionsIterator = 0;
+                try
+                {
+                    nextAppointment = appointments[CalendarSuggestionsIterator];
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    throw;
+                }
+            }
+
+            CalendarSuggestionsIterator++;
+
+            return nextAppointment;
         }
     }
 }
