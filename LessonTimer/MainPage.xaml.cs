@@ -1,6 +1,7 @@
 using CountdownLogic;
 using LessonTimer.Services;
 using System;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Appointments;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
@@ -135,9 +136,11 @@ namespace LessonTimer
                 {
                     case "length":
                         (LengthPicker.Text, suggestionLength) = TimeSuggestions.GetLengthSuggestion();
+                        TriggerResetSuggestionAutoSetLog();
                         break;
                     case "time":
                         (TimePicker.Time, suggestionLength) = TimeSuggestions.GetEndTimeSuggestion();
+                        TriggerResetSuggestionAutoSetLog();
                         break;
                 }
                 nextDescription.Set(suggestionLength);
@@ -334,9 +337,11 @@ namespace LessonTimer
             {
                 case "length":
                     (LengthPicker.Text, suggestionLength) = TimeSuggestions.GetLengthSuggestion();
+                    TriggerResetSuggestionAutoSetLog();
                     break;
                 case "time":
                     (TimePicker.Time, suggestionLength) = TimeSuggestions.GetEndTimeSuggestion();
+                    TriggerResetSuggestionAutoSetLog();
                     break;
             }
 
@@ -375,6 +380,7 @@ namespace LessonTimer
                         {
                             LengthPicker.Text = lengthSuggestion.lengthString;
                             appointmentDescription = lengthSuggestion.description;
+                            TriggerResetSuggestionAutoSetLog();
                         }
                         break;
                     case "time":
@@ -383,6 +389,7 @@ namespace LessonTimer
                         {
                             TimePicker.Time = endTimeSuggestion.endtime;
                             appointmentDescription = endTimeSuggestion.description;
+                            TriggerResetSuggestionAutoSetLog();
                         }
                         break;
                 }
@@ -467,6 +474,12 @@ namespace LessonTimer
 
             ControlPanel.Visibility = Visibility.Visible;
             compactMode = false;
+        }
+
+        private async void TriggerResetSuggestionAutoSetLog()
+        {
+            await Task.Delay(100);
+            suggestionAutoSetLock = false;
         }
     }
 }
