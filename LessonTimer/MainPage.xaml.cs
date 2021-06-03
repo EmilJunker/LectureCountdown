@@ -1,4 +1,4 @@
-using CountdownLogic;
+﻿using CountdownLogic;
 using LessonTimer.Services;
 using System;
 using System.Threading.Tasks;
@@ -101,7 +101,7 @@ namespace LessonTimer
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if (endtime > DateTime.Now)
+            try
             {
                 Countdown.TimerSetup(starttime, endtime);
 
@@ -124,7 +124,7 @@ namespace LessonTimer
                         break;
                 }
             }
-            else
+            catch (ArgumentException)
             {
                 TimeSuggestions.SuggestionsIterator = 0;
                 StartButton.IsEnabled = true;
@@ -222,32 +222,28 @@ namespace LessonTimer
                         }
                     }
                     catch (Exception) { }
-                    finally
-                    {
-                        if (!success)
-                        {
-                            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-                            DisplayMessage(loader.GetString("ErrorInvalidInput"), true);
-                        }
-                    }
                     break;
 
                 case "time":
-                    int hour = TimePicker.Time.Hours;
-                    int min = TimePicker.Time.Minutes;
-
-                    endtime = Countdown.DateTimeTodayOrTomorrow(hour, min, 0);
-
-                    int countdownLength = Countdown.TimerSetup(starttime, endtime);
-                    if (nextDescription.CountdownLength == 0)
+                    try
                     {
-                        length = countdownLength;
+                        int hour = TimePicker.Time.Hours;
+                        int min = TimePicker.Time.Minutes;
+
+                        endtime = Countdown.DateTimeTodayOrTomorrow(hour, min, 0);
+
+                        int countdownLength = Countdown.TimerSetup(starttime, endtime);
+                        if (nextDescription.CountdownLength == 0)
+                        {
+                            length = countdownLength;
+                        }
+                        else
+                        {
+                            length = nextDescription.CountdownLength;
+                        }
+                        success = true;
                     }
-                    else
-                    {
-                        length = nextDescription.CountdownLength;
-                    }
-                    success = true;
+                    catch (Exception) { }
                     break;
             }
 
@@ -269,6 +265,11 @@ namespace LessonTimer
                 {
                     ScheduleNotification();
                 }
+            }
+            else
+            {
+                var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                DisplayMessage(loader.GetString("ErrorInvalidInput"), true);
             }
         }
 

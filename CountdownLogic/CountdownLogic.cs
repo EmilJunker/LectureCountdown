@@ -38,7 +38,14 @@ namespace CountdownLogic
                 endtime = DateTime.MaxValue;
             }
 
-            tick.SetTime(starttime, endtime);
+            try
+            {
+                tick.SetTime(starttime, endtime);
+            }
+            catch (ArgumentException)
+            {
+                throw;
+            }
 
             TimerSetup();
 
@@ -47,7 +54,14 @@ namespace CountdownLogic
 
         public static int TimerSetup(DateTime starttime, DateTime endtime)
         {
-            tick.SetTime(starttime, endtime);
+            try
+            {
+                tick.SetTime(starttime, endtime);
+            }
+            catch (ArgumentException)
+            {
+                throw;
+            }
 
             TimerSetup();
 
@@ -128,9 +142,9 @@ namespace CountdownLogic
         public void SetTime(DateTime start, DateTime end)
         {
             DateTime now = Countdown.DateTimeNow();
-            if (now < start)
+            if (now < start || end < now || end < start)
             {
-                start = now;
+                throw new ArgumentException();
             }
             endtime = end;
             duration = end.Subtract(start);

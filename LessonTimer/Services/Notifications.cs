@@ -26,28 +26,29 @@ namespace LessonTimer.Services
 
             int durationTotalSeconds = (int)endtime.Subtract(starttime).TotalSeconds;
 
-            if (durationTotalSeconds > 0 && endtime > DateTime.Now)
+            Random rand = new Random();
+            int index = rand.Next(0, emoji.Count);
+
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+
+            string title = loader.GetString("NotificationTitle");
+            string content = loader.GetString("NotificationText1") + durationTotalSeconds.ToString() + loader.GetString("NotificationText2") + " " + emoji[index];
+
+            ToastContentBuilder builder = new ToastContentBuilder()
+                .SetToastScenario(alarm ? ToastScenario.Alarm : ToastScenario.Default)
+                .AddText(title)
+                .AddText(content)
+                .AddButton(new ToastButtonDismiss())
+                .AddAudio(new Uri(source), alarm, !sound);
+
+            XmlDocument toastXml = builder.GetToastContent().GetXml();
+
+            try
             {
-                Random rand = new Random();
-                int index = rand.Next(0, emoji.Count);
-
-                var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-
-                string title = loader.GetString("NotificationTitle");
-                string content = loader.GetString("NotificationText1") + durationTotalSeconds.ToString() + loader.GetString("NotificationText2") + " " + emoji[index];
-
-                ToastContentBuilder builder = new ToastContentBuilder()
-                    .SetToastScenario(alarm ? ToastScenario.Alarm : ToastScenario.Default)
-                    .AddText(title)
-                    .AddText(content)
-                    .AddButton(new ToastButtonDismiss())
-                    .AddAudio(new Uri(source), alarm, !sound);
-
-                XmlDocument toastXml = builder.GetToastContent().GetXml();
                 toast = new ScheduledToastNotification(toastXml, endtime);
-
                 ToastNotificationManager.CreateToastNotifier().AddToSchedule(toast);
             }
+            catch (ArgumentException) { }
         }
 
         public static void CancelToastNotification()
