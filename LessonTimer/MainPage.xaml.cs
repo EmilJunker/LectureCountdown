@@ -265,10 +265,10 @@ namespace LessonTimer
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                CountdownLabel.Text = (e.Countdown);
-                CountdownProgressBar.Value = (e.Progress);
-                CountdownProgressText.Text = (e.Timeprogress);
-                CountdownProgressPercentage.Text = (e.Percentprogress);
+                CountdownLabel.Text = e.Countdown;
+                CountdownProgressBar.Value = e.Progress;
+                CountdownProgressText.Text = e.Timeprogress;
+                CountdownProgressPercentage.Text = e.Percentprogress;
 
                 if (!Countdown.IsRunning)
                 {
