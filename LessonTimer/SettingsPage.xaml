@@ -1,4 +1,4 @@
-<Page
+﻿<Page
     x:Class="LessonTimer.SettingsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -22,15 +22,40 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="SecondPanel.(RelativePanel.Below)" Value="FirstPanel" />
+                        <Setter Target="ThirdPanel.(RelativePanel.Below)" Value="SecondPanel" />
+                        <Setter Target="FourthPanel.(RelativePanel.Below)" Value="ThirdPanel" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="MediumState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="920" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="SecondPanel.(RelativePanel.Below)" Value="FirstPanel" />
+                        <Setter Target="ThirdPanel.(RelativePanel.RightOf)" Value="FirstPanel" />
+                        <Setter Target="FourthPanel.(RelativePanel.Below)" Value="ThirdPanel" />
+                        <Setter Target="FourthPanel.(RelativePanel.AlignLeftWith)" Value="ThirdPanel" />
+                        <Setter Target="FirstPanel.Margin" Value="40,0" />
+                        <Setter Target="SecondPanel.Margin" Value="40,0" />
+                        <Setter Target="ThirdPanel.Margin" Value="40,0" />
+                        <Setter Target="FourthPanel.Margin" Value="40,0" />
+                        <Setter Target="CloseButton.Margin" Value="40,40" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="LargeState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="800" />
+                        <AdaptiveTrigger MinWindowWidth="1380" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="SecondPanel.(RelativePanel.RightOf)" Value="FirstPanel" />
-                        <Setter Target="SecondPanel.Margin" Value="80,0" />
+                        <Setter Target="ThirdPanel.(RelativePanel.Below)" Value="SecondPanel" />
+                        <Setter Target="ThirdPanel.(RelativePanel.AlignLeftWith)" Value="SecondPanel" />
+                        <Setter Target="FourthPanel.(RelativePanel.RightOf)" Value="SecondPanel" />
+                        <Setter Target="FirstPanel.Margin" Value="40,0" />
+                        <Setter Target="SecondPanel.Margin" Value="40,0" />
+                        <Setter Target="ThirdPanel.Margin" Value="40,0" />
+                        <Setter Target="FourthPanel.Margin" Value="40,0" />
+                        <Setter Target="CloseButton.Margin" Value="40,40" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -52,17 +77,17 @@
 
                 <RelativePanel x:Name="MainPanel">
 
-                    <StackPanel x:Name="FirstPanel">
+                    <StackPanel x:Name="FirstPanel" Width="320">
 
                         <TextBlock x:Uid="SettingsHeadlineCountdown" Margin="0,24,0,8" FontSize="20">Countdown</TextBlock>
 
-                        <TextBlock x:Uid="SettingsSectionCountdownBase" Margin="0,8,0,0">Base for the countdown</TextBlock>
+                        <TextBlock x:Uid="SettingsSectionCountdownBase" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Base for the countdown</TextBlock>
                         <ComboBox x:Name="CountdownBaseComboBox" Width="200" Margin="0,8" SelectionChanged="CountdownBaseComboBox_SelectionChanged">
                             <ComboBoxItem x:Uid="CountdownBaseLength" Content="Length in minutes" Tag="length" />
                             <ComboBoxItem x:Uid="CountdownBaseTime" Content="End time" Tag="time" />
                         </ComboBox>
 
-                        <TextBlock x:Uid="SettingsSectionCountdownDescription" Margin="0,8,0,0">Description of the countdown</TextBlock>
+                        <TextBlock x:Uid="SettingsSectionCountdownDescription" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Description of the countdown</TextBlock>
                         <RelativePanel Margin="0,8">
                             <TextBox x:Name="CountdownDescriptionTextBox" Width="220" MaxLength="100" TextChanged="CountdownDescriptionTextBox_TextChanged" KeyDown="CountdownDescriptionTextBox_KeyDown"></TextBox>
                             <Button x:Name="CountdownDescriptionResetButton" x:Uid="CountdownDescriptionResetButton" Width="30" Height="30" Padding="0" Margin="8,0" Click="CountdownDescriptionResetButton_Click" RelativePanel.AlignVerticalCenterWith="CountdownDescriptionTextBox" RelativePanel.RightOf="CountdownDescriptionTextBox">
@@ -72,13 +97,13 @@
                             </Button>
                         </RelativePanel>
 
-                        <TextBlock x:Uid="SettingsSectionLectureLengths" Margin="0,8,0,0">Common countdown lengths</TextBlock>
+                        <TextBlock x:Uid="SettingsSectionLectureLengths" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Common countdown lengths</TextBlock>
                         <RelativePanel Margin="0,8">
                             <TextBox x:Name="LectureLengthsTextBox" Width="220" MaxLength="100" TextChanged="LectureLengthsTextBox_TextChanged" KeyDown="LectureLengthsTextBox_KeyDown"></TextBox>
                             <TextBlock x:Uid="SettingsSectionLectureLengths-Label" RelativePanel.AlignVerticalCenterWith="LectureLengthsTextBox" RelativePanel.RightOf="LectureLengthsTextBox" Margin="8,0">minutes</TextBlock>
                         </RelativePanel>
 
-                        <TextBlock x:Uid="SettingsSectionLectureRound" Margin="0,8,0,0">Round end time to</TextBlock>
+                        <TextBlock x:Uid="SettingsSectionLectureRound" Margin="0,8,0,0" TextWrapping="WrapWholeWords">End time rounded to</TextBlock>
                         <RelativePanel Margin="0,8">
                             <ComboBox x:Name="LectureRoundComboBox" Width="80" HorizontalContentAlignment="Right" SelectionChanged="LectureRoundComboBox_SelectionChanged">
                                 <ComboBoxItem HorizontalContentAlignment="Right" Content="30" />
@@ -107,6 +132,10 @@
                         <TextBlock x:Uid="SettingsSectionStartTimeCarryBack" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Consider event start time in the countdown</TextBlock>
                         <ToggleSwitch x:Name="StartTimeCarryBackToggleSwitch" Toggled="StartTimeCarryBackToggleSwitch_Toggled"></ToggleSwitch>
 
+                    </StackPanel>
+
+                    <StackPanel x:Name="SecondPanel" Width="320">
+
                         <TextBlock x:Uid="SettingsHeadlineNotifications" Margin="0,24,0,8" FontSize="20">Notifications</TextBlock>
 
                         <TextBlock x:Uid="SettingsSectionNotification" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Show a notification when the countdown is over</TextBlock>
@@ -115,10 +144,10 @@
                         <TextBlock x:Uid="SettingsSectionNotificationSoundEnabled" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Play notification sound</TextBlock>
                         <ToggleSwitch x:Name="NotificationSoundToggleSwitch" Toggled="NotificationSoundToggleSwitch_Toggled"></ToggleSwitch>
 
-                        <TextBlock x:Uid="SettingsSectionNotificationAlarmMode" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Keep notification sound playing until it is dismissed</TextBlock>
+                        <TextBlock x:Uid="SettingsSectionNotificationAlarmMode" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Play sound in a loop (alarm mode)</TextBlock>
                         <ToggleSwitch x:Name="NotificationAlarmModeToggleSwitch" Toggled="NotificationAlarmModeToggleSwitch_Toggled"></ToggleSwitch>
 
-                        <TextBlock x:Uid="SettingsSectionNotificationSound" Margin="0,8,0,0">Notification sound</TextBlock>
+                        <TextBlock x:Uid="SettingsSectionNotificationSound" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Notification sound</TextBlock>
                         <RelativePanel Margin="0,8">
                             <ComboBox x:Name="NotificationSoundComboBox" Width="200" SelectionChanged="NotificationSoundComboBox_SelectionChanged">
                                 <ComboBoxItem Content="Windows Sound 1" Tag="ms-winsoundevent:Notification.Default" />
@@ -140,11 +169,11 @@
 
                     </StackPanel>
 
-                    <StackPanel x:Name="SecondPanel">
+                    <StackPanel x:Name="ThirdPanel" Width="320">
 
                         <TextBlock x:Uid="SettingsHeadlineLocalization" Margin="0,24,0,8" FontSize="20">Localization</TextBlock>
 
-                        <TextBlock x:Uid="SettingsSectionLanguage" Margin="0,8,0,0">Language</TextBlock>
+                        <TextBlock x:Uid="SettingsSectionLanguage" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Language</TextBlock>
                         <ComboBox x:Name="LanguageComboBox" Width="200" Margin="0,8" SelectionChanged="LanguageComboBox_SelectionChanged">
                             <ComboBoxItem Content="Windows default" Tag="" x:Uid="SettingsWindowsDefault" />
                             <ComboBoxItem Content="Chinese (中文)" Tag="zh-Hans" />
@@ -157,11 +186,15 @@
                             <ComboBoxItem Content="Spanish (Español)" Tag="es-es" />
                         </ComboBox>
 
-                        <TextBlock x:Uid="SettingsSectionClockFormat" Margin="0,8,0,0">Clock format</TextBlock>
+                        <TextBlock x:Uid="SettingsSectionClockFormat" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Clock format</TextBlock>
                         <StackPanel Margin="0,8">
                             <RadioButton x:Uid="SettingsSectionClockFormat-Label12" x:Name="ClockFormat12RadioButton" GroupName="ClockFormatGroup" Content="12-hour format" Tag="12" Checked="ClockFormatRadioButton_Checked" />
                             <RadioButton x:Uid="SettingsSectionClockFormat-Label24" x:Name="ClockFormat24RadioButton" GroupName="ClockFormatGroup" Content="24-hour format" Tag="24" Checked="ClockFormatRadioButton_Checked" />
                         </StackPanel>
+
+                    </StackPanel>
+
+                    <StackPanel x:Name="FourthPanel" Width="320">
 
                         <TextBlock x:Uid="SettingsHeadlineTheme" Margin="0,24,0,8" FontSize="20">Theme</TextBlock>
 
