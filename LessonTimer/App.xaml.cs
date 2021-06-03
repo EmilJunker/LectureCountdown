@@ -1,4 +1,4 @@
-using LessonTimer.Services;
+﻿using LessonTimer.Services;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
