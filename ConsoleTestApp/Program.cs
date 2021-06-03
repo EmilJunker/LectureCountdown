@@ -76,30 +76,30 @@ namespace ConsoleTestApp
         {
             Console.Clear();
 
-            Console.WriteLine(e.Countdown);
-            Console.WriteLine(e.Timeprogress);
-            Console.WriteLine(e.Percentprogress);
-
-            int i = 0;
-            double limit = Math.Floor((e.Progress * 100));
-
-            while (i < limit)
+            if (Countdown.IsRunning)
             {
-                Console.Write("#");
-                i++;
+                Console.WriteLine(e.Countdown);
+                Console.WriteLine(e.Timeprogress);
+                Console.WriteLine(e.Percentprogress);
+
+                int i = 0;
+                double limit = Math.Floor(e.Progress * 100);
+
+                while (i < limit)
+                {
+                    Console.Write("#");
+                    i++;
+                }
+
+                while (i < 100)
+                {
+                    Console.Write("-");
+                    i++;
+                }
             }
-
-            while (i < 100)
+            else
             {
-                Console.Write("-");
-                i++;
-            }
-
-            if (!Countdown.IsRunning)
-            {
-                Console.Clear();
-
-                Console.WriteLine("The countdown is over");
+                Console.Write("The countdown is over");
             }
         }
     }
