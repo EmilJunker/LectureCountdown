@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Windows.ApplicationModel.Appointments;
 
@@ -53,30 +53,13 @@ namespace LessonTimer.Services
                 return (null, null, null);
             }
 
-            DateTime nextAppointmentStarttime = nextAppointment.StartTime.DateTime;
-            int nextAppointmentLength = (int)nextAppointment.Duration.TotalMinutes;
-
-            if (nextAppointmentLength > 30)
-            {
-                if (Settings.AcademicQuarterBeginEnabled)
-                {
-                    if (Settings.StartTimeCarryBackEnabled)
-                    {
-                        nextAppointmentStarttime = nextAppointmentStarttime.AddMinutes(15);
-                    }
-                    nextAppointmentLength -= 15;
-                }
-                if (Settings.AcademicQuarterEndEnabled)
-                {
-                    nextAppointmentLength -= 15;
-                }
-            }
+            int appointmentLength = (int)nextAppointment.end.Subtract(nextAppointment.start).TotalMinutes;
 
             if (Settings.StartTimeCarryBackEnabled)
             {
-                return (nextAppointmentStarttime, nextAppointmentLength.ToString(), nextAppointment.Subject);
+                return (nextAppointment.start, appointmentLength.ToString(), nextAppointment.subject);
             }
-            return (null, nextAppointmentLength.ToString(), nextAppointment.Subject);
+            return (null, appointmentLength.ToString(), nextAppointment.subject);
         }
 
         public static (DateTime? starttime, TimeSpan endtimePick, string description) GetEndTimeSuggestion(IReadOnlyList<Appointment> allAppointments)
@@ -91,36 +74,18 @@ namespace LessonTimer.Services
                 return (null, new TimeSpan(), null);
             }
 
-            DateTime nextAppointmentStarttime = nextAppointment.StartTime.DateTime;
-            DateTime nextAppointmentEndTime = nextAppointment.StartTime.Add(nextAppointment.Duration).DateTime;
-
-            if (nextAppointment.Duration > TimeSpan.FromMinutes(30))
-            {
-                if (Settings.AcademicQuarterBeginEnabled)
-                {
-                    if (Settings.StartTimeCarryBackEnabled)
-                    {
-                        nextAppointmentStarttime = nextAppointmentStarttime.AddMinutes(15);
-                    }
-                }
-                if (Settings.AcademicQuarterEndEnabled)
-                {
-                    nextAppointmentEndTime = nextAppointmentEndTime.AddMinutes(-15);
-                }
-            }
-
-            TimeSpan endtimePick = new TimeSpan(nextAppointmentEndTime.Hour, nextAppointmentEndTime.Minute, 0);
+            TimeSpan endtimePick = new TimeSpan(nextAppointment.end.Hour, nextAppointment.end.Minute, 0);
 
             if (Settings.StartTimeCarryBackEnabled)
             {
-                return (nextAppointmentStarttime, endtimePick, nextAppointment.Subject);
+                return (nextAppointment.start, endtimePick, nextAppointment.subject);
             }
-            return (null, endtimePick, nextAppointment.Subject);
+            return (null, endtimePick, nextAppointment.subject);
         }
 
         private static (String, DateTime, DateTime) GetNextAppointment(IReadOnlyList<Appointment> allAppointments)
         {
-            var appointments = new List<(string, DateTime, DateTime)>();
+            var appointments = new List<(String, DateTime, DateTime)>();
 
             foreach (Appointment a in allAppointments)
             {
