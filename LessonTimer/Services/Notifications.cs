@@ -1,4 +1,4 @@
-﻿using Microsoft.Toolkit.Uwp.Notifications;
+using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Collections.Generic;
 using Windows.Data.Xml.Dom;
@@ -24,7 +24,7 @@ namespace LessonTimer.Services
         {
             CancelToastNotification();
 
-            double durationTotalSeconds = endtime.Subtract(starttime).TotalSeconds;
+            int durationTotalSeconds = (int)endtime.Subtract(starttime).TotalSeconds;
 
             if (durationTotalSeconds > 0)
             {

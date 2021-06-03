@@ -5,7 +5,7 @@ namespace LessonTimer.Services
     public class Description
     {
         public string CountdownDescription { get; private set; }
-        public double CountdownLength { get; private set; }
+        public int CountdownLength { get; private set; }
 
         public Description()
         {
@@ -24,13 +24,13 @@ namespace LessonTimer.Services
             CountdownDescription = description;
         }
 
-        public void Set(double length)
+        public void Set(int length)
         {
             Reset();
             CountdownLength = length;
         }
 
-        public static string GetDescriptionString(string description, double length)
+        public static string GetDescriptionString(string description, int length)
         {
             if (description is null)
             {
@@ -39,7 +39,7 @@ namespace LessonTimer.Services
             return description;
         }
 
-        public static string GetDescriptionString(double length)
+        public static string GetDescriptionString(int length)
         {
             return Settings.GetCountdownDescription().Replace("#", length.ToString());
         }

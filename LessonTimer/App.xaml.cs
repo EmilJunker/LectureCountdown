@@ -1,4 +1,4 @@
-﻿using LessonTimer.Services;
+using LessonTimer.Services;
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -44,11 +44,12 @@ namespace LessonTimer
             {
                 MainPage.starttime = new DateTime((long)localSettings.Values["starttime"]);
                 MainPage.endtime = new DateTime((long)localSettings.Values["endtime"]);
-                MainPage.length = (double)localSettings.Values["length"];
+                MainPage.length = (int)localSettings.Values["length"];
                 MainPage.description = (string)localSettings.Values["description"];
             }
             catch (NullReferenceException) { }
             catch (ArgumentOutOfRangeException) { }
+            catch (InvalidCastException) { }
         }
 
         private void SaveSession()

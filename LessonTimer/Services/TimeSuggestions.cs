@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Windows.ApplicationModel.Appointments;
 
@@ -9,9 +9,9 @@ namespace LessonTimer.Services
         public static int SuggestionsIterator { get; set; } = 0;
         public static int CalendarSuggestionsIterator { get; set; } = 0;
 
-        public static (string lengthString, double length) GetLengthSuggestion()
+        public static (string lengthString, int length) GetLengthSuggestion()
         {
-            double length = Settings.LectureLengths[SuggestionsIterator];
+            int length = Settings.LectureLengths[SuggestionsIterator];
 
             SuggestionsIterator++;
             if (SuggestionsIterator >= Settings.LectureLengths.Count)
@@ -22,9 +22,9 @@ namespace LessonTimer.Services
             return (length.ToString(), length);
         }
 
-        public static (TimeSpan endtime, double length) GetEndTimeSuggestion()
+        public static (TimeSpan endtime, int length) GetEndTimeSuggestion()
         {
-            double length = Settings.LectureLengths[SuggestionsIterator];
+            int length = Settings.LectureLengths[SuggestionsIterator];
 
             DateTime time = DateTime.Now.AddMinutes(length);
             TimeSpan span = TimeSpan.FromMinutes(Settings.LectureLengthRoundTo);
@@ -53,7 +53,7 @@ namespace LessonTimer.Services
                 return (null, null);
             }
 
-            double nextAppointmentLength = nextAppointment.Duration.TotalMinutes;
+            int nextAppointmentLength = (int)nextAppointment.Duration.TotalMinutes;
 
             if (Settings.AcademicQuarterBeginEnabled && Settings.AcademicQuarterEndEnabled)
             {

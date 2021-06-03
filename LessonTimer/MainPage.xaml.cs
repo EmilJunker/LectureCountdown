@@ -1,4 +1,4 @@
-﻿using CountdownLogic;
+using CountdownLogic;
 using LessonTimer.Services;
 using System;
 using Windows.ApplicationModel.Appointments;
@@ -24,7 +24,7 @@ namespace LessonTimer
 
         public static DateTime starttime;
         public static DateTime endtime;
-        public static double length;
+        public static int length;
         public static string description;
 
         public static Description nextDescription;
@@ -130,7 +130,7 @@ namespace LessonTimer
 
                 StartButton.Focus(FocusState.Programmatic);
 
-                double suggestionLength = 0;
+                int suggestionLength = 0;
                 switch (Settings.CountdownBase)
                 {
                     case "length":
@@ -229,7 +229,7 @@ namespace LessonTimer
                         endtime = endtime.AddDays(1);
                     }
 
-                    double countdownLength = Countdown.TimerSetup(starttime, endtime);
+                    int countdownLength = Countdown.TimerSetup(starttime, endtime);
                     if (nextDescription.CountdownLength == 0)
                     {
                         length = countdownLength;
@@ -327,7 +327,7 @@ namespace LessonTimer
 
         private void SuggestButton_Click(object sender, RoutedEventArgs e)
         {
-            double suggestionLength = 0;
+            int suggestionLength = 0;
             descriptionAutoSetLock = true;
 
             switch (Settings.CountdownBase)

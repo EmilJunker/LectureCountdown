@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 
 namespace CountdownLogic
@@ -26,7 +26,7 @@ namespace CountdownLogic
             IsRunning = true;
         }
 
-        public static (DateTime starttime, DateTime endtime) TimerSetup(double length)
+        public static (DateTime starttime, DateTime endtime) TimerSetup(int length)
         {
             DateTime starttime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
             DateTime endtime;
@@ -46,13 +46,13 @@ namespace CountdownLogic
             return (starttime, endtime);
         }
 
-        public static double TimerSetup(DateTime starttime, DateTime endtime)
+        public static int TimerSetup(DateTime starttime, DateTime endtime)
         {
             tick.SetTime(starttime, endtime);
 
             TimerSetup();
 
-            return Math.Floor(endtime.Subtract(starttime).TotalMinutes);
+            return (int)endtime.Subtract(starttime).TotalMinutes;
         }
 
         public static void CountdownIsOver()
