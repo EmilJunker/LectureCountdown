@@ -121,11 +121,16 @@ namespace CountdownLogic
         private string timeprogress;
         private string percentprogress;
 
+        private string FormatTimeSpan(TimeSpan t)
+        {
+            return $"{(int)t.TotalHours:00}∶{t:mm}∶{t:ss}";
+        }
+
         public void SetTime(DateTime starttime, DateTime endtime)
         {
             this.endtime = endtime;
             this.duration = endtime.Subtract(starttime);
-            this.durationString = " / " + duration.ToString(@"hh\∶mm\∶ss");
+            this.durationString = " / " + FormatTimeSpan(duration);
         }
 
         public void TimerTick(Object stateInfo)
@@ -140,9 +145,9 @@ namespace CountdownLogic
             }
             else
             {
-                countdown = timeleft.ToString(@"hh\∶mm\∶ss");
+                countdown = FormatTimeSpan(timeleft);
                 progress = timepassed.TotalSeconds / duration.TotalSeconds;
-                timeprogress = timepassed.ToString(@"hh\∶mm\∶ss") + durationString;
+                timeprogress = FormatTimeSpan(timepassed) + durationString;
                 percentprogress = (progress * 100).ToString("0.00") + " %";
 
                 Ticked(this, new TickEventArgs(countdown, progress, timeprogress, percentprogress));
