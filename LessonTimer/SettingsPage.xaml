@@ -24,6 +24,7 @@
                         <Setter Target="SecondPanel.(RelativePanel.Below)" Value="FirstPanel" />
                         <Setter Target="ThirdPanel.(RelativePanel.Below)" Value="SecondPanel" />
                         <Setter Target="FourthPanel.(RelativePanel.Below)" Value="ThirdPanel" />
+                        <Setter Target="CloseButton.Margin" Value="0,40" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="MediumState">
@@ -73,7 +74,7 @@
         <ScrollViewer Grid.Row="1">
             <RelativePanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
 
-                <Button x:Name="CloseButton" x:Uid="CloseButton" RelativePanel.Below="MainPanel" Margin="0,40" Click="CloseButton_Click">Close Settings</Button>
+                <Button x:Name="CloseButton" x:Uid="CloseButton" RelativePanel.Below="MainPanel" Click="CloseButton_Click">Close Settings</Button>
 
                 <RelativePanel x:Name="MainPanel">
 
