@@ -18,18 +18,18 @@ namespace LessonTimer
 {
     public sealed partial class MainPage : Page
     {
-        bool compactMode;
-
-        public static bool suggestionAutoSetLock;
-        public static bool startButtonDisabledLock;
-
         public static DateTime starttime;
         public static DateTime endtime;
         public static int length;
         public static string description;
 
-        public static DateTime? nextStarttime;
-        public static Description nextDescription;
+        private DateTime? nextStarttime;
+        private Description nextDescription;
+
+        private bool suggestionAutoSetLock;
+        private bool startButtonDisabledLock;
+
+        private bool compactMode;
 
         public MainPage()
         {
@@ -481,7 +481,7 @@ namespace LessonTimer
         {
             ViewModePreferences compactOptions = ViewModePreferences.CreateDefault(ApplicationViewMode.CompactOverlay);
             compactOptions.CustomSize = new Size(320, 160);
-            _ = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, compactOptions);
+            await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, compactOptions);
 
             ControlPanel.Visibility = Visibility.Collapsed;
             compactMode = true;
@@ -489,7 +489,7 @@ namespace LessonTimer
 
         private async void CompactOverlayOff()
         {
-            _ = await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.Default);
+            await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.Default);
 
             ControlPanel.Visibility = Visibility.Visible;
             compactMode = false;
