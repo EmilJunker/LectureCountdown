@@ -214,14 +214,13 @@ namespace LessonTimer
                 case "length":
                     try
                     {
-                        int inputLength = Convert.ToInt32(LengthPicker.Text);
-                        if (0 < inputLength && inputLength < 1440)
-                        {
-                            int _length = inputLength;
-                            endtime = Countdown.TimerSetup(_starttime, _length);
-                            length = _length;
-                            success = true;
-                        }
+                        string lengthString = LengthPicker.Text;
+
+                        int _length = Countdown.ParseLengthString24Hours(lengthString);
+
+                        endtime = Countdown.TimerSetup(_starttime, _length);
+                        length = _length;
+                        success = true;
                     }
                     catch (Exception) { }
                     break;
