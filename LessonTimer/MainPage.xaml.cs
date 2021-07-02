@@ -194,6 +194,7 @@ namespace LessonTimer
             Countdown.CountdownIsOver();
 
             endtime = DateTime.Now;
+            SaveSession();
 
             CancelNotification();
 
