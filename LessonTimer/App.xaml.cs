@@ -2,7 +2,6 @@
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -14,12 +13,6 @@ namespace LessonTimer
         public App()
         {
             Settings.LoadSettings();
-
-            var notifications = ToastNotificationManager.CreateToastNotifier().GetScheduledToastNotifications();
-            if (notifications.Count != 0)
-            {
-                Notifications.UseToastNotification(notifications[0]);
-            }
 
             MainPage.RestoreSession();
 

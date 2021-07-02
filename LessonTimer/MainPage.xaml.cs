@@ -115,6 +115,11 @@ namespace LessonTimer
                 string message = Description.GetDescriptionString(description, length);
                 DisplayMessage(message, false);
 
+                if (Settings.NotificationsEnabled)
+                {
+                    ScheduleNotification();
+                }
+
                 switch (Settings.CountdownBase)
                 {
                     case "length":

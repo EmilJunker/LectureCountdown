@@ -22,8 +22,6 @@ namespace LessonTimer.Services
 
         public static void ScheduleToastNotification(bool sound, bool alarm, string source, DateTime starttime, DateTime endtime)
         {
-            CancelToastNotification();
-
             int durationTotalSeconds = (int)endtime.Subtract(starttime).TotalSeconds;
 
             Random rand = new Random();
@@ -43,6 +41,7 @@ namespace LessonTimer.Services
 
             XmlDocument toastXml = builder.GetToastContent().GetXml();
 
+            CancelToastNotification();
             try
             {
                 toast = new ScheduledToastNotification(toastXml, endtime);
@@ -58,11 +57,6 @@ namespace LessonTimer.Services
                 ToastNotificationManager.CreateToastNotifier().RemoveFromSchedule(toast);
             }
             catch (Exception) { }
-        }
-
-        public static void UseToastNotification(ScheduledToastNotification toast)
-        {
-            Notifications.toast = toast;
         }
     }
 }
