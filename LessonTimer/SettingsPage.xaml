@@ -189,8 +189,8 @@
 
                         <TextBlock x:Uid="SettingsSectionClockFormat" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Clock format</TextBlock>
                         <StackPanel Margin="0,8">
-                            <RadioButton x:Uid="SettingsSectionClockFormat-Label12" x:Name="ClockFormat12RadioButton" GroupName="ClockFormatGroup" Content="12-hour format" Tag="12" Checked="ClockFormatRadioButton_Checked" />
-                            <RadioButton x:Uid="SettingsSectionClockFormat-Label24" x:Name="ClockFormat24RadioButton" GroupName="ClockFormatGroup" Content="24-hour format" Tag="24" Checked="ClockFormatRadioButton_Checked" />
+                            <RadioButton x:Uid="SettingsSectionClockFormat-Label12" x:Name="ClockFormat12RadioButton" GroupName="ClockFormatGroup" Content="12-hour format" Tag="12HourClock" Checked="ClockFormatRadioButton_Checked" />
+                            <RadioButton x:Uid="SettingsSectionClockFormat-Label24" x:Name="ClockFormat24RadioButton" GroupName="ClockFormatGroup" Content="24-hour format" Tag="24HourClock" Checked="ClockFormatRadioButton_Checked" />
                         </StackPanel>
 
                     </StackPanel>

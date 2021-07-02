@@ -9,20 +9,20 @@ namespace LessonTimer.Services
     {
         private static readonly ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
 
-        public static string CountdownBase { get; set; }
-        public static string CountdownDescription { get; set; }
-        public static List<int> LectureLengths { get; set; }
-        public static int LectureLengthRoundTo { get; set; }
-        public static bool AcademicQuarterBeginEnabled { get; set; }
-        public static bool AcademicQuarterEndEnabled { get; set; }
-        public static bool StartTimeCarryBackEnabled { get; set; }
-        public static bool NotificationsEnabled { get; set; }
-        public static bool NotificationSoundEnabled { get; set; }
-        public static bool NotificationAlarmModeEnabled { get; set; }
-        public static string NotificationSound { get; set; }
-        public static string LanguageUI { get; set; }
-        public static string ClockFormat { get; set; }
-        public static string Theme { get; set; }
+        public static string CountdownBase { get; private set; }
+        public static string CountdownDescription { get; private set; }
+        public static List<int> LectureLengths { get; private set; }
+        public static int LectureLengthRoundTo { get; private set; }
+        public static bool AcademicQuarterBeginEnabled { get; private set; }
+        public static bool AcademicQuarterEndEnabled { get; private set; }
+        public static bool StartTimeCarryBackEnabled { get; private set; }
+        public static bool NotificationsEnabled { get; private set; }
+        public static bool NotificationSoundEnabled { get; private set; }
+        public static bool NotificationAlarmModeEnabled { get; private set; }
+        public static string NotificationSound { get; private set; }
+        public static string LanguageUI { get; private set; }
+        public static string ClockFormat { get; private set; }
+        public static string Theme { get; private set; }
 
         public static string GetCountdownDescription()
         {
@@ -34,18 +34,21 @@ namespace LessonTimer.Services
             return CountdownDescription;
         }
 
-        public static void SetCountdownBase()
+        public static void SetCountdownBase(string value)
         {
+            CountdownBase = value;
             localSettings.Values["CountdownBase"] = CountdownBase;
         }
 
-        public static void SetCountdownDescription()
+        public static void SetCountdownDescription(string value)
         {
+            CountdownDescription = value;
             localSettings.Values["CountdownDescription"] = CountdownDescription;
         }
 
-        public static void SetLectureLengths()
+        public static void SetLectureLengths(List<int> values)
         {
+            LectureLengths = values;
             int i = 0;
             foreach (int length in LectureLengths)
             {
@@ -72,58 +75,69 @@ namespace LessonTimer.Services
             }
         }
 
-        public static void SetLectureLengthRoundTo()
+        public static void SetLectureLengthRoundTo(int value)
         {
+            LectureLengthRoundTo = value;
             localSettings.Values["LectureLengthRoundTo"] = LectureLengthRoundTo;
         }
 
-        public static void SetAcademicQuarterBeginEnabled()
+        public static void SetAcademicQuarterBeginEnabled(bool value)
         {
+            AcademicQuarterBeginEnabled = value;
             localSettings.Values["AcademicQuarterBeginEnabled"] = AcademicQuarterBeginEnabled;
         }
 
-        public static void SetAcademicQuarterEndEnabled()
+        public static void SetAcademicQuarterEndEnabled(bool value)
         {
+            AcademicQuarterEndEnabled = value;
             localSettings.Values["AcademicQuarterEndEnabled"] = AcademicQuarterEndEnabled;
         }
 
-        public static void SetStartTimeCarryBackEnabled()
+        public static void SetStartTimeCarryBackEnabled(bool value)
         {
+            StartTimeCarryBackEnabled = value;
             localSettings.Values["StartTimeCarryBackEnabled"] = StartTimeCarryBackEnabled;
         }
 
-        public static void SetNotificationsEnabled()
+        public static void SetNotificationsEnabled(bool value)
         {
+            NotificationsEnabled = value;
             localSettings.Values["NotificationsEnabled"] = NotificationsEnabled;
         }
 
-        public static void SetNotificationSoundEnabled()
+        public static void SetNotificationSoundEnabled(bool value)
         {
+            NotificationSoundEnabled = value;
             localSettings.Values["NotificationSoundEnabled"] = NotificationSoundEnabled;
         }
 
-        public static void SetNotificationAlarmModeEnabled()
+        public static void SetNotificationAlarmModeEnabled(bool value)
         {
+            NotificationAlarmModeEnabled = value;
             localSettings.Values["NotificationAlarmModeEnabled"] = NotificationAlarmModeEnabled;
         }
 
-        public static void SetNotificationSound()
+        public static void SetNotificationSound(string value)
         {
+            NotificationSound = value;
             localSettings.Values["NotificationSound"] = NotificationSound;
         }
 
-        public static void SetLanguageUI()
+        public static void SetLanguageUI(string value)
         {
+            LanguageUI = value;
             localSettings.Values["LanguageUI"] = LanguageUI;
         }
 
-        public static void SetClockFormat()
+        public static void SetClockFormat(string value)
         {
+            ClockFormat = value;
             localSettings.Values["ClockFormat"] = ClockFormat;
         }
 
-        public static void SetTheme()
+        public static void SetTheme(string value)
         {
+            Theme = value;
             localSettings.Values["Theme"] = Theme;
         }
 
@@ -132,8 +146,7 @@ namespace LessonTimer.Services
             CountdownBase = localSettings.Values["CountdownBase"] as string;
             if (CountdownBase is null)
             {
-                CountdownBase = "length";
-                localSettings.Values["CountdownBase"] = CountdownBase;
+                SetCountdownBase("length");
             }
 
             CountdownDescription = localSettings.Values["CountdownDescription"] as string;
@@ -161,8 +174,7 @@ namespace LessonTimer.Services
             int? _LectureLengthRoundTo = localSettings.Values["LectureLengthRoundTo"] as int?;
             if (_LectureLengthRoundTo is null)
             {
-                LectureLengthRoundTo = 5;
-                localSettings.Values["LectureLengthRoundTo"] = LectureLengthRoundTo;
+                SetLectureLengthRoundTo(5);
             }
             else
             {
@@ -172,8 +184,7 @@ namespace LessonTimer.Services
             bool? _AcademicQuarterBeginEnabled = localSettings.Values["AcademicQuarterBeginEnabled"] as bool?;
             if (_AcademicQuarterBeginEnabled is null)
             {
-                AcademicQuarterBeginEnabled = false;
-                localSettings.Values["AcademicQuarterBeginEnabled"] = AcademicQuarterBeginEnabled;
+                SetAcademicQuarterBeginEnabled(false);
             }
             else
             {
@@ -183,8 +194,7 @@ namespace LessonTimer.Services
             bool? _AcademicQuarterEndEnabled = localSettings.Values["AcademicQuarterEndEnabled"] as bool?;
             if (_AcademicQuarterEndEnabled is null)
             {
-                AcademicQuarterEndEnabled = false;
-                localSettings.Values["AcademicQuarterEndEnabled"] = AcademicQuarterEndEnabled;
+                SetAcademicQuarterEndEnabled(false);
             }
             else
             {
@@ -194,8 +204,7 @@ namespace LessonTimer.Services
             bool? _StartTimeCarryBackEnabled = localSettings.Values["StartTimeCarryBackEnabled"] as bool?;
             if (_StartTimeCarryBackEnabled is null)
             {
-                StartTimeCarryBackEnabled = false;
-                localSettings.Values["StartTimeCarryBackEnabled"] = StartTimeCarryBackEnabled;
+                SetStartTimeCarryBackEnabled(false);
             }
             else
             {
@@ -205,8 +214,7 @@ namespace LessonTimer.Services
             bool? _NotificationsEnabled = localSettings.Values["NotificationsEnabled"] as bool?;
             if (_NotificationsEnabled is null)
             {
-                NotificationsEnabled = true;
-                localSettings.Values["NotificationsEnabled"] = NotificationsEnabled;
+                SetNotificationsEnabled(true);
             }
             else
             {
@@ -216,8 +224,7 @@ namespace LessonTimer.Services
             bool? _NotificationSoundEnabled = localSettings.Values["NotificationSoundEnabled"] as bool?;
             if (_NotificationSoundEnabled is null)
             {
-                NotificationSoundEnabled = false;
-                localSettings.Values["NotificationSoundEnabled"] = NotificationSoundEnabled;
+                SetNotificationSoundEnabled(false);
             }
             else
             {
@@ -227,8 +234,7 @@ namespace LessonTimer.Services
             bool? _NotificationAlarmModeEnabled = localSettings.Values["NotificationAlarmModeEnabled"] as bool?;
             if (_NotificationAlarmModeEnabled is null)
             {
-                NotificationAlarmModeEnabled = false;
-                localSettings.Values["NotificationAlarmModeEnabled"] = NotificationAlarmModeEnabled;
+                SetNotificationAlarmModeEnabled(false);
             }
             else
             {
@@ -238,29 +244,25 @@ namespace LessonTimer.Services
             NotificationSound = localSettings.Values["NotificationSound"] as string;
             if (NotificationSound is null)
             {
-                NotificationSound = "ms-winsoundevent:Notification.Default";
-                localSettings.Values["NotificationSound"] = NotificationSound;
+                SetNotificationSound("ms-winsoundevent:Notification.Default");
             }
 
             LanguageUI = localSettings.Values["LanguageUI"] as string;
             if (LanguageUI is null)
             {
-                LanguageUI = String.Empty;
-                localSettings.Values["LanguageUI"] = LanguageUI;
+                SetLanguageUI(String.Empty);
             }
 
             ClockFormat = localSettings.Values["ClockFormat"] as string;
             if (ClockFormat is null)
             {
-                ClockFormat = new Windows.Globalization.DateTimeFormatting.DateTimeFormatter("shorttime", new[] { new GeographicRegion().Code }).Clock;
-                localSettings.Values["ClockFormat"] = ClockFormat;
+                SetClockFormat(new Windows.Globalization.DateTimeFormatting.DateTimeFormatter("shorttime", new[] { new GeographicRegion().Code }).Clock);
             }
 
             Theme = localSettings.Values["Theme"] as string;
             if (Theme is null)
             {
-                Theme = String.Empty;
-                localSettings.Values["Theme"] = Theme;
+                SetTheme(String.Empty);
             }
         }
     }
