@@ -41,19 +41,16 @@ namespace LessonTimer
             if (!(Window.Current.Content is Frame rootFrame))
             {
                 rootFrame = new Frame();
-
                 rootFrame.NavigationFailed += OnNavigationFailed;
-
                 Window.Current.Content = rootFrame;
             }
 
             if (e.PrelaunchActivated == false)
             {
-                if (rootFrame.Content == null)
+                if (rootFrame.Content is null)
                 {
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
-
                 Window.Current.Activate();
             }
         }
@@ -72,6 +69,7 @@ namespace LessonTimer
                 if (!(Window.Current.Content is Frame))
                 {
                     Frame rootFrame = new Frame();
+                    rootFrame.NavigationFailed += OnNavigationFailed;
                     rootFrame.Navigate(typeof(MainPage));
                     Window.Current.Content = rootFrame;
 
