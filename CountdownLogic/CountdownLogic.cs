@@ -28,15 +28,7 @@ namespace CountdownLogic
 
         public static DateTime TimerSetup(DateTime starttime, int length)
         {
-            DateTime endtime;
-            try
-            {
-                endtime = starttime.AddMinutes(length);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                endtime = DateTime.MaxValue;
-            }
+            DateTime endtime = LengthToEndTime(starttime, length);
 
             try
             {
@@ -65,6 +57,25 @@ namespace CountdownLogic
 
             TimerSetup();
 
+            return EndTimeToLength(starttime, endtime);
+        }
+
+        public static DateTime LengthToEndTime(DateTime starttime, int length)
+        {
+            DateTime endtime;
+            try
+            {
+                endtime = starttime.AddMinutes(length);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                endtime = DateTime.MaxValue;
+            }
+            return endtime;
+        }
+
+        public static int EndTimeToLength(DateTime starttime, DateTime endtime)
+        {
             return (int)endtime.Subtract(starttime).TotalMinutes;
         }
 
