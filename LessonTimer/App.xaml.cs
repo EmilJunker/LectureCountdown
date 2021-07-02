@@ -1,6 +1,5 @@
 ﻿using LessonTimer.Services;
 using System;
-using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -26,7 +25,6 @@ namespace LessonTimer
             };
 
             this.InitializeComponent();
-            this.Suspending += OnSuspending;
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
@@ -71,12 +69,6 @@ namespace LessonTimer
             }
 
             Window.Current.Activate();
-        }
-
-        private void OnSuspending(object sender, SuspendingEventArgs e)
-        {
-            //var deferral = e.SuspendingOperation.GetDeferral();
-            //deferral.Complete();
         }
     }
 }
