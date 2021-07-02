@@ -2,7 +2,6 @@
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Storage;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -22,7 +21,7 @@ namespace LessonTimer
                 Notifications.UseToastNotification(notifications[0]);
             }
 
-            RestoreSession();
+            MainPage.RestoreSession();
 
             Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = Settings.LanguageUI;
 
@@ -35,31 +34,6 @@ namespace LessonTimer
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-        }
-
-        private void RestoreSession()
-        {
-            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
-            try
-            {
-                MainPage.starttime = new DateTime((long)localSettings.Values["starttime"]);
-                MainPage.endtime = new DateTime((long)localSettings.Values["endtime"]);
-                MainPage.length = (int)localSettings.Values["length"];
-                MainPage.description = (string)localSettings.Values["description"];
-            }
-            catch (NullReferenceException) { }
-            catch (ArgumentOutOfRangeException) { }
-            catch (InvalidCastException) { }
-        }
-
-        private void SaveSession()
-        {
-            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
-
-            localSettings.Values["starttime"] = MainPage.starttime.Ticks;
-            localSettings.Values["endtime"] = MainPage.endtime.Ticks;
-            localSettings.Values["length"] = MainPage.length;
-            localSettings.Values["description"] = MainPage.description;
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
@@ -100,9 +74,9 @@ namespace LessonTimer
                     Frame rootFrame = new Frame();
                     rootFrame.Navigate(typeof(MainPage));
                     Window.Current.Content = rootFrame;
-                }
 
-                RestoreSession();
+                    MainPage.RestoreSession();
+                }
             }
 
             Window.Current.Activate();
@@ -111,7 +85,6 @@ namespace LessonTimer
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             //var deferral = e.SuspendingOperation.GetDeferral();
-            SaveSession();
             //deferral.Complete();
         }
     }

@@ -6,6 +6,7 @@ using Windows.ApplicationModel.Appointments;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
+using Windows.Storage;
 using Windows.System;
 using Windows.UI;
 using Windows.UI.Core;
@@ -268,6 +269,8 @@ namespace LessonTimer
                 {
                     ScheduleNotification();
                 }
+
+                SaveSession();
             }
             else
             {
@@ -498,6 +501,31 @@ namespace LessonTimer
         {
             await Task.Delay(100);
             suggestionAutoSetLock = false;
+        }
+
+        public static void SaveSession()
+        {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+
+            localSettings.Values["starttime"] = starttime.Ticks;
+            localSettings.Values["endtime"] = endtime.Ticks;
+            localSettings.Values["length"] = length;
+            localSettings.Values["description"] = description;
+        }
+
+        public static void RestoreSession()
+        {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            try
+            {
+                starttime = new DateTime((long)localSettings.Values["starttime"]);
+                endtime = new DateTime((long)localSettings.Values["endtime"]);
+                length = (int)localSettings.Values["length"];
+                description = (string)localSettings.Values["description"];
+            }
+            catch (NullReferenceException) { }
+            catch (ArgumentOutOfRangeException) { }
+            catch (InvalidCastException) { }
         }
     }
 }
