@@ -63,6 +63,17 @@ namespace LessonTimer
                     Window.Current.Content = rootFrame;
                 }
             }
+            else if (args.Kind == ActivationKind.CommandLineLaunch)
+            {
+                if (!(Window.Current.Content is Frame rootFrame))
+                {
+                    rootFrame = new Frame();
+                    rootFrame.NavigationFailed += OnNavigationFailed;
+                    Window.Current.Content = rootFrame;
+                }
+
+                rootFrame.Navigate(typeof(MainPage));
+            }
 
             Window.Current.Activate();
         }
