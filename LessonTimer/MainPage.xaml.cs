@@ -3,7 +3,6 @@ using LessonTimer.Services;
 using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Appointments;
-using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Storage;
@@ -165,9 +164,8 @@ namespace LessonTimer
             }
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            await BackgroundExecutionManager.RequestAccessAsync();
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
 
