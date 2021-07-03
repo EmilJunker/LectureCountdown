@@ -191,7 +191,7 @@ namespace LessonTimer
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            Countdown.CountdownIsOver();
+            Countdown.EndCountdown();
 
             endtime = DateTime.Now;
             SaveSession();

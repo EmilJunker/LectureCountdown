@@ -79,7 +79,7 @@ namespace CountdownLogic
             return (int)endtime.Subtract(starttime).TotalMinutes;
         }
 
-        public static void CountdownIsOver()
+        public static void EndCountdown()
         {
             IsRunning = false;
             tick.End();
@@ -180,7 +180,7 @@ namespace CountdownLogic
 
             if (timeleft <= over)
             {
-                Countdown.CountdownIsOver();
+                Countdown.EndCountdown();
             }
             else
             {
