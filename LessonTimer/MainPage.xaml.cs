@@ -18,10 +18,10 @@ namespace LessonTimer
 {
     public sealed partial class MainPage : Page
     {
-        public static DateTime starttime;
-        public static DateTime endtime;
-        public static int length;
-        public static string description;
+        private static DateTime starttime;
+        private static DateTime endtime;
+        private static int length;
+        private static string description;
 
         private DateTime? nextStarttime;
         private Description nextDescription;
@@ -167,6 +167,11 @@ namespace LessonTimer
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+
+            if (e.NavigationMode == NavigationMode.New)
+            {
+                RestoreSession();
+            }
         }
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
@@ -507,7 +512,7 @@ namespace LessonTimer
             suggestionAutoSetLock = false;
         }
 
-        public static void SaveSession()
+        private void SaveSession()
         {
             ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
 
@@ -517,7 +522,7 @@ namespace LessonTimer
             localSettings.Values["description"] = description;
         }
 
-        public static void RestoreSession()
+        private void RestoreSession()
         {
             ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             try

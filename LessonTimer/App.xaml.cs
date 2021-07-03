@@ -13,8 +13,6 @@ namespace LessonTimer
         {
             Settings.LoadSettings();
 
-            MainPage.RestoreSession();
-
             Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = Settings.LanguageUI;
 
             this.RequestedTheme = Settings.Theme switch
@@ -63,8 +61,6 @@ namespace LessonTimer
                     rootFrame.NavigationFailed += OnNavigationFailed;
                     rootFrame.Navigate(typeof(MainPage));
                     Window.Current.Content = rootFrame;
-
-                    MainPage.RestoreSession();
                 }
             }
 
