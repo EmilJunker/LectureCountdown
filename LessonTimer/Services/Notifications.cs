@@ -58,5 +58,10 @@ namespace LessonTimer.Services
             }
             catch (Exception) { }
         }
+
+        public static void UseToastNotification(ScheduledToastNotification toast)
+        {
+            Notifications.toast = toast;
+        }
     }
 }
