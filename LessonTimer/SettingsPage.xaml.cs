@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 using Windows.Globalization;
-using Windows.Media.Playback;
 using Windows.Media.Core;
+using Windows.Media.Playback;
 using Windows.System;
 using Windows.UI;
 using Windows.UI.Core;
@@ -139,6 +140,8 @@ namespace LessonTimer
 
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             CountdownDescriptionTextBox.Text = loader.GetString("MinuteLecture");
+
+            TriggerResetCountdownDescriptionNullLock();
         }
 
         private void LectureLengthsTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -483,6 +486,12 @@ namespace LessonTimer
                 "length" => false,
                 "time" => true,
             };
+        }
+
+        private async void TriggerResetCountdownDescriptionNullLock()
+        {
+            await Task.Delay(100);
+            countdownDescriptionNullLock = false;
         }
 
         private async void FeedbackButton_Click(object sender, RoutedEventArgs e)

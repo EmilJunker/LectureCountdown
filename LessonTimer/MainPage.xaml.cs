@@ -143,11 +143,11 @@ namespace LessonTimer
                 {
                     case "length":
                         (LengthPicker.Text, suggestionLength) = TimeSuggestions.GetLengthSuggestion();
-                        TriggerResetSuggestionAutoSetLog();
+                        TriggerResetSuggestionAutoSetLock();
                         break;
                     case "time":
                         (TimePicker.Time, suggestionLength) = TimeSuggestions.GetEndTimeSuggestion();
-                        TriggerResetSuggestionAutoSetLog();
+                        TriggerResetSuggestionAutoSetLock();
                         break;
                 }
                 nextStarttime = null;
@@ -365,11 +365,11 @@ namespace LessonTimer
             {
                 case "length":
                     (LengthPicker.Text, suggestionLength) = TimeSuggestions.GetLengthSuggestion();
-                    TriggerResetSuggestionAutoSetLog();
+                    TriggerResetSuggestionAutoSetLock();
                     break;
                 case "time":
                     (TimePicker.Time, suggestionLength) = TimeSuggestions.GetEndTimeSuggestion();
-                    TriggerResetSuggestionAutoSetLog();
+                    TriggerResetSuggestionAutoSetLock();
                     break;
             }
 
@@ -409,7 +409,7 @@ namespace LessonTimer
                         {
                             LengthPicker.Text = lengthSuggestion.lengthString;
                             appointmentDescription = lengthSuggestion.description;
-                            TriggerResetSuggestionAutoSetLog();
+                            TriggerResetSuggestionAutoSetLock();
                         }
                         break;
                     case "time":
@@ -419,7 +419,7 @@ namespace LessonTimer
                         {
                             TimePicker.Time = endTimeSuggestion.endtimePick;
                             appointmentDescription = endTimeSuggestion.description;
-                            TriggerResetSuggestionAutoSetLog();
+                            TriggerResetSuggestionAutoSetLock();
                         }
                         break;
                 }
@@ -506,7 +506,7 @@ namespace LessonTimer
             compactMode = false;
         }
 
-        private async void TriggerResetSuggestionAutoSetLog()
+        private async void TriggerResetSuggestionAutoSetLock()
         {
             await Task.Delay(100);
             suggestionAutoSetLock = false;
