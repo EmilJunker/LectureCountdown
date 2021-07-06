@@ -51,11 +51,6 @@ namespace LessonTimer
             }
         }
 
-        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
-        {
-            throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
-        }
-
         protected override void OnActivated(IActivatedEventArgs args)
         {
             base.OnActivated(args);
@@ -83,6 +78,11 @@ namespace LessonTimer
             }
 
             Window.Current.Activate();
+        }
+
+        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        {
+            throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
     }
 }
