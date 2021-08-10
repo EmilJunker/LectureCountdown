@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppDescription" xml:space="preserve">
+    <value>Dersler için bir geri sayım uygulaması</value>
+  </data>
+  <data name="AppDisplayName" xml:space="preserve">
+    <value>Ders Geri Sayımı</value>
+  </data>
+  <data name="CalendarButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Takvimden zaman öner</value>
+  </data>
+  <data name="CalendarPrivacyButton.Content" xml:space="preserve">
+    <value>Gizlilik ayarları</value>
+  </data>
+  <data name="CancelButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Geri sayımı iptal et</value>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Ayarları kapat</value>
+  </data>
+  <data name="CompactOverlayButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Görünümü değiştir</value>
+  </data>
+  <data name="CountdownBaseLength.Content" xml:space="preserve">
+    <value>Dakika olarak uzunluk</value>
+  </data>
+  <data name="CountdownBaseTime.Content" xml:space="preserve">
+    <value>Bitiş zamanı</value>
+  </data>
+  <data name="CountdownDescriptionResetButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Sıfırla</value>
+  </data>
+  <data name="ErrorInvalidInput" xml:space="preserve">
+    <value>Geçersiz Giriş</value>
+  </data>
+  <data name="ErrorNoCalendarAccessPermission" xml:space="preserve">
+    <value>Lütfen takvime erişim izni ver</value>
+  </data>
+  <data name="ErrorNoEventsInCalendar" xml:space="preserve">
+    <value>Takviminizde bugün etkinlik yok</value>
+  </data>
+  <data name="LengthPicker.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Geri sayımın uzunluğunu dakika cinsinden girin</value>
+  </data>
+  <data name="MinuteLecture" xml:space="preserve">
+    <value># dakikalık ders</value>
+  </data>
+  <data name="NotificationText1" xml:space="preserve">
+    <value>Toplam </value>
+  </data>
+  <data name="NotificationText2" xml:space="preserve">
+    <value> saniye geçti</value>
+  </data>
+  <data name="NotificationTitle" xml:space="preserve">
+    <value>Bitti!</value>
+  </data>
+  <data name="SettingsButtonText.Text" xml:space="preserve">
+    <value>Ayarlar</value>
+  </data>
+  <data name="SettingsDeveloper.Text" xml:space="preserve">
+    <value>Geliştirici:</value>
+  </data>
+  <data name="SettingsEmail.Text" xml:space="preserve">
+    <value>E-posta:</value>
+  </data>
+  <data name="SettingsFeedback.Content" xml:space="preserve">
+    <value>Geri bildirim</value>
+  </data>
+  <data name="SettingsHeadlineAbout.Text" xml:space="preserve">
+    <value>Bu uygulama hakkında</value>
+  </data>
+  <data name="SettingsHeadlineCalendar.Text" xml:space="preserve">
+    <value>Takvimden etkinlikler</value>
+  </data>
+  <data name="SettingsHeadlineCountdown.Text" xml:space="preserve">
+    <value>Geri sayım</value>
+  </data>
+  <data name="SettingsHeadlineLocalization.Text" xml:space="preserve">
+    <value>Yerelleştirme</value>
+  </data>
+  <data name="SettingsHeadlineNotifications.Text" xml:space="preserve">
+    <value>Bildirimler</value>
+  </data>
+  <data name="SettingsHeadlineTheme.Text" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="SettingsRating.Content" xml:space="preserve">
+    <value>Uygulamayı değerlendir</value>
+  </data>
+  <data name="SettingsSectionAcademicQuarter-LabelBegin.Text" xml:space="preserve">
+    <value>15 dakika sonra başla</value>
+  </data>
+  <data name="SettingsSectionAcademicQuarter-LabelEnd.Text" xml:space="preserve">
+    <value>15 dakika önce bitir</value>
+  </data>
+  <data name="SettingsSectionAcademicQuarter.Text" xml:space="preserve">
+    <value>Akademik çeyrek (ders zamanlaması)</value>
+  </data>
+  <data name="SettingsSectionClockFormat-Label12.Content" xml:space="preserve">
+    <value>12 saatlik biçim</value>
+  </data>
+  <data name="SettingsSectionClockFormat-Label24.Content" xml:space="preserve">
+    <value>24 saatlik biçim</value>
+  </data>
+  <data name="SettingsSectionClockFormat.Text" xml:space="preserve">
+    <value>Saat biçimi</value>
+  </data>
+  <data name="SettingsSectionCountdownBase.Text" xml:space="preserve">
+    <value>Geri sayım için üs</value>
+  </data>
+  <data name="SettingsSectionCountdownDescription.Text" xml:space="preserve">
+    <value>Geri sayımın açıklaması</value>
+  </data>
+  <data name="SettingsSectionLanguage.Text" xml:space="preserve">
+    <value>Dil</value>
+  </data>
+  <data name="SettingsSectionLectureLengths-Label.Text" xml:space="preserve">
+    <value>dakika</value>
+  </data>
+  <data name="SettingsSectionLectureLengths.Text" xml:space="preserve">
+    <value>Yaygın geri sayım uzunlukları</value>
+  </data>
+  <data name="SettingsSectionLectureRound-Label.Text" xml:space="preserve">
+    <value>dakika</value>
+  </data>
+  <data name="SettingsSectionLectureRound.Text" xml:space="preserve">
+    <value>Bitiş zamanı yuvarlanır</value>
+  </data>
+  <data name="SettingsSectionNotification.Text" xml:space="preserve">
+    <value>Geri sayım bittiğinde bir bildirim göster</value>
+  </data>
+  <data name="SettingsSectionNotificationAlarmMode.Text" xml:space="preserve">
+    <value>Sesi bir döngüde çal (alarm modu)</value>
+  </data>
+  <data name="SettingsSectionNotificationSound.Text" xml:space="preserve">
+    <value>Bildirim sesi</value>
+  </data>
+  <data name="SettingsSectionNotificationSoundEnabled.Text" xml:space="preserve">
+    <value>Bildirim seslerini oynat</value>
+  </data>
+  <data name="SettingsSectionStartTimeCarryBack.Text" xml:space="preserve">
+    <value>Geri sayımdaki etkinliğin başlangıç zamanını göz önünde bulundurun</value>
+  </data>
+  <data name="SettingsSectionTheme-LabelDark.Content" xml:space="preserve">
+    <value>Koyu</value>
+  </data>
+  <data name="SettingsSectionTheme-LabelLight.Content" xml:space="preserve">
+    <value>Açık</value>
+  </data>
+  <data name="SettingsSectionTheme.Text" xml:space="preserve">
+    <value>Tema değişikliği uygulamanın yeniden başlatılmasıni gerektiriyor</value>
+  </data>
+  <data name="SettingsVersion.Text" xml:space="preserve">
+    <value>Sürüm:</value>
+  </data>
+  <data name="SettingsWindowsDefault.Content" xml:space="preserve">
+    <value>Windows varsayılanı</value>
+  </data>
+  <data name="StartButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Geri sayımı başlat</value>
+  </data>
+  <data name="SuggestButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Zaman öner</value>
+  </data>
+  <data name="TimePicker.ToolTipService.ToolTip" xml:space="preserve">
+    <value>Bitiş zamanını seçin</value>
+  </data>
+</root>

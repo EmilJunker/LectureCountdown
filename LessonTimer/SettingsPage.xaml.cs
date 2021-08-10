@@ -442,14 +442,18 @@ namespace LessonTimer
 
             LanguageComboBox.SelectedIndex = Settings.LanguageUI switch
             {
-                "zh" => 1,
-                "en" => 2,
-                "fr" => 3,
-                "de" => 4,
-                "ja" => 5,
-                "pt" => 6,
-                "ru" => 7,
-                "es" => 8,
+                "ar" => 1,
+                "zh" => 2,
+                "en" => 3,
+                "fr" => 4,
+                "de" => 5,
+                "it" => 6,
+                "ja" => 7,
+                "ko" => 8,
+                "pt" => 9,
+                "ru" => 10,
+                "es" => 11,
+                "tr" => 12,
                 _ => 0,
             };
 

@@ -177,14 +177,18 @@
                         <TextBlock x:Uid="SettingsSectionLanguage" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Language</TextBlock>
                         <ComboBox x:Name="LanguageComboBox" Width="200" Margin="0,8" SelectionChanged="LanguageComboBox_SelectionChanged">
                             <ComboBoxItem Content="Windows default" Tag="" x:Uid="SettingsWindowsDefault" />
+                            <ComboBoxItem Content="Arabic (عربى)" Tag="ar" />
                             <ComboBoxItem Content="Chinese (中文)" Tag="zh" />
                             <ComboBoxItem Content="English (English)" Tag="en" />
                             <ComboBoxItem Content="French (Français)" Tag="fr" />
                             <ComboBoxItem Content="German (Deutsch)" Tag="de" />
+                            <ComboBoxItem Content="Italian (Italiano)" Tag="it" />
                             <ComboBoxItem Content="Japanese (日本語)" Tag="ja" />
+                            <ComboBoxItem Content="Korean (한국어)" Tag="ko" />
                             <ComboBoxItem Content="Portuguese (Português)" Tag="pt" />
                             <ComboBoxItem Content="Russian (Русский )" Tag="ru" />
                             <ComboBoxItem Content="Spanish (Español)" Tag="es" />
+                            <ComboBoxItem Content="Turkish (Türkçe)" Tag="tr" />
                         </ComboBox>
 
                         <TextBlock x:Uid="SettingsSectionClockFormat" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Clock format</TextBlock>
