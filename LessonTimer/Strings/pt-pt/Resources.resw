@@ -211,7 +211,7 @@
     <value>Termine 15 minutos antes</value>
   </data>
   <data name="SettingsSectionAcademicQuarter.Text" xml:space="preserve">
-    <value>Trimestre acadêmico (horário de palestras)</value>
+    <value>Trimestre académico (horário de palestras)</value>
   </data>
   <data name="SettingsSectionClockFormat-Label12.Content" xml:space="preserve">
     <value>Formato de 12 horas</value>

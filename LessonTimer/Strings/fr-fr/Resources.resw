@@ -184,7 +184,7 @@
     <value>Retour utilisateur</value>
   </data>
   <data name="SettingsHeadlineAbout.Text" xml:space="preserve">
-    <value>À propos de cette appli</value>
+    <value>À propos de cette application</value>
   </data>
   <data name="SettingsHeadlineCalendar.Text" xml:space="preserve">
     <value>Événements du calendrier</value>

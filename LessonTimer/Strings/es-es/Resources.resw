@@ -202,7 +202,7 @@
     <value>Tema</value>
   </data>
   <data name="SettingsRating.Content" xml:space="preserve">
-    <value>Califica esta aplicacion</value>
+    <value>Califica esta aplicación</value>
   </data>
   <data name="SettingsSectionAcademicQuarter-LabelBegin.Text" xml:space="preserve">
     <value>Comience 15 minutos más tarde</value>

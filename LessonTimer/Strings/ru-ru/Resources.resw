@@ -178,7 +178,7 @@
     <value>Разработчик:</value>
   </data>
   <data name="SettingsEmail.Text" xml:space="preserve">
-    <value>Эл. почта:</value>
+    <value>Электронное письмо:</value>
   </data>
   <data name="SettingsFeedback.Content" xml:space="preserve">
     <value>Обратной связи</value>
