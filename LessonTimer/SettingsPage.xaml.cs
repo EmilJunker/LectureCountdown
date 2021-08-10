@@ -443,7 +443,7 @@ namespace LessonTimer
             LanguageComboBox.SelectedIndex = Settings.LanguageUI switch
             {
                 "ar" => 1,
-                "zh" => 2,
+                "zh-Hans" => 2,
                 "en" => 3,
                 "fr" => 4,
                 "de" => 5,
