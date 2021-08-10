@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
+using Windows.ApplicationModel.Resources.Core;
 using Windows.Globalization;
 using Windows.Media.Core;
 using Windows.Media.Playback;
@@ -47,6 +48,13 @@ namespace LessonTimer
                 Grid.Background = (Windows.UI.Xaml.Media.Brush)Resources["SystemControlChromeMediumAcrylicWindowMediumBrush"];
                 CloseButton.Style = (Style)Resources["ButtonRevealStyle"];
             }
+
+            string flowDirectionSetting = ResourceContext.GetForCurrentView().QualifierValues["LayoutDirection"];
+            this.FlowDirection = flowDirectionSetting switch
+            {
+                "LTR" => FlowDirection.LeftToRight,
+                _ => FlowDirection.RightToLeft,
+            };
 
             Package package = Package.Current;
             PackageId packageId = package.Id;

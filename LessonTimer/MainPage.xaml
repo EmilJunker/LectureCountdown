@@ -97,7 +97,7 @@
 
                 <RelativePanel x:Name="ControlPanel" RelativePanel.Below="InformationPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                     <RelativePanel x:Name="PickerPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="4">
-                        <TextBox x:Name="LengthPicker" x:Uid="LengthPicker" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="32" TextChanged="LengthPicker_TextChanged" KeyDown="LengthPicker_KeyDown" InputScope="Number" MaxLength="20" />
+                        <TextBox x:Name="LengthPicker" x:Uid="LengthPicker" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="32" TextChanged="LengthPicker_TextChanged" KeyDown="LengthPicker_KeyDown" InputScope="Number" MaxLength="20" TextAlignment="Start" />
                         <TimePicker x:Name="TimePicker" x:Uid="TimePicker" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Height="32" TimeChanged="TimePicker_Changed" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
                     </RelativePanel>
                     <Button x:Name="SuggestButton" x:Uid="SuggestButton" RelativePanel.Below="PickerPanel" RelativePanel.AlignLeftWithPanel="True" Width="32" Height="32" Margin="4" Padding="0" Click="SuggestButton_Click">

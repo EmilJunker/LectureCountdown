@@ -163,10 +163,10 @@
     <value>محاضرة مدتها # دقائق</value>
   </data>
   <data name="NotificationText1" xml:space="preserve">
-    <value> ثانية قد مرت</value>
+    <value>ما مجموعه </value>
   </data>
   <data name="NotificationText2" xml:space="preserve">
-    <value>ما مجموعه </value>
+    <value> ثانية قد مرت</value>
   </data>
   <data name="NotificationTitle" xml:space="preserve">
     <value>لقد انتهت!</value>

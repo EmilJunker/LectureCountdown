@@ -4,6 +4,7 @@ using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Appointments;
 using Windows.ApplicationModel.Core;
+using Windows.ApplicationModel.Resources.Core;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.System;
@@ -54,6 +55,13 @@ namespace LessonTimer
                 StartButton.Style = (Style)Resources["ButtonRevealStyle"];
                 SettingsButton.Style = (Style)Resources["ButtonRevealStyle"];
             }
+
+            string flowDirectionSetting = ResourceContext.GetForCurrentView().QualifierValues["LayoutDirection"];
+            this.FlowDirection = flowDirectionSetting switch
+            {
+                "LTR" => FlowDirection.LeftToRight,
+                _ => FlowDirection.RightToLeft,
+            };
 
             TimePicker.ClockIdentifier = Settings.ClockFormat;
 
