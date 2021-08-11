@@ -186,7 +186,7 @@
                             <ComboBoxItem Content="Japanese (日本語)" Tag="ja" />
                             <ComboBoxItem Content="Korean (한국어)" Tag="ko" />
                             <ComboBoxItem Content="Portuguese (Português)" Tag="pt" />
-                            <ComboBoxItem Content="Russian (Русский )" Tag="ru" />
+                            <ComboBoxItem Content="Russian (Русский)" Tag="ru" />
                             <ComboBoxItem Content="Spanish (Español)" Tag="es" />
                             <ComboBoxItem Content="Turkish (Türkçe)" Tag="tr" />
                         </ComboBox>
