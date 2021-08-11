@@ -177,7 +177,7 @@
                         <TextBlock x:Uid="SettingsSectionLanguage" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Language</TextBlock>
                         <ComboBox x:Name="LanguageComboBox" Width="200" Margin="0,8" SelectionChanged="LanguageComboBox_SelectionChanged">
                             <ComboBoxItem Content="Windows default" Tag="" x:Uid="SettingsWindowsDefault" />
-                            <ComboBoxItem Content="Arabic (عربى)" Tag="ar" />
+                            <ComboBoxItem Content="Arabic (العربية)" Tag="ar" />
                             <ComboBoxItem Content="Chinese (中文)" Tag="zh-Hans" />
                             <ComboBoxItem Content="English (English)" Tag="en" />
                             <ComboBoxItem Content="French (Français)" Tag="fr" />
