@@ -188,7 +188,11 @@ namespace LessonTimer
 
         private void ApplyCommandLineOptions(ParsedOptions options)
         {
-            if (options.starttime != null && options.endtime != null && options.length != null)
+            if (options.cancelCountdown)
+            {
+                CancelCountdown();
+            }
+            else if (options.starttime != null && options.endtime != null && options.length != null)
             {
                 starttime = options.starttime.Value;
                 endtime = options.endtime.Value;
@@ -264,15 +268,23 @@ namespace LessonTimer
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            Countdown.EndCountdown();
+            CancelCountdown();
+        }
 
-            endtime = DateTime.Now;
-            SaveSession();
+        private void CancelCountdown()
+        {
+            if (Countdown.IsRunning)
+            {
+                Countdown.EndCountdown();
 
-            CancelNotification();
+                endtime = DateTime.Now.AddSeconds(-1);
+                SaveSession();
 
-            StartButton.IsEnabled = true;
-            CancelButton.IsEnabled = false;
+                CancelNotification();
+
+                StartButton.IsEnabled = true;
+                CancelButton.IsEnabled = false;
+            }
         }
 
         private void StartCountdown()
@@ -369,7 +381,6 @@ namespace LessonTimer
 
                 if (!Countdown.IsRunning)
                 {
-                    endtime = DateTime.Now;
                     StartButton.IsEnabled = true;
                     CancelButton.IsEnabled = false;
                     InfoTextBlock.Text = String.Empty;

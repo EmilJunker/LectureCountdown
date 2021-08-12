@@ -8,6 +8,9 @@ namespace LessonTimer.Services
 {
     public class Options
     {
+        [Option("cancel", SetName = "cancel", Default = false)]
+        public bool CancelCountdown { get; set; }
+
         [Option("length", SetName = "length")]
         public string Length { get; set; }
 
@@ -29,6 +32,7 @@ namespace LessonTimer.Services
 
     public struct ParsedOptions
     {
+        public bool cancelCountdown;
         public DateTime? starttime;
         public DateTime? endtime;
         public int? length;
@@ -50,6 +54,8 @@ namespace LessonTimer.Services
             Parser.Default.ParseArguments<Options>(args)
                 .WithParsed<Options>(o =>
                 {
+                    options.cancelCountdown = o.CancelCountdown;
+
                     if (o.Length != null)
                     {
                         try
