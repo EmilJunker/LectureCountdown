@@ -25,7 +25,6 @@ namespace LessonTimer
         private bool alarmModeSoundLock;
         private bool settingsLoaded;
 
-        private readonly List<int> alarmForbiddenSounds;
         private readonly MediaPlayer mediaPlayer;
 
         public SettingsPage()
@@ -61,7 +60,6 @@ namespace LessonTimer
             PackageVersion version = packageId.Version;
             VersionNumber.Text = String.Format("{0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
 
-            alarmForbiddenSounds = new List<int> { 0, 1, 2, 3 };
             mediaPlayer = new MediaPlayer();
 
             Application.Current.Suspending += new SuspendingEventHandler(App_Suspending);
@@ -282,6 +280,11 @@ namespace LessonTimer
             {
                 return;
             }
+            if (alarmModeSoundLock)
+            {
+                alarmModeSoundLock = false;
+                return;
+            }
 
             ToggleSwitch ts = sender as ToggleSwitch;
 
@@ -289,25 +292,22 @@ namespace LessonTimer
             {
                 Settings.SetNotificationAlarmModeEnabled(true);
 
-                if (alarmForbiddenSounds.IndexOf(NotificationSoundComboBox.SelectedIndex) != -1)
+                int fixedIndex = Settings.FixNotificationSoundForAlarmMode();
+                if (fixedIndex != -1)
                 {
                     MediaPlayer_Stop();
                     alarmModeSoundLock = true;
-                    NotificationSoundComboBox.SelectedIndex = alarmForbiddenSounds.Count;
-                }
-                else if (CountdownLogic.Countdown.IsRunning)
-                {
-                    MainPage.ScheduleNotification();
+                    NotificationSoundComboBox.SelectedIndex = fixedIndex;
                 }
             }
             else
             {
                 Settings.SetNotificationAlarmModeEnabled(false);
+            }
 
-                if (CountdownLogic.Countdown.IsRunning)
-                {
-                    MainPage.ScheduleNotification();
-                }
+            if (CountdownLogic.Countdown.IsRunning)
+            {
+                MainPage.ScheduleNotification();
             }
         }
 
@@ -317,29 +317,29 @@ namespace LessonTimer
             {
                 return;
             }
+            if (alarmModeSoundLock)
+            {
+                alarmModeSoundLock = false;
+                return;
+            }
 
             ComboBox cb = sender as ComboBox;
             ComboBoxItem item = cb.SelectedItem as ComboBoxItem;
             string soundUri = item.Tag.ToString();
 
-            if (alarmModeSoundLock)
-            {
-                alarmModeSoundLock = false;
-            }
-            else
-            {
-                mediaPlayer.Source = MediaSource.CreateFromUri(new Uri(soundUri));
-                mediaPlayer.Play();
-                mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
-            }
+            mediaPlayer.Source = MediaSource.CreateFromUri(new Uri(soundUri));
+            mediaPlayer.Play();
+            mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
 
             Settings.SetNotificationSound(soundUri);
 
-            if (NotificationAlarmModeToggleSwitch.IsOn && alarmForbiddenSounds.IndexOf(cb.SelectedIndex) != -1)
+            if (Settings.FixAlarmModeForNotificationSound())
             {
+                alarmModeSoundLock = true;
                 NotificationAlarmModeToggleSwitch.IsOn = false;
             }
-            else if (CountdownLogic.Countdown.IsRunning)
+            
+            if (CountdownLogic.Countdown.IsRunning)
             {
                 MainPage.ScheduleNotification();
             }
@@ -421,23 +421,7 @@ namespace LessonTimer
                 NotificationAlarmModeToggleSwitch.IsEnabled = false;
             }
 
-            NotificationSoundComboBox.SelectedIndex = Settings.NotificationSound switch
-            {
-                "ms-winsoundevent:Notification.Default" => 0,
-                "ms-winsoundevent:Notification.IM" => 1,
-                "ms-winsoundevent:Notification.Mail" => 2,
-                "ms-winsoundevent:Notification.Reminder" => 3,
-                "ms-winsoundevent:Notification.Looping.Alarm" => 4,
-                "ms-winsoundevent:Notification.Looping.Alarm2" => 5,
-                "ms-winsoundevent:Notification.Looping.Alarm3" => 6,
-                "ms-winsoundevent:Notification.Looping.Alarm4" => 7,
-                "ms-winsoundevent:Notification.Looping.Alarm5" => 8,
-                "ms-winsoundevent:Notification.Looping.Alarm6" => 9,
-                "ms-winsoundevent:Notification.Looping.Alarm7" => 10,
-                "ms-winsoundevent:Notification.Looping.Alarm8" => 11,
-                "ms-winsoundevent:Notification.Looping.Alarm9" => 12,
-                "ms-winsoundevent:Notification.Looping.Alarm10" => 13,
-            };
+            NotificationSoundComboBox.SelectedIndex = Settings.AllowedNotificationSounds.IndexOf(Settings.NotificationSound);
 
             if (Settings.NotificationAlarmModeEnabled)
             {

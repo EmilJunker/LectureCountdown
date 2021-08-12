@@ -244,7 +244,7 @@ namespace LessonTimer.Services
             NotificationSound = localSettings.Values["NotificationSound"] as string;
             if (NotificationSound is null)
             {
-                SetNotificationSound("ms-winsoundevent:Notification.Default");
+                SetNotificationSound(AllowedNotificationSounds[0]);
             }
 
             LanguageUI = localSettings.Values["LanguageUI"] as string;
@@ -264,6 +264,43 @@ namespace LessonTimer.Services
             {
                 SetTheme(String.Empty);
             }
+        }
+
+        public static readonly List<string> AllowedNotificationSounds = new List<string> {
+            "ms-winsoundevent:Notification.Default",
+            "ms-winsoundevent:Notification.IM",
+            "ms-winsoundevent:Notification.Mail",
+            "ms-winsoundevent:Notification.Reminder",
+            "ms-winsoundevent:Notification.Looping.Alarm",
+            "ms-winsoundevent:Notification.Looping.Alarm2",
+            "ms-winsoundevent:Notification.Looping.Alarm3",
+            "ms-winsoundevent:Notification.Looping.Alarm4",
+            "ms-winsoundevent:Notification.Looping.Alarm5",
+            "ms-winsoundevent:Notification.Looping.Alarm6",
+            "ms-winsoundevent:Notification.Looping.Alarm7",
+            "ms-winsoundevent:Notification.Looping.Alarm8",
+            "ms-winsoundevent:Notification.Looping.Alarm9",
+            "ms-winsoundevent:Notification.Looping.Alarm10"
+        };
+
+        public static int FixNotificationSoundForAlarmMode()
+        {
+            if (AllowedNotificationSounds.IndexOf(NotificationSound) < 4)
+            {
+                SetNotificationSound(AllowedNotificationSounds[4]);
+                return 4;
+            }
+            return -1;
+        }
+
+        public static bool FixAlarmModeForNotificationSound()
+        {
+            if (NotificationAlarmModeEnabled && AllowedNotificationSounds.IndexOf(NotificationSound) < 4)
+            {
+                SetNotificationAlarmModeEnabled(false);
+                return true;
+            }
+            return false;
         }
     }
 }
