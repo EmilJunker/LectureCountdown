@@ -88,7 +88,7 @@ namespace LessonTimer.Services
 
                     if (o.Description != null)
                     {
-                        options.description = o.Description.Trim('\"');
+                        options.description = o.Description.Trim('\"').Replace("\n", " ").Trim();
                     }
 
                     if (o.Notification != null)
