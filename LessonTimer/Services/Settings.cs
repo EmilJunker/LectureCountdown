@@ -62,7 +62,7 @@ namespace LessonTimer.Services
         {
             if (i == 0)
             {
-                LectureLengths = new List<int>(new int[] { 45, 60, 90 });
+                LectureLengths = new List<int> { 45, 60, 90 };
                 localSettings.Values["LectureLengths0"] = 45;
                 localSettings.Values["LectureLengths1"] = 60;
                 localSettings.Values["LectureLengths2"] = 90;
