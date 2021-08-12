@@ -74,7 +74,22 @@ namespace LessonTimer
                     Window.Current.Content = rootFrame;
                 }
 
-                rootFrame.Navigate(typeof(MainPage));
+                CommandLineActivatedEventArgs cmdLineArgs = args as CommandLineActivatedEventArgs;
+                CommandLineActivationOperation operation = cmdLineArgs.Operation;
+                string arguments = operation.Arguments;
+
+                try
+                {
+                    ParsedOptions options = CommandLineParser.Parse(arguments);
+                    rootFrame.Navigate(typeof(MainPage), options);
+                }
+                catch (ArgumentException)
+                {
+                    if (rootFrame.Content is null)
+                    {
+                        rootFrame.Navigate(typeof(MainPage));
+                    }
+                }
             }
 
             Window.Current.Activate();

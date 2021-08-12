@@ -93,7 +93,6 @@ namespace LessonTimer
                 CompactOverlayButton.Visibility = Visibility.Collapsed;
             }
 
-            compactMode = false;
             nextStarttime = null;
             nextDescription = new Description();
 
@@ -179,6 +178,69 @@ namespace LessonTimer
             if (e.NavigationMode == NavigationMode.New)
             {
                 RestoreSession();
+
+                if (e.Parameter != null && e.Parameter is ParsedOptions options)
+                {
+                    ApplyCommandLineOptions(options);
+                }
+            }
+        }
+
+        private void ApplyCommandLineOptions(ParsedOptions options)
+        {
+            if (options.starttime != null && options.endtime != null && options.length != null)
+            {
+                starttime = options.starttime.Value;
+                endtime = options.endtime.Value;
+                length = options.length.Value;
+                description = options.description;
+            }
+            else if (options.description != null)
+            {
+                description = options.description;
+            }
+
+            SaveSession();
+
+            if (options.notificationMode != null)
+            {
+                if (options.notificationMode == "none")
+                {
+                    Settings.SetNotificationsEnabled(false);
+                }
+                else if (options.notificationMode == "silent")
+                {
+                    Settings.SetNotificationsEnabled(true);
+                    Settings.SetNotificationSoundEnabled(false);
+                }
+                else if (options.notificationMode == "sound")
+                {
+                    Settings.SetNotificationsEnabled(true);
+                    Settings.SetNotificationSoundEnabled(true);
+                    Settings.SetNotificationAlarmModeEnabled(false);
+                }
+                else if (options.notificationMode == "alarm")
+                {
+                    Settings.SetNotificationsEnabled(true);
+                    Settings.SetNotificationSoundEnabled(true);
+                    Settings.SetNotificationAlarmModeEnabled(true);
+                    Settings.FixNotificationSoundForAlarmMode();
+                }
+            }
+
+            if (options.notificationSound != null)
+            {
+                Settings.SetNotificationSound(options.notificationSound);
+                Settings.FixAlarmModeForNotificationSound();
+            }
+
+            if (options.launchInCompactMode)
+            {
+                CompactOverlayOn();
+            }
+            else
+            {
+                CompactOverlayOff();
             }
         }
 
