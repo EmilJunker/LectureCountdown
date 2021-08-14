@@ -1,6 +1,7 @@
 ﻿using LessonTimer.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
@@ -380,7 +381,8 @@ namespace LessonTimer
 
             EnableDisableLectureRoundComboBox();
 
-            LectureLengthsTextBox.Text = String.Join(", ", Settings.LectureLengths);
+            LectureLengthsTextBox.Text = String.Join(", ", Settings.LectureLengths.Select(
+                    length => NumberStrings.NumberToCultureString(length)));
 
             LectureRoundComboBox.SelectedIndex = Settings.LectureLengthRoundTo switch
             {

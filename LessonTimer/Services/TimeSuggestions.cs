@@ -19,7 +19,7 @@ namespace LessonTimer.Services
                 SuggestionsIterator = 0;
             }
 
-            return (length.ToString(), length);
+            return (NumberStrings.NumberToCultureString(length), length);
         }
 
         public static (TimeSpan endtimePick, int length) GetEndTimeSuggestion()
@@ -57,9 +57,9 @@ namespace LessonTimer.Services
 
             if (Settings.StartTimeCarryBackEnabled)
             {
-                return (nextAppointment.start, appointmentLength.ToString(), nextAppointment.subject);
+                return (nextAppointment.start, NumberStrings.NumberToCultureString(appointmentLength), nextAppointment.subject);
             }
-            return (null, appointmentLength.ToString(), nextAppointment.subject);
+            return (null, NumberStrings.NumberToCultureString(appointmentLength), nextAppointment.subject);
         }
 
         public static (DateTime? starttime, TimeSpan endtimePick, string description) GetEndTimeSuggestion(IReadOnlyList<Appointment> allAppointments)

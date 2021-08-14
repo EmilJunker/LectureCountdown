@@ -129,7 +129,7 @@ namespace LessonTimer
                 switch (Settings.CountdownBase)
                 {
                     case "length":
-                        LengthPicker.Text = length.ToString();
+                        LengthPicker.Text = NumberStrings.NumberToCultureString(length);
                         break;
                     case "time":
                         TimePicker.Time = new TimeSpan(endtime.Hour, endtime.Minute, 0);
