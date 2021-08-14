@@ -128,6 +128,11 @@ namespace LessonTimer
 
         private void CountdownBaseComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (!settingsLoaded)
+            {
+                return;
+            }
+
             ComboBox cb = sender as ComboBox;
             ComboBoxItem item = cb.SelectedItem as ComboBoxItem;
             Settings.SetCountdownBase(item.Tag.ToString());
@@ -137,6 +142,10 @@ namespace LessonTimer
 
         private void CountdownDescriptionTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (!settingsLoaded)
+            {
+                return;
+            }
             if (countdownDescriptionNullLock)
             {
                 return;
@@ -158,6 +167,11 @@ namespace LessonTimer
 
         private void LectureLengthsTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (!settingsLoaded)
+            {
+                return;
+            }
+
             List<int> lectureLengths = new List<int>();
 
             int count = 0;
@@ -183,6 +197,11 @@ namespace LessonTimer
 
         private void LectureRoundComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (!settingsLoaded)
+            {
+                return;
+            }
+
             ComboBox cb = sender as ComboBox;
             ComboBoxItem item = cb.SelectedItem as ComboBoxItem;
             Settings.SetLectureLengthRoundTo(Convert.ToInt32(item.Content));
@@ -195,24 +214,44 @@ namespace LessonTimer
 
         private void AcademicQuarterBeginToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
+            if (!settingsLoaded)
+            {
+                return;
+            }
+
             ToggleSwitch ts = sender as ToggleSwitch;
             Settings.SetAcademicQuarterBeginEnabled(ts.IsOn);
         }
 
         private void AcademicQuarterEndToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
+            if (!settingsLoaded)
+            {
+                return;
+            }
+
             ToggleSwitch ts = sender as ToggleSwitch;
             Settings.SetAcademicQuarterEndEnabled(ts.IsOn);
         }
 
         private void StartTimeCarryBackToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
+            if (!settingsLoaded)
+            {
+                return;
+            }
+
             ToggleSwitch ts = sender as ToggleSwitch;
             Settings.SetStartTimeCarryBackEnabled(ts.IsOn);
         }
 
         private void NotificationToggleSwitch_Toggled(object sender, RoutedEventArgs e)
         {
+            if (!settingsLoaded)
+            {
+                return;
+            }
+
             ToggleSwitch ts = sender as ToggleSwitch;
 
             if (ts.IsOn)
@@ -350,6 +389,11 @@ namespace LessonTimer
 
         private void LanguageComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (!settingsLoaded)
+            {
+                return;
+            }
+
             ComboBox cb = sender as ComboBox;
             ComboBoxItem item = cb.SelectedItem as ComboBoxItem;
             Settings.SetLanguageUI(item.Tag.ToString());
@@ -364,12 +408,22 @@ namespace LessonTimer
 
         private void ClockFormatRadioButton_Checked(object sender, RoutedEventArgs e)
         {
+            if (!settingsLoaded)
+            {
+                return;
+            }
+
             RadioButton rb = sender as RadioButton;
             Settings.SetClockFormat(rb.Tag.ToString());
         }
 
         private void ThemeRadioButton_Checked(object sender, RoutedEventArgs e)
         {
+            if (!settingsLoaded)
+            {
+                return;
+            }
+
             RadioButton rb = sender as RadioButton;
             Settings.SetTheme(rb.Tag.ToString());
         }
