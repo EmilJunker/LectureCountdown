@@ -1,4 +1,5 @@
 ﻿using LessonTimer.Services;
+using Microsoft.Services.Store.Engagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
+using Windows.ApplicationModel.Resources;
 using Windows.ApplicationModel.Resources.Core;
+using Windows.Foundation.Metadata;
 using Windows.Globalization;
 using Windows.Media.Core;
 using Windows.Media.Playback;
@@ -16,6 +19,8 @@ using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace LessonTimer
@@ -39,13 +44,13 @@ namespace LessonTimer
             ApplicationViewTitleBar titlebar = ApplicationView.GetForCurrentView().TitleBar;
             titlebar.ButtonBackgroundColor = Colors.Transparent;
             titlebar.ButtonInactiveBackgroundColor = Colors.Transparent;
-            titlebar.ButtonHoverBackgroundColor = (Color)this.Resources["SystemAccentColor"];
-            titlebar.ButtonPressedBackgroundColor = (Color)this.Resources["SystemAccentColor"];
+            titlebar.ButtonHoverBackgroundColor = (Color)Resources["SystemAccentColor"];
+            titlebar.ButtonPressedBackgroundColor = (Color)Resources["SystemAccentColor"];
             titlebar.ButtonForegroundColor = (Application.Current.RequestedTheme == ApplicationTheme.Dark) ? Colors.White : Colors.Black;
 
-            if (Windows.Foundation.Metadata.ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5))
+            if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5))
             {
-                Grid.Background = (Windows.UI.Xaml.Media.Brush)Resources["SystemControlChromeMediumAcrylicWindowMediumBrush"];
+                Grid.Background = (Brush)Resources["SystemControlChromeMediumAcrylicWindowMediumBrush"];
                 CloseButton.Style = (Style)Resources["ButtonRevealStyle"];
             }
 
@@ -105,7 +110,7 @@ namespace LessonTimer
             Frame.GoBack();
         }
 
-        private void CountdownDescriptionTextBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        private void CountdownDescriptionTextBox_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Enter)
             {
@@ -113,7 +118,7 @@ namespace LessonTimer
             }
         }
 
-        private void LectureLengthsTextBox_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        private void LectureLengthsTextBox_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Enter)
             {
@@ -145,7 +150,7 @@ namespace LessonTimer
             countdownDescriptionNullLock = true;
             Settings.SetCountdownDescription(null);
 
-            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            ResourceLoader loader = new ResourceLoader();
             CountdownDescriptionTextBox.Text = loader.GetString("MinuteLecture");
 
             TriggerResetCountdownDescriptionNullLock();
@@ -491,7 +496,7 @@ namespace LessonTimer
 
         private async void FeedbackButton_Click(object sender, RoutedEventArgs e)
         {
-            var launcher = Microsoft.Services.Store.Engagement.StoreServicesFeedbackLauncher.GetDefault();
+            StoreServicesFeedbackLauncher launcher = StoreServicesFeedbackLauncher.GetDefault();
             await launcher.LaunchAsync();
         }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Windows.ApplicationModel.Resources;
 using Windows.Globalization;
+using Windows.Globalization.DateTimeFormatting;
 using Windows.Storage;
 
 namespace LessonTimer.Services
@@ -28,7 +30,7 @@ namespace LessonTimer.Services
         {
             if (CountdownDescription is null)
             {
-                var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                ResourceLoader loader = new ResourceLoader();
                 return loader.GetString("MinuteLecture");
             }
             return CountdownDescription;
@@ -256,7 +258,7 @@ namespace LessonTimer.Services
             ClockFormat = localSettings.Values["ClockFormat"] as string;
             if (ClockFormat is null)
             {
-                SetClockFormat(new Windows.Globalization.DateTimeFormatting.DateTimeFormatter("shorttime", new[] { new GeographicRegion().Code }).Clock);
+                SetClockFormat(new DateTimeFormatter("shorttime", new[] { new GeographicRegion().Code }).Clock);
             }
 
             Theme = localSettings.Values["Theme"] as string;

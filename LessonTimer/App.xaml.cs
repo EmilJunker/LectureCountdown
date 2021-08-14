@@ -1,6 +1,7 @@
 ﻿using LessonTimer.Services;
 using System;
 using Windows.ApplicationModel.Activation;
+using Windows.Globalization;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -20,7 +21,7 @@ namespace LessonTimer
                 Notifications.UseToastNotification(notifications[0]);
             }
 
-            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = Settings.LanguageUI;
+            ApplicationLanguages.PrimaryLanguageOverride = Settings.LanguageUI;
 
             this.RequestedTheme = Settings.Theme switch
             {

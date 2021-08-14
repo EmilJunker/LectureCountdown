@@ -4,8 +4,10 @@ using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Appointments;
 using Windows.ApplicationModel.Core;
+using Windows.ApplicationModel.Resources;
 using Windows.ApplicationModel.Resources.Core;
 using Windows.Foundation;
+using Windows.Foundation.Metadata;
 using Windows.Storage;
 using Windows.System;
 using Windows.UI;
@@ -13,6 +15,8 @@ using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace LessonTimer
@@ -42,13 +46,13 @@ namespace LessonTimer
             ApplicationViewTitleBar titlebar = ApplicationView.GetForCurrentView().TitleBar;
             titlebar.ButtonBackgroundColor = Colors.Transparent;
             titlebar.ButtonInactiveBackgroundColor = Colors.Transparent;
-            titlebar.ButtonHoverBackgroundColor = (Color)this.Resources["SystemAccentColor"];
-            titlebar.ButtonPressedBackgroundColor = (Color)this.Resources["SystemAccentColor"];
+            titlebar.ButtonHoverBackgroundColor = (Color)Resources["SystemAccentColor"];
+            titlebar.ButtonPressedBackgroundColor = (Color)Resources["SystemAccentColor"];
             titlebar.ButtonForegroundColor = (Application.Current.RequestedTheme == ApplicationTheme.Dark) ? Colors.White : Colors.Black;
 
-            if (Windows.Foundation.Metadata.ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5))
+            if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5))
             {
-                Grid.Background = (Windows.UI.Xaml.Media.Brush)Resources["SystemControlChromeMediumAcrylicWindowMediumBrush"];
+                Grid.Background = (Brush)Resources["SystemControlChromeMediumAcrylicWindowMediumBrush"];
                 SuggestButton.Style = (Style)Resources["ButtonRevealStyle"];
                 CalendarButton.Style = (Style)Resources["ButtonRevealStyle"];
                 CancelButton.Style = (Style)Resources["ButtonRevealStyle"];
@@ -253,7 +257,7 @@ namespace LessonTimer
             Frame.Navigate(typeof(SettingsPage));
         }
 
-        private void LengthPicker_KeyDown(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        private void LengthPicker_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Enter)
             {
@@ -365,7 +369,7 @@ namespace LessonTimer
             }
             else
             {
-                var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                ResourceLoader loader = new ResourceLoader();
                 DisplayMessage(loader.GetString("ErrorInvalidInput"), true);
             }
         }
@@ -522,7 +526,7 @@ namespace LessonTimer
                 {
                     if (!Countdown.IsRunning)
                     {
-                        var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                        ResourceLoader loader = new ResourceLoader();
                         DisplayMessage(loader.GetString("ErrorNoEventsInCalendar"), true);
                     }
                 }
@@ -531,7 +535,7 @@ namespace LessonTimer
             {
                 if (!Countdown.IsRunning)
                 {
-                    var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                    ResourceLoader loader = new ResourceLoader();
                     DisplayMessage(loader.GetString("ErrorNoCalendarAccessPermission"), true);
                 }
             }

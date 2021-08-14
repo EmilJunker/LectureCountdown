@@ -1,6 +1,7 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Collections.Generic;
+using Windows.ApplicationModel.Resources;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 
@@ -27,7 +28,7 @@ namespace LessonTimer.Services
             Random rand = new Random();
             int index = rand.Next(0, emoji.Count);
 
-            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            ResourceLoader loader = new ResourceLoader();
 
             string title = loader.GetString("NotificationTitle");
             string content = loader.GetString("NotificationText1") + durationTotalSeconds.ToString() + loader.GetString("NotificationText2") + " " + emoji[index];
