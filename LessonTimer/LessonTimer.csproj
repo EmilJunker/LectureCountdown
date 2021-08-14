@@ -120,6 +120,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CommandLine.cs" />
+    <Compile Include="Services\NumberStrings.cs" />
     <Compile Include="Services\Description.cs" />
     <Compile Include="Services\Notifications.cs" />
     <Compile Include="Services\Settings.cs" />

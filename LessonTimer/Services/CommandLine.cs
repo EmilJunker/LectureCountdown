@@ -60,7 +60,7 @@ namespace LessonTimer.Services
                     {
                         try
                         {
-                            options.length = Countdown.ParseLengthString24Hours(o.Length);
+                            options.length = NumberStrings.ParseLengthString24Hours(o.Length);
                             options.starttime = Countdown.DateTimeNow();
                             options.endtime = Countdown.LengthToEndTime(options.starttime.Value, options.length.Value);
                             Settings.SetCountdownBase("length");

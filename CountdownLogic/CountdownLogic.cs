@@ -86,16 +86,6 @@ namespace CountdownLogic
             timer.Dispose();
         }
 
-        public static int ParseLengthString24Hours(string lengthString)
-        {
-            int length = Convert.ToInt32(lengthString);
-            if (0 < length && length < 1440)
-            {
-                return length;
-            }
-            throw new ArgumentException();
-        }
-
         public static DateTime DateTimeNow()
         {
             return new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);

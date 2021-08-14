@@ -308,7 +308,7 @@ namespace LessonTimer
                     {
                         string lengthString = LengthPicker.Text;
 
-                        int _length = Countdown.ParseLengthString24Hours(lengthString);
+                        int _length = NumberStrings.ParseLengthString24Hours(lengthString);
 
                         endtime = Countdown.TimerSetup(_starttime, _length);
                         length = _length;

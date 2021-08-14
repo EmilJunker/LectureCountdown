@@ -165,12 +165,9 @@ namespace LessonTimer
 
                 try
                 {
-                    int value = Convert.ToInt32(length);
-                    if (0 < value && value < 1440)
-                    {
-                        lectureLengths.Add(value);
-                        count++;
-                    }
+                    int value = NumberStrings.ParseLengthString24Hours(length);
+                    lectureLengths.Add(value);
+                    count++;
                 }
                 catch (Exception) { }
             }
@@ -338,7 +335,7 @@ namespace LessonTimer
                 alarmModeSoundLock = true;
                 NotificationAlarmModeToggleSwitch.IsOn = false;
             }
-            
+
             if (CountdownLogic.Countdown.IsRunning)
             {
                 MainPage.ScheduleNotification();
