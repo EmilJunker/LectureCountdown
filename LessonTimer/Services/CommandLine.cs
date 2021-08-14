@@ -139,7 +139,7 @@ namespace LessonTimer.Services
                 throw new ArgumentException();
             }
 
-            uint hh = Convert.ToUInt32(hhmm[0]);
+            uint hh = UInt32.Parse(hhmm[0]);
             if (pm && hh != 12)
             {
                 hh += 12;
@@ -148,7 +148,7 @@ namespace LessonTimer.Services
             {
                 hh = 0;
             }
-            uint mm = Convert.ToUInt32(hhmm[1]);
+            uint mm = UInt32.Parse(hhmm[1]);
 
             return Countdown.DateTimeTodayOrTomorrow((int)hh, (int)mm, 0);
         }
