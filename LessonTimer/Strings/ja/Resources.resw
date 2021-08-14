@@ -162,11 +162,8 @@
   <data name="MinuteLecture" xml:space="preserve">
     <value>#分講義</value>
   </data>
-  <data name="NotificationText1" xml:space="preserve">
-    <value>合計</value>
-  </data>
-  <data name="NotificationText2" xml:space="preserve">
-    <value>秒が経過した</value>
+  <data name="NotificationText" xml:space="preserve">
+    <value>合計#秒が経過した</value>
   </data>
   <data name="NotificationTitle" xml:space="preserve">
     <value>おしまいです！</value>

@@ -162,11 +162,8 @@
   <data name="MinuteLecture" xml:space="preserve">
     <value>محاضرة مدتها # دقائق</value>
   </data>
-  <data name="NotificationText1" xml:space="preserve">
-    <value>ما مجموعه </value>
-  </data>
-  <data name="NotificationText2" xml:space="preserve">
-    <value> ثانية قد مرت</value>
+  <data name="NotificationText" xml:space="preserve">
+    <value>ما مجموعه # ثانية قد مرت</value>
   </data>
   <data name="NotificationTitle" xml:space="preserve">
     <value>لقد انتهت!</value>

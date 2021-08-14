@@ -162,11 +162,8 @@
   <data name="MinuteLecture" xml:space="preserve">
     <value>#분 강의</value>
   </data>
-  <data name="NotificationText1" xml:space="preserve">
-    <value>총 </value>
-  </data>
-  <data name="NotificationText2" xml:space="preserve">
-    <value>분이 지났습니다</value>
+  <data name="NotificationText" xml:space="preserve">
+    <value>총 #초가 지났습니다</value>
   </data>
   <data name="NotificationTitle" xml:space="preserve">
     <value>끝났어!</value>

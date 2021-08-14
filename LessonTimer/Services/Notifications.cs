@@ -31,7 +31,7 @@ namespace LessonTimer.Services
             ResourceLoader loader = new ResourceLoader();
 
             string title = loader.GetString("NotificationTitle");
-            string content = loader.GetString("NotificationText1") + durationTotalSeconds.ToString() + loader.GetString("NotificationText2") + " " + emoji[index];
+            string content = loader.GetString("NotificationText").Replace("#", NumberStrings.NumberToCultureString(durationTotalSeconds)) + " " + emoji[index];
 
             ToastContentBuilder builder = new ToastContentBuilder()
                 .SetToastScenario(alarm ? ToastScenario.Alarm : ToastScenario.Default)

@@ -162,11 +162,8 @@
   <data name="MinuteLecture" xml:space="preserve">
     <value>#-минутная лекция</value>
   </data>
-  <data name="NotificationText1" xml:space="preserve">
-    <value>В общей сложности </value>
-  </data>
-  <data name="NotificationText2" xml:space="preserve">
-    <value> секунд прошли</value>
+  <data name="NotificationText" xml:space="preserve">
+    <value>В общей сложности # секунд прошли</value>
   </data>
   <data name="NotificationTitle" xml:space="preserve">
     <value>Сделано!</value>

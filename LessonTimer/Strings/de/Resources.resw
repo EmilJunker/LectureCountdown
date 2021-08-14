@@ -162,11 +162,8 @@
   <data name="MinuteLecture" xml:space="preserve">
     <value>#-minütige Vorlesung</value>
   </data>
-  <data name="NotificationText1" xml:space="preserve">
-    <value>Insgesamt sind </value>
-  </data>
-  <data name="NotificationText2" xml:space="preserve">
-    <value> Sekunden vergangen</value>
+  <data name="NotificationText" xml:space="preserve">
+    <value>Insgesamt sind # Sekunden vergangen</value>
   </data>
   <data name="NotificationTitle" xml:space="preserve">
     <value>Es ist geschafft!</value>
