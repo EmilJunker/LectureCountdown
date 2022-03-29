@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LessonTimer.Services
+namespace LectureCountdown.Services
 {
     public class Description
     {

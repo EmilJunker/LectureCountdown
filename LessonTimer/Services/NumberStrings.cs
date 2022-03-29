@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using Windows.Globalization;
 
-namespace LessonTimer.Services
+namespace LectureCountdown.Services
 {
     public static class NumberStrings
     {

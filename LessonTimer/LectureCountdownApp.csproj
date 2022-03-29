@@ -7,8 +7,8 @@
     <ProjectGuid>{D81B901C-4F94-4D02-A1CE-0DCEE386B917}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LessonTimer</RootNamespace>
-    <AssemblyName>LessonTimer</AssemblyName>
+    <RootNamespace>LectureCountdown</RootNamespace>
+    <AssemblyName>LectureCountdown</AssemblyName>
     <DefaultLanguage>en</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>

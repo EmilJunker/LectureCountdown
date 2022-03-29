@@ -1,4 +1,4 @@
-﻿using LessonTimer.Services;
+﻿using LectureCountdown.Services;
 using Microsoft.Services.Store.Engagement;
 using System;
 using System.Collections.Generic;
@@ -23,7 +23,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace LessonTimer
+namespace LectureCountdown
 {
     public sealed partial class SettingsPage : Page
     {

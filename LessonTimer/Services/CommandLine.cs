@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace LessonTimer.Services
+namespace LectureCountdown.Services
 {
     public class Options
     {

@@ -5,7 +5,7 @@ using Windows.ApplicationModel.Resources;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 
-namespace LessonTimer.Services
+namespace LectureCountdown.Services
 {
     class Notifications
     {

@@ -1,4 +1,4 @@
-﻿using LessonTimer.Services;
+﻿using LectureCountdown.Services;
 using System;
 using Windows.ApplicationModel.Activation;
 using Windows.Globalization;
@@ -7,7 +7,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-namespace LessonTimer
+namespace LectureCountdown
 {
     sealed partial class App : Application
     {

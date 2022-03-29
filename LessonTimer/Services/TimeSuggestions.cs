@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Windows.ApplicationModel.Appointments;
 
-namespace LessonTimer.Services
+namespace LectureCountdown.Services
 {
     class TimeSuggestions
     {

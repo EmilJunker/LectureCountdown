@@ -5,7 +5,7 @@ using Windows.Globalization;
 using Windows.Globalization.DateTimeFormatting;
 using Windows.Storage;
 
-namespace LessonTimer.Services
+namespace LectureCountdown.Services
 {
     class Settings
     {

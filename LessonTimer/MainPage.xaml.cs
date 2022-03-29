@@ -1,5 +1,5 @@
 ﻿using CountdownLogic;
-using LessonTimer.Services;
+using LectureCountdown.Services;
 using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Appointments;
@@ -19,7 +19,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace LessonTimer
+namespace LectureCountdown
 {
     public sealed partial class MainPage : Page
     {
