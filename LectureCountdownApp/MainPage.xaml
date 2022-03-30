@@ -87,7 +87,7 @@
                 <RelativePanel x:Name="InformationPanel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,0,0,12">
 
                     <Border x:Name="InfoText" Margin="4" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" BorderBrush="{x:Null}">
-                        <TextBlock x:Name="InfoTextBlock" VerticalAlignment="Bottom" FontSize="12" />
+                        <TextBlock x:Name="InfoTextBlock" VerticalAlignment="Bottom" FontSize="12" AutomationProperties.LiveSetting="Assertive" />
                     </Border>
                     <Grid x:Name="CountdownProgress" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="InfoText" Height="24" Margin="4,0" >
                         <ProgressBar x:Name="CountdownProgressBar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Minimum="0" Maximum="1" />

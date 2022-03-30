@@ -14,6 +14,7 @@ using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Automation.Peers;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
@@ -545,6 +546,12 @@ namespace LectureCountdown
         {
             ResetFadeStoryboard.Begin();
             InfoTextBlock.Text = message;
+
+            var peer = FrameworkElementAutomationPeer.FromElement(InfoTextBlock);
+            if (peer != null)
+            {
+                peer.RaiseAutomationEvent(AutomationEvents.LiveRegionChanged);
+            }
 
             if (fadeout)
             {
