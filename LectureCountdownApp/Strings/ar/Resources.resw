@@ -189,6 +189,9 @@
   <data name="SettingsDeveloper.Text" xml:space="preserve">
     <value>المطور:</value>
   </data>
+  <data name="SettingsDonations.Text" xml:space="preserve">
+    <value>التبرعات:</value>
+  </data>
   <data name="SettingsEmail.Text" xml:space="preserve">
     <value>البريد الإلكتروني:</value>
   </data>
@@ -215,6 +218,9 @@
   </data>
   <data name="SettingsRating.Content" xml:space="preserve">
     <value>تقييم التطبيق</value>
+  </data>
+  <data name="SettingsRepository.Text" xml:space="preserve">
+    <value>مستودع:</value>
   </data>
   <data name="SettingsSectionAcademicQuarter-LabelBegin.Text" xml:space="preserve">
     <value>ابدأ 15 دقائق فيما بعد</value>

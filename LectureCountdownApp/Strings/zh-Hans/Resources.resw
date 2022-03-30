@@ -189,6 +189,9 @@
   <data name="SettingsDeveloper.Text" xml:space="preserve">
     <value>开发商：</value>
   </data>
+  <data name="SettingsDonations.Text" xml:space="preserve">
+    <value>捐款：</value>
+  </data>
   <data name="SettingsEmail.Text" xml:space="preserve">
     <value>电子邮件：</value>
   </data>
@@ -215,6 +218,9 @@
   </data>
   <data name="SettingsRating.Content" xml:space="preserve">
     <value>率这个应用程序</value>
+  </data>
+  <data name="SettingsRepository.Text" xml:space="preserve">
+    <value>软件仓库：</value>
   </data>
   <data name="SettingsSectionAcademicQuarter-LabelBegin.Text" xml:space="preserve">
     <value>迟15分钟开始</value>

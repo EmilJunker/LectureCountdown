@@ -189,6 +189,9 @@
   <data name="SettingsDeveloper.Text" xml:space="preserve">
     <value>Разработчик:</value>
   </data>
+  <data name="SettingsDonations.Text" xml:space="preserve">
+    <value>Пожертвования:</value>
+  </data>
   <data name="SettingsEmail.Text" xml:space="preserve">
     <value>Электронное письмо:</value>
   </data>
@@ -215,6 +218,9 @@
   </data>
   <data name="SettingsRating.Content" xml:space="preserve">
     <value>Оцените это приложение</value>
+  </data>
+  <data name="SettingsRepository.Text" xml:space="preserve">
+    <value>Репозиторий:</value>
   </data>
   <data name="SettingsSectionAcademicQuarter-LabelBegin.Text" xml:space="preserve">
     <value>Начало через 15 минут</value>

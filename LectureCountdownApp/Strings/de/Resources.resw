@@ -189,6 +189,9 @@
   <data name="SettingsDeveloper.Text" xml:space="preserve">
     <value>Entwickler:</value>
   </data>
+  <data name="SettingsDonations.Text" xml:space="preserve">
+    <value>Spenden:</value>
+  </data>
   <data name="SettingsEmail.Text" xml:space="preserve">
     <value>E-Mail:</value>
   </data>
@@ -215,6 +218,9 @@
   </data>
   <data name="SettingsRating.Content" xml:space="preserve">
     <value>App bewerten</value>
+  </data>
+  <data name="SettingsRepository.Text" xml:space="preserve">
+    <value>Repository:</value>
   </data>
   <data name="SettingsSectionAcademicQuarter-LabelBegin.Text" xml:space="preserve">
     <value>Beginn 15 Minuten später</value>

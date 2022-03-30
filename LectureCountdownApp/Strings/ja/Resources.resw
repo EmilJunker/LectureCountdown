@@ -189,6 +189,9 @@
   <data name="SettingsDeveloper.Text" xml:space="preserve">
     <value>開発者：</value>
   </data>
+  <data name="SettingsDonations.Text" xml:space="preserve">
+    <value>寄付：</value>
+  </data>
   <data name="SettingsEmail.Text" xml:space="preserve">
     <value>Eメール：</value>
   </data>
@@ -215,6 +218,9 @@
   </data>
   <data name="SettingsRating.Content" xml:space="preserve">
     <value>このアプリを評価する</value>
+  </data>
+  <data name="SettingsRepository.Text" xml:space="preserve">
+    <value>リポジトリ：</value>
   </data>
   <data name="SettingsSectionAcademicQuarter-LabelBegin.Text" xml:space="preserve">
     <value>15 分後に開始する</value>

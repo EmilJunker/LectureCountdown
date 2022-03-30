@@ -189,6 +189,9 @@
   <data name="SettingsDeveloper.Text" xml:space="preserve">
     <value>Geliştirici:</value>
   </data>
+  <data name="SettingsDonations.Text" xml:space="preserve">
+    <value>Bağışlar:</value>
+  </data>
   <data name="SettingsEmail.Text" xml:space="preserve">
     <value>E-posta:</value>
   </data>
@@ -215,6 +218,9 @@
   </data>
   <data name="SettingsRating.Content" xml:space="preserve">
     <value>Uygulamayı değerlendir</value>
+  </data>
+  <data name="SettingsRepository.Text" xml:space="preserve">
+    <value>Deposu:</value>
   </data>
   <data name="SettingsSectionAcademicQuarter-LabelBegin.Text" xml:space="preserve">
     <value>15 dakika sonra başla</value>

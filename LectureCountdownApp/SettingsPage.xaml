@@ -219,14 +219,26 @@
                         </RelativePanel>
                         <RelativePanel Margin="0,8,0,0">
                             <TextBlock x:Name="Developer" x:Uid="SettingsDeveloper" Margin="0,0,4,0">Developer:</TextBlock>
-                            <TextBlock x:Name="DeveloperName" RelativePanel.RightOf="Developer" RelativePanel.AlignVerticalCenterWith="Developer">
-                            <Hyperlink NavigateUri="ms-windows-store://publisher/?name=emilj">emilj</Hyperlink>
+                            <TextBlock RelativePanel.RightOf="Developer" RelativePanel.AlignVerticalCenterWith="Developer">
+                                <Hyperlink NavigateUri="ms-windows-store://publisher/?name=emilj">emilj</Hyperlink>
                             </TextBlock>
                         </RelativePanel>
                         <RelativePanel Margin="0,8,0,0">
                             <TextBlock x:Name="Email" x:Uid="SettingsEmail" Margin="0,0,4,0">Email:</TextBlock>
-                            <TextBlock x:Name="EmailAddress" RelativePanel.RightOf="Email" RelativePanel.AlignVerticalCenterWith="Email">
-                            <Hyperlink NavigateUri="mailto:emilj.apps@outlook.com">emilj.apps@outlook.com</Hyperlink>
+                            <TextBlock RelativePanel.RightOf="Email" RelativePanel.AlignVerticalCenterWith="Email">
+                                <Hyperlink NavigateUri="mailto:emilj.apps@outlook.com">emilj.apps@outlook.com</Hyperlink>
+                            </TextBlock>
+                        </RelativePanel>
+                        <RelativePanel Margin="0,8,0,0">
+                            <TextBlock x:Name="Donations" x:Uid="SettingsDonations" Margin="0,0,4,0">Donations:</TextBlock>
+                            <TextBlock RelativePanel.RightOf="Donations" RelativePanel.AlignVerticalCenterWith="Donations">
+                                <Hyperlink NavigateUri="https://www.paypal.me/EmilJunker">PayPal.me</Hyperlink>
+                            </TextBlock>
+                        </RelativePanel>
+                        <RelativePanel Margin="0,8,0,0">
+                            <TextBlock x:Name="Repository" x:Uid="SettingsRepository" Margin="0,0,4,0">Repository:</TextBlock>
+                            <TextBlock RelativePanel.RightOf="Repository" RelativePanel.AlignVerticalCenterWith="Repository">
+                                <Hyperlink NavigateUri="https://github.com/EmilJunker/LectureCountdown">GitHub.com</Hyperlink>
                             </TextBlock>
                         </RelativePanel>
                         <RelativePanel Margin="0,16,0,0">

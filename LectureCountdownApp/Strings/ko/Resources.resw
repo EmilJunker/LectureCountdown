@@ -189,6 +189,9 @@
   <data name="SettingsDeveloper.Text" xml:space="preserve">
     <value>개발자:</value>
   </data>
+  <data name="SettingsDonations.Text" xml:space="preserve">
+    <value>기부금:</value>
+  </data>
   <data name="SettingsEmail.Text" xml:space="preserve">
     <value>이메일:</value>
   </data>
@@ -215,6 +218,9 @@
   </data>
   <data name="SettingsRating.Content" xml:space="preserve">
     <value>앱 평가하기</value>
+  </data>
+  <data name="SettingsRepository.Text" xml:space="preserve">
+    <value>저장소:</value>
   </data>
   <data name="SettingsSectionAcademicQuarter-LabelBegin.Text" xml:space="preserve">
     <value>15분 나중에 시작</value>
