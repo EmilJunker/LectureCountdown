@@ -111,10 +111,10 @@
                             <SymbolIcon Symbol="Calendar" />
                         </StackPanel>
                     </Button>
-                    <Button x:Name="SettingsButton" RelativePanel.Below="PickerPanel" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="132" Height="32" Margin="4" Padding="0" Click="SettingsButton_Click">
+                    <Button x:Name="SettingsButton" RelativePanel.Below="PickerPanel" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="132" Height="32" Margin="4" Padding="0" Click="SettingsButton_Click" AutomationProperties.LabeledBy="{Binding ElementName=SettingsButtonText}">
                         <RelativePanel>
                             <SymbolIcon x:Name="Symbol" Symbol="Setting" Height="20" Margin="4" VerticalAlignment="Top" />
-                            <TextBlock x:Uid="SettingsButtonText" RelativePanel.RightOf="Symbol" Margin="4">Settings</TextBlock>
+                            <TextBlock x:Name="SettingsButtonText" x:Uid="SettingsButtonText" RelativePanel.RightOf="Symbol" Margin="4">Settings</TextBlock>
                         </RelativePanel>
                     </Button>
                     <Button x:Name="CancelButton" x:Uid="CancelButton" RelativePanel.Below="PickerPanel" RelativePanel.LeftOf="StartButton" Width="32" Height="32" Margin="4" Padding="0" Click="CancelButton_Click">

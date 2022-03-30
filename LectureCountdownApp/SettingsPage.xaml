@@ -83,15 +83,15 @@
 
                         <TextBlock x:Uid="SettingsHeadlineCountdown" Margin="0,24,0,8" FontSize="20">Countdown</TextBlock>
 
-                        <TextBlock x:Uid="SettingsSectionCountdownBase" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Base for the countdown</TextBlock>
-                        <ComboBox x:Name="CountdownBaseComboBox" Width="200" Margin="0,8" SelectionChanged="CountdownBaseComboBox_SelectionChanged">
+                        <TextBlock x:Name="SettingsSectionCountdownBase" x:Uid="SettingsSectionCountdownBase" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Base for the countdown</TextBlock>
+                        <ComboBox x:Name="CountdownBaseComboBox" Width="200" Margin="0,8" SelectionChanged="CountdownBaseComboBox_SelectionChanged" AutomationProperties.LabeledBy="{Binding ElementName=SettingsSectionCountdownBase}">
                             <ComboBoxItem x:Uid="CountdownBaseLength" Content="Length in minutes" Tag="length" />
                             <ComboBoxItem x:Uid="CountdownBaseTime" Content="End time" Tag="time" />
                         </ComboBox>
 
-                        <TextBlock x:Uid="SettingsSectionCountdownDescription" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Description of the countdown</TextBlock>
+                        <TextBlock x:Name="SettingsSectionCountdownDescription" x:Uid="SettingsSectionCountdownDescription" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Description of the countdown</TextBlock>
                         <RelativePanel Margin="0,8">
-                            <TextBox x:Name="CountdownDescriptionTextBox" Width="220" MaxLength="100" TextAlignment="Start" TextChanged="CountdownDescriptionTextBox_TextChanged" KeyDown="CountdownDescriptionTextBox_KeyDown"></TextBox>
+                            <TextBox x:Name="CountdownDescriptionTextBox" Width="220" MaxLength="100" TextAlignment="Start" TextChanged="CountdownDescriptionTextBox_TextChanged" KeyDown="CountdownDescriptionTextBox_KeyDown" AutomationProperties.LabeledBy="{Binding ElementName=SettingsSectionCountdownDescription}"></TextBox>
                             <Button x:Name="CountdownDescriptionResetButton" x:Uid="CountdownDescriptionResetButton" Width="30" Height="30" Padding="0" Margin="8,0" Click="CountdownDescriptionResetButton_Click" RelativePanel.AlignVerticalCenterWith="CountdownDescriptionTextBox" RelativePanel.RightOf="CountdownDescriptionTextBox">
                                 <StackPanel>
                                     <SymbolIcon Symbol="Undo" />
@@ -99,15 +99,15 @@
                             </Button>
                         </RelativePanel>
 
-                        <TextBlock x:Uid="SettingsSectionLectureLengths" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Common countdown lengths</TextBlock>
+                        <TextBlock x:Name="SettingsSectionLectureLengths" x:Uid="SettingsSectionLectureLengths" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Common countdown lengths</TextBlock>
                         <RelativePanel Margin="0,8">
-                            <TextBox x:Name="LectureLengthsTextBox" Width="220" MaxLength="100" TextAlignment="Start" TextChanged="LectureLengthsTextBox_TextChanged" KeyDown="LectureLengthsTextBox_KeyDown"></TextBox>
+                            <TextBox x:Name="LectureLengthsTextBox" Width="220" MaxLength="100" TextAlignment="Start" TextChanged="LectureLengthsTextBox_TextChanged" KeyDown="LectureLengthsTextBox_KeyDown" AutomationProperties.LabeledBy="{Binding ElementName=SettingsSectionLectureLengths}"></TextBox>
                             <TextBlock x:Uid="SettingsSectionLectureLengths-Label" RelativePanel.AlignVerticalCenterWith="LectureLengthsTextBox" RelativePanel.RightOf="LectureLengthsTextBox" Margin="8,0">minutes</TextBlock>
                         </RelativePanel>
 
-                        <TextBlock x:Uid="SettingsSectionLectureRound" Margin="0,8,0,0" TextWrapping="WrapWholeWords">End time rounded to</TextBlock>
+                        <TextBlock x:Name="SettingsSectionLectureRound" x:Uid="SettingsSectionLectureRound" Margin="0,8,0,0" TextWrapping="WrapWholeWords">End time rounded to</TextBlock>
                         <RelativePanel Margin="0,8">
-                            <ComboBox x:Name="LectureRoundComboBox" Width="80" HorizontalContentAlignment="Right" SelectionChanged="LectureRoundComboBox_SelectionChanged">
+                            <ComboBox x:Name="LectureRoundComboBox" Width="80" HorizontalContentAlignment="Right" SelectionChanged="LectureRoundComboBox_SelectionChanged" AutomationProperties.LabeledBy="{Binding ElementName=SettingsSectionLectureRound}">
                                 <ComboBoxItem HorizontalContentAlignment="Right" Content="30" />
                                 <ComboBoxItem HorizontalContentAlignment="Right" Content="15" />
                                 <ComboBoxItem HorizontalContentAlignment="Right" Content="10" />
@@ -124,15 +124,15 @@
                         <TextBlock x:Uid="SettingsSectionAcademicQuarter" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Academic quarter (lecture timing)</TextBlock>
                         <RelativePanel Margin="0,8,0,0">
                             <TextBlock x:Name="AcademicQuarterBeginLabel" x:Uid="SettingsSectionAcademicQuarter-LabelBegin" Margin="0,0,16,0">Start 15 minutes later</TextBlock>
-                            <ToggleSwitch x:Name="AcademicQuarterBeginToggleSwitch" Toggled="AcademicQuarterBeginToggleSwitch_Toggled" RelativePanel.AlignVerticalCenterWith="AcademicQuarterBeginLabel" RelativePanel.RightOf="AcademicQuarterBeginLabel"></ToggleSwitch>
+                            <ToggleSwitch x:Name="AcademicQuarterBeginToggleSwitch" Toggled="AcademicQuarterBeginToggleSwitch_Toggled" RelativePanel.AlignVerticalCenterWith="AcademicQuarterBeginLabel" RelativePanel.RightOf="AcademicQuarterBeginLabel" AutomationProperties.LabeledBy="{Binding ElementName=AcademicQuarterBeginLabel}"></ToggleSwitch>
                         </RelativePanel>
                         <RelativePanel Margin="0,-4,0,0">
                             <TextBlock x:Name="AcademicQuarterEndLabel" x:Uid="SettingsSectionAcademicQuarter-LabelEnd" Margin="0,0,16,0">End 15 minutes earlier</TextBlock>
-                            <ToggleSwitch x:Name="AcademicQuarterEndToggleSwitch" Toggled="AcademicQuarterEndToggleSwitch_Toggled" RelativePanel.AlignVerticalCenterWith="AcademicQuarterEndLabel" RelativePanel.RightOf="AcademicQuarterEndLabel"></ToggleSwitch>
+                            <ToggleSwitch x:Name="AcademicQuarterEndToggleSwitch" Toggled="AcademicQuarterEndToggleSwitch_Toggled" RelativePanel.AlignVerticalCenterWith="AcademicQuarterEndLabel" RelativePanel.RightOf="AcademicQuarterEndLabel" AutomationProperties.LabeledBy="{Binding ElementName=AcademicQuarterEndLabel}"></ToggleSwitch>
                         </RelativePanel>
 
-                        <TextBlock x:Uid="SettingsSectionStartTimeCarryBack" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Consider event start time in the countdown</TextBlock>
-                        <ToggleSwitch x:Name="StartTimeCarryBackToggleSwitch" Toggled="StartTimeCarryBackToggleSwitch_Toggled"></ToggleSwitch>
+                        <TextBlock x:Name="SettingsSectionStartTimeCarryBack" x:Uid="SettingsSectionStartTimeCarryBack" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Consider event start time in the countdown</TextBlock>
+                        <ToggleSwitch x:Name="StartTimeCarryBackToggleSwitch" Toggled="StartTimeCarryBackToggleSwitch_Toggled" AutomationProperties.LabeledBy="{Binding ElementName=SettingsSectionStartTimeCarryBack}"></ToggleSwitch>
 
                     </StackPanel>
 
@@ -140,18 +140,18 @@
 
                         <TextBlock x:Uid="SettingsHeadlineNotifications" Margin="0,24,0,8" FontSize="20">Notifications</TextBlock>
 
-                        <TextBlock x:Uid="SettingsSectionNotification" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Show a notification when the countdown is over</TextBlock>
-                        <ToggleSwitch x:Name="NotificationToggleSwitch" Toggled="NotificationToggleSwitch_Toggled"></ToggleSwitch>
+                        <TextBlock x:Name="SettingsSectionNotification" x:Uid="SettingsSectionNotification" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Show a notification when the countdown is over</TextBlock>
+                        <ToggleSwitch x:Name="NotificationToggleSwitch" Toggled="NotificationToggleSwitch_Toggled" AutomationProperties.LabeledBy="{Binding ElementName=SettingsSectionNotification}"></ToggleSwitch>
 
-                        <TextBlock x:Uid="SettingsSectionNotificationSoundEnabled" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Play notification sound</TextBlock>
-                        <ToggleSwitch x:Name="NotificationSoundToggleSwitch" Toggled="NotificationSoundToggleSwitch_Toggled"></ToggleSwitch>
+                        <TextBlock x:Name="SettingsSectionNotificationSoundEnabled" x:Uid="SettingsSectionNotificationSoundEnabled" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Play notification sound</TextBlock>
+                        <ToggleSwitch x:Name="NotificationSoundToggleSwitch" Toggled="NotificationSoundToggleSwitch_Toggled" AutomationProperties.LabeledBy="{Binding ElementName=SettingsSectionNotificationSoundEnabled}"></ToggleSwitch>
 
-                        <TextBlock x:Uid="SettingsSectionNotificationAlarmMode" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Play sound in a loop (alarm mode)</TextBlock>
-                        <ToggleSwitch x:Name="NotificationAlarmModeToggleSwitch" Toggled="NotificationAlarmModeToggleSwitch_Toggled"></ToggleSwitch>
+                        <TextBlock x:Name="SettingsSectionNotificationAlarmMode" x:Uid="SettingsSectionNotificationAlarmMode" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Play sound in a loop (alarm mode)</TextBlock>
+                        <ToggleSwitch x:Name="NotificationAlarmModeToggleSwitch" Toggled="NotificationAlarmModeToggleSwitch_Toggled" AutomationProperties.LabeledBy="{Binding ElementName=SettingsSectionNotificationAlarmMode}"></ToggleSwitch>
 
-                        <TextBlock x:Uid="SettingsSectionNotificationSound" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Notification sound</TextBlock>
+                        <TextBlock x:Name="SettingsSectionNotificationSound" x:Uid="SettingsSectionNotificationSound" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Notification sound</TextBlock>
                         <RelativePanel Margin="0,8">
-                            <ComboBox x:Name="NotificationSoundComboBox" Width="200" SelectionChanged="NotificationSoundComboBox_SelectionChanged">
+                            <ComboBox x:Name="NotificationSoundComboBox" Width="200" SelectionChanged="NotificationSoundComboBox_SelectionChanged" AutomationProperties.LabeledBy="{Binding ElementName=SettingsSectionNotificationSound}">
                                 <ComboBoxItem Content="Windows Sound 1" Tag="ms-winsoundevent:Notification.Default" />
                                 <ComboBoxItem Content="Windows Sound 2" Tag="ms-winsoundevent:Notification.IM" />
                                 <ComboBoxItem Content="Windows Sound 3" Tag="ms-winsoundevent:Notification.Mail" />
@@ -175,8 +175,8 @@
 
                         <TextBlock x:Uid="SettingsHeadlineLocalization" Margin="0,24,0,8" FontSize="20">Localization</TextBlock>
 
-                        <TextBlock x:Uid="SettingsSectionLanguage" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Language</TextBlock>
-                        <ComboBox x:Name="LanguageComboBox" Width="200" Margin="0,8" SelectionChanged="LanguageComboBox_SelectionChanged">
+                        <TextBlock x:Name="SettingsSectionLanguage" x:Uid="SettingsSectionLanguage" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Language</TextBlock>
+                        <ComboBox x:Name="LanguageComboBox" Width="200" Margin="0,8" SelectionChanged="LanguageComboBox_SelectionChanged" AutomationProperties.LabeledBy="{Binding ElementName=SettingsSectionLanguage}">
                             <ComboBoxItem Content="Windows default" Tag="" x:Uid="SettingsWindowsDefault" />
                             <ComboBoxItem Content="Arabic (العربية)" Tag="ar" />
                             <ComboBoxItem Content="Chinese (中文)" Tag="zh-Hans" />
@@ -192,24 +192,24 @@
                             <ComboBoxItem Content="Turkish (Türkçe)" Tag="tr" />
                         </ComboBox>
 
-                        <TextBlock x:Uid="SettingsSectionClockFormat" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Clock format</TextBlock>
-                        <StackPanel Margin="0,8">
+                        <TextBlock x:Name="SettingsSectionClockFormat" x:Uid="SettingsSectionClockFormat" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Clock format</TextBlock>
+                        <muxc:RadioButtons Margin="0,8" AutomationProperties.LabeledBy="{Binding ElementName=SettingsSectionClockFormat}">
                             <RadioButton x:Uid="SettingsSectionClockFormat-Label12" x:Name="ClockFormat12RadioButton" GroupName="ClockFormatGroup" Content="12-hour format" Tag="12HourClock" Checked="ClockFormatRadioButton_Checked" />
                             <RadioButton x:Uid="SettingsSectionClockFormat-Label24" x:Name="ClockFormat24RadioButton" GroupName="ClockFormatGroup" Content="24-hour format" Tag="24HourClock" Checked="ClockFormatRadioButton_Checked" />
-                        </StackPanel>
+                        </muxc:RadioButtons>
 
                     </StackPanel>
 
                     <StackPanel x:Name="FourthPanel" Width="320">
 
-                        <TextBlock x:Uid="SettingsHeadlineTheme" Margin="0,24,0,8" FontSize="20">Theme</TextBlock>
+                        <TextBlock x:Name="SettingsHeadlineTheme" x:Uid="SettingsHeadlineTheme" Margin="0,24,0,8" FontSize="20">Theme</TextBlock>
 
-                        <TextBlock x:Uid="SettingsSectionTheme" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Theme change requires app restart</TextBlock>
-                        <StackPanel Margin="0,8">
+                        <TextBlock x:Name="SettingsSectionTheme" x:Uid="SettingsSectionTheme" Margin="0,8,0,0" TextWrapping="WrapWholeWords">Theme change requires app restart</TextBlock>
+                        <muxc:RadioButtons Margin="0,8" AutomationProperties.LabeledBy="{Binding ElementName=SettingsHeadlineTheme}">
                             <RadioButton x:Uid="SettingsWindowsDefault" x:Name="ThemeDefaultRadioButton" GroupName="ThemeGroup" Content="Windows default" Tag="" Checked="ThemeRadioButton_Checked" />
                             <RadioButton x:Uid="SettingsSectionTheme-LabelLight" x:Name="ThemeLightRadioButton" GroupName="ThemeGroup" Content="Light" Tag="Light" Checked="ThemeRadioButton_Checked" />
                             <RadioButton x:Uid="SettingsSectionTheme-LabelDark" x:Name="ThemeDarkRadioButton" GroupName="ThemeGroup" Content="Dark" Tag="Dark" Checked="ThemeRadioButton_Checked" />
-                        </StackPanel>
+                        </muxc:RadioButtons>
 
                         <TextBlock x:Uid="SettingsHeadlineAbout" Margin="0,24,0,8" FontSize="20">About this app</TextBlock>
 
