@@ -101,7 +101,7 @@ namespace LectureCountdown
             nextStarttime = null;
             nextDescription = new Description();
 
-            Size size = new Size(400, 300);
+            Size size = new Size(400, 320);
             ApplicationView.GetForCurrentView().SetPreferredMinSize(size);
 
             Countdown.tick.Ticked += new TickEventHandler(UpdateCountdown);
@@ -583,7 +583,7 @@ namespace LectureCountdown
         private async void CompactOverlayOn()
         {
             ViewModePreferences compactOptions = ViewModePreferences.CreateDefault(ApplicationViewMode.CompactOverlay);
-            compactOptions.CustomSize = new Size(320, 160);
+            compactOptions.CustomSize = new Size(180, 160);
             await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay, compactOptions);
 
             ControlPanel.Visibility = Visibility.Collapsed;
