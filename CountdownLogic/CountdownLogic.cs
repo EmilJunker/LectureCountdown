@@ -147,7 +147,7 @@ namespace CountdownLogic
 
         private string FormatTimeSpan(TimeSpan t)
         {
-            return $"{(int)t.TotalHours:00}∶{t:mm}∶{t:ss}";
+            return $"{(int)t.TotalHours:00}\U0000202A∶\U0000202C{t:mm}\U0000202A∶\U0000202C{t:ss}";
         }
 
         public void SetTime(DateTime start, DateTime end)
