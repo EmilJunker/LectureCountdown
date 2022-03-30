@@ -123,17 +123,26 @@
   <data name="AppDisplayName" xml:space="preserve">
     <value>Лекция обратный отсчет</value>
   </data>
+  <data name="CalendarButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Предложить время из календаря</value>
+  </data>
   <data name="CalendarButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Предложить время из календаря</value>
   </data>
   <data name="CalendarPrivacyButton.Content" xml:space="preserve">
     <value>Настройки конфиденциальности</value>
   </data>
+  <data name="CancelButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Отменить обратный отсчет</value>
+  </data>
   <data name="CancelButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Отменить обратный отсчет</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
     <value>Закрыть Настройки</value>
+  </data>
+  <data name="CompactOverlayButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Переключение вида</value>
   </data>
   <data name="CompactOverlayButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Переключение вида</value>
@@ -143,6 +152,9 @@
   </data>
   <data name="CountdownBaseTime.Content" xml:space="preserve">
     <value>Время окончания</value>
+  </data>
+  <data name="CountdownDescriptionResetButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Сброс</value>
   </data>
   <data name="CountdownDescriptionResetButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Сброс</value>
@@ -155,6 +167,9 @@
   </data>
   <data name="ErrorNoEventsInCalendar" xml:space="preserve">
     <value>Сегодня нет событий в вашем календаре</value>
+  </data>
+  <data name="LengthPicker.AutomationProperties.Name" xml:space="preserve">
+    <value>Введите продолжительность обратного отсчета в минутах</value>
   </data>
   <data name="LengthPicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>Введите продолжительность обратного отсчета в минутах</value>
@@ -270,11 +285,20 @@
   <data name="SettingsWindowsDefault.Content" xml:space="preserve">
     <value>Windows умолчанию</value>
   </data>
+  <data name="StartButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Начало обратного отсчета</value>
+  </data>
   <data name="StartButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Начало обратного отсчета</value>
   </data>
+  <data name="SuggestButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Предложить время</value>
+  </data>
   <data name="SuggestButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Предложить время</value>
+  </data>
+  <data name="TimePicker.AutomationProperties.Name" xml:space="preserve">
+    <value>Выберите время окончания</value>
   </data>
   <data name="TimePicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>Выберите время окончания</value>

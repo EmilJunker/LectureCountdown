@@ -123,17 +123,26 @@
   <data name="AppDisplayName" xml:space="preserve">
     <value>강의 카운트다운</value>
   </data>
+  <data name="CalendarButton.AutomationProperties.Name" xml:space="preserve">
+    <value>캘린더에서 시간 제안</value>
+  </data>
   <data name="CalendarButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>캘린더에서 시간 제안</value>
   </data>
   <data name="CalendarPrivacyButton.Content" xml:space="preserve">
     <value>개인 정보 설정</value>
   </data>
+  <data name="CancelButton.AutomationProperties.Name" xml:space="preserve">
+    <value>카운트다운 취소</value>
+  </data>
   <data name="CancelButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>카운트다운 취소</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
     <value>설정 닫기</value>
+  </data>
+  <data name="CompactOverlayButton.AutomationProperties.Name" xml:space="preserve">
+    <value>보기 전환</value>
   </data>
   <data name="CompactOverlayButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>보기 전환</value>
@@ -143,6 +152,9 @@
   </data>
   <data name="CountdownBaseTime.Content" xml:space="preserve">
     <value>끝날 시간</value>
+  </data>
+  <data name="CountdownDescriptionResetButton.AutomationProperties.Name" xml:space="preserve">
+    <value>초기화</value>
   </data>
   <data name="CountdownDescriptionResetButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>초기화</value>
@@ -155,6 +167,9 @@
   </data>
   <data name="ErrorNoEventsInCalendar" xml:space="preserve">
     <value>캘린더에 오늘 이벤트가 없습니다</value>
+  </data>
+  <data name="LengthPicker.AutomationProperties.Name" xml:space="preserve">
+    <value>몇 분 만에 카운트다운 길이 입력</value>
   </data>
   <data name="LengthPicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>몇 분 만에 카운트다운 길이 입력</value>
@@ -270,11 +285,20 @@
   <data name="SettingsWindowsDefault.Content" xml:space="preserve">
     <value>윈도우 기본값</value>
   </data>
+  <data name="StartButton.AutomationProperties.Name" xml:space="preserve">
+    <value>카운트다운 시작</value>
+  </data>
   <data name="StartButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>카운트다운 시작</value>
   </data>
+  <data name="SuggestButton.AutomationProperties.Name" xml:space="preserve">
+    <value>시간을 제안하다</value>
+  </data>
   <data name="SuggestButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>시간을 제안하다</value>
+  </data>
+  <data name="TimePicker.AutomationProperties.Name" xml:space="preserve">
+    <value>끝날 시간 선택</value>
   </data>
   <data name="TimePicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>끝날 시간 선택</value>

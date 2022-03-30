@@ -123,17 +123,26 @@
   <data name="AppDisplayName" xml:space="preserve">
     <value>Lecture Countdown</value>
   </data>
+  <data name="CalendarButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Suggest time from calendar</value>
+  </data>
   <data name="CalendarButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Suggest time from calendar</value>
   </data>
   <data name="CalendarPrivacyButton.Content" xml:space="preserve">
     <value>Privacy settings</value>
   </data>
+  <data name="CancelButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Cancel countdown</value>
+  </data>
   <data name="CancelButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Cancel countdown</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
     <value>Close Settings</value>
+  </data>
+  <data name="CompactOverlayButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Switch view</value>
   </data>
   <data name="CompactOverlayButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Switch view</value>
@@ -143,6 +152,9 @@
   </data>
   <data name="CountdownBaseTime.Content" xml:space="preserve">
     <value>End time</value>
+  </data>
+  <data name="CountdownDescriptionResetButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Reset</value>
   </data>
   <data name="CountdownDescriptionResetButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Reset</value>
@@ -155,6 +167,9 @@
   </data>
   <data name="ErrorNoEventsInCalendar" xml:space="preserve">
     <value>No events today in your calendar</value>
+  </data>
+  <data name="LengthPicker.AutomationProperties.Name" xml:space="preserve">
+    <value>Enter length of countdown in minutes</value>
   </data>
   <data name="LengthPicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>Enter length of countdown in minutes</value>
@@ -270,11 +285,20 @@
   <data name="SettingsWindowsDefault.Content" xml:space="preserve">
     <value>Windows default</value>
   </data>
+  <data name="StartButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Start countdown</value>
+  </data>
   <data name="StartButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Start countdown</value>
   </data>
+  <data name="SuggestButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Suggest time</value>
+  </data>
   <data name="SuggestButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Suggest time</value>
+  </data>
+  <data name="TimePicker.AutomationProperties.Name" xml:space="preserve">
+    <value>Select end time</value>
   </data>
   <data name="TimePicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>Select end time</value>

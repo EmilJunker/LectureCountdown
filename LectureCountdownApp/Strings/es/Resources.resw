@@ -123,17 +123,26 @@
   <data name="AppDisplayName" xml:space="preserve">
     <value>Seminarios-Countdown</value>
   </data>
+  <data name="CalendarButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Sugerir un tiempo desde el calendario</value>
+  </data>
   <data name="CalendarButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Sugerir un tiempo desde el calendario</value>
   </data>
   <data name="CalendarPrivacyButton.Content" xml:space="preserve">
     <value>Configuración de privacidad</value>
   </data>
+  <data name="CancelButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Cancelar cuenta regresiva</value>
+  </data>
   <data name="CancelButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Cancelar cuenta regresiva</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
     <value>Cerrar Ajustes</value>
+  </data>
+  <data name="CompactOverlayButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Vista de switch</value>
   </data>
   <data name="CompactOverlayButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Vista de switch</value>
@@ -143,6 +152,9 @@
   </data>
   <data name="CountdownBaseTime.Content" xml:space="preserve">
     <value>Hora de finalización</value>
+  </data>
+  <data name="CountdownDescriptionResetButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Reinicializar</value>
   </data>
   <data name="CountdownDescriptionResetButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Reinicializar</value>
@@ -155,6 +167,9 @@
   </data>
   <data name="ErrorNoEventsInCalendar" xml:space="preserve">
     <value>No hay eventos hoy en tu calendario</value>
+  </data>
+  <data name="LengthPicker.AutomationProperties.Name" xml:space="preserve">
+    <value>Introduzca la duración de la cuenta regresiva en minutos</value>
   </data>
   <data name="LengthPicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>Introduzca la duración de la cuenta regresiva en minutos</value>
@@ -270,11 +285,20 @@
   <data name="SettingsWindowsDefault.Content" xml:space="preserve">
     <value>Predeterminado de Windows</value>
   </data>
+  <data name="StartButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Iniciar cuenta regresiva</value>
+  </data>
   <data name="StartButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Iniciar cuenta regresiva</value>
   </data>
+  <data name="SuggestButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Sugerir un tiempo</value>
+  </data>
   <data name="SuggestButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Sugerir un tiempo</value>
+  </data>
+  <data name="TimePicker.AutomationProperties.Name" xml:space="preserve">
+    <value>Seleccionar la hora de finalización</value>
   </data>
   <data name="TimePicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>Seleccionar la hora de finalización</value>

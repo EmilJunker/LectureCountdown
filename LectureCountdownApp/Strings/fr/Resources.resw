@@ -123,17 +123,26 @@
   <data name="AppDisplayName" xml:space="preserve">
     <value>Rebours de Cours Magistraux</value>
   </data>
+  <data name="CalendarButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Suggérer un temps à partir du calendrier</value>
+  </data>
   <data name="CalendarButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Suggérer un temps à partir du calendrier</value>
   </data>
   <data name="CalendarPrivacyButton.Content" xml:space="preserve">
     <value>Paramètres de confidentialité</value>
   </data>
+  <data name="CancelButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Annuler compte à rebours</value>
+  </data>
   <data name="CancelButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Annuler compte à rebours</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
     <value>Fermer Paramètres</value>
+  </data>
+  <data name="CompactOverlayButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Changer vue</value>
   </data>
   <data name="CompactOverlayButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Changer vue</value>
@@ -143,6 +152,9 @@
   </data>
   <data name="CountdownBaseTime.Content" xml:space="preserve">
     <value>Heure de fin</value>
+  </data>
+  <data name="CountdownDescriptionResetButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Réinitialiser</value>
   </data>
   <data name="CountdownDescriptionResetButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Réinitialiser</value>
@@ -155,6 +167,9 @@
   </data>
   <data name="ErrorNoEventsInCalendar" xml:space="preserve">
     <value>Aucun événement aujourd'hui dans votre calendrier</value>
+  </data>
+  <data name="LengthPicker.AutomationProperties.Name" xml:space="preserve">
+    <value>Entrer la durée du compte à rebours en minutes</value>
   </data>
   <data name="LengthPicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>Entrer la durée du compte à rebours en minutes</value>
@@ -270,11 +285,20 @@
   <data name="SettingsWindowsDefault.Content" xml:space="preserve">
     <value>Windows par défaut</value>
   </data>
+  <data name="StartButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Démarrer le rebours</value>
+  </data>
   <data name="StartButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Démarrer le rebours</value>
   </data>
+  <data name="SuggestButton.AutomationProperties.Name" xml:space="preserve">
+    <value>Suggérer un temps</value>
+  </data>
   <data name="SuggestButton.ToolTipService.ToolTip" xml:space="preserve">
     <value>Suggérer un temps</value>
+  </data>
+  <data name="TimePicker.AutomationProperties.Name" xml:space="preserve">
+    <value>Sélectionnez l'heure de fin</value>
   </data>
   <data name="TimePicker.ToolTipService.ToolTip" xml:space="preserve">
     <value>Sélectionnez l'heure de fin</value>
