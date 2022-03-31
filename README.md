@@ -1,16 +1,13 @@
 <p align="center">
-  <img alt="App Logo" src="LectureCountdownApp/Assets/StoreLogo.scale-400.png" width="100px" />
+  <img alt="App Logo" src="LectureCountdownApp/Assets/StoreLogo.scale-400.png" width="100" />
 
   <h1 align="center">Lecture Countdown</h1>
 
   <p align="center">
     A simple UWP countdown app for Windows 10/11.
-    <br/>
-    <br/>
-    <a href="https://github.com/EmilJunker/LectureCountdown/issues">Report Bug</a>
-    .
-    <a href="https://github.com/EmilJunker/LectureCountdown/issues">Request Feature</a>
   </p>
+
+  <br />
 </p>
 
 ![Issues](https://img.shields.io/github/issues/EmilJunker/LectureCountdown) 
@@ -51,33 +48,33 @@ To build and run the project, open the `.sln` file in Visual Studio, set Lecture
 
 You can launch the app from the command line to pass parameters. Note that the App execution alias for `LectureCountdown.exe` must be enabled in Windows Settings for this to work.
 
-```ps
+```powershell
 > LectureCountdown --length 20
 ```
 
 ### Available Parameters:
 
-```ps
---length                # length of the countdown in minutes
---end-time              # end time of the countdown in format hh:mm (with optional AM/PM)
---description           # description of the countdown (wrap in quotation marks if necessary)
---notification          # notification mode (accepts "none", "silent", "sound", or "alarm")
---notification-sound    # notification sound to be played (= position of the sound in the dropdown menu)
---compact-mode          # pass this parameter to launch the app in compact mode
---cancel                # pass this parameter to cancel the current countdown
+```
+--length                length of the countdown in minutes
+--end-time              end time of the countdown in format hh:mm (with optional AM/PM)
+--description           description of the countdown (wrap in quotation marks if necessary)
+--notification          notification mode (accepts "none", "silent", "sound", or "alarm")
+--notification-sound    notification sound to be played (= position of the sound in the dropdown menu)
+--compact-mode          pass this parameter to launch the app in compact mode
+--cancel                pass this parameter to cancel the current countdown
 ```
 
 ### Examples:
 
-```ps
+```powershell
 > LectureCountdown --length 20 --description "My 20-minute countdown" --compact-mode
 ```
 
-```ps
+```powershell
 > LectureCountdown --end-time 09:30 --notification alarm --notification-sound 6
 ```
 
-```ps
+```powershell
 > LectureCountdown --cancel
 ```
 
