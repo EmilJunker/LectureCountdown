@@ -46,7 +46,7 @@
                 </VisualState>
                 <VisualState x:Name="LargeState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1380" />
+                        <AdaptiveTrigger MinWindowWidth="1280" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="SecondPanel.(RelativePanel.RightOf)" Value="FirstPanel" />
@@ -245,7 +245,7 @@
                             <TextBlock x:Name="FeedbackIcon" FontFamily="Segoe MDL2 Assets">&#xE939;</TextBlock>
                             <Button x:Name="FeedbackButton" x:Uid="SettingsFeedback" RelativePanel.AlignVerticalCenterWith="FeedbackIcon" RelativePanel.RightOf="FeedbackIcon" Style="{StaticResource TextBlockButtonStyle}" Click="FeedbackButton_Click">Give Feedback</Button>
                         </RelativePanel>
-                        <RelativePanel Margin="0,8,0,0">
+                        <RelativePanel Margin="0,4,0,0">
                             <TextBlock x:Name="RatingsIcon" FontFamily="Segoe MDL2 Assets">&#xE00A;</TextBlock>
                             <Button x:Name="RatingsButton" x:Uid="SettingsRating" RelativePanel.AlignVerticalCenterWith="RatingsIcon" RelativePanel.RightOf="RatingsIcon" Style="{StaticResource TextBlockButtonStyle}" Click="RatingsButton_Click">Rate app</Button>
                         </RelativePanel>

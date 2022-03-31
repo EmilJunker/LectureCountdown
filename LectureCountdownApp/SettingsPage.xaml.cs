@@ -50,8 +50,9 @@ namespace LectureCountdown
 
             if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5))
             {
-                Grid.Background = (Brush)Resources["SystemControlChromeMediumAcrylicWindowMediumBrush"];
+                Grid.Background = (Brush)Resources["SystemControlChromeLowAcrylicWindowBrush"];
                 CloseButton.Style = (Style)Resources["ButtonRevealStyle"];
+                CountdownDescriptionResetButton.Style = (Style)Resources["ButtonRevealStyle"];
             }
 
             string flowDirectionSetting = ResourceContext.GetForCurrentView().QualifierValues["LayoutDirection"];

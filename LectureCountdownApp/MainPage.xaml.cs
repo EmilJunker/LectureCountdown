@@ -53,7 +53,7 @@ namespace LectureCountdown
 
             if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 5))
             {
-                Grid.Background = (Brush)Resources["SystemControlChromeMediumAcrylicWindowMediumBrush"];
+                Grid.Background = (Brush)Resources["SystemControlChromeLowAcrylicWindowBrush"];
                 SuggestButton.Style = (Style)Resources["ButtonRevealStyle"];
                 CalendarButton.Style = (Style)Resources["ButtonRevealStyle"];
                 CancelButton.Style = (Style)Resources["ButtonRevealStyle"];
