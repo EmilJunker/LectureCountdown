@@ -1,6 +1,5 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
+﻿using ArabicNumbersConverter;
+using System;
 using Windows.Globalization;
 
 namespace LectureCountdown.Services
@@ -16,10 +15,7 @@ namespace LectureCountdown.Services
                 {
                     culture = ApplicationLanguages.Languages[0];
                 }
-                string[] cultureDigits = CultureInfo.GetCultureInfo(culture).NumberFormat.NativeDigits;
-                string result = String.Join(String.Empty, number.ToString().Select(
-                    c => Char.IsDigit(c) ? cultureDigits[Int32.Parse(c.ToString())] : c.ToString()));
-                return result;
+                return number.ToCultureString(culture);
             }
             catch (Exception)
             {
@@ -31,9 +27,7 @@ namespace LectureCountdown.Services
         {
             try
             {
-                int result = Int32.Parse(String.Join(String.Empty, numberString.Select(
-                    c => Char.GetNumericValue(c))));
-                return result;
+                return numberString.ToInteger();
             }
             catch (Exception)
             {

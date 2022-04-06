@@ -67,6 +67,8 @@ namespace ConsoleTestApp
                 Countdown.TimerSetup(starttime, endtime);
             }
 
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
             Countdown.tick.Ticked += new TickEventHandler(UpdateCountdown);
 
             Console.WriteLine();

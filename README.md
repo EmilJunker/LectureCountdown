@@ -109,4 +109,5 @@ If you enjoy using this app and would like to support me so I can dedicate more 
 ## Acknowledgements
 
 * [Windows Community Toolkit](https://github.com/CommunityToolkit/WindowsCommunityToolkit)
+* [Arabic Numbers Converter](https://github.com/EmilJunker/ArabicNumbersConverter)
 * [Command Line Parser Library for CLR and NetStandard](https://github.com/commandlineparser/commandline)
