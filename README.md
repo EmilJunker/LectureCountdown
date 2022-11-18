@@ -20,7 +20,11 @@ Lecture Countdown is a must-have countdown app for students.
 
 Does this sound familiar: You have been sitting in class for hours, are exhausted, and just want to head home already? Lecture Countdown is there to help you stay motivated! Keep it up and remain concentrated till the end! With the Lecture Countdown app, you can always see exactly how much longer the lecture will last - and how much time has already passed.
 
-App Features:
+<img src="LectureCountdownApp/Screenshots/Screenshot.jpg"
+      alt="Beautiful screenshot of the app"
+      height="320">
+
+### App Features:
 
 - Always on Top mode
 - See how much time has already passed
@@ -28,7 +32,7 @@ App Features:
 - Notification when countdown is over
 - Theme support (Dark/Light)
 
-[<img src="https://getbadgecdn.azureedge.net/images/English_L.png"
+[<img src="https://get.microsoft.com/images/en-us%20dark.svg"
       alt="Download app from the Microsoft Store"
       height="80">](https://www.microsoft.com/store/productId/9P4NPSWTX7LK)
 
